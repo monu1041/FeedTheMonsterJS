@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.game-scene {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid red;
+    height: 100vh;
+    /* max-width: 520px; */
+    min-width: 420px;
+}
+
+#canvas {
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 2/3;
+}
+
+.timer {
+    width: 100%;
+    height: 50px;
+    background-color: red;
+}
+
+/* @media only screen and (max-width: 600px) {
+    .content {
+        max-width: 520px;
+        min-width: 420px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .content {
+        max-width: 520px;
+        min-width: 420px;
+    }
+} */
+
+/* Medium devices (landscape tablets, 768px and up) */
+/* @media only screen and (max-width: 768px){
+    .game-scene {
+        max-width: 520px;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .game-scene {
+        max-width: 520px;
+    }
+} */
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px) {
+    .content {
+        max-width: 520px;
+        min-width: 420px;
+    }
+} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {
+    .content {
+        max-width: 520px;
+        min-width: 420px;
+    }
+} */
