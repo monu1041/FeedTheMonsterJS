@@ -1,16 +1,16 @@
 let canvas = document.getElementById("canvas");
+let canvasTimer = document.getElementById("canvas-timer");
 let scene = document.getElementsByClassName("game-scene");
 
 canvas.height = window.innerHeight;
-canvas.width = window.innerWidth;
+canvas.width = window.screen.width > 420 ? 420 : window.innerWidth
 
-scene.innerHTML =
-  "<canvas style='z-index:1;' id='timer' width='" +
-  canvas.width +
-  "' height='" +
-  100 +
-  "'>";
+
+canvasTimer.width = window.screen.width > 420 ? 420 : window.innerWidth
+canvasTimer.height = window.innerHeight/2
+
 let ctx = canvas.getContext("2d");
+let timerCtx = canvasTimer.getContext("2d");
 console.log("heighe", canvas.height);
 
 var bgImg = new Image();
@@ -49,7 +49,7 @@ rotating_clock.onload = function (e) {
 var timer_full = new Image();
 timer_full.src = "./assets/images/timer_full.png";
 timer_full.onload = function (e) {
-  createBackground();
+  createBackground1();
 };
 
 var fenchImg = new Image();
@@ -103,24 +103,30 @@ function createBackground() {
     canvas.width * 0.12,
     canvas.height * 0.06
   );
-  ctx.drawImage(
-    timer_full,
-    canvas.width * 0.12,
-    canvas.height * 0.1,
-    canvas.width - canvas.width * 0.12,
-    canvas.height * 0.05
-  );
+//   ctx.drawImage(
+//     timer_full,
+//     canvas.width * 0.11,
+//     canvas.height * 0.10,
+//     canvas.width - 150,
+//     canvas.height * 0.051
+//   );
 }
-function startTheTimer() {
 
+function createBackground1() {
+    timerCtx.drawImage(
+        timer_full,
+        canvas.width * 0.11,
+        canvas.height * 0.10,
+        canvas.width - 150,
+        canvas.height * 0.051
+      );
+}
+
+
+
+function startTheTimer() {
   setInterval(() => {
-    ctx.drawImage(
-      timer_full,
-      canvas.width * 0.12,
-      canvas.height * 0.1,
-      canvas.width * 0.1,
-      canvas.height * 0.05
-    );
+    timerCtx.clearRect(canvas.width * 1.3 - canvas.width/2, 0, 300, canvas.height)
   }, 1000);
 }
 
