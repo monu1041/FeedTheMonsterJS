@@ -23,6 +23,10 @@ body {
     min-width: 420px;
 }
 
+img {
+    display: none;
+}
+
 #canvas {
     position: absolute;
     background-color: white;
