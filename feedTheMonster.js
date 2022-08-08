@@ -1,55 +1,37 @@
-import { GameScene } from './monster.js'
+import { Monster } from './monster.js'
 import { preloadImages } from './utility.js'
 
 window.addEventListener('load', function() {
     const canvas = document.getElementById("canvas");
-    const changeAnim = document.getElementById("change-anim");
+    const changeAnimEat = document.getElementById("change-anim-eat");
+    const changeAnimIdle = document.getElementById("change-anim-idle");
     const context = canvas.getContext("2d");
 
     canvas.height = window.innerHeight;
     canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
+
     var self;
+
     class Game {
         constructor(width, height) {
             this.width = width;
             this.height = height;
             self = this;
-            this.gameScene = new GameScene(this);
+            this.monster = new Monster(this);
         }
 
         update(deltaTime) {
-            this.gameScene.update(deltaTime);
+            this.monster.update(deltaTime);
         }
 
         render() {
-            this.gameScene.draw(context)
+            this.monster.draw(context)
         }
-
-        // onLoadGame() {
-        //     preloadImages([
-        //         './assets/images/bg_v01.jpg',
-        //         './assets/images/fence_v01.png',
-        //         './assets/images/FG_a_v01.png',
-        //         './assets/images/hill_v01.png',
-        //         './assets/images/Totem_v02_v01.png',
-        //         './assets/images/timer_empty.png',
-        //         './assets/images/timer_full.png',
-        //         './assets/images/timer.png'
-
-        //     ], function(){
-        //         console.log('All images were loaded');
-        //     });
-        // }
 
     }
 
     const game = new Game(canvas.width, canvas.height);
     game.render();
-    // var bgImg = new Image();
-    // bgImg.src = "./assets/images/player.png";
-    // bgImg.onload = function() {
-    //     game.render(bgImg)
-    // }
 
     let lastTime = 0;
 
@@ -65,11 +47,13 @@ window.addEventListener('load', function() {
 
     animation(0);
 
-    changeAnim.addEventListener("click", function(e) {
-        self.gameScene.changeImage();
+    changeAnimEat.addEventListener("click", function(e) {
+        self.monster.changeImage("./assets/images/eat.png");
         e.preventDefault();
     });
-    
 
-    
+    changeAnimIdle.addEventListener("click", function(e) {
+        self.monster.changeImage("./assets/images/sprite.png");
+        e.preventDefault();
+    });
 })

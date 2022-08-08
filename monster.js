@@ -1,10 +1,11 @@
-export class GameScene {
+export class Monster {
     constructor(game) {
         this.game = game
         this.width = this.game.width;
         this.height = this.game.height;
         this.image = document.getElementById("monster");
         this.frameX = 0;
+        this.frameY = 0;
         this.maxFrame = 6;
         this.fps = 10;
         this.frameInterval = 1000/this.fps;
@@ -25,10 +26,14 @@ export class GameScene {
     }
 
     draw(context) {
-        context.drawImage(this.image, 50 + 768 * this.frameX, 50, 768, 900, this.width/2 - 70, this.height/3, this.width/2.5, this.height/2.5);
+        context.drawImage(this.image, 770 * this.frameX, 1386 * this.frameY, 768, 1386, this.width/2 - 70, this.height/3, this.width/2.5, this.height/2.5);
     }
 
-    changeImage() {
-        this.image.src = "./assets/images/eat3.png"
+    changeImage(src) {
+        if (this.frameY == 1) {
+            this.frameY = 0;
+        } else {
+            this.frameY = 1;
+        }
     }
 }
