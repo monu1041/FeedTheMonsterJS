@@ -4,7 +4,7 @@ export class TimerTicking {
     constructor(game) {
         this.game = game;
         this.width = game.width;
-        this.height = game.height * 0.2;
+        this.height = game.height * 0.05;
         this.canvasStack = new CanvasStack("canvas");
         this.createCanvas();
     }
@@ -26,9 +26,9 @@ export class TimerTicking {
         this.context.drawImage(
             this.timer_full,
             this.game.width * 0.13,
-            this.game.height * 0.099,
+            0,
             this.game.width - 50,
-            this.height * 0.24
+            this.height
           );
     }
 
@@ -43,6 +43,6 @@ export class TimerTicking {
     }
 
     update() {
-
+        this.context.clearRect(canvas.width * 1.3 - canvas.width/2, 0, 300, canvas.height)
     }
 }

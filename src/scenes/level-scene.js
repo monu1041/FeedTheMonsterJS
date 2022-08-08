@@ -9,8 +9,8 @@ export class LevelScene {
         this.height = game.height;
         this.canvasStack = new CanvasStack("canvas");
         this.createCanvas();
-        this.monster = new Monster(game);
         this.timerTicking = new TimerTicking(game);
+        this.monster = new Monster(game);
        
     }
 

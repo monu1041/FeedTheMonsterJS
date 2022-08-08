@@ -1,3 +1,5 @@
+import { CanvasStack } from "../utility/canvas-stack.js"
+
 export class Monster {
     constructor(game) {
         this.game = game
@@ -10,23 +12,37 @@ export class Monster {
         this.fps = 10;
         this.frameInterval = 1000/this.fps;
         this.frameTimer = 0
+        this.canvasStack = new CanvasStack("canvas");
+        this.createCanvas();
     }
 
-    update(deltaTime) {
-        if (this.frameTimer > this.frameInterval) {
-            this.frameTimer = 0;
-            if (this.frameX < this.maxFrame) {
-                this.frameX++;
-            } else {
-                this.frameX = 0;
-            }
-        } else {
-            this.frameTimer += deltaTime;
-        }
+    createCanvas() {
+        this.id = this.canvasStack.createLayer(this.height, this.width);
+        this.canavsElement = document.getElementById(this.id);
+        this.context = this.canavsElement.getContext("2d");
+        this.canavsElement.style.zIndex = 7;
+        this.draw();
     }
 
-    draw(context) {
-        context.drawImage(this.image, 770 * this.frameX, 1386 * this.frameY, 768, 1386, this.width/2 - 70, this.height/3, this.width/2.5, this.height/2.5);
+    deleteCanvas() {
+        this.canvasStack.deleteLayer(this.id);
+    }
+
+    // update(deltaTime) {
+    //     if (this.frameTimer > this.frameInterval) {
+    //         this.frameTimer = 0;
+    //         if (this.frameX < this.maxFrame) {
+    //             this.frameX++;
+    //         } else {
+    //             this.frameX = 0;
+    //         }
+    //     } else {
+    //         this.frameTimer += deltaTime;
+    //     }
+    // }
+
+    draw() {
+        this.context.drawImage(this.image, 770 * this.frameX, 1386 * this.frameY, 768, 1386, this.width/2 - 70, this.height/3, this.width/2.5, this.height/2.5);
     }
 
     changeImage(src) {
