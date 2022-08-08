@@ -73,7 +73,7 @@ var CanvasStack;
       // }
 
       this.cId = cvsID;
-      this.stackLimit = stackLimit || 6;
+      this.stackLimit = stackLimit || 10;
       this.bkgCanvas = document.getElementById(cvsID);
       this.rawWidth = this.bkgCanvas.offsetWidth;
       this.rawHeight = this.bkgCanvas.offsetHeight;
