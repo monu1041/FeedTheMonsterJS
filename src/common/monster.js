@@ -28,20 +28,23 @@ export class Monster {
         this.canvasStack.deleteLayer(this.id);
     }
 
-    // update(deltaTime) {
-    //     if (this.frameTimer > this.frameInterval) {
-    //         this.frameTimer = 0;
-    //         if (this.frameX < this.maxFrame) {
-    //             this.frameX++;
-    //         } else {
-    //             this.frameX = 0;
-    //         }
-    //     } else {
-    //         this.frameTimer += deltaTime;
-    //     }
-    // }
+    update(deltaTime) {
+        if (this.frameTimer > this.frameInterval) {
+            this.frameTimer = 0;
+            if (this.frameX < this.maxFrame) {
+                this.frameX++;
+            } else {
+                this.frameX = 0;
+            }
+        } else {
+            this.frameTimer += deltaTime;
+        }
+
+        this.draw();
+    }
 
     draw() {
+        this.context.clearRect(0, 0, this.width, this.height)
         this.context.drawImage(this.image, 770 * this.frameX, 1386 * this.frameY, 768, 1386, this.width/2 - 70, this.height/3, this.width/2.5, this.height/2.5);
     }
 

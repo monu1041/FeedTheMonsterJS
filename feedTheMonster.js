@@ -40,7 +40,7 @@ window.addEventListener('load', function() {
         let deltaTime = timeStamp - lastTime;
         lastTime = timeStamp;
         context.clearRect(0, 0, canvas.width, canvas.height);
-        game.update(deltaTime);
+        game.scene.monster.update(deltaTime)
         // game.render();
         requestAnimationFrame(animation)
         
