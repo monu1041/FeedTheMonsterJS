@@ -1,8 +1,9 @@
-import { Monster } from "../common/monster.js";
-import { TimerTicking } from "../common/timer-ticking.js";
+import { Monster } from "../components/monster.js";
+import { TimerTicking } from "../components/timer-ticking.js";
 import { CanvasStack } from "../utility/canvas-stack.js"
+import StonesLayer from "../components/stones-layer.js";
 
-export class LevelScene {
+export class LevelStartScene {
     constructor(game) {
         this.game = game;
         this.width = game.width;
@@ -11,7 +12,7 @@ export class LevelScene {
         this.createCanvas();
         this.timerTicking = new TimerTicking(game);
         this.monster = new Monster(game);
-       
+        this.stones = new StonesLayer(game, game.width, game.height);
     }
 
     createCanvas() {
@@ -72,6 +73,7 @@ export class LevelScene {
         );
 
         this.timerTicking.createBackgroud();
+        this.stones.draw();
     }
 
     createBackgroud() {

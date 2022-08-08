@@ -1,6 +1,5 @@
-import { Monster } from './monster.js'
-import { LevelScene } from './src/scenes/level-scene.js';
-import { preloadImages } from './utility.js'
+import { LevelStartScene } from './src/scenes/level-start-scene.js';
+// import { preloadImages } from './utility.js'
 
 window.addEventListener('load', function() {
     const canvas = document.getElementById("canvas");
@@ -18,7 +17,7 @@ window.addEventListener('load', function() {
             this.width = width;
             this.height = height;
             self = this;
-            this.scene = new LevelScene(this);
+            this.scene = new LevelStartScene(this);
         }
 
         update(deltaTime) {
