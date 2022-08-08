@@ -6,16 +6,19 @@ canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
 
 canvas.height = window.innerHeight;
 
-var startScene = new StoneLayer(canvas, canvas.width, canvas.height);
+var stoneLayer = new StoneLayer(canvas, canvas.width, canvas.height);
 
-startScene.createCanvas();
-
+stoneLayer.createCanvas();
+// window.requestAnimationFrame();
+function updateFrame() {
+  stoneLayer.update()
+  window.requestAnimationFrame(updateFrame);
+}
+updateFrame()
 var bgImg = new Image();
 bgImg.src = "./assets/images/bg_v01.jpg";
 bgImg.onload = function (e) {
- // startScene.draw(bgImg);
+  // startScene.draw(bgImg);
 };
-startScene.createStones()
+stoneLayer.createStones();
 var gameScene = new GameScene("canvas", canvas.width, canvas.height);
-
-startScene.changeScene(gameScene);

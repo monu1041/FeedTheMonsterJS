@@ -6,7 +6,6 @@ var stonepos = [
     [110, 462],
   ],
 ];
-var context;
 var gs = {
   mode: "gameplay",
   levelnum: 0,
@@ -18,19 +17,6 @@ gs.puzzle = {
 };
 gs.stones = [];
 var pickedStone;
-function drawstone(s) {
-  context.drawImage(s.img, s.x - 32, s.y - 32, 64, 64);
-  context.fillStyle = "white";
-  context.font = "20px Arial";
-  context.fillText(s.text, s.x - 9, s.y + 8);
-}
-function draw() {
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  for (let s of gs.stones) {
-    drawstone(s);
-  }
-  window.requestAnimationFrame(draw);
-}
 export default class StoneLayer {
   constructor(canvas, width, height) {
     this.canvas = canvas;
@@ -41,7 +27,6 @@ export default class StoneLayer {
   createCanvas() {
     this.id = this.canvasStack.createLayer(this.height, this.width);
     this.context = document.getElementById(this.id).getContext("2d");
-    context = this.context;
     document.getElementById(this.id).style.zIndex = 5;
     document.getElementById(this.id).addEventListener(
       "click",
@@ -67,8 +52,18 @@ export default class StoneLayer {
     );
   }
   deleteCanvas() {}
-  draw(image, x, y, height, width) {}
-
+  draw() {
+    this.context.clearRect(0, 0, canvas.width, canvas.height);
+    for (let s of gs.stones) {
+      this.drawstone(s);
+    }
+  }
+  drawstone(s) {
+    this.context.drawImage(s.img, s.x - 32, s.y - 32, 64, 64);
+    this.context.fillStyle = "white";
+    this.context.font = "20px Arial";
+    this.context.fillText(s.text, s.x - 9, s.y + 8);
+  }
   createStones() {
     var poss = stonepos[0];
     gs.puzzle.stones = ["c", "m"];
@@ -80,8 +75,10 @@ export default class StoneLayer {
       gs.stones.push(ns);
       i += 1;
     }
-    draw();
+    this.draw();
   }
 
-  update() {}
+  update() {
+    this.draw();
+  }
 }
