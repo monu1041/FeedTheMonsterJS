@@ -16,35 +16,35 @@ console.log("heighe", canvas.height);
 var bgImg = new Image();
 bgImg.src = "./assets/images/bg_v01.jpg";
 bgImg.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 
 var hillImg = new Image();
 hillImg.src = "./assets/images/hill_v01.png";
 hillImg.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 var timer_empty = new Image();
 timer_empty.src = "./assets/images/timer_empty.png";
 timer_empty.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 
 var pillerImg = new Image();
 pillerImg.src = "./assets/images/Totem_v02_v01.png";
 pillerImg.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 
 var grassImg = new Image();
 grassImg.src = "./assets/images/FG_a_v01.png";
 grassImg.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 var rotating_clock = new Image();
 rotating_clock.src = "./assets/images/timer.png";
 rotating_clock.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 var timer_full = new Image();
 timer_full.src = "./assets/images/timer_full.png";
@@ -55,10 +55,10 @@ timer_full.onload = function (e) {
 var fenchImg = new Image();
 fenchImg.src = "./assets/images/fence_v01.png";
 fenchImg.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 
-function createBackground() {
+function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
   ctx.drawImage(

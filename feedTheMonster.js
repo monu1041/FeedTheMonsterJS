@@ -1,4 +1,5 @@
 import { Monster } from './monster.js'
+import { LevelScene } from './src/scenes/level-scene.js';
 import { preloadImages } from './utility.js'
 
 window.addEventListener('load', function() {
@@ -17,15 +18,15 @@ window.addEventListener('load', function() {
             this.width = width;
             this.height = height;
             self = this;
-            this.monster = new Monster(this);
+            this.scene = new LevelScene(this);
         }
 
         update(deltaTime) {
-            this.monster.update(deltaTime);
+            // this.monster.update(deltaTime);
         }
 
         render() {
-            this.monster.draw(context)
+            this.scene.createBackgroud();
         }
 
     }
@@ -40,7 +41,7 @@ window.addEventListener('load', function() {
         lastTime = timeStamp;
         context.clearRect(0, 0, canvas.width, canvas.height);
         game.update(deltaTime);
-        game.render();
+        // game.render();
         requestAnimationFrame(animation)
         
     }
