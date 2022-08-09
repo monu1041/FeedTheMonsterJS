@@ -1,60 +1,71 @@
+import  PauseButton  from "./src/components/buttons/pause_button.js";
+
 let canvas = document.getElementById("canvas");
 let canvasTimer = document.getElementById("canvas-timer");
 let scene = document.getElementsByClassName("game-scene");
 canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
 canvasTimer.width = window.screen.width > 420 ? 420 : window.innerWidth;
-
+var pause_button_coordinates = { x: canvas.width - 100, y: 10 };
 var canvas_stack = new CanvasStack("canvas");
-var pause_button = canvas_stack.createLayer(100, 100);
-var check = document.createElement("div");
-var pause_button_ctx = document.getElementById(pause_button).getContext("2d");
-document.getElementById(pause_button).style.zIndex = 3;
-document.getElementById(pause_button).addEventListener(
-  "click",
-  function (event) {
-    pauseMenuPopup();
-  },
-  false
-);
 canvas.height = window.innerHeight;
 canvasTimer.height = window.innerHeight / 2;
-
+var indicators = 0;
 let ctx = canvas.getContext("2d");
 
 let timerCtx = canvasTimer.getContext("2d");
 
+canvas.addEventListener(
+  "click",
+  function (event) {
+    var rect = canvas.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    console.log('x =',x  ,'y=',y)
+    const distance = Math.sqrt(
+      (x - (canvas.width - 50)) * (x - (canvas.width - 50)) +
+        (y - 50) * (y - 50)
+    );
+    console.log(distance);
+    if (distance < 50) {
+      PauseButton()
+      pauseMenuPopup();
+    }
+  },
+  false
+);
+
 var bgImg = new Image();
 bgImg.src = "./assets/images/bg_v01.jpg";
 bgImg.onload = function (e) {
-  createBackground();
+  //createBackground();
 };
 
 var hillImg = new Image();
 hillImg.src = "./assets/images/hill_v01.png";
 hillImg.onload = function (e) {
-  createBackground();
+  //createBackground();
 };
 var timer_empty = new Image();
 timer_empty.src = "./assets/images/timer_empty.png";
 timer_empty.onload = function (e) {
-  createBackground();
+  // createBackground();
 };
 
 var pillerImg = new Image();
 pillerImg.src = "./assets/images/Totem_v02_v01.png";
 pillerImg.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 
 var grassImg = new Image();
 grassImg.src = "./assets/images/FG_a_v01.png";
 grassImg.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 var rotating_clock = new Image();
 rotating_clock.src = "./assets/images/timer.png";
 rotating_clock.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 
 var timer_full = new Image();
@@ -66,17 +77,22 @@ timer_full.onload = function (e) {
 var fenchImg = new Image();
 fenchImg.src = "./assets/images/fence_v01.png";
 fenchImg.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 var pause_button_image = new Image();
 pause_button_image.src = "./assets/images/pause_v01.png";
 pause_button_image.onload = function (e) {
   createBackground();
 };
-
+var level_indicator = new Image();
+level_indicator.src = "./assets/images/levels_v01.png";
+level_indicator.onload = function (e) {
+  createBackground();
+};
 function createBackground() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(bgImg, 0, 0, canvas.width, canvas.height);
+
   ctx.drawImage(
     pillerImg,
     canvas.width * 0.6,
@@ -99,6 +115,13 @@ function createBackground() {
     canvas.height / 2
   );
   ctx.drawImage(
+    level_indicator,
+    0,
+    0,
+    canvas.width * 0.35,
+    canvas.height * 0.09
+  );
+  ctx.drawImage(
     grassImg,
     -canvas.width * 0.25,
     canvas.height / 2 + (canvas.height / 2) * 0.1,
@@ -119,7 +142,7 @@ function createBackground() {
     canvas.width * 0.12,
     canvas.height * 0.06
   );
-  pause_button_ctx.drawImage(pause_button_image, 0, 0, 100, 100);
+  ctx.drawImage(pause_button_image, canvas.width - 100, 0, 100, 100);
 }
 
 function createBackground1() {
@@ -142,14 +165,11 @@ function startTheTimer() {
     );
   }, 1000);
 }
-
+levelIndicator();
 startTheTimer();
 
 function pauseMenuPopup() {
-  let pop_up = canvas_stack.createLayer(
-    window.innerHeight,
-    window.screen.width > 420 ? 420 : window.innerWidth
-  );
+  let pop_up = canvas_stack.createLayer(canvas.height, canvas.width);
   var pop_up_ctx = document.getElementById(pop_up).getContext("2d");
   var popup_canvas_stack = new CanvasStack(pop_up);
   let close_button = popup_canvas_stack.createLayer(
@@ -193,4 +213,34 @@ function pauseMenuPopup() {
     },
     false
   );
+}
+function levelIndicator() {
+  var bar_empty = new Image();
+
+  bar_empty.src = "./assets/images/bar_empty_v01.png";
+  bar_empty.onload = function (e) {
+    for (var i = 0; i < 5; i++) {
+      ctx.drawImage(
+        bar_empty,
+        ((canvas.width * 0.35) / 7) * (i + 1),
+        (canvas.height * 0.09) / 2 - (canvas.height * 0.09) / 6,
+        (canvas.width * 0.35) / 10,
+        (canvas.height * 0.09) / 3
+      );
+    }
+  };
+  var bar_full = new Image();
+
+  bar_full.src = "./assets/images/bar_full_v01.png";
+  bar_full.onload = function (e) {
+    for (var i = 0; i < indicators; i++) {
+      ctx.drawImage(
+        bar_full,
+        ((canvas.width * 0.35) / 7) * (i + 1),
+        (canvas.height * 0.09) / 2 - (canvas.height * 0.09) / 6,
+        (canvas.width * 0.35) / 10,
+        (canvas.height * 0.09) / 3
+      );
+    }
+  };
 }
