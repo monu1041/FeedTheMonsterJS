@@ -42,7 +42,7 @@ export default class PausePopUp {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (self.cancelButton.onClick(x, y)) {
-          self.canvasStack.deleteLayer(this.id);
+          self.deleteCanvas(self);
         }
         if (self.retryButton.onClick(x, y)) {
           console.log("Retry Button");
@@ -53,7 +53,9 @@ export default class PausePopUp {
       });
   }
 
-  deleteCanvas(self) {}
+  deleteCanvas(self) {
+    self.canvasStack.deleteLayer(this.id);
+  }
 
   draw() {}
 
