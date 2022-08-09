@@ -21,7 +21,8 @@ window.addEventListener('load', function() {
         }
 
         update(deltaTime) {
-            // this.monster.update(deltaTime);
+            this.scene.monster.update(deltaTime)
+            this.scene.stones.update()
         }
 
         render() {
@@ -39,8 +40,7 @@ window.addEventListener('load', function() {
         let deltaTime = timeStamp - lastTime;
         lastTime = timeStamp;
         context.clearRect(0, 0, canvas.width, canvas.height);
-        game.scene.monster.update(deltaTime)
-        // game.render();
+        game.update(deltaTime)
         requestAnimationFrame(animation)
         
     }

@@ -3,8 +3,8 @@ import { CanvasStack } from "../utility/canvas-stack.js"
 export class Monster {
     constructor(game) {
         this.game = game
-        this.width = this.game.width;
-        this.height = this.game.height;
+        this.width = this.game.width/3;
+        this.height = this.game.height/4;
         this.image = document.getElementById("monster");
         this.frameX = 0;
         this.frameY = 0;
@@ -21,6 +21,7 @@ export class Monster {
         this.canavsElement = document.getElementById(this.id);
         this.context = this.canavsElement.getContext("2d");
         this.canavsElement.style.zIndex = 7;
+        this.canavsElement.style.top = "40%";
         this.draw();
     }
 
@@ -45,7 +46,7 @@ export class Monster {
 
     draw() {
         this.context.clearRect(0, 0, this.width, this.height)
-        this.context.drawImage(this.image, 770 * this.frameX, 1386 * this.frameY, 768, 1386, this.width/2 - 70, this.height/3, this.width/2.5, this.height/2.5);
+        this.context.drawImage(this.image, 770 * this.frameX, 1386 * this.frameY, 768, 1386, 0, 0, this.width, this.height);
     }
 
     changeImage(src) {
