@@ -3,8 +3,6 @@ import { LevelStartScene } from './src/scenes/level-start-scene.js';
 
 window.addEventListener('load', function() {
     const canvas = document.getElementById("canvas");
-    const changeAnimEat = document.getElementById("change-anim-eat");
-    const changeAnimIdle = document.getElementById("change-anim-idle");
     const context = canvas.getContext("2d");
 
     canvas.height = window.innerHeight;
@@ -46,14 +44,4 @@ window.addEventListener('load', function() {
     }
 
     animation(0);
-
-    changeAnimEat.addEventListener("click", function(e) {
-        self.monster.changeImage("./assets/images/eat.png");
-        e.preventDefault();
-    });
-
-    changeAnimIdle.addEventListener("click", function(e) {
-        self.monster.changeImage("./assets/images/sprite.png");
-        e.preventDefault();
-    });
 })

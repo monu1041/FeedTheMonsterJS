@@ -7,6 +7,6 @@ export class StoneConfig {
       this.drawready = false;
       this.text = stoneLetter;
       this.img = new Image();
-      this.img.src = "../../assets/images/stone_pink_v02.png";
+      this.img.src = "./assets/images/stone_pink_v02.png";
     }
   }
