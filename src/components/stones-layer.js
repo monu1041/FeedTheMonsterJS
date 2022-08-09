@@ -39,7 +39,7 @@ export default class StonesLayer {
       function (event) {
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
+        const y = event.clientY - rect.top;       
         for (let s of gs.stones) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 32) {
             pickedStone = s;
@@ -51,6 +51,19 @@ export default class StonesLayer {
     document.getElementById(this.id).addEventListener(
       "mouseup",
       function (event) {
+        var rect = document.getElementById(this.id).getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top; 
+        if (
+          Math.sqrt(
+            (x - this.width * 0.38 - 300) * (x - this.width * 0.38 - 300) +
+              (y - this.height * 0.3 - 200) * (y - this.height * 0.3 - 200)
+          ) <= 150
+        ) {
+          pickedStone.x = -900;
+          pickedStone.y = -900;
+          pickedStone = null
+        }
         if (pickedStone) {
           pickedStone.x = pickedStone.origx;
           pickedStone.y = pickedStone.origy;
