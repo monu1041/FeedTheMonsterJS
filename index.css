@@ -25,6 +25,10 @@ body {
     /* overflow: scroll; */
 }
 
+img {
+    display: none;
+}
+
 #canvas {
     position: absolute;
     /* background-color: white; */
@@ -33,6 +37,7 @@ body {
     transform: translate(-50%, 0%);
     /* aspect-ratio: 2/3; */
     max-height: -webkit-fill-available;
+    z-index: 3;
 }
 
 #canvas-timer {
