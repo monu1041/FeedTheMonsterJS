@@ -54,18 +54,18 @@ timer_empty.onload = function (e) {
 var pillerImg = new Image();
 pillerImg.src = "./assets/images/Totem_v02_v01.png";
 pillerImg.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 
 var grassImg = new Image();
 grassImg.src = "./assets/images/FG_a_v01.png";
 grassImg.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 var rotating_clock = new Image();
 rotating_clock.src = "./assets/images/timer.png";
 rotating_clock.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 
 var timer_full = new Image();
@@ -77,7 +77,7 @@ timer_full.onload = function (e) {
 var fenchImg = new Image();
 fenchImg.src = "./assets/images/fence_v01.png";
 fenchImg.onload = function (e) {
-  createBackground();
+  this.draw();
 };
 var pause_button_image = new Image();
 pause_button_image.src = "./assets/images/pause_v01.png";
