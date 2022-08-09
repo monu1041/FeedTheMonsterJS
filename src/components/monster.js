@@ -22,7 +22,7 @@ export class Monster {
         this.id = this.canvasStack.createLayer(this.height, this.width);
         this.canavsElement = document.getElementById(this.id);
         this.context = this.canavsElement.getContext("2d");
-        this.canavsElement.style.zIndex = 7;
+        this.canavsElement.style.zIndex = 3;
         this.draw();
     }
 

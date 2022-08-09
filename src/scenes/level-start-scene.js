@@ -3,6 +3,8 @@ import { TimerTicking } from "../components/timer-ticking.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import StonesLayer from "../components/stones-layer.js";
 import PauseButton from "../components/buttons/pause_button.js";
+import { LevelIndicators } from "../components/level-indicators.js";
+import PausePopUp from "../components/pause-popup.js";
 
 export class LevelStartScene {
   constructor(game) {
@@ -22,13 +24,19 @@ export class LevelStartScene {
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 5;
     this.pauseButton = new PauseButton(this.context, this.canavsElement);
+    this.levelIndicators = new LevelIndicators(
+      this.context,
+      this.canavsElement,
+      0
+    );
     var self = this;
     this.canavsElement.addEventListener("click", function (event) {
       var rect = document.getElementById(self.id).getBoundingClientRect();
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
       if (self.pauseButton.onClick(x, y)) {
-        console.log("***********");
+        //self.levelIndicators.setIndicators(num++)
+        new PausePopUp(self.canavsElement);
       }
     });
   }
@@ -86,6 +94,7 @@ export class LevelStartScene {
     this.timerTicking.createBackgroud();
     this.stones.draw();
     this.pauseButton.draw();
+    this.levelIndicators.draw();
   }
 
   createBackgroud() {
