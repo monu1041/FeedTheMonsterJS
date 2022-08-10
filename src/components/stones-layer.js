@@ -23,7 +23,7 @@ export default class StonesLayer {
   constructor(canvas, width, height) {
     this.canvas = canvas;
     this.width = width;
-    this.height = height;
+    this.height = height - canvas.width * 0.2;
     this.canvasStack = new CanvasStack("canvas");
     this.createCanvas();
   }
@@ -32,8 +32,7 @@ export default class StonesLayer {
     this.id = this.canvasStack.createLayer(this.height, this.width);
     this.context = document.getElementById(this.id).getContext("2d");
     document.getElementById(this.id).style.zIndex = 10;
-    document.getElementById(this.id).style.top = this.canvas.width * 0.2 + "px";
-    document.getElementById(this.id).style.backgroundColor = "transparent";
+    document.getElementById(this.id).style.bottom = 0;
     document.getElementById(this.id).addEventListener(
       "mousedown",
       function (event) {

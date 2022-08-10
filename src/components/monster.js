@@ -9,8 +9,8 @@ export class Monster {
         this.frameX = 0;
         this.frameY = 0;
         this.maxFrame = 6;
-        this.x = this.game.width/3.8;
-        this.y =this.game.height/3
+        this.x = this.game.width/2 - this.game.width * 0.243;
+        this.y =this.game.height/3.5
         this.fps = 10;
         this.frameInterval = 1000/this.fps;
         this.frameTimer = 0
