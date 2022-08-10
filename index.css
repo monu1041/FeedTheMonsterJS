@@ -76,7 +76,7 @@ img {
     background-color: brown;
 } */
 
-#game-div{
+/* #game-div{
     height: 100%;
     position: absolute;
     left: 50%;
@@ -91,6 +91,20 @@ img {
     max-height: -webkit-fill-available;
     text-decoration-color: aliceblue;
     z-index: 0;
+    overflow-y: scroll;
+} */
+#game-div{
+    position: absolute;
+    /* background-color: white; */
+    left: 50%;
+    top: 0%;
+    transform: translate(-50%, 0%);
+    /* aspect-ratio: 2/3; */
+    max-height: -webkit-fill-available;
+    z-index: 3; 
+    background-image: url('./assets/images/map.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .levelSelectionButton{
    height: 100px;
