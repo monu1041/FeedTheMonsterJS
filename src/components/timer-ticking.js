@@ -4,7 +4,7 @@ export class TimerTicking {
     constructor(game) {
         this.game = game;
         this.width = game.width;
-        this.height = game.height * 0.05;
+        this.height = game.height - game.height * 0.1;
         this.canvasStack = new CanvasStack("canvas");
         this.createCanvas();
     }
@@ -13,7 +13,7 @@ export class TimerTicking {
         this.id = this.canvasStack.createLayer(this.height, this.width);
         this.canavsElement = document.getElementById(this.id);
         this.context = this.canavsElement.getContext("2d");
-        this.canavsElement.style.top = "10%"
+        this.canavsElement.style.bottom = 0;
         this.canavsElement.style.zIndex = 6;
     }
 
@@ -25,10 +25,10 @@ export class TimerTicking {
         this.context.clearRect(0, 0, this.width, this.height);
         this.context.drawImage(
             this.timer_full,
-            this.game.width * 0.13,
+            this.game.width * 0.12,
             0,
             this.game.width - 50,
-            this.height
+            this.height * 0.055
           );
     }
 
@@ -39,10 +39,12 @@ export class TimerTicking {
         this.timer_full.onload = function (e) {
             self.draw();
         };
-
+        this.update()
     }
 
     update() {
-        this.context.clearRect(canvas.width * 1.3 - canvas.width/2, 0, 300, canvas.height)
+        this.context.clearRect(canvas.width * 1.3 - canvas.width/2, 0, 300, this.game.height)
     }
+
+    
 }
