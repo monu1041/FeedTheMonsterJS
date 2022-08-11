@@ -1,0 +1,25 @@
+{
+  "name": "feedthemonsterjs",
+  "version": "1.0.0",
+  "description": "education app",
+  "main": "feedTheMonster.js",
+  "scripts": {
+    "dev": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curiouslearning/FeedTheMonsterJS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/curiouslearning/FeedTheMonsterJS/issues"
+  },
+  "homepage": "https://github.com/curiouslearning/FeedTheMonsterJS#readme",
+  "dependencies": {
+    "webpack": "^5.74.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.10.0"
+  }
+}

@@ -5,6 +5,9 @@ import { LevelStartScene } from './src/scenes/level-start-scene.js';
 window.addEventListener('load', function() {
     const canvas = document.getElementById("canvas");
     const context = canvas.getContext("2d");
+    const eat = document.getElementById("change-anim-eat");
+    const spit = document.getElementById("change-anim-spit");
+    const idle = document.getElementById("change-anim-idle");
 
     canvas.height = window.innerHeight;
     canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
@@ -45,4 +48,23 @@ window.addEventListener('load', function() {
     }
 
     animation(0);
+
+
+    eat.addEventListener("click", function(e) {
+        document.getElementById("monster").src = "./assets/images/eat4.png"
+        // game.scene.monster.changeImage();
+        e.preventDefault();
+    });
+
+    idle.addEventListener("click", function(e) {
+        document.getElementById("monster").src = "./assets/images/idle4.png"
+        // game.scene.monster.changeImage();
+        e.preventDefault();
+    });
+
+    spit.addEventListener("click", function(e) {
+        document.getElementById("monster").src = "./assets/images/spit4.png"
+        // game.scene.monster.changeImage();
+        e.preventDefault();
+    });
 })

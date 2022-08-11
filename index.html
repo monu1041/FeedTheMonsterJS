@@ -2,19 +2,22 @@
 <html>
     <head>
         <link rel="stylesheet" href="./index.css">
+        <title>Feed The Monster</title>
+        <link rel="manifest" href="manifest.json">
+        <link rel="shortcut icon" href="./assets/images/favicon.png" sizes="512x512" type="image/png">
     </head>
 
     <body>
         <div class="game-scene">
-            <img id="monster" src="./assets/images/spritesheet (1).png" alt="loading"/>
+            <img id="monster" src="./assets/images/idle4.png" alt="loading"/>
             <canvas id="canvas"></canvas>
-            <!-- <button id="change-anim-eat">
-                <span>print</span>
+            <button id="change-anim-eat">
+                <span>eat</span>
             </button>
-            <button id="change-anim-idle">idle</button> -->
-            <div id="game-div"></div>
-
+            <button id="change-anim-idle">idle</button>
+            <button id="change-anim-spit">spit</button>
         </div>
-        <script type="module" src="./feedTheMonster.js"></script>
+        <script type="module" src="feedTheMonster.js"></script>
+        <script src="sw.js" type="text/javascript"></script>
     </body>
 </html>
