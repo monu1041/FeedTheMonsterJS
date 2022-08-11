@@ -24,6 +24,7 @@ export default class StonesLayer {
   }
 
   createCanvas() {
+    var self = this;
     this.id = this.canvasStack.createLayer(this.height, this.width);
     this.context = document.getElementById(this.id).getContext("2d");
     document.getElementById(this.id).style.zIndex = 10;
@@ -61,16 +62,27 @@ export default class StonesLayer {
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top; 
-        if (
-          Math.sqrt(
-            (x - this.width * 0.38 - 300) * (x - this.width * 0.38 - 300) +
-              (y - this.height * 0.3 - 200) * (y - this.height * 0.3 - 200)
-          ) <= 150
-        ) {
-          pickedStone.x = -900;
-          pickedStone.y = -900;
+        console.log(Math.sqrt((x - self.canvas.scene.monster.x - this.width/4) * (x - self.canvas.scene.monster.x- this.width/4) + (y - self.canvas.scene.monster.y - this.height/3) * (y - self.canvas.scene.monster.y - this.height/3)))
+        if (Math.sqrt((x - self.canvas.scene.monster.x - this.width/4) * (x - self.canvas.scene.monster.x- this.width/4) + (y - self.canvas.scene.monster.y - this.height/3) * (y - self.canvas.scene.monster.y - this.height/3)) <= 40 ) {
+          if (pickedStone) {
+            pickedStone.x = -900;
+            pickedStone.y = -900;
+            self.canvas.scene.monster.changeToEatAnimation();
+            self.canvas.scene.levelIndicators.setIndicators(1);
+          }
           pickedStone = null
+          
         }
+        // if (
+        //   Math.sqrt(
+        //     (x - this.width * 0.38 - 300) * (x - this.width * 0.38 - 300) +
+        //       (y - this.height * 0.3 - 200) * (y - this.height * 0.3 - 200)
+        //   ) <= 150
+        // ) {
+        //   pickedStone.x = -900;
+        //   pickedStone.y = -900;
+        //   pickedStone = null
+        // }
         if (pickedStone) {
           pickedStone.x = pickedStone.origx;
           pickedStone.y = pickedStone.origy;

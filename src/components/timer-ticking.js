@@ -5,6 +5,11 @@ export class TimerTicking {
         this.game = game;
         this.width = game.width;
         this.height = game.height - game.height * 0.1;
+        this.widthToClear = canvas.width/3.4;
+        this.fps = 10;
+        this.frameInterval = 1000/this.fps;
+        this.frameTimer = 0;
+        this.maxFrame = 6;
         this.canvasStack = new CanvasStack("canvas");
         this.createCanvas();
     }
@@ -38,13 +43,23 @@ export class TimerTicking {
         this.timer_full.src = "./assets/images/timer_full.png";
         this.timer_full.onload = function (e) {
             self.draw();
+            self.update()
         };
-        this.update()
+        
     }
 
-    update() {
-        this.context.clearRect(canvas.width * 1.3 - canvas.width/2, 0, 300, this.game.height)
+    update(deltaTime) {
+        if (this.frameTimer > this.frameInterval) {
+            this.frameTimer = 0;
+            if (this.frameX < this.maxFrame) {
+                this.frameX++;
+            } else {
+                this.frameX = 0;
+            }
+        } else {
+            this.frameTimer += deltaTime;
+        }
+        this.context.clearRect(canvas.width * 1.3 - this.widthToClear, 0, this.width, this.height)
     }
-
     
 }
