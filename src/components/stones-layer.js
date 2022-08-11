@@ -2,12 +2,7 @@ import { StoneConfig } from "../common/stones-config.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import PauseButton from "./buttons/pause_button.js";
 
-var stonepos = [
-  [
-    [200, 200],
-    [110, 462],
-  ],
-];
+
 var gs = {
   mode: "gameplay",
   levelnum: 0,
@@ -15,7 +10,7 @@ var gs = {
 gs.puzzle = {
   puzzlenum: 0,
   target: "e",
-  stones: ["e", "d"],
+  stones: ["e", "d","a","b","c","f","g","h" ],
 };
 gs.stones = [];
 var pickedStone;
@@ -33,6 +28,19 @@ export default class StonesLayer {
     this.context = document.getElementById(this.id).getContext("2d");
     document.getElementById(this.id).style.zIndex = 10;
     document.getElementById(this.id).style.bottom = 0;
+    this.stonepos=[
+      [
+        [this.canvas.width/7,this.canvas.height/1.9],
+        [this.canvas.width/2,this.canvas.height/1.32],
+        [this.canvas.width/3.5+this.canvas.width/2,this.canvas.height/1.2],
+        [this.canvas.width/4,this.canvas.height/1.28],
+        [this.canvas.width/7,this.canvas.height/1.5],
+        [this.canvas.width/2.3+this.canvas.width/2.1,this.canvas.height/1.9],
+        [this.canvas.width/2.3+this.canvas.width/2.1,this.canvas.height/1.42],
+        [this.canvas.width/6,this.canvas.height/1.2],
+
+      ],
+    ];
     document.getElementById(this.id).addEventListener(
       "mousedown",
       function (event) {
@@ -125,7 +133,7 @@ export default class StonesLayer {
     );
 
 
-    this.createStones();
+    this.createStones(this.stonepos);
   }
 
   deleteCanvas() {}
@@ -144,9 +152,8 @@ export default class StonesLayer {
     this.context.fillText(s.text, s.x - 9, s.y + 8);
   }
 
-  createStones() {
+  createStones(stonepos) {
     var poss = stonepos[0];
-    gs.puzzle.stones = ["c", "d"];
     var i = 0;
     for (let s of gs.puzzle.stones) {
       console.log(poss[i][0]);
