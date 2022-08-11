@@ -31,7 +31,7 @@ export default class StonesLayer {
     this.stonepos=[
       [
         [this.canvas.width/7,this.canvas.height/1.9],
-        [this.canvas.width/2,this.canvas.height/1.32],
+        [this.canvas.width/2,this.canvas.height/1.15],
         [this.canvas.width/3.5+this.canvas.width/2,this.canvas.height/1.2],
         [this.canvas.width/4,this.canvas.height/1.28],
         [this.canvas.width/7,this.canvas.height/1.5],
