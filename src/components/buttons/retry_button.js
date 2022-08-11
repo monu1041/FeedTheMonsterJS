@@ -1,7 +1,7 @@
 export default class RetryButton {
-  constructor(context, canvas) {
-    this.posX = canvas.width * 0.55 ;
-    this.posY = canvas.height * 0.2 + canvas.width * 0.4;
+  constructor(context, canvas,posX,posY) {
+    this.posX = posX ;
+    this.posY = posY;
     this.context = context;
     this.canvas = canvas;
     this.draw();

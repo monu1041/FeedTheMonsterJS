@@ -1,4 +1,4 @@
-export default class CloseButton {
+export default class NextButton {
     constructor(context, canvas,posX,posY) {
       this.posX = posX ;
       this.posY =  posY;
@@ -9,7 +9,7 @@ export default class CloseButton {
     draw() {
       var self = this;
       var pause_button_image = new Image();
-      pause_button_image.src = "./assets/images/map_btn.png";
+      pause_button_image.src = "./assets/images/next_btn.png";
       pause_button_image.onload = function (e) {
         self.context.drawImage(
           pause_button_image,
