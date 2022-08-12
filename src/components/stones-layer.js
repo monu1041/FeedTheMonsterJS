@@ -14,6 +14,7 @@ gs.puzzle = {
 };
 gs.stones = [];
 var pickedStone;
+var offsetCoordinateValue=32;
 export default class StonesLayer {
   constructor(canvas, width, height) {
     this.canvas = canvas;
@@ -24,20 +25,21 @@ export default class StonesLayer {
   }
 
   createCanvas() {
+    var self = this;
     this.id = this.canvasStack.createLayer(this.height, this.width);
     this.context = document.getElementById(this.id).getContext("2d");
     document.getElementById(this.id).style.zIndex = 10;
     document.getElementById(this.id).style.bottom = 0;
     this.stonepos=[
       [
-        [this.canvas.width/7,this.canvas.height/1.9],
-        [this.canvas.width/2,this.canvas.height/1.15],
-        [this.canvas.width/3.5+this.canvas.width/2,this.canvas.height/1.2],
-        [this.canvas.width/4,this.canvas.height/1.28],
-        [this.canvas.width/7,this.canvas.height/1.5],
-        [this.canvas.width/2.3+this.canvas.width/2.1,this.canvas.height/1.9],
-        [this.canvas.width/2.3+this.canvas.width/2.1,this.canvas.height/1.42],
-        [this.canvas.width/6,this.canvas.height/1.2],
+        [this.canvas.width/7-offsetCoordinateValue,this.canvas.height/1.9-offsetCoordinateValue],
+        [this.canvas.width/2-offsetCoordinateValue,this.canvas.height/1.15-offsetCoordinateValue],
+        [this.canvas.width/3.5+this.canvas.width/2-offsetCoordinateValue,this.canvas.height/1.2-offsetCoordinateValue],
+        [this.canvas.width/4-offsetCoordinateValue,this.canvas.height/1.28-offsetCoordinateValue],
+        [this.canvas.width/7-offsetCoordinateValue,this.canvas.height/1.5-offsetCoordinateValue],
+        [this.canvas.width/2.3+this.canvas.width/2.1-offsetCoordinateValue,this.canvas.height/1.9-offsetCoordinateValue],
+        [this.canvas.width/2.3+this.canvas.width/2.1-offsetCoordinateValue,this.canvas.height/1.42-offsetCoordinateValue],
+        [this.canvas.width/6-offsetCoordinateValue,this.canvas.height/1.15-offsetCoordinateValue],
 
       ],
     ];
@@ -48,7 +50,7 @@ export default class StonesLayer {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;       
         for (let s of gs.stones) {
-          if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 32) {
+          if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {
             pickedStone = s;
           }
         }
@@ -61,16 +63,27 @@ export default class StonesLayer {
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top; 
-        if (
-          Math.sqrt(
-            (x - this.width * 0.38 - 300) * (x - this.width * 0.38 - 300) +
-              (y - this.height * 0.3 - 200) * (y - this.height * 0.3 - 200)
-          ) <= 150
-        ) {
-          pickedStone.x = -900;
-          pickedStone.y = -900;
+        console.log(Math.sqrt((x - self.canvas.scene.monster.x - this.width/4) * (x - self.canvas.scene.monster.x- this.width/4) + (y - self.canvas.scene.monster.y - this.height/3) * (y - self.canvas.scene.monster.y - this.height/3)))
+        if (Math.sqrt((x - self.canvas.scene.monster.x - this.width/4) * (x - self.canvas.scene.monster.x- this.width/4) + (y - self.canvas.scene.monster.y - this.height/3) * (y - self.canvas.scene.monster.y - this.height/3)) <= 40 ) {
+          if (pickedStone) {
+            pickedStone.x = -900;
+            pickedStone.y = -900;
+            self.canvas.scene.monster.changeToEatAnimation();
+            self.canvas.scene.levelIndicators.setIndicators(1);
+          }
           pickedStone = null
+          
         }
+        // if (
+        //   Math.sqrt(
+        //     (x - this.width * 0.38 - 300) * (x - this.width * 0.38 - 300) +
+        //       (y - this.height * 0.3 - 200) * (y - this.height * 0.3 - 200)
+        //   ) <= 150
+        // ) {
+        //   pickedStone.x = -900;
+        //   pickedStone.y = -900;
+        //   pickedStone = null
+        // }
         if (pickedStone) {
           pickedStone.x = pickedStone.origx;
           pickedStone.y = pickedStone.origy;
@@ -141,15 +154,20 @@ export default class StonesLayer {
   draw() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     for (let s of gs.stones) {
-      this.drawstone(s);
+      this.drawstone(s,canvas);
     }
   }
 
-  drawstone(s) {
-    this.context.drawImage(s.img, s.x - 32, s.y - 32, 64, 64);
+  drawstone(s,canvas) {
+    var imageCenterOffsetX = canvas.height/60-canvas.height/30;
+    var imageCenterOffsetY = -canvas.height/60-canvas.height/44;
+    var imageSize = canvas.height/18;
+    var textFontSize = canvas.height/30
+
+    this.context.drawImage(s.img, s.x+imageCenterOffsetX, s.y+imageCenterOffsetY, imageSize, imageSize);
     this.context.fillStyle = "white";
-    this.context.font = "20px Arial";
-    this.context.fillText(s.text, s.x - 9, s.y + 8);
+    this.context.font = textFontSize+"px Arial";
+    this.context.fillText(s.text, s.x , s.y);
   }
 
   createStones(stonepos) {

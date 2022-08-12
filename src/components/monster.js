@@ -10,7 +10,7 @@ export class Monster {
         this.frameY = 0;
         this.maxFrame = 6;
         this.x = this.game.width/2 - this.game.width * 0.243;
-        this.y = this.game.height/3.5
+        this.y = this.game.height/9
         this.fps = 10;
         this.frameInterval = 1000/this.fps;
         this.frameTimer = 0
@@ -57,5 +57,23 @@ export class Monster {
         } else {
             this.frameY = 1;
         }
+    }
+
+    changeToEatAnimation() {
+        this.image.src = "./assets/images/eat4.png";
+        setTimeout(() => {
+            this.changeToIdleAnimation();
+        }, 2000);
+    }
+
+    changeToIdleAnimation() {
+        this.image.src = "./assets/images/idle4.png";
+    }
+
+    changeToSadAnimation() {
+        this.image.src = "./assets/images/spit4.png";
+        setTimeout(() => {
+            this.changeToIdleAnimation();
+        }, 2000);
     }
 }

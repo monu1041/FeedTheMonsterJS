@@ -1,3 +1,4 @@
+import { LevelEndScene } from "../scenes/level-end-scene.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import CancelButton from "./buttons/cancel_button.js";
 import CloseButton from "./buttons/close_button.js";
@@ -32,8 +33,18 @@ export default class PausePopUp {
         self.canvas.height * 0.4
       );
       self.cancelButton = new CancelButton(self.context, self.canvas);
-      self.retryButton = new RetryButton(self.context, self.canvas);
-      self.closeButton = new CloseButton(self.context, self.canvas);
+      self.retryButton = new RetryButton(
+        self.context,
+        self.canvas,
+        self.canvas.width * 0.55,
+        self.canvas.height * 0.2 + self.canvas.width * 0.4
+      );
+      self.closeButton = new CloseButton(
+        self.context,
+        self.canvas,
+        self.canvas.width * 0.25,
+        self.canvas.height * 0.2 + self.canvas.width * 0.4
+      );
     };
     document
       .getElementById(self.id)

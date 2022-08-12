@@ -80,13 +80,9 @@ export var CanvasStack;
       this.bkgCanvas.resizeFns = [];
 
       if (!this.bkgCanvas.hasOwnProperty("layers")) {
-        // create an array to hold all the overlay canvases for this canvas
         this.bkgCanvas.layers = [];
-        // make a Layer object for the bkgCanvas
         let bkgL = new Layer(this.cId, this.bkgCanvas); // bkgCanvas is always layer[0]
-        this.bkgCanvas.layers[0] = bkgL;
-        // make sure the overlay canvases always match the bkgCanvas size
-        // setResizeHandler(resizeLayers, 250);
+        this.bkgCanvas.layers[0] = bkgL; 
       }
       if (!this.bkgCanvas.hasOwnProperty("unique")) {
         this.bkgCanvas.unique = 0;
