@@ -1,3 +1,4 @@
+import { AllLevelScreen } from './allLevel.js';
 import { LevelStartScene } from './src/scenes/level-start-scene.js';
 // import { preloadImages } from './utility.js'
 
@@ -18,7 +19,7 @@ window.addEventListener('load', function() {
             this.width = width;
             this.height = height;
             self = this;
-            this.scene = new LevelStartScene(this);
+            this.scene = new AllLevelScreen(this);
         }
 
         update(deltaTime) {
