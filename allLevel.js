@@ -9,8 +9,15 @@ import {LevelStartScene} from './src/scenes/level-start-scene.js';
 
 export class AllLevelScreen{
     
-    constructor(){
-    
+    constructor(game){
+        this.game=game;
+        gameDiv.style.height=this.game.height;
+        gameDiv.style.width=this.game.width; 
+        this.createBackgroud();
+    }
+     
+    createBackgroud(){
+        var self = this;
     gameDiv.appendChild(mainDiv);
     mainDiv.style.height=window.screen.width>420?100+"vh":65+"vh";
       
@@ -47,12 +54,12 @@ export class AllLevelScreen{
         document.getElementById(id).addEventListener("click",function(e){
              console.log(levelSelectionButton.getAttribute("levelNumber"));
             gameDiv.style.display="none";
-            this.scene = new LevelStartScene(this);
+            this.scene = new LevelStartScene(self.game);
             this.scene.createBackgroud();
             this.levelNumber=levelSelectionButton.getAttribute("levelNumber");
             },false);
     }
     };
-     
-}
+    }
+
 
