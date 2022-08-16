@@ -91,6 +91,19 @@ export class LevelStartScene {
       this.height * 0.06
     );
 
+    this.context.drawImage(
+      this.promptImg,
+      this.width/2 - (this.width * 0.3)/2,
+      this.height * 0.15,
+      this.width * 0.3,
+      this.height * 0.25
+    );
+
+    this.context.fillStyle = "black";
+    this.context.font = 30+"px Arial";
+    this.context.fillText("h", this.width/2.1, this.height * 0.26);
+
+
     this.timerTicking.createBackgroud();
     this.stones.draw();
     this.pauseButton.draw();
@@ -144,5 +157,11 @@ export class LevelStartScene {
     this.fenchImg.onload = function (e) {
       self.draw();
     };
+
+    this.promptImg = new Image();
+    this.promptImg.src = "./assets/images/promptTextBg.png";
+    this.promptImg.onload = function (e) {
+      self.draw();
+    }
   }
 }
