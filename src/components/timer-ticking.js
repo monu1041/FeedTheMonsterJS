@@ -51,12 +51,9 @@ export class TimerTicking {
     update(deltaTime) {
         if (this.frameTimer > this.frameInterval) {
             this.frameTimer = 0;
-            if (this.frameX < this.maxFrame) {
-                this.frameX++;
-            } else {
-                this.frameX = 0;
-            }
+            this.widthToClear = this.widthToClear - 0.2;
         } else {
+            console.log(this.frameTimer)
             this.frameTimer += deltaTime;
         }
         this.context.clearRect(canvas.width * 1.3 - this.widthToClear, 0, this.width, this.height)

@@ -48,7 +48,7 @@ export default class StonesLayer {
       var rect = document.getElementById(self.id).getBoundingClientRect();
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
-      if (Math.sqrt((x - this.width/2 - (this.width * 0.3)/2) * (x - this.width/2 - (this.width * 0.3)/2)) + ((y - this.height * 0.15) * (y - this.height * 0.15)) <= 80) {
+      if (Math.sqrt((x - this.width/2 + (this.width * 0.3)/2) * (x - this.width/2 + (this.width * 0.3)/2)) + ((y - this.height * 0.15 + this.height * 0.25) * (y - this.height * 0.15 + this.height * 0.25)) <= 80) {
         console.log("prompt")
       }
     });
