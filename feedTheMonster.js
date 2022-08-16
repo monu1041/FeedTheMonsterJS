@@ -1,5 +1,7 @@
+
 import { getData} from './src/data/api-data.js';
 import { DataModal } from './src/data/data-modal.js';
+import { AllLevelScreen } from './allLevel.js';
 import { LevelStartScene } from './src/scenes/level-start-scene.js';
 
 window.addEventListener('load', async function() {
@@ -22,7 +24,7 @@ window.addEventListener('load', async function() {
             this.width = width;
             this.height = height;
             self = this;
-            this.scene = new LevelStartScene(this);
+            this.scene = new AllLevelScreen(this);
         }
 
         update(deltaTime) {
