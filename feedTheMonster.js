@@ -1,8 +1,10 @@
-import { AllLevelScreen } from './allLevel.js';
-import { LevelStartScene } from './src/scenes/level-start-scene.js';
-// import { preloadImages } from './utility.js'
 
-window.addEventListener('load', function() {
+import { AllLevelScreen } from './allLevel.js';
+import { getData} from './src/data/api-data.js';
+import { DataModal } from './src/data/data-modal.js';
+import { LevelStartScene } from './src/scenes/level-start-scene.js';
+
+window.addEventListener('load', async function() {
     const canvas = document.getElementById("canvas");
     const context = canvas.getContext("2d");
     const eat = document.getElementById("change-anim-eat");
@@ -12,6 +14,9 @@ window.addEventListener('load', function() {
     canvas.height = window.innerHeight;
     canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
 
+    let data =  await getData();
+    let d = new DataModal(data.OtherAudios, data.Levels, data.FeedbackTexts, data.RightToLeft, data.FeedbackAudios);
+    console.log(d)
     var self;
 
     class Game {
@@ -25,6 +30,7 @@ window.addEventListener('load', function() {
         update(deltaTime) {
             this.scene.monster.update(deltaTime)
             this.scene.stones.update()
+            // this.scene.timerTicking.update(deltaTime)
         }
 
         render() {

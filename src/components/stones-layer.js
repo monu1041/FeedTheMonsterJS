@@ -43,6 +43,16 @@ export default class StonesLayer {
 
       ],
     ];
+
+    document.getElementById(this.id).addEventListener("click", function (event) {
+      var rect = document.getElementById(self.id).getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      if (Math.sqrt((x - this.width/2 - (this.width * 0.3)/2) * (x - this.width/2 - (this.width * 0.3)/2)) + ((y - this.height * 0.15) * (y - this.height * 0.15)) <= 80) {
+        console.log("prompt")
+      }
+    });
+
     document.getElementById(this.id).addEventListener(
       "mousedown",
       function (event) {
