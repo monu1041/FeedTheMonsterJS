@@ -5,7 +5,16 @@ import StonesLayer from "../components/stones-layer.js";
 import PauseButton from "../components/buttons/pause_button.js";
 import { LevelIndicators } from "../components/level-indicators.js";
 import PausePopUp from "../components/pause-popup.js";
-
+import { loadImages, loadingScreen } from "../common/constants.js";
+var images = {
+  bgImg: "./assets/images/bg_v01.jpg",
+  hillImg: "./assets/images/hill_v01.png",
+  timer_empty: "./assets/images/timer_empty.png",
+  pillerImg: "./assets/images/Totem_v02_v01.png",
+  grassImg: "./assets/images/FG_a_v01.png",
+  rotating_clock: "./assets/images/timer.png",
+  fenchImg: "./assets/images/fence_v01.png",
+};
 export class LevelStartScene {
   constructor(game) {
     this.game = game;
@@ -99,50 +108,60 @@ export class LevelStartScene {
 
   createBackgroud() {
     var self = this;
-    this.bgImg = new Image();
-    this.bgImg.src = "./assets/images/bg_v01.jpg";
-    this.bgImg.onload = function (e) {
-      self.draw();
-    };
-
-    this.hillImg = new Image();
-    this.hillImg.src = "./assets/images/hill_v01.png";
-    this.hillImg.onload = function (e) {
-      self.draw();
-    };
-
-    this.timer_empty = new Image();
-    this.timer_empty.src = "./assets/images/timer_empty.png";
-    this.timer_empty.onload = function (e) {
-      self.draw();
-    };
-
-    this.pillerImg = new Image();
-    this.pillerImg.src = "./assets/images/Totem_v02_v01.png";
-    this.pillerImg.onload = function (e) {
-      self.draw();
-    };
-
-    this.grassImg = new Image();
-    this.grassImg.src = "./assets/images/FG_a_v01.png";
-    this.grassImg.onload = function (e) {
-      self.draw();
-    };
-    this.rotating_clock = new Image();
-    this.rotating_clock.src = "./assets/images/timer.png";
-    this.rotating_clock.onload = function (e) {
-      self.draw();
-    };
-    // this.timer_full = new Image();
-    // this.timer_full.src = "./assets/images/timer_full.png";
-    // this.timer_full.onload = function (e) {
-    //     createBackground1();
-    // };
-
-    this.fenchImg = new Image();
-    this.fenchImg.src = "./assets/images/fence_v01.png";
-    this.fenchImg.onload = function (e) {
-      self.draw();
-    };
+    loadingScreen(true, self.canvasStack);
+    var context = this.context;
+    var width = this.width;
+    var height = this.height;
+    console.log(this.context);
+    loadImages(images, function (image) {
+      context.drawImage(image.bgImg, 0, 0, width, height);
+      context.drawImage(
+        image.pillerImg,
+        width * 0.6,
+        height / 6,
+        width,
+        height / 2
+      );
+      context.drawImage(
+        image.fenchImg,
+        -width * 0.4,
+        height / 3,
+        width,
+        height / 3
+      );
+      context.drawImage(
+        image.hillImg,
+        -width * 0.25,
+        height / 2,
+        width * 1.5,
+        height / 2
+      );
+      context.drawImage(
+        image.grassImg,
+        -width * 0.25,
+        height / 2 + (height / 2) * 0.1,
+        width * 1.5,
+        height / 2
+      );
+      context.drawImage(
+        image.timer_empty,
+        0,
+        height * 0.1,
+        width,
+        height * 0.05
+      );
+      context.drawImage(
+        image.rotating_clock,
+        5,
+        height * 0.09,
+        width * 0.12,
+        height * 0.06
+      );
+      self.timerTicking.createBackgroud();
+      self.stones.draw();
+      self.pauseButton.draw();
+      self.levelIndicators.draw();
+      loadingScreen(false, self.canvasStack);
+    });
   }
 }
