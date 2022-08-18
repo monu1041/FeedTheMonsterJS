@@ -5,20 +5,50 @@ import StonesLayer from "../components/stones-layer.js";
 import PauseButton from "../components/buttons/pause_button.js";
 import { LevelIndicators } from "../components/level-indicators.js";
 import PausePopUp from "../components/pause-popup.js";
-
+import { LevelEndScene } from "./level-end-scene.js";
+var self;
+var length = 0;
 export class LevelStartScene {
-  constructor(game,puzzleData) {
+  constructor(game, puzzleData) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
+    self = this;
     this.canvasStack = new CanvasStack("canvas");
     this.createCanvas();
     this.timerTicking = new TimerTicking(game);
     this.monster = new Monster(game);
-    this.stones = new StonesLayer(game, game.width, game.height, puzzleData[0]);
-    this.puzzleData= puzzleData;
+    this.stones = new StonesLayer(
+      game,
+      game.width,
+      game.height,
+      puzzleData[0],
+      this.redrawOfStones
+    );
+    this.puzzleData = puzzleData;
   }
 
+  redrawOfStones(status) {
+    self.stones.deleteCanvas();
+    // if (length >= 3) {
+    //   new LevelEndScene(self.game,2);
+    // }
+
+    if (status) {
+      self.monster.changeToEatAnimation();
+    } else {
+      self.monster.changeToSpitAnimation();
+    }
+    setTimeout(() => {
+      self.stones = new StonesLayer(
+        self.game,
+        self.game.width,
+        self.game.height,
+        self.puzzleData[1],
+        self.redrawOfStones
+      );
+    }, 2000);
+  }
   createCanvas() {
     this.id = this.canvasStack.createLayer(this.height, this.width);
     this.canavsElement = document.getElementById(this.id);
@@ -94,16 +124,19 @@ export class LevelStartScene {
 
     this.context.drawImage(
       this.promptImg,
-      this.width/2 - (this.width * 0.3)/2,
+      this.width / 2 - (this.width * 0.3) / 2,
       this.height * 0.15,
       this.width * 0.3,
       this.height * 0.25
     );
 
     this.context.fillStyle = "black";
-    this.context.font = 30+"px Arial";
-    this.context.fillText(this.puzzleData[0].targetStones[0], this.width/2.1, this.height * 0.26);
-
+    this.context.font = 30 + "px Arial";
+    this.context.fillText(
+      this.puzzleData[0].targetStones[0],
+      this.width / 2.1,
+      this.height * 0.26
+    );
 
     this.timerTicking.createBackgroud();
     this.stones.draw();
@@ -163,6 +196,6 @@ export class LevelStartScene {
     this.promptImg.src = "./assets/images/promptTextBg.png";
     this.promptImg.onload = function (e) {
       self.draw();
-    }
+    };
   }
 }

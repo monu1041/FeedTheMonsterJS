@@ -5,11 +5,11 @@ import { Monster } from "../components/monster.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 
 export class LevelEndScene {
-  constructor(canvas) {
+  constructor(canvas,starCount) {
     this.canvas = canvas;
     this.canvasStack = new CanvasStack("canvas");
     this.createCanvas();
-    this.starCount = 3;
+    this.starCount = starCount;
     this.monster = new Monster(this,'13');
   }
   createCanvas() {
