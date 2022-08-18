@@ -1,10 +1,20 @@
+
 export class DataModal {
     constructor(otherAudios, levels, feedbackTexts, rightToLeft, feedbackAudios) {
         this.otherAudios = new OtherAudios(otherAudios);
-        this.levels = new Levels(levels);
+        this.levels = this.getLevels(levels);
         this.FeedbackTexts = new FeedbackTexts(feedbackTexts);
         this.FeedbackAudios = new FeedbackAudios(feedbackAudios);
         this.rightToLeft = rightToLeft;
+    }
+
+    getLevels(levels){
+        let levelArray=[];
+        for(let i=0;i<levels.length;i++){
+            levelArray.push(new Levels(levels[i]))
+        }
+        
+        return levelArray;
     }
 }
 
@@ -33,8 +43,17 @@ export class FeedbackAudios {
 }
 
 export class Levels {
-    constructor(levels) {
-        this.levels = levels;
+    constructor(levels) {       
+        this.puzzles = this.getPuzzleData(levels);
+        this.levelMeta = new LevelMeta(levels.LevelMeta)
+        this.levelNumber = levels.LevelNumber;
+    }
+    getPuzzleData(levels){
+        let puzzleObjects=[];
+        levels.Puzzles.map((puzzleData,index)=>{
+            puzzleObjects.push(new Puzzles(puzzleData))
+        })
+        return puzzleObjects;
     }
 
     // getAllPuzzle() {
@@ -58,8 +77,23 @@ export class Puzzles {
     constructor(puzzle) {
         this.segmentNumber = puzzle.SegmentNumber
         this.prompt = new Prompt(puzzle.prompt);
-        this.foilStones = puzzle.foilstones;
-        this.targetStones = puzzle.targetstones;
+        this.foilStones = this.getFoilStones(puzzle);
+        this.targetStones = this.getTargetStones(puzzle);
+    }
+    getFoilStones(puzzle){
+        let foilStoneArray=[]
+        puzzle.foilstones.map((stones,index)=>{
+            foilStoneArray.push(stones.StoneText)
+        })
+        return foilStoneArray;
+    }
+
+    getTargetStones(puzzle){
+        let targetStoneArray=[]
+        puzzle.targetstones.map((stones,index)=>{
+            targetStoneArray.push(stones.StoneText)
+        })
+        return targetStoneArray;
     }
 }
 
