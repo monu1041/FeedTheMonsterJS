@@ -4,6 +4,7 @@ import { CanvasStack } from "../utility/canvas-stack.js";
 // import PauseButton from "./buttons/pause_button.js";
 import {gameData} from "../../data.js"
 import { LevelConfig } from "../common/level-config.js";
+import { Game } from "./game.js";
 
 
 var gs = {
@@ -21,7 +22,7 @@ var mapIcon= new Image();
 mapIcon.src="./assets/images/mapIcon.png"
 var pickedStone;
 var offsetCoordinateValue=32;
-export class AllLevelScreen {
+export class LevelSelectionScreen {
   constructor(canvas) {
     this.canvas = canvas;
     this.width = canvas.width;
@@ -34,7 +35,7 @@ export class AllLevelScreen {
     var self = this;
     this.id = this.canvasStack.createLayer(this.height, this.width);
     this.context = document.getElementById(this.id).getContext("2d");
-    document.getElementById(this.id).style.zIndex = 10;
+    document.getElementById(this.id).style.zIndex = 2;
     this.levelButtonpos=[
       [
         [this.canvas.width/5-offsetCoordinateValue,this.canvas.height/6-offsetCoordinateValue],
@@ -103,10 +104,11 @@ export class AllLevelScreen {
         const y = event.clientY - rect.top;    
         // console.log(r);   
         for (let s of gs.levels) {
-          // console.log("hiiiiiiii",Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)));
           // console.log(s.x, s.y, x,y);
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {
-            console.log(s.index);
+            console.log("hiiiiiiii",Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)));
+            console.log('*******8',s.index)
+           // const game = new Game(canvas.width, canvas.height);
           }
         }
       },
