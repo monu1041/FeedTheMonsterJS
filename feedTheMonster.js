@@ -1,4 +1,8 @@
 
+import { AllLevelScreen } from './src/scenes/level-selection-scene.js';
+import { LevelStartScene } from './src/scenes/level-start-scene.js';
+// import { preloadImages } from './utility.js'
+
 import { AllLevelScreen } from './allLevel.js';
 import { getData} from './src/data/api-data.js';
 import { DataModal } from './src/data/data-modal.js';
