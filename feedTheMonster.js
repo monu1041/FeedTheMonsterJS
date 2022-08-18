@@ -1,11 +1,7 @@
 import { LevelSelectionScreen } from './src/scenes/level-selection-scene.js';
-import { LevelStartScene } from './src/scenes/level-start-scene.js';
-// import { preloadImages } from './utility.js'
-
-import { AllLevelScreen } from './allLevel.js';
-import { getData} from './src/data/api-data.js';
+import {getData} from './src/data/api-data.js'
 import { DataModal } from './src/data/data-modal.js';
-import { LevelStartScene } from './src/scenes/level-start-scene.js';
+
 
 window.addEventListener('load', async function() {
     const canvas = document.getElementById("canvas");
@@ -17,7 +13,10 @@ window.addEventListener('load', async function() {
     canvas.height = window.innerHeight;
     canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
 
-    new  LevelSelectionScreen(canvas)
+    let data =  await getData();
+    let d = new DataModal(data.OtherAudios, data.Levels, data.FeedbackTexts, data.RightToLeft, data.FeedbackAudios);
+
+    new  LevelSelectionScreen(canvas,d)
 
    
 

@@ -8,20 +8,26 @@ var gs = {
   levelnum: 0,
 };
 gs.puzzle = {
-  puzzlenum: 0,
-  target: "e",
-  stones: ["e", "d","a","b","c","f","g","h" ],
+  target: "",
+  stones: [],
 };
 gs.stones = [];
 var pickedStone;
 var offsetCoordinateValue=32;
 export default class StonesLayer {
-  constructor(canvas, width, height) {
+  constructor(canvas, width, height, puzzleData) {
     this.canvas = canvas;
     this.width = width;
     this.height = height - canvas.width * 0.2;
     this.canvasStack = new CanvasStack("canvas");
-    this.createCanvas();
+    this.puzzleData=puzzleData;
+    this.setCurrentPuzzle();
+    this.createCanvas();    
+  }
+
+  setCurrentPuzzle(){
+    gs.puzzle.target=this.puzzleData.targetStones[0]
+    gs.puzzle.stones=this.puzzleData.foilStones;
   }
 
   createCanvas() {
@@ -58,7 +64,7 @@ export default class StonesLayer {
       function (event) {
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;       
+        const y = event.clientY - rect.top;      
         for (let s of gs.stones) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {
             pickedStone = s;
@@ -73,12 +79,16 @@ export default class StonesLayer {
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top; 
-        console.log(Math.sqrt((x - self.canvas.scene.monster.x - this.width/4) * (x - self.canvas.scene.monster.x- this.width/4) + (y - self.canvas.scene.monster.y - this.height/3) * (y - self.canvas.scene.monster.y - this.height/3)))
         if (Math.sqrt((x - self.canvas.scene.monster.x - this.width/4) * (x - self.canvas.scene.monster.x- this.width/4) + (y - self.canvas.scene.monster.y - this.height/3) * (y - self.canvas.scene.monster.y - this.height/3)) <= 40 ) {
           if (pickedStone) {
             pickedStone.x = -900;
             pickedStone.y = -900;
-            self.canvas.scene.monster.changeToEatAnimation();
+            if(pickedStone.text==gs.puzzle.target){
+              self.canvas.scene.monster.changeToEatAnimation();
+            }
+            else{
+              self.canvas.scene.monster.changeToSpitAnimation();
+            }
             self.canvas.scene.levelIndicators.setIndicators(1);
           }
           pickedStone = null
@@ -184,7 +194,6 @@ export default class StonesLayer {
     var poss = stonepos[0];
     var i = 0;
     for (let s of gs.puzzle.stones) {
-      console.log(poss[i][0]);
       var ns = new StoneConfig(s, poss[i][0], poss[i][1]);
       // pickedStone = ns;
       gs.stones.push(ns);

@@ -1,8 +1,4 @@
-// import { StoneConfig } from "./src/common/stones-config";
-import { LevelStartScene } from "./level-start-scene.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
-// import PauseButton from "./buttons/pause_button.js";
-import {gameData} from "../../data.js"
 import { LevelConfig } from "../common/level-config.js";
 import { Game } from "./game.js";
 
@@ -14,7 +10,7 @@ var gs = {
 gs.puzzle = {
   puzzlenum: 0,
   target: "e",
-  levels: [1,2,3,4,5,6,7,8,9,10 ],
+  levels: [1,2,3,4,5,6,7,8,11,12 ],
 };
 gs.levels = [];
 
@@ -23,12 +19,25 @@ mapIcon.src="./assets/images/mapIcon.png"
 var pickedStone;
 var offsetCoordinateValue=32;
 export class LevelSelectionScreen {
-  constructor(canvas) {
+  constructor(canvas,data) {
     this.canvas = canvas;
     this.width = canvas.width;
     this.height = canvas.height;
     this.canvasStack = new CanvasStack("level-selection-canvas");
+    this.data = data
+    gs.puzzle.levels = this.getallLevelNo(data);
     this.createCanvas();
+  }
+  getallLevelNo(data){
+    var levelNos=[];
+    data.levels.map((levelData,index)=>{
+      if(index<10)
+      {
+        levelNos.push(parseInt(levelData.levelNumber)+1)
+      }
+     
+    })
+    return levelNos;
   }
 
   createCanvas() {
@@ -104,11 +113,9 @@ export class LevelSelectionScreen {
         const y = event.clientY - rect.top;    
         // console.log(r);   
         for (let s of gs.levels) {
-          // console.log(s.x, s.y, x,y);
-          if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {
-            console.log("hiiiiiiii",Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)));
-            console.log('*******8',s.index)
-           // const game = new Game(canvas.width, canvas.height);
+          if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 80) {
+            const game = new Game(canvas.width, canvas.height,self.data.levels[s.index].puzzles);
+
           }
         }
       },
@@ -139,7 +146,7 @@ export class LevelSelectionScreen {
     this.context.font = textFontSize+"px Arial";
     this.context.fillText(s.text, s.x+(imageSize/7) , s.y+(imageSize/7));
     this.context.font = textFontSize - (imageSize/20)+"px Arial";
-    this.context.fillText(gameData.Levels[s.text].LevelMeta.LevelType, s.x-(imageSize/5) , s.y+(imageSize/1.5));
+    this.context.fillText(this.data.levels[s.text].levelMeta.levelType, s.x-(imageSize/5) , s.y+(imageSize/1.5));
   }
 
   createLevelButtons(levelButtonpos) {

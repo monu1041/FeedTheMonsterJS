@@ -70,7 +70,7 @@ export class Monster {
         this.image.src = "./assets/images/idle4.png";
     }
 
-    changeToSadAnimation() {
+    changeToSpitAnimation() {
         this.image.src = "./assets/images/spit4.png";
         setTimeout(() => {
             this.changeToIdleAnimation();

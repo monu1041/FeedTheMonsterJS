@@ -7,7 +7,7 @@ import { LevelIndicators } from "../components/level-indicators.js";
 import PausePopUp from "../components/pause-popup.js";
 
 export class LevelStartScene {
-  constructor(game) {
+  constructor(game,puzzleData) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
@@ -15,7 +15,8 @@ export class LevelStartScene {
     this.createCanvas();
     this.timerTicking = new TimerTicking(game);
     this.monster = new Monster(game);
-    this.stones = new StonesLayer(game, game.width, game.height);
+    this.stones = new StonesLayer(game, game.width, game.height, puzzleData[0]);
+    this.puzzleData= puzzleData;
   }
 
   createCanvas() {
@@ -101,7 +102,7 @@ export class LevelStartScene {
 
     this.context.fillStyle = "black";
     this.context.font = 30+"px Arial";
-    this.context.fillText("h", this.width/2.1, this.height * 0.26);
+    this.context.fillText(this.puzzleData[0].targetStones[0], this.width/2.1, this.height * 0.26);
 
 
     this.timerTicking.createBackgroud();

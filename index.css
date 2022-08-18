@@ -14,15 +14,9 @@ body {
 }
 
 .game-scene {
-  /* display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid red; */
   height: 100vh;
   max-height: -webkit-fill-available;
-  /* max-width: 520px; */
   min-width: 420px;
-  /* overflow: scroll; */
 }
 
 img {
