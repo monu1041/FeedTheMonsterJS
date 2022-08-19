@@ -1,8 +1,6 @@
-
-import { getData} from './src/data/api-data.js';
+import { LevelSelectionScreen } from './src/scenes/level-selection-scene.js';
+import {getData} from './src/data/api-data.js'
 import { DataModal } from './src/data/data-modal.js';
-import { AllLevelScreen } from './allLevel.js';
-import { LevelStartScene } from './src/scenes/level-start-scene.js';
 
 window.addEventListener('load', async function() {
     const canvas = document.getElementById("canvas");
@@ -16,44 +14,10 @@ window.addEventListener('load', async function() {
 
     let data =  await getData();
     let d = new DataModal(data.OtherAudios, data.Levels, data.FeedbackTexts, data.RightToLeft, data.FeedbackAudios);
-    console.log(d)
-    var self;
 
-    class Game {
-        constructor(width, height) {
-            this.width = width;
-            this.height = height;
-            self = this;
-            this.scene = new AllLevelScreen(this);
-        }
+    new  LevelSelectionScreen(canvas,d)
 
-        update(deltaTime) {
-            this.scene.monster.update(deltaTime)
-            this.scene.stones.update()
-            // this.scene.timerTicking.update(deltaTime)
-        }
-
-        render() {
-            this.scene.createBackgroud();
-        }
-
-    }
-
-    const game = new Game(canvas.width, canvas.height);
-    game.render();
-
-    let lastTime = 0;
-
-    function animation(timeStamp) {
-        let deltaTime = timeStamp - lastTime;
-        lastTime = timeStamp;
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        game.update(deltaTime)
-        requestAnimationFrame(animation)
-        
-    }
-
-    animation(0);
+   
 
 
     eat.addEventListener("click", function(e) {
