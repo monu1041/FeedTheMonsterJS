@@ -2,6 +2,7 @@ import { LevelStartScene } from "./level-start-scene.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { gameData } from "../../data.js";
 import { LevelConfig } from "../common/level-config.js";
+import { Game } from "./game.js";
 
 var gs = {
   mode: "gameplay",
@@ -17,22 +18,37 @@ gs.levels = [];
 var mapIcon = new Image();
 mapIcon.src = "./assets/images/mapIcon.png";
 var pickedStone;
-var offsetCoordinateValue = 32;
-export class AllLevelScreen {
-  constructor(canvas) {
+var offsetCoordinateValue=32;
+export class LevelSelectionScreen {
+  constructor(canvas,data) {
     this.canvas = canvas;
     this.width = canvas.width;
     this.height = canvas.height;
     this.canvasStack = new CanvasStack("level-selection-canvas");
+    this.data = data
+    gs.puzzle.levels = this.getallLevelNo(data);
     this.createCanvas();
+  }
+  getallLevelNo(data){
+    var levelNos=[];
+    data.levels.map((levelData,index)=>{
+      if(index<10)
+      {
+        levelNos.push(parseInt(levelData.levelNumber)+1)
+      }
+     
+    })
+    return levelNos;
   }
 
   createCanvas() {
     var self = this;
     this.id = this.canvasStack.createLayer(this.height, this.width);
     this.context = document.getElementById(this.id).getContext("2d");
-    document.getElementById(this.id).style.zIndex = 10;
-    this.levelButtonpos = [
+
+    document.getElementById(this.id).style.zIndex = 2;
+    this.levelButtonpos=[
+
       [
         [
           this.canvas.width / 5 - offsetCoordinateValue,
@@ -119,8 +135,8 @@ export class AllLevelScreen {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         for (let s of gs.levels) {
-          if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {
-            console.log(s.index);
+          if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 80) {
+            const game = new Game(canvas.width, canvas.height,self.data.levels[s.index].puzzles);
           }
         }
       },
@@ -157,7 +173,7 @@ export class AllLevelScreen {
     this.context.fillText(s.text, s.x + imageSize / 7, s.y + imageSize / 7);
     this.context.font = textFontSize - imageSize / 20 + "px Arial";
     this.context.fillText(
-      gameData.Levels[s.text].LevelMeta.LevelType,
+      this.data.levels[s.text].levelMeta.levelType,
       s.x - imageSize / 5,
       s.y + imageSize / 1.5
     );
