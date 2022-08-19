@@ -18,26 +18,24 @@ gs.levels = [];
 var mapIcon = new Image();
 mapIcon.src = "./assets/images/mapIcon.png";
 var pickedStone;
-var offsetCoordinateValue=32;
+var offsetCoordinateValue = 32;
 export class LevelSelectionScreen {
-  constructor(canvas,data) {
+  constructor(canvas, data) {
     this.canvas = canvas;
     this.width = canvas.width;
     this.height = canvas.height;
-    this.canvasStack = new CanvasStack("level-selection-canvas");
-    this.data = data
+    this.canvasStack = new CanvasStack("canvas");
+    this.data = data;
     gs.puzzle.levels = this.getallLevelNo(data);
     this.createCanvas();
   }
-  getallLevelNo(data){
-    var levelNos=[];
-    data.levels.map((levelData,index)=>{
-      if(index<10)
-      {
-        levelNos.push(parseInt(levelData.levelNumber)+1)
+  getallLevelNo(data) {
+    var levelNos = [];
+    data.levels.map((levelData, index) => {
+      if (index < 10) {
+        levelNos.push(parseInt(levelData.levelNumber) + 1);
       }
-     
-    })
+    });
     return levelNos;
   }
 
@@ -47,8 +45,7 @@ export class LevelSelectionScreen {
     this.context = document.getElementById(this.id).getContext("2d");
 
     document.getElementById(this.id).style.zIndex = 2;
-    this.levelButtonpos=[
-
+    this.levelButtonpos = [
       [
         [
           this.canvas.width / 5 - offsetCoordinateValue,
@@ -120,6 +117,11 @@ export class LevelSelectionScreen {
             Math.sqrt(s.y + imageSize / 8 - y) < 12
           ) {
             console.log(s.index);
+            const game = new Game(
+              canvas.width,
+              canvas.height,
+              self.data.levels[s.index].puzzles
+            );
           }
         }
         document.getElementById(this.id).dispatchEvent(mouseEvent);
@@ -136,7 +138,11 @@ export class LevelSelectionScreen {
         const y = event.clientY - rect.top;
         for (let s of gs.levels) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 80) {
-            const game = new Game(canvas.width, canvas.height,self.data.levels[s.index].puzzles);
+            const game = new Game(
+              canvas.width,
+              canvas.height,
+              self.data.levels[s.index].puzzles
+            );
           }
         }
       },
@@ -159,7 +165,7 @@ export class LevelSelectionScreen {
     var imageCenterOffsetX = canvas.height / 70 - canvas.height / 30;
     var imageCenterOffsetY = -canvas.height / 60 - canvas.height / 44;
     var imageSize = canvas.height / 5;
-    var textFontSize = imageSize / 5;
+    var textFontSize = imageSize / 6;
 
     this.context.drawImage(
       mapIcon,
@@ -174,8 +180,8 @@ export class LevelSelectionScreen {
     this.context.font = textFontSize - imageSize / 20 + "px Arial";
     this.context.fillText(
       this.data.levels[s.text].levelMeta.levelType,
-      s.x - imageSize / 5,
-      s.y + imageSize / 1.5
+      s.x - imageSize / 6,
+      s.y + imageSize / 1.6
     );
   }
 

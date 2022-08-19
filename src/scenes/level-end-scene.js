@@ -5,14 +5,15 @@ import { Monster } from "../components/monster.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 
 export class LevelEndScene {
-  constructor(canvas,starCount) {
+  constructor(canvas, starCount,monster) {
     this.canvas = canvas;
     this.canvasStack = new CanvasStack("canvas");
+    this.monster = monster;
     this.createCanvas();
     this.starCount = starCount;
-    this.monster = new Monster(this,'13');
   }
   createCanvas() {
+    this.monster.changeImage("./assets/images/happy14.png")
     var self = this;
     this.id = this.canvasStack.createLayer(
       this.canvas.height,
@@ -89,35 +90,41 @@ export class LevelEndScene {
   drawStarts(self, star1, star2, star3) {
     if (self.starCount >= 2) {
       star1.onload = function (e) {
-        self.context.drawImage(
-          star1,
-          self.canvas.width * 0.2 - (self.canvas.width * 0.19) / 2,
-          self.canvas.height * 0.2,
-          self.canvas.width * 0.19,
-          self.canvas.width * 0.19
-        );
+        setTimeout(() => {
+          self.context.drawImage(
+            star1,
+            self.canvas.width * 0.2 - (self.canvas.width * 0.19) / 2,
+            self.canvas.height * 0.2,
+            self.canvas.width * 0.19,
+            self.canvas.width * 0.19
+          );
+        }, 500);
       };
     }
-    if (self.starCount <= 3) {
+    if (self.starCount <= 3 && self.starCount > 0) {
       star2.onload = function (e) {
-        self.context.drawImage(
-          star2,
-          self.canvas.width * 0.5 - (self.canvas.width * 0.19) / 2,
-          self.canvas.height * 0.15,
-          self.canvas.width * 0.19,
-          self.canvas.width * 0.19
-        );
+        setTimeout(() => {
+          self.context.drawImage(
+            star2,
+            self.canvas.width * 0.5 - (self.canvas.width * 0.19) / 2,
+            self.canvas.height * 0.15,
+            self.canvas.width * 0.19,
+            self.canvas.width * 0.19
+          );
+        }, 1000);
       };
     }
     if (self.starCount >= 3) {
       star3.onload = function (e) {
-        self.context.drawImage(
-          star3,
-          self.canvas.width * 0.82 - (self.canvas.width * 0.19) / 2,
-          self.canvas.height * 0.2,
-          self.canvas.width * 0.19,
-          self.canvas.width * 0.19
-        );
+        setTimeout(() => {
+          self.context.drawImage(
+            star3,
+            self.canvas.width * 0.82 - (self.canvas.width * 0.19) / 2,
+            self.canvas.height * 0.2,
+            self.canvas.width * 0.19,
+            self.canvas.width * 0.19
+          );
+        }, 1500);
       };
     }
   }
