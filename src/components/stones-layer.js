@@ -26,6 +26,7 @@ export default class StonesLayer {
   }
 
   setCurrentPuzzle() {
+    gs.puzzle.stones = []
     gs.puzzle.target = this.puzzleData.targetStones[0];
     gs.puzzle.stones = this.puzzleData.foilStones;
   }
@@ -34,7 +35,7 @@ export default class StonesLayer {
     var self = this;
     this.id = this.canvasStack.createLayer(this.height, this.width);
     this.context = document.getElementById(this.id).getContext("2d");
-    document.getElementById(this.id).style.zIndex = 10;
+    document.getElementById(this.id).style.zIndex = 6;
     document.getElementById(this.id).style.bottom = 0;
     this.stonepos = [
       [
@@ -128,6 +129,7 @@ export default class StonesLayer {
           if (pickedStone) {
             pickedStone.x = -900;
             pickedStone.y = -900;
+            gs.stones  = []
             if (pickedStone.text == gs.puzzle.target) {
               self.callBack(true);
             } else {
