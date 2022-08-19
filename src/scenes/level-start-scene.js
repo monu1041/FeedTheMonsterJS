@@ -14,6 +14,7 @@ var images = {
   grassImg: "./assets/images/FG_a_v01.png",
   rotating_clock: "./assets/images/timer.png",
   fenchImg: "./assets/images/fence_v01.png",
+  promptImg: "./assets/images/promptTextBg.png",
 };
 var self;
 var length = 0;
@@ -159,6 +160,7 @@ export class LevelStartScene {
     var context = this.context;
     var width = this.width;
     var height = this.height;
+    var puzzleData = this.puzzleData;
     console.log(this.context);
     loadImages(images, function (image) {
       context.drawImage(image.bgImg, 0, 0, width, height);
@@ -203,6 +205,20 @@ export class LevelStartScene {
         height * 0.09,
         width * 0.12,
         height * 0.06
+      );
+      context.drawImage(
+        image.promptImg,
+        width / 2 - (width * 0.3) / 2,
+        height * 0.15,
+        width * 0.3,
+        height * 0.25
+      );
+      context.fillStyle = "black";
+      context.font = 30 + "px Arial";
+      context.fillText(
+        puzzleData[0].targetStones[0],
+        width / 2.1,
+        height * 0.26
       );
       self.timerTicking.createBackgroud();
       self.stones.draw();
