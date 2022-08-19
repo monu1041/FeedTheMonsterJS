@@ -19,7 +19,7 @@ export class TimerTicking {
         this.canavsElement = document.getElementById(this.id);
         this.context = this.canavsElement.getContext("2d");
         this.canavsElement.style.bottom = 0;
-        this.canavsElement.style.zIndex = 6;
+        this.canavsElement.style.zIndex = 4;
     }
 
     deleteCanvas() {

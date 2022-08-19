@@ -14,64 +14,6 @@ export var CanvasStack;
   CanvasStack = class {
     constructor(cvsID, stackLimit) {
       const savThis = this;
-
-      // function setResizeHandler(resizeLayers, timeout) {
-      //   let timer_id = undefined;
-      //   window.addEventListener("resize", () => {
-      //     if (timer_id != undefined) {
-      //       clearTimeout(timer_id);
-      //       timer_id = undefined;
-      //     }
-      //     timer_id = setTimeout(() => {
-      //       timer_id = undefined;
-      //       resizeLayers();
-      //       savThis.bkgCanvas.resizeFns.forEach((currFn) => currFn());
-      //     }, timeout);
-      //   });
-      // }
-
-      // function resizeLayers() {
-      //   console.log('&&&&&&&&&&7')
-      //   const t = savThis.bkgCanvas.offsetTop + savThis.bkgCanvas.clientTop,
-      //     l = savThis.bkgCanvas.offsetLeft + savThis.bkgCanvas.clientLeft,
-      //     w = savThis.bkgCanvas.offsetWidth,
-      //     h = savThis.bkgCanvas.offsetHeight;
-
-      //   // check if canvas size changed when window resized, allow some rounding error in layout calcs
-      //   if (
-      //     Math.abs(w - savThis.rawWidth) / w < 0.01 &&
-      //     Math.abs(h - savThis.rawHeight) / h < 0.01
-      //   ) {
-      //     // canvas size didn't change so return
-      //     return;
-      //   }
-      //   // canvas has been resized so resize all the overlay canvases
-      //   for (
-      //     let j = 1;
-      //     j < savThis.bkgCanvas.layers.length;
-      //     j++ // bkg is layer[0]
-      //   ) {
-      //     let ovl = savThis.bkgCanvas.layers[j].cElem;
-      //     if (ovl) {
-      //       // may have been deleted so empty slot
-      //       ovl.style.top = t + "px";
-      //       ovl.style.left = l + "px";
-      //       ovl.style.width = w + "px";
-      //       ovl.style.height = h + "px";
-      //       ovl.width = w; // reset canvas attribute to pixel width
-      //       ovl.height = h;
-      //     }
-      //   }
-      // }
-
-      // check if this is a context for an overlay
-      // if (cvsID.indexOf("_ovl_") !== -1) {
-      //   console.error(
-      //     "CanvasStack: canvas must be a background canvas not an overlay"
-      //   );
-      //   return {};
-      // }
-
       this.cId = cvsID;
       this.stackLimit = stackLimit || 10;
       this.bkgCanvas = document.getElementById(cvsID);
@@ -93,9 +35,6 @@ export var CanvasStack;
       const w = width+'px',
         h = height+'px',
         nLyrs = this.bkgCanvas.layers.length; // bkg is layer 0 so at least 1
-     // bkg is layer 0 so at least 1
-
-      // check background canvas is still there
       if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
         console.log("CanvasStack: missing background canvas");
         return;
@@ -122,9 +61,6 @@ export var CanvasStack;
       
       newCvs.style.left ='50%'
       newCvs.style.transform = 'translate(-50%, 0%)'
-      // newCvs.style.top =
-      //   this.bkgCanvas.offsetTop + this.bkgCanvas.clientTop + "px";
-      // make it the same size as the background canvas
       newCvs.style.height = h;
       newCvs.style.width = w;
       let newL = new Layer(ovlId, newCvs);
@@ -174,9 +110,5 @@ export var CanvasStack;
       // clear any resize callbacks, the layers are gone
       this.bkgCanvas.resizeFns.length = 0; // remove any added handlers, leave the basic
     }
-
-    // addResizeCallback(callbackFn) {
-    //   this.bkgCanvas.resizeFns.push(callbackFn);
-    // }
   };
 })();

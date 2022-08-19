@@ -12,7 +12,6 @@ export class Game {
   }
 
   update(deltaTime) {
-    this.scene.monster.update(deltaTime);
     this.scene.stones.update();
   }
 
@@ -22,23 +21,7 @@ export class Game {
   animation(timeStamp) {
     let deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
-    // context.clearRect(0, 0, canvas.width, canvas.height);
     self.update(deltaTime);
     requestAnimationFrame(self.animation);
   }
 }
-
-// const game = new Game(canvas.width, canvas.height);
-// game.render();
-
-// let lastTime = 0;
-
-// function animation(timeStamp) {
-//   let deltaTime = timeStamp - lastTime;
-//   lastTime = timeStamp;
-//   context.clearRect(0, 0, canvas.width, canvas.height);
-//   game.update(deltaTime);
-//   requestAnimationFrame(animation);
-// }
-
-// animation(0);

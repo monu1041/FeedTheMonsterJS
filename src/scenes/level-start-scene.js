@@ -6,6 +6,7 @@ import PauseButton from "../components/buttons/pause_button.js";
 import { LevelIndicators } from "../components/level-indicators.js";
 import PausePopUp from "../components/pause-popup.js";
 import { loadImages, loadingScreen } from "../common/constants.js";
+import { LevelEndScene } from "./level-end-scene.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -24,10 +25,10 @@ export class LevelStartScene {
     this.width = game.width;
     this.height = game.height;
     self = this;
+    this.monster = new Monster(game);
     this.canvasStack = new CanvasStack("canvas");
     this.createCanvas();
     this.timerTicking = new TimerTicking(game);
-    this.monster = new Monster(game);
     this.stones = new StonesLayer(
       game,
       game.width,
@@ -63,8 +64,9 @@ export class LevelStartScene {
     this.id = this.canvasStack.createLayer(this.height, this.width);
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
-    this.canavsElement.style.zIndex = 5;
+    this.canavsElement.style.zIndex = 3;
     this.pauseButton = new PauseButton(this.context, this.canavsElement);
+    // new LevelEndScene(this.game,3,this.monster)
     this.levelIndicators = new LevelIndicators(
       this.context,
       this.canavsElement,
