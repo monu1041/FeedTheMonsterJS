@@ -24,7 +24,7 @@ export class LevelSelectionScreen {
     this.canvas = canvas;
     this.width = canvas.width;
     this.height = canvas.height;
-    this.canvasStack = new CanvasStack("level-selection-canvas");
+    this.canvasStack = new CanvasStack("canvas");
     this.data = data
     gs.puzzle.levels = this.getallLevelNo(data);
     this.createCanvas();

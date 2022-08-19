@@ -1,17 +1,38 @@
-var cacheName = 'ftm';
+var cacheName = "ftm";
 
 var filesToCache = [
-
   // infrastructure files ----------------------------------------------------------------------------------------------
 
-  './index.html',
-  './build/feedTheMonster.js',
-  './sw.js',
-  './manifest.json',
-  './assets/images/favicon.png',
-  './assets/images/idle4.png',
-  './assets/images/eat4.png',
-  './assets/images/spit4.png',
+  "./index.html",
+  "./build/feedTheMonster.js",
+  "./sw.js",
+  "./manifest.json",
+  "./assets/images/favicon.png",
+  "./assets/images/idle4.png",
+  "./assets/images/eat4.png",
+  "./assets/images/spit4.png",
+  "./assets/images/bg_v01.jpg",
+  "./assets/images/hill_v01.png",
+  "./assets/images/timer_empty.png",
+  "./assets/images/Totem_v02_v01.png",
+  "./assets/images/FG_a_v01.png",
+  "./assets/images/timer.png",
+  "./assets/images/fence_v01.png",
+  "./assets/images/close_btn.png",
+  "./assets/images/map_btn.png",
+  "./assets/images/next_btn.png",
+  "./assets/images/pause_v01.png",
+  "./assets/images/timer_full.png",
+  "./assets/images/levels_v01.png",
+  "./assets/images/bar_empty_v01.png",
+  "./assets/images/bar_full_v01.png",
+  "./assets/images/popup_bg_v01.png",
+  "./assets/images/WIN_screen_bg.png",
+  "./assets/images/pinStar1.png",
+  "./assets/images/pinStar2.png",
+  "./assets/images/pinStar3.png",
+  "./assets/images/stone_pink_v02.png",
+  "./assets/images/retry_btn.png"
   //--------------------------------------------------------------------------------------------------------------------
 
   // app files ---------------------------------------------------------------------------------------------------------
@@ -19,14 +40,16 @@ var filesToCache = [
   // -------------------------------------------------------------------------------------------------------------------
 ];
 
-
 // check if service worker is installed before
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').then(function() {
-    console.log('sw: registration ok');
-  }).catch(function(err) {
-    console.error(err);
-  });
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("sw.js")
+    .then(function () {
+      console.log("sw: registration ok");
+    })
+    .catch(function (err) {
+      console.error(err);
+    });
 }
 
 // ---------------------------------------------------------------------------------------------------------------------
@@ -37,13 +60,13 @@ if ('serviceWorker' in navigator) {
  * @param {function} Callback function with event data
  *
  */
-self.addEventListener('install', function(event) {
+self.addEventListener("install", function (event) {
   event.waitUntil(
-    caches.open(cacheName).then(function(cache) {
-      console.log('sw: writing files into cache');
+    caches.open(cacheName).then(function (cache) {
+      console.log("sw: writing files into cache");
       return cache.addAll(filesToCache);
     })
-  )
+  );
 });
 // ---------------------------------------------------------------------------------------------------------------------
 /**
@@ -53,8 +76,8 @@ self.addEventListener('install', function(event) {
  * @param {function} Callback function with event data
  *
  */
-self.addEventListener('activate', function (event) {
-  console.log('sw: service worker ready and activated', event);
+self.addEventListener("activate", function (event) {
+  console.log("sw: service worker ready and activated", event);
 });
 // ---------------------------------------------------------------------------------------------------------------------
 /**
@@ -64,18 +87,21 @@ self.addEventListener('activate', function (event) {
  * @param {function} Callback function with event data
  *
  */
-self.addEventListener('fetch', function(event) {
+self.addEventListener("fetch", function (event) {
   event.respondWith(
     // test if the request is cached
-    caches.match(event.request).then(function(response) {
-      // 1) if response cached, it will be returned from browser cache
-      // 2) if response not cached, fetch resource from network
-      return response || fetch(event.request);
-    }).catch(function (err) {
-      // if response not cached and network not available an error is thrown => return fallback image
-      return caches.match('favicon.png');
-    })
-  )
+    caches
+      .match(event.request)
+      .then(function (response) {
+        // 1) if response cached, it will be returned from browser cache
+        // 2) if response not cached, fetch resource from network
+        return response || fetch(event.request);
+      })
+      .catch(function (err) {
+        // if response not cached and network not available an error is thrown => return fallback image
+        return caches.match("favicon.png");
+      })
+  );
 });
 
 // function cacheNewFiles(ftc){
