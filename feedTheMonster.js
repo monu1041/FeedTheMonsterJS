@@ -1,9 +1,9 @@
-import { AllLevelScreen } from './allLevel.js';
-import { loadingScreen } from './src/common/constants.js';
-import { LevelStartScene } from './src/scenes/level-start-scene.js';
-// import { preloadImages } from './utility.js'
+import { LevelSelectionScreen } from './src/scenes/level-selection-scene.js';
+import {getData} from './src/data/api-data.js'
+import { DataModal } from './src/data/data-modal.js';
 
-window.addEventListener('load', function() {
+
+window.addEventListener('load', async function() {
     const canvas = document.getElementById("canvas");
     const context = canvas.getContext("2d");
     const eat = document.getElementById("change-anim-eat");
@@ -13,42 +13,12 @@ window.addEventListener('load', function() {
     canvas.height = window.innerHeight;
     canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
 
-    var self;
+    let data =  await getData();
+    let d = new DataModal(data.OtherAudios, data.Levels, data.FeedbackTexts, data.RightToLeft, data.FeedbackAudios);
 
-    class Game {
-        constructor(width, height) {
-            this.width = width;
-            this.height = height;
-            self = this;
-            this.scene = new LevelStartScene(this);
-        }
+    new  LevelSelectionScreen(canvas,d)
 
-        update(deltaTime) {
-            this.scene.monster.update(deltaTime)
-            this.scene.stones.update()
-        }
-
-        render() {
-            this.scene.createBackgroud();
-        }
-
-    }
-
-    const game = new Game(canvas.width, canvas.height);
-    game.render();
-
-    let lastTime = 0;
-
-    function animation(timeStamp) {
-        let deltaTime = timeStamp - lastTime;
-        lastTime = timeStamp;
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        game.update(deltaTime)
-        requestAnimationFrame(animation)
-        
-    }
-
-    animation(0);
+   
 
 
     eat.addEventListener("click", function(e) {

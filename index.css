@@ -14,16 +14,9 @@ body {
 }
 
 .game-scene {
-  /* display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid red; */
   height: 100vh;
   max-height: -webkit-fill-available;
-  
-  /* max-width: 520px; */
   min-width: 420px;
-  /* overflow: scroll; */
 }
 
 img {
@@ -38,7 +31,10 @@ img {
   transform: translate(-50%, 0%);
   /* aspect-ratio: 2/3; */
   max-height: -webkit-fill-available;
-  z-index: 3;
+  z-index: 1;
+  background-image: url("./assets/images/map.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #canvas-timer {
@@ -141,7 +137,7 @@ img {
 .levelSelectionButton {
   height: 100px;
   width: 100px;
-  background: url("./assets/images/mapIcon.png");
+  /* background: url('./assets/images/mapIcon.png'); */
   background-size: contain;
   background-repeat: no-repeat;
   border: none;
