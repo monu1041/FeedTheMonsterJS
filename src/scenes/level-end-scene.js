@@ -5,7 +5,7 @@ import { Monster } from "../components/monster.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 
 export class LevelEndScene {
-  constructor(canvas, starCount,monster) {
+  constructor(canvas, starCount, monster) {
     this.canvas = canvas;
     this.canvasStack = new CanvasStack("canvas");
     this.monster = monster;
@@ -13,14 +13,15 @@ export class LevelEndScene {
     this.starCount = starCount;
   }
   createCanvas() {
-    this.monster.changeImage("./assets/images/happy14.png")
+    this.monster.changeImage("./assets/images/sad14.png");
+    this.monster.changeZindex(8);
     var self = this;
     this.id = this.canvasStack.createLayer(
       this.canvas.height,
       this.canvas.width
     );
     this.context = document.getElementById(this.id).getContext("2d");
-    document.getElementById(this.id).style.zIndex = 11;
+    document.getElementById(this.id).style.zIndex = 7;
     this.bottonLayer = this.canvasStack.createLayer(
       this.canvas.height,
       this.canvas.width
@@ -28,7 +29,7 @@ export class LevelEndScene {
     this.bottonContext = document
       .getElementById(this.bottonLayer)
       .getContext("2d");
-    document.getElementById(this.bottonLayer).style.zIndex = 16;
+    document.getElementById(this.bottonLayer).style.zIndex = 9;
     document.getElementById(this.id).style.backgroundColor = "#00407B";
     document.getElementById(this.id).style.backgroundImage =
       "url('./assets/images/WIN_screen_bg.png')";
@@ -83,7 +84,7 @@ export class LevelEndScene {
         }
         if (self.closeButton.onClick(x, y)) {
           console.log("Close Button");
-          self.deleteCanvas(self);
+         // self.deleteCanvas(self);
         }
       });
   }
