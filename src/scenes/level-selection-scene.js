@@ -3,6 +3,7 @@ import { CanvasStack } from "../utility/canvas-stack.js";
 import { gameData } from "../../data.js";
 import { LevelConfig } from "../common/level-config.js";
 import { Game } from "./game.js";
+import { LevelSelectionLayer } from "../common/common.js";
 
 var gs = {
   mode: "gameplay",
@@ -41,7 +42,11 @@ export class LevelSelectionScreen {
 
   createCanvas() {
     var self = this;
-    this.id = this.canvasStack.createLayer(this.height, this.width);
+    this.id = this.canvasStack.createLayer(
+      this.height,
+      this.width,
+      LevelSelectionLayer
+    );
     this.context = document.getElementById(this.id).getContext("2d");
 
     document.getElementById(this.id).style.zIndex = 2;
@@ -99,36 +104,17 @@ export class LevelSelectionScreen {
     ];
 
     document.getElementById(this.id).addEventListener(
-      "touchend",
-      function (event) {
-        event.preventDefault();
-
-        var touch = event.changedTouches[0];
-        var mouseEvent = new MouseEvent("mouseup", {
+      "touchstart",
+      function (e) {
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mousedown", {
           clientX: touch.clientX,
           clientY: touch.clientY,
         });
-        const x = touch.clientX;
-        const y = touch.clientY;
-        var imageSize = canvas.height / 5;
-        for (let s of gs.levels) {
-          if (
-            Math.sqrt(s.x + imageSize / 8 - x / 1.3) < 15 &&
-            Math.sqrt(s.y + imageSize / 8 - y) < 12
-          ) {
-            console.log(s.index);
-            const game = new Game(
-              canvas.width,
-              canvas.height,
-              self.data.levels[s.index].puzzles
-            );
-          }
-        }
         document.getElementById(this.id).dispatchEvent(mouseEvent);
       },
       false
     );
-
     document.getElementById(this.id).addEventListener(
       "mousedown",
       function (event) {
@@ -138,7 +124,7 @@ export class LevelSelectionScreen {
         const y = event.clientY - rect.top;
         for (let s of gs.levels) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 80) {
-            const game = new Game(
+            new Game(
               canvas.width,
               canvas.height,
               self.data.levels[s.index].puzzles

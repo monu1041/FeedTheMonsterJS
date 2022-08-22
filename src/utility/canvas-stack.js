@@ -15,7 +15,7 @@ export var CanvasStack;
     constructor(cvsID, stackLimit) {
       const savThis = this;
       this.cId = cvsID;
-      this.stackLimit = stackLimit || 10;
+      this.stackLimit = stackLimit || 12;
       this.bkgCanvas = document.getElementById(cvsID);
       this.rawWidth = this.bkgCanvas.offsetWidth;
       this.rawHeight = this.bkgCanvas.offsetHeight;
@@ -24,16 +24,17 @@ export var CanvasStack;
       if (!this.bkgCanvas.hasOwnProperty("layers")) {
         this.bkgCanvas.layers = [];
         let bkgL = new Layer(this.cId, this.bkgCanvas); // bkgCanvas is always layer[0]
-        this.bkgCanvas.layers[0] = bkgL; 
+        this.bkgCanvas.layers[0] = bkgL;
       }
       if (!this.bkgCanvas.hasOwnProperty("unique")) {
         this.bkgCanvas.unique = 0;
       }
     }
 
-    createLayer(height, width) {
-      const w = width+'px',
-        h = height+'px',
+    createLayer(height, width, layerId) {
+      if(!this.isLayerExist(layerId)){
+        const w = width + "px",
+        h = height + "px",
         nLyrs = this.bkgCanvas.layers.length; // bkg is layer 0 so at least 1
       if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
         console.log("CanvasStack: missing background canvas");
@@ -44,8 +45,9 @@ export var CanvasStack;
         return;
       }
       this.bkgCanvas.unique += 1; // a private static variable
-      const uniqueTag = this.bkgCanvas.unique.toString();
-      const ovlId = this.cId + "_ovl_" + uniqueTag;
+      // const uniqueTag = this.bkgCanvas.unique.toString();
+      // const ovlId = this.cId + "_ovl_" + uniqueTag;
+      const ovlId = layerId;
       const ovlHTML =
         "<canvas id='" +
         ovlId +
@@ -57,10 +59,10 @@ export var CanvasStack;
       const topCvs = this.bkgCanvas.layers[nLyrs - 1].cElem;
       topCvs.insertAdjacentHTML("afterend", ovlHTML);
       const newCvs = document.getElementById(ovlId);
-     newCvs.style.backgroundColor
-      
-      newCvs.style.left ='50%'
-      newCvs.style.transform = 'translate(-50%, 0%)'
+      newCvs.style.backgroundColor;
+
+      newCvs.style.left = "50%";
+      newCvs.style.transform = "translate(-50%, 0%)";
       newCvs.style.height = h;
       newCvs.style.width = w;
       let newL = new Layer(ovlId, newCvs);
@@ -68,6 +70,7 @@ export var CanvasStack;
       this.bkgCanvas.layers.push(newL);
 
       return ovlId; // return the new canvas id
+      }
     }
 
     deleteLayer(ovlyId) {
@@ -89,16 +92,11 @@ export var CanvasStack;
     }
 
     deleteAllLayers() {
-
       if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
         console.log("CanvasStack: missing background canvas");
         return;
       }
-      for (
-        let i = this.bkgCanvas.layers.length - 1;
-        i > 0;
-        i--
-      ) {
+      for (let i = this.bkgCanvas.layers.length - 1; i > 0; i--) {
         let ovlNode = this.bkgCanvas.layers[i].cElem;
         if (ovlNode) {
           let orphan = ovlNode.parentNode.removeChild(ovlNode);
@@ -109,6 +107,15 @@ export var CanvasStack;
       }
       // clear any resize callbacks, the layers are gone
       this.bkgCanvas.resizeFns.length = 0; // remove any added handlers, leave the basic
+    }
+    isLayerExist(layerID) {
+      for (let i = 1; i < this.bkgCanvas.layers.length; i++) {
+        if (this.bkgCanvas.layers[i].id === layerID) {
+          return true;
+        } else {
+          return false;
+        }
+      }
     }
   };
 })();

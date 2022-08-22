@@ -5,8 +5,9 @@ import StonesLayer from "../components/stones-layer.js";
 import PauseButton from "../components/buttons/pause_button.js";
 import { LevelIndicators } from "../components/level-indicators.js";
 import PausePopUp from "../components/pause-popup.js";
-import { loadImages, loadingScreen } from "../common/constants.js";
+import { loadImages, loadingScreen } from "../common/common.js";
 import { LevelEndScene } from "./level-end-scene.js";
+import { LevelStartLayer } from "../common/common.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -35,6 +36,7 @@ export class LevelStartScene {
       game.width,
       game.height,
       puzzleData[currentPuzzleArray],
+      this.pauseButton,
       this.redrawOfStones
     );
     this.puzzleData = puzzleData;
@@ -54,6 +56,11 @@ export class LevelStartScene {
       currentPuzzleArray+=1;
 
     }
+    if (length >= 3) {
+     setTimeout(()=>{
+      new LevelEndScene(self.game,3,self.monster);
+     },2100)
+    }
     setTimeout(() => {
       // self.stones.setNewPuzzle(self.puzzleData[currentPuzzleArray])
       // self.stones.draw();
@@ -71,7 +78,7 @@ export class LevelStartScene {
     
   }
   createCanvas() {
-    this.id = this.canvasStack.createLayer(this.height, this.width);
+    this.id = this.canvasStack.createLayer(this.height, this.width,LevelStartLayer);
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 3;
@@ -87,10 +94,10 @@ export class LevelStartScene {
       var rect = document.getElementById(self.id).getBoundingClientRect();
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
-      if (self.pauseButton.onClick(x, y)) {
-        //self.levelIndicators.setIndicators(num++)
-        new PausePopUp(self.canavsElement);
-      }
+      // if (self.pauseButton.onClick(x, y)) {
+      //   //self.levelIndicators.setIndicators(num++)
+      //   new PausePopUp(self.canavsElement);
+      // }
     });
   }
 

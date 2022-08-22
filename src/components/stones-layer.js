@@ -1,6 +1,8 @@
+import { StoneLayer } from "../common/common.js";
 import { StoneConfig } from "../common/stones-config.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import PauseButton from "./buttons/pause_button.js";
+import PausePopUp from "./pause-popup.js";
 
 var gs = {
   mode: "gameplay",
@@ -14,10 +16,11 @@ gs.stones = [];
 var pickedStone;
 var offsetCoordinateValue = 32;
 export default class StonesLayer {
-  constructor(canvas, width, height, puzzleData, callBack) {
+  constructor(canvas, width, height, puzzleData, pausebutton, callBack) {
     this.canvas = canvas;
     this.width = width;
-    this.height = height - canvas.width * 0.2;
+    this.pausebutton = pausebutton;
+    this.height = height;
     this.canvasStack = new CanvasStack("canvas");
     this.puzzleData = puzzleData;
     this.setCurrentPuzzle();
@@ -25,23 +28,21 @@ export default class StonesLayer {
     this.callBack = callBack;
   }
 
-
-  setNewPuzzle(currentPuzzle){
-    this.puzzleData=currentPuzzle;
+  setNewPuzzle(currentPuzzle) {
+    this.puzzleData = currentPuzzle;
     this.setCurrentPuzzle();
     this.createStones(this.stonepos);
   }
- 
 
   setCurrentPuzzle() {
-    gs.puzzle.stones = []
+    gs.puzzle.stones = [];
     gs.puzzle.target = this.puzzleData.targetStones[0];
     gs.puzzle.stones = this.puzzleData.foilStones;
   }
 
   createCanvas() {
     var self = this;
-    this.id = this.canvasStack.createLayer(this.height, this.width);
+    this.id = this.canvasStack.createLayer(this.height, this.width, StoneLayer);
     this.context = document.getElementById(this.id).getContext("2d");
     document.getElementById(this.id).style.zIndex = 6;
     document.getElementById(this.id).style.bottom = 0;
@@ -111,6 +112,9 @@ export default class StonesLayer {
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
+        if (self.pausebutton.onClick(x, y)) {
+          new PausePopUp(document.getElementById(self.id));
+        }
         for (let s of gs.stones) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {
             pickedStone = s;
@@ -136,26 +140,15 @@ export default class StonesLayer {
           if (pickedStone) {
             pickedStone.x = -900;
             pickedStone.y = -900;
-            // gs.stones  = []
+            gs.stones = [];
             if (pickedStone.text == gs.puzzle.target) {
               self.callBack(true);
             } else {
               self.callBack(false);
             }
-            
           }
           pickedStone = null;
         }
-        // if (
-        //   Math.sqrt(
-        //     (x - this.width * 0.38 - 300) * (x - this.width * 0.38 - 300) +
-        //       (y - this.height * 0.3 - 200) * (y - this.height * 0.3 - 200)
-        //   ) <= 150
-        // ) {
-        //   pickedStone.x = -900;
-        //   pickedStone.y = -900;
-        //   pickedStone = null
-        // }
         if (pickedStone) {
           pickedStone.x = pickedStone.origx;
           pickedStone.y = pickedStone.origy;
@@ -221,7 +214,7 @@ export default class StonesLayer {
   }
 
   deleteCanvas() {
-    this.canvasStack.deleteLayer(this.id)
+    this.canvasStack.deleteLayer(this.id);
   }
 
   draw() {
@@ -252,7 +245,7 @@ export default class StonesLayer {
   createStones(stonepos) {
     var poss = stonepos[0];
     var i = 0;
-    gs.stones.splice(0,gs.stones.length)
+    gs.stones.splice(0, gs.stones.length);
     for (let s of gs.puzzle.stones) {
       var ns = new StoneConfig(s, poss[i][0], poss[i][1]);
       // pickedStone = ns;

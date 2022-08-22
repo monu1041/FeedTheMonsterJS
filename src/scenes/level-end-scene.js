@@ -1,3 +1,4 @@
+import { LevelEndButtonsLayer, LevelEndLayer } from "../common/common.js";
 import CloseButton from "../components/buttons/close_button.js";
 import NextButton from "../components/buttons/next_button.js";
 import RetryButton from "../components/buttons/retry_button.js";
@@ -13,18 +14,20 @@ export class LevelEndScene {
     this.starCount = starCount;
   }
   createCanvas() {
-    this.monster.changeImage("./assets/images/sad14.png");
+    this.monster.changeImage("./assets/images/happy14.png");
     this.monster.changeZindex(8);
     var self = this;
     this.id = this.canvasStack.createLayer(
       this.canvas.height,
-      this.canvas.width
+      this.canvas.width,
+      LevelEndLayer
     );
     this.context = document.getElementById(this.id).getContext("2d");
     document.getElementById(this.id).style.zIndex = 7;
     this.bottonLayer = this.canvasStack.createLayer(
       this.canvas.height,
-      this.canvas.width
+      this.canvas.width,
+      LevelEndButtonsLayer
     );
     this.bottonContext = document
       .getElementById(this.bottonLayer)
@@ -47,7 +50,7 @@ export class LevelEndScene {
     star3.src = "./assets/images/pinStar3.png";
 
     pop_up_image.onload = function (e) {
-      self.context.drawImage(pop_up_image, 0, 0, 0, 0);
+    //  self.context.drawImage(pop_up_image, 0, 0, 0, 0);
       self.drawStarts(self, star1, star2, star3);
     };
     self.nextButton = new NextButton(
