@@ -7,6 +7,7 @@ import { LevelIndicators } from "../components/level-indicators.js";
 import PausePopUp from "../components/pause-popup.js";
 import { loadImages, loadingScreen } from "../common/constants.js";
 import { LevelEndScene } from "./level-end-scene.js";
+import { LevelStartLayer } from "../common/common.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -41,14 +42,17 @@ export class LevelStartScene {
 
   redrawOfStones(status) {
     self.stones.deleteCanvas();
-    // if (length >= 3) {
-    //   new LevelEndScene(self.game,2);
-    // }
+    length++;
 
     if (status) {
       self.monster.changeToEatAnimation();
     } else {
       self.monster.changeToSpitAnimation();
+    }
+    if (length >= 3) {
+     setTimeout(()=>{
+      new LevelEndScene(self.game,3,self.monster);
+     },2100)
     }
     setTimeout(() => {
       self.stones = new StonesLayer(
@@ -61,7 +65,7 @@ export class LevelStartScene {
     }, 2000);
   }
   createCanvas() {
-    this.id = this.canvasStack.createLayer(this.height, this.width);
+    this.id = this.canvasStack.createLayer(this.height, this.width,Level,LevelStartLayer);
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 3;

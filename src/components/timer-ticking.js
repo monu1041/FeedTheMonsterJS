@@ -1,3 +1,4 @@
+import { TimetickerLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js"
 
 export class TimerTicking {
@@ -15,7 +16,7 @@ export class TimerTicking {
     }
 
     createCanvas() {
-        this.id = this.canvasStack.createLayer(this.height, this.width);
+        this.id = this.canvasStack.createLayer(this.height, this.width,TimetickerLayer);
         this.canavsElement = document.getElementById(this.id);
         this.context = this.canavsElement.getContext("2d");
         this.canavsElement.style.bottom = 0;

@@ -29,3 +29,16 @@ export function loadingScreen(loading, canvasStack) {
     });
   }
 }
+
+export const MonsterLayer = "monsterCanvas";
+export const PausePopupLayer = "pausepopupCanvas";
+export const StoneLayer = "stoneCanvas";
+export const TimetickerLayer = "timetickCanvas";
+export const LevelEndLayer = "levelEndCanvas";
+export const LevelEndButtonsLayer = "levelEndButtonsCanvas";
+export const LevelSelectionLayer = "levelSelectionCanvas";
+export const LevelStartLayer = "levelStartCanvas";
+
+export function isCanvasPresent(canvasStack, layerId) {
+  
+}

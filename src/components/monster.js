@@ -1,3 +1,4 @@
+import { MonsterLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 var lastTime = 0;
 var self;
@@ -22,7 +23,7 @@ export class Monster {
   }
 
   createCanvas() {
-    this.id = this.canvasStack.createLayer(this.height, this.width);
+    this.id = this.canvasStack.createLayer(this.height, this.width,MonsterLayer);
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 5;
@@ -87,7 +88,7 @@ export class Monster {
     this.image.src = "./assets/images/idle4.png";
   }
 
-  changeToSadAnimation() {
+  changeToSpitAnimation() {
     this.image.src = "./assets/images/spit4.png";
     setTimeout(() => {
       this.changeToIdleAnimation();

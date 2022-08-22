@@ -1,3 +1,4 @@
+import { PausePopupLayer } from "../common/common.js";
 import { LevelEndScene } from "../scenes/level-end-scene.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import CancelButton from "./buttons/cancel_button.js";
@@ -15,7 +16,8 @@ export default class PausePopUp {
     var self = this;
     this.id = this.canvasStack.createLayer(
       this.canvas.height,
-      this.canvas.width
+      this.canvas.width,
+      PausePopupLayer
     );
     this.context = document.getElementById(this.id).getContext("2d");
     document.getElementById(this.id).style.zIndex = 11;

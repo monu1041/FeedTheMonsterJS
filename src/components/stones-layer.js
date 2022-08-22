@@ -1,3 +1,4 @@
+import { StoneLayer } from "../common/common.js";
 import { StoneConfig } from "../common/stones-config.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import PauseButton from "./buttons/pause_button.js";
@@ -26,14 +27,14 @@ export default class StonesLayer {
   }
 
   setCurrentPuzzle() {
-    gs.puzzle.stones = []
+    gs.puzzle.stones = [];
     gs.puzzle.target = this.puzzleData.targetStones[0];
     gs.puzzle.stones = this.puzzleData.foilStones;
   }
 
   createCanvas() {
     var self = this;
-    this.id = this.canvasStack.createLayer(this.height, this.width);
+    this.id = this.canvasStack.createLayer(this.height, this.width, StoneLayer);
     this.context = document.getElementById(this.id).getContext("2d");
     document.getElementById(this.id).style.zIndex = 6;
     document.getElementById(this.id).style.bottom = 0;
@@ -129,7 +130,7 @@ export default class StonesLayer {
           if (pickedStone) {
             pickedStone.x = -900;
             pickedStone.y = -900;
-            gs.stones  = []
+            gs.stones = [];
             if (pickedStone.text == gs.puzzle.target) {
               self.callBack(true);
             } else {
@@ -139,16 +140,6 @@ export default class StonesLayer {
           }
           pickedStone = null;
         }
-        // if (
-        //   Math.sqrt(
-        //     (x - this.width * 0.38 - 300) * (x - this.width * 0.38 - 300) +
-        //       (y - this.height * 0.3 - 200) * (y - this.height * 0.3 - 200)
-        //   ) <= 150
-        // ) {
-        //   pickedStone.x = -900;
-        //   pickedStone.y = -900;
-        //   pickedStone = null
-        // }
         if (pickedStone) {
           pickedStone.x = pickedStone.origx;
           pickedStone.y = pickedStone.origy;
@@ -214,7 +205,7 @@ export default class StonesLayer {
   }
 
   deleteCanvas() {
-    this.canvasStack.deleteLayer(this.id)
+    this.canvasStack.deleteLayer(this.id);
   }
 
   draw() {
