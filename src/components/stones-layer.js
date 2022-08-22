@@ -87,7 +87,6 @@ export default class StonesLayer {
         ],
       ],
     ];
-
     document
       .getElementById(this.id)
       .addEventListener("click", function (event) {
