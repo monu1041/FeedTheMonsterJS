@@ -38,7 +38,3 @@ export const LevelEndLayer = "levelEndCanvas";
 export const LevelEndButtonsLayer = "levelEndButtonsCanvas";
 export const LevelSelectionLayer = "levelSelectionCanvas";
 export const LevelStartLayer = "levelStartCanvas";
-
-export function isCanvasPresent(canvasStack, layerId) {
-  
-}
