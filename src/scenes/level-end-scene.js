@@ -6,12 +6,13 @@ import { Monster } from "../components/monster.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 
 export class LevelEndScene {
-  constructor(canvas, starCount, monster) {
+  constructor(canvas, starCount, monster,levelEndCallBack) {
     this.canvas = canvas;
     this.canvasStack = new CanvasStack("canvas");
     this.monster = monster;
     this.createCanvas();
     this.starCount = starCount;
+    this.levelEndCallBack=levelEndCallBack;
   }
   createCanvas() {
     this.monster.changeImage("./assets/images/happy14.png");
@@ -81,12 +82,15 @@ export class LevelEndScene {
         const y = event.clientY - rect.top;
         if (self.nextButton.onClick(x, y)) {
           console.log("Next Button");
+          self.levelEndCallBack('next_button')
         }
         if (self.retryButton.onClick(x, y)) {
           console.log("Retry Button");
+          self.levelEndCallBack('retry_button')
         }
         if (self.closeButton.onClick(x, y)) {
           console.log("Close Button");
+          self.levelEndCallBack('close_button')
          // self.deleteCanvas(self);
         }
       });

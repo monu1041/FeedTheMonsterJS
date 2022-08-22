@@ -5,7 +5,7 @@ import StonesLayer from "../components/stones-layer.js";
 import PauseButton from "../components/buttons/pause_button.js";
 import { LevelIndicators } from "../components/level-indicators.js";
 import PausePopUp from "../components/pause-popup.js";
-import { loadImages, loadingScreen } from "../common/common.js";
+import { LevelEndButtonsLayer, LevelEndLayer, loadImages, loadingScreen, MonsterLayer, StoneLayer, TimetickerLayer } from "../common/common.js";
 import { LevelEndScene } from "./level-end-scene.js";
 import { LevelStartLayer } from "../common/common.js";
 var images = {
@@ -19,8 +19,8 @@ var images = {
   promptImg: "./assets/images/promptTextBg.png",
 };
 var self;
-var length = 0;
-var currentPuzzleArray=0;
+var current_puzzle_index=0;
+var score=0;
 export class LevelStartScene {
   constructor(game, puzzleData) {
     this.game = game;
@@ -35,48 +35,69 @@ export class LevelStartScene {
       game,
       game.width,
       game.height,
-      puzzleData[currentPuzzleArray],
+      puzzleData[current_puzzle_index],
       this.pauseButton,
       this.redrawOfStones
     );
     this.puzzleData = puzzleData;
   }
   
-  redrawOfStones(status) {
-    // self.stones.deleteCanvas();
-    // if (length >= 3) {
-    //   new LevelEndScene(self.game,2);
-    // }
-  //  self.stones.a=42;
-    if (status) {
-      self.monster.changeToEatAnimation();
-      currentPuzzleArray+=1;
-    } else {
-      self.monster.changeToSpitAnimation();
-      currentPuzzleArray+=1;
-
+  levelEndCallBack(button_name){
+    switch(button_name){
+      case 'close_button':{
+        self.canvasStack.deleteLayer(LevelEndLayer)
+        self.canvasStack.deleteLayer(LevelEndButtonsLayer)
+        self.canvasStack.deleteLayer(LevelStartLayer)
+        self.canvasStack.deleteLayer(MonsterLayer)
+        self.canvasStack.deleteLayer(StoneLayer)
+        self.canvasStack.deleteLayer(TimetickerLayer)
+        self.monster.changeImage("./assets/images/idle4.png")
+        current_puzzle_index=0;
+        break;
+      }
+      case 'next_button':{
+        console.log('next_button')
+        break;
+      }
+      case 'retry_button':{
+        self.canvasStack.deleteLayer(LevelEndLayer)
+        self.canvasStack.deleteLayer(LevelEndButtonsLayer)
+        current_puzzle_index=0;
+        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index])
+        self.monster.changeImage("./assets/images/idle4.png")
+        break;
+      }
     }
-    if (length >= 3) {
-     setTimeout(()=>{
-      new LevelEndScene(self.game,3,self.monster);
-     },2100)
-    }
-    setTimeout(() => {
-      // self.stones.setNewPuzzle(self.puzzleData[currentPuzzleArray])
-      // self.stones.draw();
-      
-      // self.stones = new StonesLayer(
-      //   self.game,
-      //   self.game.width,
-      //   self.game.height,
-      //   self.puzzleData[1],
-      //   self.redrawOfStones
-      // );
-      self.stones.setNewPuzzle(self.puzzleData[currentPuzzleArray])
-      self.stones.canvas.scene.levelIndicators.setIndicators(currentPuzzleArray);
-    },3000);
     
   }
+
+
+  redrawOfStones(status) {
+    if (status) {
+      self.monster.changeToEatAnimation();
+      current_puzzle_index+=1;
+    } else {
+      self.monster.changeToSpitAnimation();
+      current_puzzle_index+=1;
+
+    }
+    if (current_puzzle_index == self.puzzleData.length) {
+     setTimeout(()=>{
+      new LevelEndScene(self.game,3,self.monster,self.levelEndCallBack);
+     },2100)
+    }
+    else{
+      self.stones.canvas.scene.levelIndicators.setIndicators(current_puzzle_index);
+      setTimeout(() => {
+        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index])     
+        self.stones.setPrompt();
+        
+      },3000);
+    }
+    
+  }
+
+
   createCanvas() {
     this.id = this.canvasStack.createLayer(this.height, this.width,LevelStartLayer);
     this.canavsElement = document.getElementById(this.id);
@@ -162,7 +183,7 @@ export class LevelStartScene {
     this.context.fillStyle = "black";
     this.context.font = 30 + "px Arial";
     this.context.fillText(
-      this.puzzleData[currentPuzzleArray].targetStones[0],
+      this.puzzleData[current_puzzle_index].targetStones[0],
       this.width / 2.1,
       this.height * 0.26
     );
@@ -180,7 +201,6 @@ export class LevelStartScene {
     var width = this.width;
     var height = this.height;
     var puzzleData = this.puzzleData;
-    console.log(this.context);
     loadImages(images, function (image) {
       context.drawImage(image.bgImg, 0, 0, width, height);
       context.drawImage(
@@ -232,13 +252,13 @@ export class LevelStartScene {
         width * 0.3,
         height * 0.25
       );
-      context.fillStyle = "black";
-      context.font = 30 + "px Arial";
-      context.fillText(
-        puzzleData[0].targetStones[0],
-        width / 2.1,
-        height * 0.26
-      );
+      // context.fillStyle = "black";
+      // context.font = 30 + "px Arial";
+      // context.fillText(
+      //   puzzleData[0].targetStones[0],
+      //   width / 2.1,
+      //   height * 0.26
+      // );
       self.timerTicking.createBackgroud();
       self.stones.draw();
       self.pauseButton.draw();

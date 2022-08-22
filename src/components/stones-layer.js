@@ -213,6 +213,16 @@ export default class StonesLayer {
     this.createStones(this.stonepos);
   }
 
+  setPrompt(){
+    this.context.fillStyle = "black";
+    this.context.font = this.width*0.09 + "px Arial";
+    this.context.fillText(
+      gs.puzzle.target,
+      this.width / 2.1,
+      this.height * 0.25
+    );
+    
+  }
   deleteCanvas() {
     this.canvasStack.deleteLayer(this.id);
   }
@@ -222,6 +232,7 @@ export default class StonesLayer {
     for (let s of gs.stones) {
       this.drawstone(s, canvas);
     }
+    this.setPrompt();
   }
 
   drawstone(s, canvas) {
