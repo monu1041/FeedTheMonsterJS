@@ -1,9 +1,10 @@
-import { PausePopupLayer } from "../common/common.js";
+import { LevelEndButtonsLayer, LevelEndLayer, LevelStartLayer, MonsterLayer, PausePopupLayer, StoneLayer, TimetickerLayer } from "../common/common.js";
 import { LevelEndScene } from "../scenes/level-end-scene.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import CancelButton from "./buttons/cancel_button.js";
 import CloseButton from "./buttons/close_button.js";
 import RetryButton from "./buttons/retry_button.js";
+
 
 export default class PausePopUp {
   constructor(canvas) {
@@ -62,6 +63,13 @@ export default class PausePopUp {
         }
         if (self.closeButton.onClick(x, y)) {
           console.log("Close Button");
+          self.deleteCanvas(self);
+          self.canvasStack.deleteLayer(LevelEndLayer)
+          self.canvasStack.deleteLayer(LevelEndButtonsLayer)
+          self.canvasStack.deleteLayer(LevelStartLayer)
+          self.canvasStack.deleteLayer(MonsterLayer)
+          self.canvasStack.deleteLayer(StoneLayer)
+          self.canvasStack.deleteLayer(TimetickerLayer)
         }
       });
   }
