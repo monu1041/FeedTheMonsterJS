@@ -20,6 +20,7 @@ var images = {
 };
 var self;
 var length = 0;
+var currentPuzzleArray=0;
 export class LevelStartScene {
   constructor(game, puzzleData) {
     this.game = game;
@@ -34,21 +35,26 @@ export class LevelStartScene {
       game,
       game.width,
       game.height,
-      puzzleData[0],
+      puzzleData[currentPuzzleArray],
       this.pauseButton,
       this.redrawOfStones
     );
     this.puzzleData = puzzleData;
   }
-
+  
   redrawOfStones(status) {
-    self.stones.deleteCanvas();
-    length++;
-
+    // self.stones.deleteCanvas();
+    // if (length >= 3) {
+    //   new LevelEndScene(self.game,2);
+    // }
+  //  self.stones.a=42;
     if (status) {
       self.monster.changeToEatAnimation();
+      currentPuzzleArray+=1;
     } else {
       self.monster.changeToSpitAnimation();
+      currentPuzzleArray+=1;
+
     }
     if (length >= 3) {
      setTimeout(()=>{
@@ -56,14 +62,20 @@ export class LevelStartScene {
      },2100)
     }
     setTimeout(() => {
-      self.stones = new StonesLayer(
-        self.game,
-        self.game.width,
-        self.game.height,
-        self.puzzleData[1],
-        self.redrawOfStones
-      );
-    }, 2000);
+      // self.stones.setNewPuzzle(self.puzzleData[currentPuzzleArray])
+      // self.stones.draw();
+      
+      // self.stones = new StonesLayer(
+      //   self.game,
+      //   self.game.width,
+      //   self.game.height,
+      //   self.puzzleData[1],
+      //   self.redrawOfStones
+      // );
+      self.stones.setNewPuzzle(self.puzzleData[currentPuzzleArray])
+      self.stones.canvas.scene.levelIndicators.setIndicators(currentPuzzleArray);
+    },3000);
+    
   }
   createCanvas() {
     this.id = this.canvasStack.createLayer(this.height, this.width,LevelStartLayer);
@@ -150,7 +162,7 @@ export class LevelStartScene {
     this.context.fillStyle = "black";
     this.context.font = 30 + "px Arial";
     this.context.fillText(
-      this.puzzleData[0].targetStones[0],
+      this.puzzleData[currentPuzzleArray].targetStones[0],
       this.width / 2.1,
       this.height * 0.26
     );
