@@ -8,7 +8,7 @@ export class Monster {
     self = this;
     this.zindex = zindex;
     this.width = this.game.width;
-    this.height = this.game.height - game.width * 0.2;
+    this.height = this.game.height;
     this.image = document.getElementById("monster");
     this.frameX = 0;
     this.frameY = 0;

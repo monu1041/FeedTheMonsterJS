@@ -2,6 +2,7 @@ import { StoneLayer } from "../common/common.js";
 import { StoneConfig } from "../common/stones-config.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import PauseButton from "./buttons/pause_button.js";
+import PausePopUp from "./pause-popup.js";
 
 var gs = {
   mode: "gameplay",
@@ -15,10 +16,11 @@ gs.stones = [];
 var pickedStone;
 var offsetCoordinateValue = 32;
 export default class StonesLayer {
-  constructor(canvas, width, height, puzzleData, callBack) {
+  constructor(canvas, width, height, puzzleData, pausebutton, callBack) {
     this.canvas = canvas;
     this.width = width;
-    this.height = height - canvas.width * 0.2;
+    this.pausebutton = pausebutton;
+    this.height = height;
     this.canvasStack = new CanvasStack("canvas");
     this.puzzleData = puzzleData;
     this.setCurrentPuzzle();
@@ -105,6 +107,10 @@ export default class StonesLayer {
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
+        if (self.pausebutton.onClick(x, y)) {
+          //self.levelIndicators.setIndicators(num++)
+          new PausePopUp(document.getElementById(self.id));
+        }
         for (let s of gs.stones) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {
             pickedStone = s;
