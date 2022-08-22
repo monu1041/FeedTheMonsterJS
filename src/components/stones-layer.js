@@ -25,6 +25,14 @@ export default class StonesLayer {
     this.callBack = callBack;
   }
 
+
+  setNewPuzzle(currentPuzzle){
+    this.puzzleData=currentPuzzle;
+    this.setCurrentPuzzle();
+    this.createStones(this.stonepos);
+  }
+ 
+
   setCurrentPuzzle() {
     gs.puzzle.stones = []
     gs.puzzle.target = this.puzzleData.targetStones[0];
@@ -129,13 +137,13 @@ export default class StonesLayer {
           if (pickedStone) {
             pickedStone.x = -900;
             pickedStone.y = -900;
-            gs.stones  = []
+            // gs.stones  = []
             if (pickedStone.text == gs.puzzle.target) {
               self.callBack(true);
             } else {
               self.callBack(false);
             }
-            self.canvas.scene.levelIndicators.setIndicators(1);
+            
           }
           pickedStone = null;
         }
@@ -245,6 +253,7 @@ export default class StonesLayer {
   createStones(stonepos) {
     var poss = stonepos[0];
     var i = 0;
+    gs.stones.splice(0,gs.stones.length)
     for (let s of gs.puzzle.stones) {
       var ns = new StoneConfig(s, poss[i][0], poss[i][1]);
       // pickedStone = ns;
@@ -255,6 +264,7 @@ export default class StonesLayer {
   }
 
   update() {
+    // this.createStones(this.stonepos);
     this.draw();
     // this.pauseButton.draw();
   }
