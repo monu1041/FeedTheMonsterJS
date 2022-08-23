@@ -27,7 +27,7 @@ var images = {
   promptImg: "./assets/images/promptTextBg.png",
 };
 var self;
-var current_puzzle_index = 0;
+var current_puzzle_index = 4;
 var score = 0;
 export class LevelStartScene {
   constructor(game, puzzleData, levelStartCallBack) {
@@ -81,20 +81,7 @@ export class LevelStartScene {
     if (current_puzzle_index == self.puzzleData.length) {
       setTimeout(() => {
         console.log("Score:", score);
-        new LevelEndScene(
-          self.game,
-          score == 200
-            ? 1
-            : score == 300
-            ? 2
-            : score == 400
-            ? 2
-            : score == 500
-            ? 3
-            : 0,
-          self.monster,
-          self.levelEndCallBack
-        );
+        new LevelEndScene(self.game, 0, self.monster, self.levelEndCallBack);
       }, 2100);
     } else {
       self.stones.canvas.scene.levelIndicators.setIndicators(
