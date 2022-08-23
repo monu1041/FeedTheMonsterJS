@@ -41,8 +41,7 @@ export class LevelStartScene {
     this.timerTicking = new TimerTicking(game);
     this.stones = new StonesLayer(
       game,
-      game.width,
-      game.height,
+      this,
       puzzleData[current_puzzle_index],
       this.pauseButton,
       this.redrawOfStones
@@ -54,37 +53,16 @@ export class LevelStartScene {
   levelEndCallBack(button_name) {
     switch (button_name) {
       case "close_button": {
-        self.canvasStack.deleteLayer(LevelEndLayer);
-        self.canvasStack.deleteLayer(LevelEndButtonsLayer);
-        self.canvasStack.deleteLayer(LevelStartLayer);
-        self.canvasStack.deleteLayer(MonsterLayer);
-        self.canvasStack.deleteLayer(StoneLayer);
-        self.canvasStack.deleteLayer(TimetickerLayer);
-        self.monster.changeImage("./assets/images/idle4.png");
-        current_puzzle_index = 0;
+        this.exitAllScreens();
         break;
       }
       case "next_button": {
-        self.canvasStack.deleteLayer(LevelEndLayer);
-        self.canvasStack.deleteLayer(LevelEndButtonsLayer);
-        self.canvasStack.deleteLayer(LevelStartLayer);
-        self.canvasStack.deleteLayer(MonsterLayer);
-        self.canvasStack.deleteLayer(StoneLayer);
-        self.canvasStack.deleteLayer(TimetickerLayer);
-        self.monster.changeImage("./assets/images/idle4.png");
-        current_puzzle_index = 0;
+        this.exitAllScreens();
         self.levelStartCallBack(button_name);
         break;
       }
       case "retry_button": {
-        self.canvasStack.deleteLayer(LevelEndLayer);
-        self.canvasStack.deleteLayer(LevelEndButtonsLayer);
-        self.canvasStack.deleteLayer(LevelStartLayer);
-        self.canvasStack.deleteLayer(MonsterLayer);
-        self.canvasStack.deleteLayer(StoneLayer);
-        self.canvasStack.deleteLayer(TimetickerLayer);
-        self.monster.changeImage("./assets/images/idle4.png");
-        current_puzzle_index = 0;
+        this.exitAllScreens();
         self.levelStartCallBack(button_name);
         break;
       }
@@ -124,7 +102,6 @@ export class LevelStartScene {
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 3;
     this.pauseButton = new PauseButton(this.context, this.canavsElement);
-    // new LevelEndScene(this.game,3,this.monster)
     this.levelIndicators = new LevelIndicators(
       this.context,
       this.canavsElement,
@@ -135,17 +112,22 @@ export class LevelStartScene {
       var rect = document.getElementById(self.id).getBoundingClientRect();
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
-      // if (self.pauseButton.onClick(x, y)) {
-      //   //self.levelIndicators.setIndicators(num++)
-      //   new PausePopUp(self.canavsElement);
-      // }
     });
   }
 
   deleteCanvas() {
     this.canvasStack.deleteLayer(this.id);
   }
-
+  exitAllScreens() {
+    self.canvasStack.deleteLayer(LevelEndLayer);
+    self.canvasStack.deleteLayer(LevelEndButtonsLayer);
+    self.canvasStack.deleteLayer(LevelStartLayer);
+    self.canvasStack.deleteLayer(MonsterLayer);
+    self.canvasStack.deleteLayer(StoneLayer);
+    self.canvasStack.deleteLayer(TimetickerLayer);
+    self.monster.changeImage("./assets/images/idle4.png");
+    current_puzzle_index = 0;
+  }
   draw() {
     this.context.clearRect(0, 0, this.width, this.height);
     this.context.drawImage(this.bgImg, 0, 0, this.width, this.height);
@@ -213,7 +195,6 @@ export class LevelStartScene {
     this.pauseButton.draw();
     this.levelIndicators.draw();
   }
-
   createBackgroud() {
     var self = this;
     loadingScreen(true, self.canvasStack);
@@ -272,13 +253,6 @@ export class LevelStartScene {
         width * 0.3,
         height * 0.25
       );
-      // context.fillStyle = "black";
-      // context.font = 30 + "px Arial";
-      // context.fillText(
-      //   puzzleData[0].targetStones[0],
-      //   width / 2.1,
-      //   height * 0.26
-      // );
       self.timerTicking.createBackgroud();
       self.stones.draw();
       self.pauseButton.draw();
