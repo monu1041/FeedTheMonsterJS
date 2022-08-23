@@ -53,16 +53,16 @@ export class LevelStartScene {
   levelEndCallBack(button_name) {
     switch (button_name) {
       case "close_button": {
-        this.exitAllScreens();
+        self.exitAllScreens();
         break;
       }
       case "next_button": {
-        this.exitAllScreens();
+        self.exitAllScreens();
         self.levelStartCallBack(button_name);
         break;
       }
       case "retry_button": {
-        this.exitAllScreens();
+        self.exitAllScreens();
         self.levelStartCallBack(button_name);
         break;
       }
@@ -72,6 +72,7 @@ export class LevelStartScene {
   redrawOfStones(status) {
     if (status) {
       self.monster.changeToEatAnimation();
+      score += 100;
       current_puzzle_index += 1;
     } else {
       self.monster.changeToSpitAnimation();
@@ -79,7 +80,21 @@ export class LevelStartScene {
     }
     if (current_puzzle_index == self.puzzleData.length) {
       setTimeout(() => {
-        new LevelEndScene(self.game, 3, self.monster, self.levelEndCallBack);
+        console.log("Score:", score);
+        new LevelEndScene(
+          self.game,
+          score == 200
+            ? 1
+            : score == 300
+            ? 2
+            : score == 400
+            ? 2
+            : score == 500
+            ? 3
+            : 0,
+          self.monster,
+          self.levelEndCallBack
+        );
       }, 2100);
     } else {
       self.stones.canvas.scene.levelIndicators.setIndicators(
@@ -127,6 +142,7 @@ export class LevelStartScene {
     self.canvasStack.deleteLayer(TimetickerLayer);
     self.monster.changeImage("./assets/images/idle4.png");
     current_puzzle_index = 0;
+    score = 0;
   }
   draw() {
     this.context.clearRect(0, 0, this.width, this.height);
