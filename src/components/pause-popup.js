@@ -62,7 +62,6 @@ export default class PausePopUp {
           console.log("Retry Button");
         }
         if (self.closeButton.onClick(x, y)) {
-          console.log("Close Button");
           self.deleteCanvas(self);
           self.canvasStack.deleteLayer(LevelEndLayer)
           self.canvasStack.deleteLayer(LevelEndButtonsLayer)
