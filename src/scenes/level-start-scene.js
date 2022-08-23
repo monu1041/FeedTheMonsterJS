@@ -21,6 +21,10 @@ var images = {
 var self;
 var current_puzzle_index=0;
 var score=0;
+var lastTime = 0;
+var timer=0;
+var isDrag=true;
+
 export class LevelStartScene {
   constructor(game, puzzleData) {
     this.game = game;
@@ -29,8 +33,9 @@ export class LevelStartScene {
     self = this;
     this.monster = new Monster(game);
     this.canvasStack = new CanvasStack("canvas");
+    
+    this.timerTicking = new TimerTicking(game,this);
     this.createCanvas();
-    this.timerTicking = new TimerTicking(game);
     this.stones = new StonesLayer(
       game,
       game.width,
@@ -73,13 +78,15 @@ export class LevelStartScene {
 
 
   redrawOfStones(status) {
+    console.log('Called-----------')
+    isDrag=false;
     if (status) {
       self.monster.changeToEatAnimation();
       current_puzzle_index+=1;
     } else {
       self.monster.changeToSpitAnimation();
       current_puzzle_index+=1;
-
+   
     }
     if (current_puzzle_index == self.puzzleData.length) {
      setTimeout(()=>{
@@ -87,10 +94,14 @@ export class LevelStartScene {
      },2100)
     }
     else{
+     
       self.stones.canvas.scene.levelIndicators.setIndicators(current_puzzle_index);
       setTimeout(() => {
+        isDrag=true;
+        timer=0;
         self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index])     
         self.stones.setPrompt();
+        self.timerTicking.draw();
         
       },3000);
     }
@@ -120,6 +131,7 @@ export class LevelStartScene {
       //   new PausePopUp(self.canavsElement);
       // }
     });
+    this.animation(0,this);
   }
 
   deleteCanvas() {
@@ -194,13 +206,35 @@ export class LevelStartScene {
     this.levelIndicators.draw();
   }
 
+  animation(timeStamp) {
+    let deltaTime = timeStamp - lastTime;
+    lastTime = timeStamp;
+    if(isDrag){
+      timer+=.1;
+      self.timerTicking.update(timer);
+    }
+    console.log(self.canavsElement.width)
+    if(self.canavsElement.width * 1.3 - (self.canavsElement.width/3.4)-10*timer<55){
+      console.log('Timer should Stop')
+      current_puzzle_index+=1
+      isDrag=true;
+        timer=0;
+        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index])     
+        self.stones.setPrompt();
+        self.timerTicking.draw();
+        self.stones.canvas.scene.levelIndicators.setIndicators(current_puzzle_index);
+    }
+  
+   
+    requestAnimationFrame(self.animation);
+  }
   createBackgroud() {
     var self = this;
     loadingScreen(true, self.canvasStack);
     var context = this.context;
     var width = this.width;
     var height = this.height;
-    var puzzleData = this.puzzleData;
+    var puzzleData = this.puzzleData; 
     loadImages(images, function (image) {
       context.drawImage(image.bgImg, 0, 0, width, height);
       context.drawImage(
@@ -247,9 +281,9 @@ export class LevelStartScene {
       );
       context.drawImage(
         image.promptImg,
-        width / 2 - (width * 0.3) / 2,
+        width / 2 - (width * 0.5) / 2,
         height * 0.15,
-        width * 0.3,
+        width * 0.5,
         height * 0.25
       );
       // context.fillStyle = "black";

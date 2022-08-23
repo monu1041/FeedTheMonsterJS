@@ -38,6 +38,7 @@ export default class StonesLayer {
     gs.puzzle.stones = [];
     gs.puzzle.target = this.puzzleData.targetStones[0];
     gs.puzzle.stones = this.puzzleData.foilStones;
+    gs.puzzle.prompt = this.puzzleData.prompt.promptText;
   }
 
   createCanvas() {
@@ -216,10 +217,11 @@ export default class StonesLayer {
   setPrompt(){
     this.context.fillStyle = "black";
     this.context.font = this.width*0.09 + "px Arial";
+    this.context.textAlign='center';
     this.context.fillText(
-      gs.puzzle.target,
-      this.width / 2.1,
-      this.height * 0.25
+      gs.puzzle.prompt,
+      this.width / 2,
+      this.height * 0.27
     );
     
   }

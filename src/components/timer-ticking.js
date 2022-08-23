@@ -1,18 +1,19 @@
 import { TimetickerLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js"
 
+
 export class TimerTicking {
     constructor(game) {
         this.game = game;
         this.width = game.width;
         this.height = game.height;
         this.widthToClear = canvas.width/3.4;
-        this.fps = 10;
-        this.frameInterval = 1000/this.fps;
-        this.frameTimer = 0;
-        this.maxFrame = 6;
+        this.maxLimitExhausted = false;
         this.canvasStack = new CanvasStack("canvas");
+        self=this;
         this.createCanvas();
+
+        
     }
 
     createCanvas() {
@@ -20,6 +21,7 @@ export class TimerTicking {
         this.canavsElement = document.getElementById(this.id);
         this.context = this.canavsElement.getContext("2d");
         this.canavsElement.style.zIndex = 4;
+        // this.animation(0);
     }
 
     deleteCanvas() {
@@ -48,15 +50,20 @@ export class TimerTicking {
         
     }
 
-    update(deltaTime) {
-        if (this.frameTimer > this.frameInterval) {
-            this.frameTimer = 0;
-            this.widthToClear = this.widthToClear - 0.2;
-        } else {
-            console.log(this.frameTimer)
-            this.frameTimer += deltaTime;
+    update(timer) {
+        // if (this.frameTimer > this.frameInterval) {
+        //     this.frameTimer = 0;
+        //     this.widthToClear = this.widthToClear - 0.2;
+        // } else {
+        //     console.log(this.frameTimer)
+        //     this.frameTimer += deltaTime;
+        // }
+        if(timer<80){
         }
-        this.context.clearRect(canvas.width * 1.3 - this.widthToClear, 0, this.width, this.height)
+        // console.log(canvas.width * 1.3 - this.widthToClear)
+        // console.log(canvas.width * 1.3 - this.widthToClear-10*timer)
+        this.context.clearRect(canvas.width * 1.3 - this.widthToClear-10*timer, 0, this.width, this.height)
     }
+    
     
 }

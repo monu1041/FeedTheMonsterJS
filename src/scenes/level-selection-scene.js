@@ -18,7 +18,6 @@ gs.levels = [];
 
 var mapIcon = new Image();
 mapIcon.src = "./assets/images/mapIcon.png";
-var pickedStone;
 var offsetCoordinateValue = 32;
 export class LevelSelectionScreen {
   constructor(canvas, data) {
