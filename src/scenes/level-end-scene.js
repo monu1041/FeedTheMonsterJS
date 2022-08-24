@@ -9,12 +9,16 @@ export class LevelEndScene {
     this.canvas = canvas;
     this.canvasStack = new CanvasStack("canvas");
     this.monster = monster;
-    this.createCanvas();
     this.starCount = starCount;
+    this.createCanvas();
     this.levelEndCallBack = levelEndCallBack;
   }
   createCanvas() {
-    this.monster.changeImage("./assets/images/happy14.png");
+    if (this.starCount <= 1) {
+      this.monster.changeImage("./assets/images/sad14.png");
+    } else {
+      this.monster.changeImage("./assets/images/happy14.png");
+    }
     this.monster.changeZindex(8);
     var self = this;
     this.id = this.canvasStack.createLayer(
@@ -48,16 +52,21 @@ export class LevelEndScene {
     star3.src = "./assets/images/pinStar3.png";
 
     self.drawStarts(self, star1, star2, star3);
-    self.nextButton = new NextButton(
-      self.context,
-      self.canvas,
-      self.canvas.width * 0.8 - (self.canvas.width * 0.19) / 2,
-      self.canvas.height * 0.7
-    );
+    self.nextButton =
+      self.starCount >= 2
+        ? new NextButton(
+            self.context,
+            self.canvas,
+            self.canvas.width * 0.8 - (self.canvas.width * 0.19) / 2,
+            self.canvas.height * 0.7
+          )
+        : null;
     self.retryButton = new RetryButton(
       self.context,
       self.canvas,
-      self.canvas.width * 0.5 - (self.canvas.width * 0.19) / 2,
+      self.starCount >= 2
+        ? self.canvas.width * 0.5 - (self.canvas.width * 0.19) / 2
+        : self.canvas.width * 0.8 - (self.canvas.width * 0.19) / 2,
       self.canvas.height * 0.7
     );
     self.closeButton = new CloseButton(
@@ -74,7 +83,7 @@ export class LevelEndScene {
           .getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        if (self.nextButton.onClick(x, y)) {
+        if (self.nextButton && self.nextButton.onClick(x, y)) {
           self.levelEndCallBack("next_button");
         }
         if (self.retryButton.onClick(x, y)) {
