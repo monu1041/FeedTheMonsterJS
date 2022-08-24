@@ -1,7 +1,5 @@
 import { TimetickerLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js"
-
-
 export class TimerTicking {
     constructor(game) {
         this.game = game;
@@ -10,12 +8,12 @@ export class TimerTicking {
         this.widthToClear = canvas.width/3.4;
         this.maxLimitExhausted = false;
         this.canvasStack = new CanvasStack("canvas");
+        this.timer = 0;
+        this.isTimerStarted = false;
+        this.isTimerEnded= false;
         self=this;
         this.createCanvas();
-
-        
     }
-
     createCanvas() {
         this.id = this.canvasStack.createLayer(this.height, this.width,TimetickerLayer);
         this.canavsElement = document.getElementById(this.id);
@@ -23,11 +21,9 @@ export class TimerTicking {
         this.canavsElement.style.zIndex = 4;
         // this.animation(0);
     }
-
     deleteCanvas() {
         this.canvasStack.deleteLayer(this.id);
     }
-
     draw() {
         this.context.clearRect(0, 0, this.width, this.height);
         this.context.drawImage(
@@ -37,33 +33,50 @@ export class TimerTicking {
             this.game.width - 50,
             this.height * 0.05
           );
+          this.beginTimerOnStart();
     }
-
     createBackgroud() {
         var self = this;
         this.timer_full = new Image();
         this.timer_full.src = "./assets/images/timer_full.png";
         this.timer_full.onload = function (e) {
             self.draw();
-            self.update()
+            self.beginTimerOnStart();
         };
-        
     }
-
-    update(timer) {
-        // if (this.frameTimer > this.frameInterval) {
-        //     this.frameTimer = 0;
-        //     this.widthToClear = this.widthToClear - 0.2;
-        // } else {
-        //     console.log(this.frameTimer)
-        //     this.frameTimer += deltaTime;
-        // }
-        if(timer<80){
+    update() {
+        if (this.isTimerStarted) {
+            this.timer += 0.1;
+            if((canvas.width * 1.3 - this.widthToClear - 10 * this.timer) >= 55) {
+                this.context.clearRect(canvas.width * 1.3 - this.widthToClear - 10 * this.timer, 0, this.width, this.height)
+            }
+            if((canvas.width * 1.3 - this.widthToClear - 10 * this.timer) <= 55){
+                this.isTimerEnded = true;
+            }
         }
-        // console.log(canvas.width * 1.3 - this.widthToClear)
-        // console.log(canvas.width * 1.3 - this.widthToClear-10*timer)
-        this.context.clearRect(canvas.width * 1.3 - this.widthToClear-10*timer, 0, this.width, this.height)
     }
-    
-    
+    beginTimerOnStart() {
+        var self = this;
+        setTimeout(() => {
+            if(!self.isTimerStarted && self.timer==0)
+            {
+                self.timer = 0;
+                self.isTimerStarted = true;
+            }
+            
+        }, 6000)
+    }
+    stopTimer() {
+        this.isTimerStarted = false;
+        setTimeout(()=>{
+            this.timer = 0;
+        },3000)
+        this.timer = 0;
+    }
+    pauseTimer() {
+        this.isTimerStarted = false;
+    }
+    resumeTimer() {
+        this.isTimerStarted = true;
+    }
 }
