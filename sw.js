@@ -32,7 +32,9 @@ var filesToCache = [
   "./assets/images/pinStar2.png",
   "./assets/images/pinStar3.png",
   "./assets/images/stone_pink_v02.png",
-  "./assets/images/retry_btn.png"
+  "./assets/images/retry_btn.png",
+  "./assets/images/Play_button.png",
+  "./assets/images/title.png",
   //--------------------------------------------------------------------------------------------------------------------
 
   // app files ---------------------------------------------------------------------------------------------------------

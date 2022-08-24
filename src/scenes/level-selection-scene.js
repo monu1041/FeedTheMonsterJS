@@ -19,6 +19,8 @@ var self;
 var levelNumber;
 var mapIcon = new Image();
 mapIcon.src = "./assets/images/mapIcon.png";
+var map = new Image();
+map.src = "./assets/images/map.jpg";
 var pickedStone;
 var offsetCoordinateValue = 32;
 export class LevelSelectionScreen {
@@ -71,8 +73,10 @@ export class LevelSelectionScreen {
       LevelSelectionLayer
     );
     this.context = document.getElementById(this.id).getContext("2d");
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context.drawImage(map, 0, 0, this.canvas.width, this.canvas.height);
 
-    document.getElementById(this.id).style.zIndex = 2;
+    document.getElementById(this.id).style.zIndex = 3;
     this.levelButtonpos = [
       [
         [

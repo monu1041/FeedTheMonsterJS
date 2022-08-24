@@ -1,6 +1,7 @@
 import { LevelSelectionScreen } from "./src/scenes/level-selection-scene.js";
 import { getData } from "./src/data/api-data.js";
 import { DataModal } from "./src/data/data-modal.js";
+import { StartScene } from "./src/scenes/start-scene.js";
 
 window.addEventListener("load", async function () {
   const canvas = document.getElementById("canvas");
@@ -16,5 +17,5 @@ window.addEventListener("load", async function () {
     data.FeedbackAudios
   );
 
-  new LevelSelectionScreen(canvas, d);
+  new StartScene(canvas, d);
 });
