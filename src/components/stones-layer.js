@@ -16,11 +16,12 @@ gs.stones = [];
 var pickedStone;
 var offsetCoordinateValue = 32;
 export default class StonesLayer {
-  constructor(canvas, width, height, puzzleData, pausebutton, callBack) {
+  constructor(canvas, levelStart, puzzleData, pausebutton, callBack) {
     this.canvas = canvas;
-    this.width = width;
+    this.levelStart = levelStart;
+    this.width = canvas.width;
     this.pausebutton = pausebutton;
-    this.height = height;
+    this.height = canvas.height;
     this.canvasStack = new CanvasStack("canvas");
     this.puzzleData = puzzleData;
     this.setCurrentPuzzle();
@@ -113,7 +114,7 @@ export default class StonesLayer {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (self.pausebutton.onClick(x, y)) {
-          new PausePopUp(document.getElementById(self.id));
+          new PausePopUp(document.getElementById(self.id), self.levelStart);
         }
         for (let s of gs.stones) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {
@@ -213,15 +214,14 @@ export default class StonesLayer {
     this.createStones(this.stonepos);
   }
 
-  setPrompt(){
+  setPrompt() {
     this.context.fillStyle = "black";
-    this.context.font = this.width*0.09 + "px Arial";
+    this.context.font = this.width * 0.09 + "px Arial";
     this.context.fillText(
       gs.puzzle.target,
       this.width / 2.1,
       this.height * 0.25
     );
-    
   }
   deleteCanvas() {
     this.canvasStack.deleteLayer(this.id);
@@ -259,7 +259,6 @@ export default class StonesLayer {
     gs.stones.splice(0, gs.stones.length);
     for (let s of gs.puzzle.stones) {
       var ns = new StoneConfig(s, poss[i][0], poss[i][1]);
-      // pickedStone = ns;
       gs.stones.push(ns);
       i += 1;
     }
@@ -267,8 +266,6 @@ export default class StonesLayer {
   }
 
   update() {
-    // this.createStones(this.stonepos);
     this.draw();
-    // this.pauseButton.draw();
   }
 }

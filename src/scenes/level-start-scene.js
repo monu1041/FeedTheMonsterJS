@@ -5,7 +5,15 @@ import StonesLayer from "../components/stones-layer.js";
 import PauseButton from "../components/buttons/pause_button.js";
 import { LevelIndicators } from "../components/level-indicators.js";
 import PausePopUp from "../components/pause-popup.js";
-import { LevelEndButtonsLayer, LevelEndLayer, loadImages, loadingScreen, MonsterLayer, StoneLayer, TimetickerLayer } from "../common/common.js";
+import {
+  LevelEndButtonsLayer,
+  LevelEndLayer,
+  loadImages,
+  loadingScreen,
+  MonsterLayer,
+  StoneLayer,
+  TimetickerLayer,
+} from "../common/common.js";
 import { LevelEndScene } from "./level-end-scene.js";
 import { LevelStartLayer } from "../common/common.js";
 var images = {
@@ -19,10 +27,10 @@ var images = {
   promptImg: "./assets/images/promptTextBg.png",
 };
 var self;
-var current_puzzle_index=0;
-var score=0;
+var current_puzzle_index = 0;
+var score = 0;
 export class LevelStartScene {
-  constructor(game, puzzleData) {
+  constructor(game, puzzleData, levelStartCallBack) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
@@ -33,78 +41,82 @@ export class LevelStartScene {
     this.timerTicking = new TimerTicking(game);
     this.stones = new StonesLayer(
       game,
-      game.width,
-      game.height,
+      this,
       puzzleData[current_puzzle_index],
       this.pauseButton,
       this.redrawOfStones
     );
     this.puzzleData = puzzleData;
+    this.levelStartCallBack = levelStartCallBack;
   }
-  
-  levelEndCallBack(button_name){
-    switch(button_name){
-      case 'close_button':{
-        self.canvasStack.deleteLayer(LevelEndLayer)
-        self.canvasStack.deleteLayer(LevelEndButtonsLayer)
-        self.canvasStack.deleteLayer(LevelStartLayer)
-        self.canvasStack.deleteLayer(MonsterLayer)
-        self.canvasStack.deleteLayer(StoneLayer)
-        self.canvasStack.deleteLayer(TimetickerLayer)
-        self.monster.changeImage("./assets/images/idle4.png")
-        current_puzzle_index=0;
+
+  levelEndCallBack(button_name) {
+    switch (button_name) {
+      case "close_button": {
+        self.exitAllScreens();
         break;
       }
-      case 'next_button':{
-        console.log('next_button')
+      case "next_button": {
+        self.exitAllScreens();
+        self.levelStartCallBack(button_name);
         break;
       }
-      case 'retry_button':{
-        self.canvasStack.deleteLayer(LevelEndLayer)
-        self.canvasStack.deleteLayer(LevelEndButtonsLayer)
-        current_puzzle_index=0;
-        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index])
-        self.monster.changeImage("./assets/images/idle4.png")
+      case "retry_button": {
+        self.exitAllScreens();
+        self.levelStartCallBack(button_name);
         break;
       }
     }
-    
   }
-
 
   redrawOfStones(status) {
     if (status) {
       self.monster.changeToEatAnimation();
-      current_puzzle_index+=1;
+      score += 100;
+      current_puzzle_index += 1;
     } else {
       self.monster.changeToSpitAnimation();
-      current_puzzle_index+=1;
-
+      current_puzzle_index += 1;
     }
     if (current_puzzle_index == self.puzzleData.length) {
-     setTimeout(()=>{
-      new LevelEndScene(self.game,3,self.monster,self.levelEndCallBack);
-     },2100)
-    }
-    else{
-      self.stones.canvas.scene.levelIndicators.setIndicators(current_puzzle_index);
       setTimeout(() => {
-        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index])     
+        console.log("Score:", score);
+        new LevelEndScene(
+          self.game,
+          score == 200
+            ? 1
+            : score == 300
+            ? 2
+            : score == 400
+            ? 2
+            : score == 500
+            ? 3
+            : 0,
+          self.monster,
+          self.levelEndCallBack
+        );
+      }, 2100);
+    } else {
+      self.stones.canvas.scene.levelIndicators.setIndicators(
+        current_puzzle_index
+      );
+      setTimeout(() => {
+        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
         self.stones.setPrompt();
-        
-      },3000);
+      }, 3000);
     }
-    
   }
 
-
   createCanvas() {
-    this.id = this.canvasStack.createLayer(this.height, this.width,LevelStartLayer);
+    this.id = this.canvasStack.createLayer(
+      this.height,
+      this.width,
+      LevelStartLayer
+    );
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 3;
     this.pauseButton = new PauseButton(this.context, this.canavsElement);
-    // new LevelEndScene(this.game,3,this.monster)
     this.levelIndicators = new LevelIndicators(
       this.context,
       this.canavsElement,
@@ -115,17 +127,23 @@ export class LevelStartScene {
       var rect = document.getElementById(self.id).getBoundingClientRect();
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
-      // if (self.pauseButton.onClick(x, y)) {
-      //   //self.levelIndicators.setIndicators(num++)
-      //   new PausePopUp(self.canavsElement);
-      // }
     });
   }
 
   deleteCanvas() {
     this.canvasStack.deleteLayer(this.id);
   }
-
+  exitAllScreens() {
+    self.canvasStack.deleteLayer(LevelEndLayer);
+    self.canvasStack.deleteLayer(LevelEndButtonsLayer);
+    self.canvasStack.deleteLayer(LevelStartLayer);
+    self.canvasStack.deleteLayer(MonsterLayer);
+    self.canvasStack.deleteLayer(StoneLayer);
+    self.canvasStack.deleteLayer(TimetickerLayer);
+    self.monster.changeImage("./assets/images/idle4.png");
+    current_puzzle_index = 0;
+    score = 0;
+  }
   draw() {
     this.context.clearRect(0, 0, this.width, this.height);
     this.context.drawImage(this.bgImg, 0, 0, this.width, this.height);
@@ -193,7 +211,6 @@ export class LevelStartScene {
     this.pauseButton.draw();
     this.levelIndicators.draw();
   }
-
   createBackgroud() {
     var self = this;
     loadingScreen(true, self.canvasStack);
@@ -252,13 +269,6 @@ export class LevelStartScene {
         width * 0.3,
         height * 0.25
       );
-      // context.fillStyle = "black";
-      // context.font = 30 + "px Arial";
-      // context.fillText(
-      //   puzzleData[0].targetStones[0],
-      //   width / 2.1,
-      //   height * 0.26
-      // );
       self.timerTicking.createBackgroud();
       self.stones.draw();
       self.pauseButton.draw();

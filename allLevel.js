@@ -31,8 +31,6 @@ export class AllLevelScreen{
     mainDiv.style.marginLeft="30px";
     mainDiv.style.transform="translateX(0px)";
     mainDiv.style.zIndex=1;
-    // mainDiv.style.width =window.screen.width > 420 ? 420 : window.innerWidth;
-    // console.log(gameData.Levels[0].LevelMeta.LevelType);
     for(var i=0;i<gameData.Levels.length;i++){
         var id = "";
         const levelSelectionButton = document.createElement("canvas");

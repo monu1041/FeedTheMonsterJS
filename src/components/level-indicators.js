@@ -40,7 +40,6 @@ export class LevelIndicators {
     };
   }
   update(self) {
-    console.log('********')
     var bar_full = new Image();
     bar_full.src = "./assets/images/bar_full_v01.png";
     bar_full.onload = function (e) {
