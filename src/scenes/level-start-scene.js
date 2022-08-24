@@ -27,8 +27,8 @@ var images = {
   promptImg: "./assets/images/promptTextBg.png",
 };
 var self;
-var current_puzzle_index = 0;
-var score = 0;
+var current_puzzle_index=0;
+var score=0;
 export class LevelStartScene {
   constructor(game, puzzleData, levelStartCallBack) {
     this.game = game;
@@ -42,10 +42,10 @@ export class LevelStartScene {
     this.createCanvas();
     this.stones = new StonesLayer(
       game,
-      this,
       puzzleData[current_puzzle_index],
       this.pauseButton,
-      this.redrawOfStones
+      this.redrawOfStones,
+      this
     );
     this.puzzleData = puzzleData;
     this.levelStartCallBack = levelStartCallBack;
@@ -71,8 +71,7 @@ export class LevelStartScene {
   }
 
   redrawOfStones(status) {
-    console.log('Called-----------')
-    isDrag=false;
+    self.timerTicking.stopTimer();
     if (status) {
       self.monster.changeToEatAnimation();
       score += 100;
@@ -104,8 +103,6 @@ export class LevelStartScene {
      
       self.stones.canvas.scene.levelIndicators.setIndicators(current_puzzle_index);
       setTimeout(() => {
-        isDrag=true;
-        timer=0;
         self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index])     
         self.stones.setPrompt();
         self.timerTicking.draw();
@@ -135,7 +132,6 @@ export class LevelStartScene {
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
     });
-    this.animation(0,this);
   }
 
   deleteCanvas() {
@@ -219,6 +215,22 @@ export class LevelStartScene {
     this.pauseButton.draw();
     this.levelIndicators.draw();
   }
+  update(){
+    self.timerTicking.update();  
+  }
+
+  changePuzzle(){
+    if(self.timerTicking.isTimerEnded){
+      current_puzzle_index+=1
+        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index])     
+        self.stones.setPrompt();
+        self.timerTicking.draw();
+        self.stones.canvas.scene.levelIndicators.setIndicators(current_puzzle_index);
+        self.timerTicking.isTimerEnded=false;
+    }
+
+  }
+
   createBackgroud() {
     var self = this;
     loadingScreen(true, self.canvasStack);

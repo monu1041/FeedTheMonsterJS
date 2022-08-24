@@ -16,7 +16,7 @@ gs.stones = [];
 var pickedStone;
 var offsetCoordinateValue = 32;
 export default class StonesLayer {
-  constructor(canvas, levelStart, puzzleData, pausebutton, callBack) {
+  constructor(canvas, puzzleData, pausebutton, callBack,levelStart) {
     this.canvas = canvas;
     this.levelStart = levelStart;
     this.width = canvas.width;
@@ -27,6 +27,7 @@ export default class StonesLayer {
     this.setCurrentPuzzle();
     this.createCanvas();
     this.callBack = callBack;
+    this.levelStart=levelStart;
   }
 
   setNewPuzzle(currentPuzzle) {
@@ -114,8 +115,10 @@ export default class StonesLayer {
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
+        self.levelStart.timerTicking.resumeTimer();
         if (self.pausebutton.onClick(x, y)) {
-          new PausePopUp(document.getElementById(self.id), self.levelStart);
+          self.levelStart.timerTicking.pauseTimer();
+          new PausePopUp(document.getElementById(self.id),self.levelStart);
         }
         for (let s of gs.stones) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {

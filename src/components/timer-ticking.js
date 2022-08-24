@@ -1,7 +1,7 @@
 import { TimetickerLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js"
 export class TimerTicking {
-    constructor(game) {
+    constructor(game,levelStart) {
         this.game = game;
         this.width = game.width;
         this.height = game.height;
@@ -11,6 +11,7 @@ export class TimerTicking {
         this.timer = 0;
         this.isTimerStarted = false;
         this.isTimerEnded= false;
+        this.levelStart=levelStart;
         self=this;
         this.createCanvas();
     }
@@ -46,12 +47,15 @@ export class TimerTicking {
     }
     update() {
         if (this.isTimerStarted) {
-            this.timer += 0.1;
-            if((canvas.width * 1.3 - this.widthToClear - 10 * this.timer) >= 55) {
+            this.timer += 0.05;
+            if((canvas.width * 1.3 - this.widthToClear - 10 * this.timer) > 55) {
                 this.context.clearRect(canvas.width * 1.3 - this.widthToClear - 10 * this.timer, 0, this.width, this.height)
             }
-            if((canvas.width * 1.3 - this.widthToClear - 10 * this.timer) <= 55){
+            if((canvas.width * 1.3 - this.widthToClear - 10 * this.timer) < 55 && (canvas.width * 1.3 - this.widthToClear - 10 * this.timer)>54){
+                console.log(this.timer)
                 this.isTimerEnded = true;
+                this.isTimerEnded?this.levelStart.changePuzzle():null;
+                this.timer=0;
             }
         }
     }
