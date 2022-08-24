@@ -25,6 +25,7 @@ export class Game {
   }
   update(deltaTime) {
     this.scene.stones.update();
+    this.scene.update();
   }
 
   render() {

@@ -16,7 +16,7 @@ gs.stones = [];
 var pickedStone;
 var offsetCoordinateValue = 32;
 export default class StonesLayer {
-  constructor(canvas, levelStart, puzzleData, pausebutton, callBack) {
+  constructor(canvas, puzzleData, pausebutton, callBack,levelStart) {
     this.canvas = canvas;
     this.levelStart = levelStart;
     this.width = canvas.width;
@@ -27,6 +27,7 @@ export default class StonesLayer {
     this.setCurrentPuzzle();
     this.createCanvas();
     this.callBack = callBack;
+    this.levelStart=levelStart;
   }
 
   setNewPuzzle(currentPuzzle) {
@@ -39,6 +40,7 @@ export default class StonesLayer {
     gs.puzzle.stones = [];
     gs.puzzle.target = this.puzzleData.targetStones[0];
     gs.puzzle.stones = this.puzzleData.foilStones;
+    gs.puzzle.prompt = this.puzzleData.prompt.promptText;
   }
 
   createCanvas() {
@@ -113,8 +115,10 @@ export default class StonesLayer {
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
+        self.levelStart.timerTicking.resumeTimer();
         if (self.pausebutton.onClick(x, y)) {
-          new PausePopUp(document.getElementById(self.id), self.levelStart);
+          self.levelStart.timerTicking.pauseTimer();
+          new PausePopUp(document.getElementById(self.id),self.levelStart);
         }
         for (let s of gs.stones) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {
@@ -216,11 +220,12 @@ export default class StonesLayer {
 
   setPrompt() {
     this.context.fillStyle = "black";
-    this.context.font = this.width * 0.09 + "px Arial";
+    this.context.font = this.width*0.09 + "px Arial";
+    this.context.textAlign='center';
     this.context.fillText(
-      gs.puzzle.target,
-      this.width / 2.1,
-      this.height * 0.25
+      gs.puzzle.prompt,
+      this.width / 2,
+      this.height * 0.27
     );
   }
   deleteCanvas() {

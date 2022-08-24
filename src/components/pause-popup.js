@@ -8,6 +8,7 @@ import RetryButton from "./buttons/retry_button.js";
 
 export default class PausePopUp {
   constructor(canvas, levelStart) {
+
     this.canvas = canvas;
     this.levelStart = levelStart;
     this.canvasStack = new CanvasStack("canvas");
@@ -57,11 +58,13 @@ export default class PausePopUp {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (self.cancelButton.onClick(x, y)) {
+          self.levelStart.timerTicking.resumeTimer();
           self.deleteCanvas(self);
         }
         if (self.retryButton.onClick(x, y)) {
           self.levelStart.levelEndCallBack("retry_button");
           self.deleteCanvas(self);
+          
         }
         if (self.closeButton.onClick(x, y)) {
           self.levelStart.levelEndCallBack("close_button");
