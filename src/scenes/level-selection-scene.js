@@ -15,9 +15,13 @@ gs.puzzle = {
   levels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
 };
 gs.levels = [];
-
+var self;
+var levelNumber;
 var mapIcon = new Image();
 mapIcon.src = "./assets/images/mapIcon.png";
+var map = new Image();
+map.src = "./assets/images/map.jpg";
+var pickedStone;
 var offsetCoordinateValue = 32;
 export class LevelSelectionScreen {
   constructor(canvas, data) {
@@ -28,6 +32,7 @@ export class LevelSelectionScreen {
     this.data = data;
     gs.puzzle.levels = this.getallLevelNo(data);
     this.createCanvas();
+    self = this;
   }
   getallLevelNo(data) {
     var levelNos = [];
@@ -38,7 +43,28 @@ export class LevelSelectionScreen {
     });
     return levelNos;
   }
-
+  gameSceneCallBack(button_name) {
+    switch (button_name) {
+      case "next_button": {
+        new Game(
+          canvas.width,
+          canvas.height,
+          self.data.levels[levelNumber + 1].puzzles,
+          self.gameSceneCallBack
+        );
+        break;
+      }
+      case "retry_button": {
+        new Game(
+          canvas.width,
+          canvas.height,
+          self.data.levels[levelNumber].puzzles,
+          self.gameSceneCallBack
+        );
+        break;
+      }
+    }
+  }
   createCanvas() {
     var self = this;
     this.id = this.canvasStack.createLayer(
@@ -47,8 +73,10 @@ export class LevelSelectionScreen {
       LevelSelectionLayer
     );
     this.context = document.getElementById(this.id).getContext("2d");
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context.drawImage(map, 0, 0, this.canvas.width, this.canvas.height);
 
-    document.getElementById(this.id).style.zIndex = 2;
+    document.getElementById(this.id).style.zIndex = 3;
     this.levelButtonpos = [
       [
         [
@@ -123,10 +151,12 @@ export class LevelSelectionScreen {
         const y = event.clientY - rect.top;
         for (let s of gs.levels) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 80) {
+            levelNumber = s.index - 1;
             new Game(
               canvas.width,
               canvas.height,
-              self.data.levels[s.index].puzzles
+              self.data.levels[s.index - 1].puzzles,
+              self.gameSceneCallBack
             );
           }
         }
@@ -174,7 +204,6 @@ export class LevelSelectionScreen {
     var poss = levelButtonpos[0];
     var i = 0;
     for (let s of gs.puzzle.levels) {
-      console.log(poss[i][0]);
       var ns = new LevelConfig(s, poss[i][0], poss[i][1], i + 1);
       gs.levels.push(ns);
       i += 1;

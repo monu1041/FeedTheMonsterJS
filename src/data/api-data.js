@@ -2,6 +2,7 @@ import { DataModal } from "./data-modal.js";
 
 
 const URL = "/src/data/ftm_english.json";
+//const URL = "./ftm_english.json";
 
 export function getFtmData() {
     return fetch(URL, {
