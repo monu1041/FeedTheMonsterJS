@@ -9,7 +9,7 @@ import { CanvasStack } from "../utility/canvas-stack.js";
 import { LevelSelectionScreen } from "./level-selection-scene.js";
 
 var bgImg = new Image();
-bgImg.src = "../../assets/images/bg_v01.jpg";
+bgImg.src = "./assets/images/bg_v01.jpg";
 var hillImg = new Image();
 hillImg.src = "./assets/images/hill_v01.png";
 var pillerImg = new Image();
