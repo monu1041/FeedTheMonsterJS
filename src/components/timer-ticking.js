@@ -47,7 +47,7 @@ export class TimerTicking {
     }
     update() {
         if (this.isTimerStarted) {
-            this.timer += 0.05;
+            this.timer += 0.06;
             if((canvas.width * 1.3 - this.widthToClear - 10 * this.timer) > 55) {
                 this.context.clearRect(canvas.width * 1.3 - this.widthToClear - 10 * this.timer, 0, this.width, this.height)
             }

@@ -27,8 +27,8 @@ var images = {
   promptImg: "./assets/images/promptTextBg.png",
 };
 var self;
-var current_puzzle_index=0;
-var score=0;
+var current_puzzle_index = 0;
+var score = 0;
 export class LevelStartScene {
   constructor(game, puzzleData, levelStartCallBack) {
     this.game = game;
@@ -37,8 +37,8 @@ export class LevelStartScene {
     self = this;
     this.monster = new Monster(game);
     this.canvasStack = new CanvasStack("canvas");
-    
-    this.timerTicking = new TimerTicking(game,this);
+
+    this.timerTicking = new TimerTicking(game, this);
     this.createCanvas();
     this.stones = new StonesLayer(
       game,
@@ -78,36 +78,34 @@ export class LevelStartScene {
       current_puzzle_index += 1;
     } else {
       self.monster.changeToSpitAnimation();
-      current_puzzle_index+=1;
-   
+      current_puzzle_index += 1;
     }
     if (current_puzzle_index == self.puzzleData.length) {
-     setTimeout(()=>{
-      new LevelEndScene(
-        self.game,
-        score == 200
-          ? 1
-          : score == 300
-          ? 2
-          : score == 400
-          ? 2
-          : score == 500
-          ? 3
-          : 0,
-        self.monster,
-        self.levelEndCallBack
-      )
-     },2100)
-    }
-    else{
-     
-      self.stones.canvas.scene.levelIndicators.setIndicators(current_puzzle_index);
       setTimeout(() => {
-        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index])     
+        new LevelEndScene(
+          self.game,
+          score == 200
+            ? 1
+            : score == 300
+            ? 2
+            : score == 400
+            ? 2
+            : score == 500
+            ? 3
+            : 0,
+          self.monster,
+          self.levelEndCallBack
+        );
+      }, 2100);
+    } else {
+      self.stones.canvas.scene.levelIndicators.setIndicators(
+        current_puzzle_index
+      );
+      setTimeout(() => {
+        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
         self.stones.setPrompt();
         self.timerTicking.draw();
-        
-      },3000);
+      }, 3000);
     }
   }
 
@@ -129,7 +127,7 @@ export class LevelStartScene {
     var self = this;
     this.canavsElement.addEventListener("click", function (event) {
       var rect = document.getElementById(self.id).getBoundingClientRect();
-      const x = event.clientX - rect.left;
+      const x = event.clientX - rect.left;  
       const y = event.clientY - rect.top;
     });
   }
@@ -141,7 +139,7 @@ export class LevelStartScene {
     self.canvasStack.deleteLayer(LevelEndLayer);
     self.canvasStack.deleteLayer(LevelEndButtonsLayer);
     self.canvasStack.deleteLayer(LevelStartLayer);
-    self.canvasStack.deleteLayer(MonsterLayer);
+    self.monster.deleteCanvas();
     self.canvasStack.deleteLayer(StoneLayer);
     self.canvasStack.deleteLayer(TimetickerLayer);
     self.monster.changeImage("./assets/images/idle4.png");
@@ -215,20 +213,39 @@ export class LevelStartScene {
     this.pauseButton.draw();
     this.levelIndicators.draw();
   }
-  update(){
-    self.timerTicking.update();  
+  update() {
+    self.timerTicking.update();
   }
 
-  changePuzzle(){
-    if(self.timerTicking.isTimerEnded){
-      current_puzzle_index+=1
-        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index])     
+  changePuzzle() {
+    if (self.timerTicking.isTimerEnded) {
+      current_puzzle_index += 1;
+      self.stones.canvas.scene.levelIndicators.setIndicators(
+        current_puzzle_index
+      );
+      if (current_puzzle_index == self.puzzleData.length) {
+        new LevelEndScene(
+          self.game,
+          score == 200
+            ? 1
+            : score == 300
+            ? 2
+            : score == 400
+            ? 2
+            : score == 500
+            ? 3
+            : 0,
+          self.monster,
+          self.levelEndCallBack
+        );
+      } else {
         self.stones.setPrompt();
         self.timerTicking.draw();
-        self.stones.canvas.scene.levelIndicators.setIndicators(current_puzzle_index);
-        self.timerTicking.isTimerEnded=false;
-    }
+        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+      }
 
+      self.timerTicking.isTimerEnded = false;
+    }
   }
 
   createBackgroud() {
@@ -237,7 +254,7 @@ export class LevelStartScene {
     var context = this.context;
     var width = this.width;
     var height = this.height;
-    var puzzleData = this.puzzleData; 
+    var puzzleData = this.puzzleData;
     loadImages(images, function (image) {
       context.drawImage(image.bgImg, 0, 0, width, height);
       context.drawImage(

@@ -1,6 +1,7 @@
 import { LevelStartScene } from "./level-start-scene.js";
 let lastTime = 0;
 var self;
+var animationFrame;
 export class Game {
   constructor(width, height, puzzleData, gameSceneCallBack) {
     this.width = width;
@@ -14,11 +15,13 @@ export class Game {
   levelStartCallBack(button_name) {
     switch (button_name) {
       case "next_button": {
-        self.gameSceneCallBack(button_name)
+        cancelAnimationFrame(animationFrame);
+        self.gameSceneCallBack(button_name);
         break;
       }
       case "retry_button": {
-        self.gameSceneCallBack(button_name)
+        cancelAnimationFrame(animationFrame);
+        self.gameSceneCallBack(button_name);
         break;
       }
     }
@@ -35,6 +38,6 @@ export class Game {
     let deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
     self.update(deltaTime);
-    requestAnimationFrame(self.animation);
+    animationFrame = requestAnimationFrame(self.animation);
   }
 }
