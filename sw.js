@@ -4,7 +4,7 @@ var filesToCache = [
   // infrastructure files ----------------------------------------------------------------------------------------------
 
   "./index.html",
-  "./build/feedTheMonster.js",
+  "./feedTheMonster.js",
   "./sw.js",
   "./manifest.json",
   "./assets/images/favicon.png",

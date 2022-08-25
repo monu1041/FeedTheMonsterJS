@@ -1,6 +1,4 @@
-import {
-  PausePopupLayer,
-} from "../common/common.js";
+import { PausePopupLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import CancelButton from "./buttons/cancel_button.js";
 import CloseButton from "./buttons/close_button.js";
@@ -8,7 +6,6 @@ import RetryButton from "./buttons/retry_button.js";
 
 export default class PausePopUp {
   constructor(canvas, levelStart) {
-
     this.canvas = canvas;
     this.levelStart = levelStart;
     this.canvasStack = new CanvasStack("canvas");
@@ -35,20 +32,24 @@ export default class PausePopUp {
         self.canvas.width * 0.1,
         self.canvas.height * 0.2,
         self.canvas.width * 0.8,
-        self.canvas.height * 0.4
+        self.canvas.width * 0.8
       );
       self.cancelButton = new CancelButton(self.context, self.canvas);
       self.retryButton = new RetryButton(
         self.context,
         self.canvas,
         self.canvas.width * 0.55,
-        self.canvas.height * 0.2 + self.canvas.width * 0.4
+        self.canvas.height * 0.2 +
+          self.canvas.width * 0.4 -
+          (self.canvas.width * 0.19) / 2
       );
       self.closeButton = new CloseButton(
         self.context,
         self.canvas,
         self.canvas.width * 0.25,
-        self.canvas.height * 0.2 + self.canvas.width * 0.4
+        self.canvas.height * 0.2 +
+          self.canvas.width * 0.4 -
+          (self.canvas.width * 0.19) / 2
       );
     };
     document
@@ -64,7 +65,6 @@ export default class PausePopUp {
         if (self.retryButton.onClick(x, y)) {
           self.levelStart.levelEndCallBack("retry_button");
           self.deleteCanvas(self);
-          
         }
         if (self.closeButton.onClick(x, y)) {
           self.levelStart.levelEndCallBack("close_button");
