@@ -27,7 +27,7 @@ export class LevelSelectionScreen {
         new Game(
           canvas.width,
           canvas.height,
-          self.data.levels[levelNumber + 1].puzzles,
+          self.data.levels[(levelNumber +=1)].puzzles,
           self.gameSceneCallBack
         );
         break;
