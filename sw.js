@@ -35,6 +35,8 @@ var filesToCache = [
   "./assets/images/retry_btn.png",
   "./assets/images/Play_button.png",
   "./assets/images/title.png",
+  "./assets/images/mapIcon.png",
+  "./assets/images/map.jpg",
   //--------------------------------------------------------------------------------------------------------------------
 
   // app files ---------------------------------------------------------------------------------------------------------
