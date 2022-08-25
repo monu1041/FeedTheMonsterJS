@@ -32,7 +32,6 @@ img {
   /* aspect-ratio: 2/3; */
   max-height: -webkit-fill-available;
   z-index: 2;
-  background-image: url("./assets/images/map.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -78,27 +77,4 @@ img {
   100% {
     transform: rotate(360deg);
   }
-}
-#game-div {
-  position: absolute;
-
-  left: 50%;
-  top: 0%;
-  transform: translate(-50%, 0%);
-  /* aspect-ratio: 2/3; */
-  max-height: -webkit-fill-available;
-  z-index: 3;
-  background-image: url("./assets/images/map.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.levelSelectionButton {
-  height: 100px;
-  width: 100px;
-  /* background: url('./assets/images/mapIcon.png'); */
-  background-size: contain;
-  background-repeat: no-repeat;
-  border: none;
-  -webkit-text-fill-color: aliceblue;
-  text-align-last: start;
 }

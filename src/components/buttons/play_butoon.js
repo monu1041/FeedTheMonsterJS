@@ -13,23 +13,21 @@ export default class PlayButton {
     pause_button_image.onload = function (e) {
       self.context.drawImage(
         pause_button_image,
-        self.posX * 2.5,
+        self.posX * 3.5,
         self.posY / 4,
-        self.canvas.width / 2,
+        self.canvas.width / 3,
         self.canvas.width / 3
       );
     };
   }
   onClick(xClick, yClick) {
-    console.log("hello");
     const distance = Math.sqrt(
-      (xClick - this.posX - (this.canvas.width * 0.19) / 2) *
-        (xClick - this.posX - (this.canvas.width * 0.19) / 2) +
-        (yClick - this.posY - (this.canvas.width * 0.19) / 2) *
-          (yClick - this.posY - (this.canvas.width * 0.19) / 2)
+      (xClick - this.posX - this.canvas.width / 6) *
+        (xClick - this.posX - this.canvas.width / 6) +
+        (yClick - this.posY - this.canvas.width / 6) *
+          (yClick - this.posY - this.canvas.width / 6)
     );
-    if (distance < (this.canvas.width * 0.19) / 2) {
-      console.log("hello");
+    if (distance < this.canvas.width / 6) {
       return true;
     }
   }
