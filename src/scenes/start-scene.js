@@ -103,8 +103,8 @@ export class StartScene {
     self.playButton = new PlayButton(
       self.context,
       self.canvas,
-      self.canvas.width * 0.2 - (self.canvas.width * 0.19) / 2,
-      self.canvas.height * 0.7
+      self.canvas.width * 0.35,
+      self.canvas.height / 7
     );
 
     document.getElementById(PlayButtonLayer).addEventListener(

@@ -13,8 +13,8 @@ export default class PlayButton {
     pause_button_image.onload = function (e) {
       self.context.drawImage(
         pause_button_image,
-        self.posX * 3.5,
-        self.posY / 4,
+        self.posX,
+        self.posY,
         self.canvas.width / 3,
         self.canvas.width / 3
       );
@@ -27,7 +27,8 @@ export default class PlayButton {
         (yClick - this.posY - this.canvas.width / 6) *
           (yClick - this.posY - this.canvas.width / 6)
     );
-    if (distance < this.canvas.width / 6) {
+
+    if (distance < this.canvas.width / 8) {
       return true;
     }
   }
