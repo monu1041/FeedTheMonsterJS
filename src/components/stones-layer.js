@@ -240,21 +240,22 @@ export default class StonesLayer {
     this.setPrompt();
   }
 
-  drawstone(s, canvas) {
-    var imageCenterOffsetX = canvas.height / 60 - canvas.height / 30;
-    var imageCenterOffsetY = -canvas.height / 60 - canvas.height / 44;
-    var imageSize = canvas.height / 18;
-    var textFontSize = canvas.height / 30;
+  drawstone(s, canvas) {    
+    var imageSize = canvas.height / 13;
+    var textFontSize = canvas.height / 20;
+    var imageCenterOffsetX = (imageSize-10)/2;
+    var imageCenterOffsetY = (imageSize+18)/2;
 
     this.context.drawImage(
       s.img,
-      s.x + imageCenterOffsetX,
-      s.y + imageCenterOffsetY,
+      s.x - imageCenterOffsetX,
+      s.y - imageCenterOffsetY,
       imageSize,
       imageSize
     );
     this.context.fillStyle = "white";
     this.context.font = textFontSize + "px Arial";
+    this.context.textAlign='center';
     this.context.fillText(s.text, s.x, s.y);
   }
 
