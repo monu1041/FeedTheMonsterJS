@@ -1,21 +1,15 @@
+import {
+  MonsterLayer,
+  PlayButtonLayer,
+  StartSceneLayer,
+} from "../common/common.js";
 import PlayButton from "../components/buttons/play_butoon.js";
 import { Monster } from "../components/monster.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { LevelSelectionScreen } from "./level-selection-scene.js";
 
-var images = {
-  bgImg: "../../assets/images/bg_v01.jpg",
-  hillImg: "../../assets/images/hill_v01.png",
-  timer_empty: "../../assets/images/timer_empty.png",
-  pillerImg: "../../assets/images/Totem_v02_v01.png",
-  grassImg: "../../assets/images/FG_a_v01.png",
-  rotating_clock: "../../assets/images/timer.png",
-  fenchImg: "../../assets/images/fence_v01.png",
-  promptImg: "../../assets/images/promptTextBg.png",
-};
-var lastTime = 0;
 var bgImg = new Image();
-bgImg.src = "../../assets/images/bg_v01.jpg";
+bgImg.src = "./assets/images/bg_v01.jpg";
 var hillImg = new Image();
 hillImg.src = "./assets/images/hill_v01.png";
 var pillerImg = new Image();
@@ -44,7 +38,11 @@ export class StartScene {
     this.createPlayButton();
   }
   createCanvas() {
-    this.id = this.canvasStack.createLayer(this.height, this.width);
+    this.id = this.canvasStack.createLayer(
+      this.height,
+      this.width,
+      StartSceneLayer
+    );
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 2;
@@ -94,68 +92,37 @@ export class StartScene {
   createPlayButton() {
     var self = this;
     var data = this.data;
-    this.canvasStack.createLayer(this.height, this.width, "playButtonCanvas");
-    this.canavsElement = document.getElementById("playButtonCanvas");
+    this.id = this.canvasStack.createLayer(
+      this.height,
+      this.width,
+      PlayButtonLayer
+    );
+    this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 6;
-    this.context.drawImage(
-      playButton,
-      this.width * 0.23,
-      this.height / 8,
-      this.width * 0.6,
-      this.height / 3
+    self.playButton = new PlayButton(
+      self.context,
+      self.canvas,
+      self.canvas.width * 0.35,
+      self.canvas.height / 7
     );
-    document.getElementById("playButtonCanvas").addEventListener(
-      "touchend",
+
+    document.getElementById(PlayButtonLayer).addEventListener(
+      "click",
       function (event) {
         event.preventDefault();
-        var touch = event.changedTouches[0];
-        var mouseEvent = new MouseEvent("mouseup", {
-          clientX: touch.clientX,
-          clientY: touch.clientY,
-        });
-        const x = touch.clientX;
-        const y = touch.clientY;
-        var imageSize = canvas.height / 5;
-        if (
-          Math.sqrt(y - this.height / 5) < 15 &&
-          Math.sqrt(x - this.width / 2.5) < 14
-        ) {
-          console.log(Math.sqrt(x - this.width / 2.5));
-          self.context.clearRect(0, 0, canvas.width, canvas.height);
-          new LevelSelectionScreen(canvas, data);
-          document.getElementById("playButtonCanvas").style.zIndex = 0;
-          document.getElementById(this.id).style.zIndex = 0;
-          document.getElementById("playButtonCanvas").style.display = "none";
-          document.getElementById("monsterCanvas").style.display = "none";
-          document.getElementById("canvas").style.zIndex = 3;
-        }
-        document.getElementById(this.id).dispatchEvent(mouseEvent);
-      },
-      false
-    );
-    document.getElementById("playButtonCanvas").addEventListener(
-      "mousedown",
-      function (event) {
-        event.preventDefault();
-        var rect = document
-          .getElementById("playButtonCanvas")
-          .getBoundingClientRect();
+        var rect = document.getElementById(self.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         // console.log(y, this.height / 1.8);
-        if (
-          Math.sqrt(y - this.height / 5.4) < 10 &&
-          Math.sqrt(x - this.width / 2.6) < 10
-        ) {
+        if (self.playButton.onClick(x, y)) {
           console.log(this.id);
           self.context.clearRect(0, 0, canvas.width, canvas.height);
           new LevelSelectionScreen(canvas, data);
-          document.getElementById("playButtonCanvas").style.zIndex = 0;
-          document.getElementById(this.id).style.zIndex = 0;
-          document.getElementById("playButtonCanvas").style.display = "none";
-          document.getElementById("monsterCanvas").style.display = "none";
-          document.getElementById("canvas").style.zIndex = 3;
+          self.canvasStack.deleteLayer(PlayButtonLayer);
+          self.monster.deleteCanvas();
+          delete self.monster;
+          self.canvasStack.deleteLayer(StartSceneLayer);
         }
       },
       false

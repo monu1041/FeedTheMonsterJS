@@ -38,4 +38,5 @@ export const LevelEndLayer = "levelEndCanvas";
 export const LevelEndButtonsLayer = "levelEndButtonsCanvas";
 export const LevelSelectionLayer = "levelSelectionCanvas";
 export const LevelStartLayer = "levelStartCanvas";
-export const StartScene = "startSceneCanvas";
+export const StartSceneLayer = "startSceneCanvas";
+export const PlayButtonLayer = "playButtonCanvas";
