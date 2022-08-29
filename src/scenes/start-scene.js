@@ -3,6 +3,7 @@ import {
   PlayButtonLayer,
   StartSceneLayer,
 } from "../common/common.js";
+import Sound from "../common/sound.js";
 import PlayButton from "../components/buttons/play_butoon.js";
 import { Monster } from "../components/monster.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
@@ -116,6 +117,7 @@ export class StartScene {
         const y = event.clientY - rect.top;
         // console.log(y, this.height / 1.8);
         if (self.playButton.onClick(x, y)) {
+          delete new Sound().changeSourse("./assets/audios/ButtonClick.wav");
           console.log(this.id);
           self.context.clearRect(0, 0, canvas.width, canvas.height);
           new LevelSelectionScreen(canvas, data);

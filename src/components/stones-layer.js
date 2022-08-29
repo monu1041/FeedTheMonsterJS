@@ -1,4 +1,5 @@
 import { StoneLayer } from "../common/common.js";
+import Sound from "../common/sound.js";
 import { StoneConfig } from "../common/stones-config.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import PauseButton from "./buttons/pause_button.js";
@@ -16,7 +17,7 @@ gs.stones = [];
 var pickedStone;
 var offsetCoordinateValue = 32;
 export default class StonesLayer {
-  constructor(canvas, puzzleData, pausebutton, callBack,levelStart) {
+  constructor(canvas, puzzleData, pausebutton, callBack, levelStart) {
     this.canvas = canvas;
     this.levelStart = levelStart;
     this.width = canvas.width;
@@ -25,9 +26,9 @@ export default class StonesLayer {
     this.canvasStack = new CanvasStack("canvas");
     this.puzzleData = puzzleData;
     this.setCurrentPuzzle();
+    this.levelStart = levelStart;
     this.createCanvas();
     this.callBack = callBack;
-    this.levelStart=levelStart;
   }
 
   setNewPuzzle(currentPuzzle) {
@@ -37,6 +38,7 @@ export default class StonesLayer {
   }
 
   setCurrentPuzzle() {
+    this.levelStart.audio.changeSourse(this.puzzleData.prompt.promptAudio);
     gs.puzzle.stones = [];
     gs.puzzle.target = this.puzzleData.targetStones[0];
     gs.puzzle.stones = this.puzzleData.foilStones;
@@ -103,7 +105,7 @@ export default class StonesLayer {
               (x - this.width / 2 - (this.width * 0.3) / 2)
           ) +
             (y - this.height * 0.15) * (y - this.height * 0.15) <=
-          80
+          1000
         ) {
           console.log("prompt");
         }
@@ -118,10 +120,12 @@ export default class StonesLayer {
         self.levelStart.timerTicking.resumeTimer();
         if (self.pausebutton.onClick(x, y)) {
           self.levelStart.timerTicking.pauseTimer();
-          new PausePopUp(document.getElementById(self.id),self.levelStart);
+          self.levelStart.levelEndCallBack();
+          new PausePopUp(document.getElementById(self.id), self.levelStart);
         }
         for (let s of gs.stones) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {
+            self.levelStart.audio.changeSourse("./assets/audios/onDrag.mp3");
             pickedStone = s;
           }
         }
@@ -221,13 +225,9 @@ export default class StonesLayer {
 
   setPrompt() {
     this.context.fillStyle = "black";
-    this.context.font = this.width*0.09 + "px Arial";
-    this.context.textAlign='center';
-    this.context.fillText(
-      gs.puzzle.prompt,
-      this.width / 2,
-      this.height * 0.27
-    );
+    this.context.font = this.width * 0.09 + "px Arial";
+    this.context.textAlign = "center";
+    this.context.fillText(gs.puzzle.prompt, this.width / 2, this.height * 0.27);
   }
   deleteCanvas() {
     this.canvasStack.deleteLayer(this.id);

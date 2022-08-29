@@ -3,7 +3,11 @@ import CloseButton from "../components/buttons/close_button.js";
 import NextButton from "../components/buttons/next_button.js";
 import RetryButton from "../components/buttons/retry_button.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
-
+var audioUrl = {
+  levelWin: "./assets/audios/LevelWinFanfare.mp3",
+  levelLose: "./assets/audios/LevelLoseFanfare.mp3",
+  intro: "./assets/audios/intro.wav",
+};
 export class LevelEndScene {
   constructor(canvas, starCount, monster, levelEndCallBack) {
     this.canvas = canvas;
@@ -15,8 +19,11 @@ export class LevelEndScene {
   }
   createCanvas() {
     if (this.starCount <= 1) {
+      this.canvas.scene.audio.changeSourse(audioUrl.levelLose);
       this.monster.changeImage("./assets/images/sad14.png");
     } else {
+      this.canvas.scene.audio.changeSourse(audioUrl.levelWin);
+      this.canvas.scene.audio.changeSourse(audioUrl.intro);
       this.monster.changeImage("./assets/images/happy14.png");
     }
     this.monster.changeZindex(8);
@@ -84,12 +91,15 @@ export class LevelEndScene {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (self.nextButton && self.nextButton.onClick(x, y)) {
+          self.canvas.scene.audio.pauseSound();
           self.levelEndCallBack("next_button");
         }
         if (self.retryButton.onClick(x, y)) {
+          self.canvas.scene.audio.pauseSound();
           self.levelEndCallBack("retry_button");
         }
         if (self.closeButton.onClick(x, y)) {
+          self.canvas.scene.audio.pauseSound();
           self.levelEndCallBack("close_button");
         }
       });
