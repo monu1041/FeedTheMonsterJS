@@ -37,6 +37,18 @@ var filesToCache = [
   "./assets/images/title.png",
   "./assets/images/mapIcon.png",
   "./assets/images/map.jpg",
+  "./assets/audios/fantastic.WAV",
+  "./assets/audios/good job.WAV",
+  "./assets/audios/great.wav",
+  "./assets/audios/Monster Spits wrong stones-01.mp3",
+  "./assets/audios/Cheering-02.mp3",
+  "./assets/audios/Disapointed-05.mp3",
+  "./assets/audios/ButtonClick.wav",
+  "./assets/audios/LevelWinFanfare.mp3",
+  "./assets/audios/LevelLoseFanfare.mp3",
+  "./assets/audios/intro.wav",
+  "./assets/audios/onDrag.mp3",
+  "./assets/audios/timeout.mp3"
   //--------------------------------------------------------------------------------------------------------------------
 
   // app files ---------------------------------------------------------------------------------------------------------

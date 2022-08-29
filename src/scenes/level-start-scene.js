@@ -16,6 +16,7 @@ import {
 } from "../common/common.js";
 import { LevelEndScene } from "./level-end-scene.js";
 import { LevelStartLayer } from "../common/common.js";
+import Sound from "../common/sound.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -25,6 +26,17 @@ var images = {
   rotating_clock: "./assets/images/timer.png",
   fenchImg: "./assets/images/fence_v01.png",
   promptImg: "./assets/images/promptTextBg.png",
+};
+var audioUrl = {
+  phraseAudios: [
+    "./assets/audios/fantastic.WAV",
+    "./assets/audios/good job.WAV",
+    "./assets/audios/great.wav",
+  ],
+  monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
+  monsterHappy: "./assets/audios/Cheering-02.mp3",
+  monsterSad: "./assets/audios/Disapointed-05.mp3",
+  buttonClick: "./assets/audios/ButtonClick.wav",
 };
 var self;
 var current_puzzle_index = 0;
@@ -36,6 +48,7 @@ export class LevelStartScene {
     this.height = game.height;
     self = this;
     this.monster = new Monster(game);
+    this.audio = new Sound();
     this.canvasStack = new CanvasStack("canvas");
 
     this.timerTicking = new TimerTicking(game, this);
@@ -52,6 +65,7 @@ export class LevelStartScene {
   }
 
   levelEndCallBack(button_name) {
+    self.audio.changeSourse(audioUrl.buttonClick);
     switch (button_name) {
       case "close_button": {
         self.exitAllScreens();
@@ -73,10 +87,16 @@ export class LevelStartScene {
   redrawOfStones(status) {
     self.timerTicking.stopTimer();
     if (status) {
+      self.audio.changeSourse(
+        audioUrl.phraseAudios[Math.floor(Math.random() * 3)]
+      );
+      self.audio.changeSourse(audioUrl.monsterHappy);
       self.monster.changeToEatAnimation();
       score += 100;
       current_puzzle_index += 1;
     } else {
+      self.audio.changeSourse(audioUrl.monsterSad);
+      self.audio.changeSourse(audioUrl.monsterSplit);
       self.monster.changeToSpitAnimation();
       current_puzzle_index += 1;
     }
@@ -127,7 +147,7 @@ export class LevelStartScene {
     var self = this;
     this.canavsElement.addEventListener("click", function (event) {
       var rect = document.getElementById(self.id).getBoundingClientRect();
-      const x = event.clientX - rect.left;  
+      const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
     });
   }

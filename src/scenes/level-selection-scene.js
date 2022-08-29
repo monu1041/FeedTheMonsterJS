@@ -4,6 +4,7 @@ import { gameData } from "../../data.js";
 import { LevelConfig } from "../common/level-config.js";
 import { Game } from "./game.js";
 import { LevelSelectionLayer } from "../common/common.js";
+import Sound from "../common/sound.js";
 var mapIcon = new Image();
 mapIcon.src = "./assets/images/mapIcon.png";
 var map = new Image();
@@ -27,7 +28,7 @@ export class LevelSelectionScreen {
         new Game(
           canvas.width,
           canvas.height,
-          self.data.levels[(levelNumber +=1)].puzzles,
+          self.data.levels[(levelNumber += 1)].puzzles,
           self.gameSceneCallBack
         );
         break;
@@ -93,6 +94,7 @@ export class LevelSelectionScreen {
                   (y - s.y - self.canvas.height / 20)
             ) < 45
           ) {
+            delete new Sound().changeSourse("./assets/audios/ButtonClick.wav");
             levelNumber = s.index - 1;
             new Game(
               canvas.width,
