@@ -52,7 +52,7 @@ export default class StonesLayer {
     this.stonepos = [
       [
         [
-          this.canvas.width / 7 - offsetCoordinateValue,
+          this.canvas.width / 5 - offsetCoordinateValue,
           this.canvas.height / 1.9 - offsetCoordinateValue,
         ],
         [
@@ -243,8 +243,8 @@ export default class StonesLayer {
   drawstone(s, canvas) {    
     var imageSize = canvas.height / 13;
     var textFontSize = canvas.height / 20;
-    var imageCenterOffsetX = (imageSize-10)/2;
-    var imageCenterOffsetY = (imageSize+18)/2;
+    var imageCenterOffsetX = (imageSize)/2.3;
+    var imageCenterOffsetY = (imageSize)/1.5;
 
     this.context.drawImage(
       s.img,
