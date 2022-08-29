@@ -15,7 +15,7 @@ export class Monster {
     this.frameY = 0;
     this.maxFrame = 6;
     this.x = this.game.width / 2 - this.game.width * 0.243;
-    this.y = this.game.height / 9;
+    this.y = this.game.width / 3;
     this.fps = 10;
     this.frameInterval = 1000 / this.fps;
     this.frameTimer = 0;
@@ -36,9 +36,11 @@ export class Monster {
     this.draw();
     this.animation(0);
   }
+
   changeZindex(index) {
     this.canavsElement.style.zIndex = index;
   }
+  
   deleteCanvas() {
     cancelAnimationFrame(animationFrame)
     this.canvasStack.deleteLayer(this.id);
