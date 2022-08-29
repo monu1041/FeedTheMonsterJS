@@ -9,6 +9,8 @@ var mapIcon = new Image();
 mapIcon.src = "./assets/images/mapIcon.png";
 var map = new Image();
 map.src = "./assets/images/map.jpg";
+var star = new Image();
+star.src = "./assets/images/star.png";
 var levels = [];
 var levelNumber;
 var self;
@@ -125,18 +127,33 @@ export class LevelSelectionScreen {
     }
   }
   drawlevel(s, canvas) {
+    var starCount = 2; //Using Hardcoded values for now,Will update as per data
     var imageSize = canvas.height / 5;
     var textFontSize = imageSize / 6;
 
     this.context.drawImage(mapIcon, s.x, s.y, imageSize, imageSize);
+    this.drawStar(s, canvas, starCount);
     this.context.fillStyle = "white";
     this.context.font = textFontSize + "px Arial";
-    this.context.fillText(s.index, s.x + imageSize / 4.5, s.y + imageSize / 3);
+    this.context.textAlign = "center";
+    this.context.fillText(s.index, s.x + imageSize / 3.5, s.y + imageSize / 3);
     this.context.font = textFontSize - imageSize / 30 + "px Arial";
     this.context.fillText(
       this.data.levels[s.index - 1].levelMeta.levelType,
-      s.x,
-      s.y + imageSize / 1.5
+      s.x + imageSize / 3.5,
+      s.y + imageSize / 1.3
     );
+  }
+  drawStar(s, canvas, starCount) {
+    for (let i = 1; i <= starCount; i++) {
+      var imageSize = canvas.height / 5;
+      this.context.drawImage(
+        star,
+        (i * imageSize * 0.25) / 2.5 + s.x,
+        s.y + imageSize / 2.5,
+        imageSize / 5,
+        imageSize / 5
+      );
+    }
   }
 }

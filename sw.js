@@ -37,6 +37,7 @@ var filesToCache = [
   "./assets/images/title.png",
   "./assets/images/mapIcon.png",
   "./assets/images/map.jpg",
+  "./assets/images/star.png",
   "./assets/audios/fantastic.WAV",
   "./assets/audios/good job.WAV",
   "./assets/audios/great.wav",
@@ -48,7 +49,7 @@ var filesToCache = [
   "./assets/audios/LevelLoseFanfare.mp3",
   "./assets/audios/intro.wav",
   "./assets/audios/onDrag.mp3",
-  "./assets/audios/timeout.mp3"
+  "./assets/audios/timeout.mp3",
   //--------------------------------------------------------------------------------------------------------------------
 
   // app files ---------------------------------------------------------------------------------------------------------
