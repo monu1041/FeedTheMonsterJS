@@ -2,6 +2,7 @@ import { LevelSelectionScreen } from "./src/scenes/level-selection-scene.js";
 import { getData } from "./src/data/api-data.js";
 import { DataModal } from "./src/data/data-modal.js";
 import { StartScene } from "./src/scenes/start-scene.js";
+import { CanvasStack } from "./src/utility/canvas-stack.js";
 
 window.addEventListener("load", async function () {
   const canvas = document.getElementById("canvas");
