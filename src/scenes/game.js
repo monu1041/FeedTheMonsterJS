@@ -1,43 +1,41 @@
 import { LevelStartScene } from "./level-start-scene.js";
-let lastTime = 0;
-var self;
+
 var animationFrame;
+var self;
 export class Game {
   constructor(width, height, puzzleData, gameSceneCallBack) {
     this.width = width;
     this.height = height;
-    self = this;
     this.scene = new LevelStartScene(this, puzzleData, this.levelStartCallBack);
-    this.render();
-    this.animation(0);
     this.gameSceneCallBack = gameSceneCallBack;
+    this.render();
+    self = this;
+    this.animation();
   }
   levelStartCallBack(button_name) {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = null;
     switch (button_name) {
       case "next_button": {
-        cancelAnimationFrame(animationFrame);
         self.gameSceneCallBack(button_name);
         break;
       }
       case "retry_button": {
-        cancelAnimationFrame(animationFrame);
         self.gameSceneCallBack(button_name);
         break;
       }
     }
   }
-  update(deltaTime) {
-    this.scene.stones.update();
-    this.scene.update();
+  update() {
+    self.scene ? (self.scene.stones ? self.scene.stones.update() : null) : null;
+    self.scene ? self.scene.update() : null;
   }
 
   render() {
     this.scene.createBackgroud();
   }
-  animation(timeStamp) {
-    let deltaTime = timeStamp - lastTime;
-    lastTime = timeStamp;
-    self.update(deltaTime);
+  animation() {
+    self.update();
     animationFrame = requestAnimationFrame(self.animation);
   }
 }
