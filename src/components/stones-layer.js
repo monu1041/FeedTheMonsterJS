@@ -140,11 +140,11 @@ export default class StonesLayer {
         const y = event.clientY - rect.top;
         if (
           Math.sqrt(
-            (x - self.levelStart.monster.x - this.width / 4) *
-              (x - self.levelStart.monster.x - this.width / 4) +
-              (y - self.levelStart.monster.y - this.height / 3) *
-                (y - self.levelStart.monster.y - this.height / 3)
-          ) <= 40
+            (x - self.canvas.scene.monster.x - self.canvas.scene.monster.width / 4) *
+            (x - self.canvas.scene.monster.x - self.canvas.scene.monster.width / 4) +
+            (y - self.canvas.scene.monster.y - self.canvas.scene.monster.height / 2.7) *
+              (y - self.canvas.scene.monster.y - self.canvas.scene.monster.height / 2.7)
+        ) <= 60
         ) {
           if (pickedStone) {
             pickedStone.x = -900;
