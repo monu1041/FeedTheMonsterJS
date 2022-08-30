@@ -14,9 +14,9 @@ export default class Sound {
     });
   }
   pauseSound() {
-    this.audio.pause();
-    this.audio1.pause();
-    this.audio2.pause();
+    this.audio ? this.audio.pause() : null;
+    this.audio2 ? this.audio1.pause() : null;
+    this.audio2 ? this.audio2.pause() : null;
   }
   changeSourse(src) {
     this.audio.src = src;

@@ -98,7 +98,7 @@ export class LevelSelectionScreen {
           ) {
             delete new Sound().changeSourse("./assets/audios/ButtonClick.wav");
             levelNumber = s.index - 1;
-            new Game(
+            delete new Game(
               canvas.width,
               canvas.height,
               self.data.levels[s.index - 1].puzzles,

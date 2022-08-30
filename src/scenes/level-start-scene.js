@@ -4,13 +4,11 @@ import { CanvasStack } from "../utility/canvas-stack.js";
 import StonesLayer from "../components/stones-layer.js";
 import PauseButton from "../components/buttons/pause_button.js";
 import { LevelIndicators } from "../components/level-indicators.js";
-import PausePopUp from "../components/pause-popup.js";
 import {
   LevelEndButtonsLayer,
   LevelEndLayer,
   loadImages,
   loadingScreen,
-  MonsterLayer,
   StoneLayer,
   TimetickerLayer,
 } from "../common/common.js";
@@ -102,7 +100,8 @@ export class LevelStartScene {
     }
     if (current_puzzle_index == self.puzzleData.length) {
       setTimeout(() => {
-        new LevelEndScene(
+        self.levelStartCallBack();
+        delete new LevelEndScene(
           self.game,
           score == 200
             ? 1
@@ -118,9 +117,7 @@ export class LevelStartScene {
         );
       }, 2100);
     } else {
-      self.stones.canvas.scene.levelIndicators.setIndicators(
-        current_puzzle_index
-      );
+      self.levelIndicators.setIndicators(current_puzzle_index);
       setTimeout(() => {
         self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
         self.stones.setPrompt();
@@ -163,7 +160,16 @@ export class LevelStartScene {
     self.canvasStack.deleteLayer(StoneLayer);
     self.canvasStack.deleteLayer(TimetickerLayer);
     self.monster.changeImage("./assets/images/idle4.png");
+    delete self.monster;
+    delete self.audio;
+    delete self.levelIndicators;
+    delete self.pauseButton;
+    delete self.stones;
+    delete self.timerTicking;
+    delete self.canvasStack;
+    delete self.monster;
     current_puzzle_index = 0;
+
     score = 0;
   }
   draw() {
@@ -234,7 +240,7 @@ export class LevelStartScene {
     this.levelIndicators.draw();
   }
   update() {
-    self.timerTicking.update();
+    self.timerTicking ? self.timerTicking.update() : null;
   }
 
   changePuzzle() {
@@ -244,7 +250,9 @@ export class LevelStartScene {
         current_puzzle_index
       );
       if (current_puzzle_index == self.puzzleData.length) {
-        new LevelEndScene(
+        self.levelStartCallBack();
+        delete self.timerTicking;
+        delete new LevelEndScene(
           self.game,
           score == 200
             ? 1
@@ -264,7 +272,7 @@ export class LevelStartScene {
         self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
       }
 
-      self.timerTicking.isTimerEnded = false;
+      self.timerTicking ? (self.timerTicking.isTimerEnded = false) : null;
     }
   }
 

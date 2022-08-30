@@ -61,7 +61,11 @@ export class TimerTicking {
           this.height
         );
       }
-      if (Math.floor(this.timer) == 32 && !this.isTimerRunningOut) {
+      if (
+        canvas.width * 1.3 - this.widthToClear - 10 * this.timer < 100 &&
+        canvas.width * 1.3 - this.widthToClear - 10 * this.timer > 54 &&
+        !this.isTimerRunningOut
+      ) {
         this.isTimerRunningOut = true;
         this.levelStart.audio.changeSourse("./assets/audios/timeout.mp3");
       }
