@@ -2,6 +2,7 @@ import { LevelEndButtonsLayer, LevelEndLayer } from "../common/common.js";
 import CloseButton from "../components/buttons/close_button.js";
 import NextButton from "../components/buttons/next_button.js";
 import RetryButton from "../components/buttons/retry_button.js";
+import { ProfileData, setDataToStorage } from "../data/profile-data.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 var audioUrl = {
   levelWin: "./assets/audios/LevelWinFanfare.mp3",
@@ -9,13 +10,30 @@ var audioUrl = {
   intro: "./assets/audios/intro.wav",
 };
 export class LevelEndScene {
-  constructor(canvas, starCount, monster, levelEndCallBack) {
+  constructor(canvas, score, monster, levelEndCallBack, levelData) {
     this.canvas = canvas;
     this.canvasStack = new CanvasStack("canvas");
     this.monster = monster;
-    this.starCount = starCount;
+    this.starCount =
+      score == 200
+        ? 1
+        : score == 300
+        ? 2
+        : score == 400
+        ? 2
+        : score == 500
+        ? 3
+        : 0;
     this.createCanvas();
     this.levelEndCallBack = levelEndCallBack;
+    setDataToStorage(
+      new ProfileData(
+        levelData.levelMeta.levelType,
+        levelData.levelMeta.levelNumber,
+        score,
+        this.starCount
+      )
+    );
   }
   createCanvas() {
     if (this.starCount <= 1) {

@@ -40,7 +40,7 @@ var self;
 var current_puzzle_index = 0;
 var score = 0;
 export class LevelStartScene {
-  constructor(game, puzzleData, levelStartCallBack) {
+  constructor(game, levelData, levelStartCallBack) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
@@ -53,12 +53,13 @@ export class LevelStartScene {
     this.createCanvas();
     this.stones = new StonesLayer(
       game,
-      puzzleData[current_puzzle_index],
+      levelData.puzzles[current_puzzle_index],
       this.pauseButton,
       this.redrawOfStones,
       this
     );
-    this.puzzleData = puzzleData;
+    this.puzzleData = levelData.puzzles;
+    this.levelData = levelData;
     this.levelStartCallBack = levelStartCallBack;
   }
 
@@ -103,17 +104,10 @@ export class LevelStartScene {
         self.levelStartCallBack();
         delete new LevelEndScene(
           self.game,
-          score == 200
-            ? 1
-            : score == 300
-            ? 2
-            : score == 400
-            ? 2
-            : score == 500
-            ? 3
-            : 0,
+          score,
           self.monster,
-          self.levelEndCallBack
+          self.levelEndCallBack,
+          self.levelData
         );
       }, 2100);
     } else {
@@ -254,17 +248,10 @@ export class LevelStartScene {
         delete self.timerTicking;
         delete new LevelEndScene(
           self.game,
-          score == 200
-            ? 1
-            : score == 300
-            ? 2
-            : score == 400
-            ? 2
-            : score == 500
-            ? 3
-            : 0,
+          score,
           self.monster,
-          self.levelEndCallBack
+          self.levelEndCallBack,
+          self.levelData
         );
       } else {
         self.stones.setPrompt();
@@ -282,7 +269,6 @@ export class LevelStartScene {
     var context = this.context;
     var width = this.width;
     var height = this.height;
-    var puzzleData = this.puzzleData;
     loadImages(images, function (image) {
       context.drawImage(image.bgImg, 0, 0, width, height);
       context.drawImage(
