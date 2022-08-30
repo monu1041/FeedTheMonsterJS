@@ -32,6 +32,7 @@ export class Game {
   }
 
   render() {
+    cancelAnimationFrame(animationFrame);
     this.scene.createBackgroud();
   }
   animation() {
