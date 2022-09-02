@@ -15,7 +15,6 @@ import {
 import { LevelEndScene } from "./level-end-scene.js";
 import { LevelStartLayer } from "../common/common.js";
 import Sound from "../common/sound.js";
-import { GameEndScene } from "./game-end-scene.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -100,22 +99,16 @@ export class LevelStartScene {
       self.monster.changeToSpitAnimation();
       current_puzzle_index += 1;
     }
-    console.log(self.levelData)
     if (current_puzzle_index == self.puzzleData.length) {
       setTimeout(() => {
         self.levelStartCallBack();
-        if (self.levelData.levelNumber == 9) {
-          self.exitAllScreens();
-          delete new GameEndScene(self.game);
-        } else {
-          delete new LevelEndScene(
-            self.game,
-            score,
-            self.monster,
-            self.levelEndCallBack,
-            self.levelData
-          );
-        }
+        delete new LevelEndScene(
+          self.game,
+          score,
+          self.monster,
+          self.levelEndCallBack,
+          self.levelData
+        );
       }, 2100);
     } else {
       self.levelIndicators.setIndicators(current_puzzle_index);
@@ -142,9 +135,7 @@ export class LevelStartScene {
       this.canavsElement,
       0
     );
-    window.addEventListener("resize", async () => {
-      self.deleteAllObjects();
-    });
+    var self = this;
     this.canavsElement.addEventListener("click", function (event) {
       var rect = document.getElementById(self.id).getBoundingClientRect();
       const x = event.clientX - rect.left;
@@ -163,9 +154,6 @@ export class LevelStartScene {
     self.canvasStack.deleteLayer(StoneLayer);
     self.canvasStack.deleteLayer(TimetickerLayer);
     self.monster.changeImage("./assets/images/idle4.png");
-    this.deleteAllObjects()
-  }
-  deleteAllObjects() {
     delete self.monster;
     delete self.audio;
     delete self.levelIndicators;
@@ -175,6 +163,7 @@ export class LevelStartScene {
     delete self.canvasStack;
     delete self.monster;
     current_puzzle_index = 0;
+
     score = 0;
   }
   draw() {
