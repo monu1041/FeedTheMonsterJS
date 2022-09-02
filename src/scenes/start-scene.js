@@ -27,7 +27,7 @@ var profileMonster = new Image();
 profileMonster.src = "./assets/images/idle4.png";
 var self;
 export class StartScene {
-  constructor(canvas, data) {
+  constructor(canvas, data,firebase) {
     self = this;
     this.canvas = canvas;
     this.data = data;
@@ -37,6 +37,7 @@ export class StartScene {
     this.monster = new Monster(this.canvas);
     this.createCanvas();
     this.createPlayButton();
+    this.firebase = firebase
   }
   createCanvas() {
     this.id = this.canvasStack.createLayer(
@@ -112,11 +113,13 @@ export class StartScene {
       "click",
       function (event) {
         event.preventDefault();
+      
         var rect = document.getElementById(self.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         // console.log(y, this.height / 1.8);
         if (self.playButton.onClick(x, y)) {
+          console.log(self.firebase)
           delete new Sound().changeSourse("./assets/audios/ButtonClick.wav");
           console.log(this.id);
           self.context.clearRect(0, 0, canvas.width, canvas.height);
