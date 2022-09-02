@@ -135,7 +135,9 @@ export class LevelStartScene {
       this.canavsElement,
       0
     );
-    var self = this;
+    window.addEventListener("resize", async () => {
+      self.deleteAllObjects();
+    });
     this.canavsElement.addEventListener("click", function (event) {
       var rect = document.getElementById(self.id).getBoundingClientRect();
       const x = event.clientX - rect.left;
@@ -154,6 +156,9 @@ export class LevelStartScene {
     self.canvasStack.deleteLayer(StoneLayer);
     self.canvasStack.deleteLayer(TimetickerLayer);
     self.monster.changeImage("./assets/images/idle4.png");
+    this.deleteAllObjects()
+  }
+  deleteAllObjects() {
     delete self.monster;
     delete self.audio;
     delete self.levelIndicators;
@@ -163,7 +168,6 @@ export class LevelStartScene {
     delete self.canvasStack;
     delete self.monster;
     current_puzzle_index = 0;
-
     score = 0;
   }
   draw() {

@@ -113,13 +113,13 @@ export class StartScene {
       "click",
       function (event) {
         event.preventDefault();
-      
         var rect = document.getElementById(self.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         // console.log(y, this.height / 1.8);
         if (self.playButton.onClick(x, y)) {
-          console.log(self.firebase)
+         self.firebase.logEvent('user_clicked', "Check")
+          console.log(self.firebase.app.options.apiKey)
           delete new Sound().changeSourse("./assets/audios/ButtonClick.wav");
           console.log(this.id);
           self.context.clearRect(0, 0, canvas.width, canvas.height);

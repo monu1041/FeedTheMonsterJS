@@ -1,20 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, user-scalable=no" />
-        <link rel="stylesheet" href="./index.css">
-        <title>Feed The Monster</title>
-        <link rel="manifest" href="manifest.json">
-        <link rel="shortcut icon" href="./assets/images/favicon.png" sizes="512x512" type="image/png">
-    </head>
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link rel="stylesheet" href="./index.css" />
+    <title>Feed The Monster</title>
+    <link rel="manifest" href="manifest.json" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/favicon.png"
+      sizes="512x512"
+      type="image/png"
+    />
+  </head>
 
-    <body>
-        <div class="game-scene">
-            <div class="loader" id="loading"></div>
-            <img id="monster" src="./assets/images/idle4.png" alt="loading"/>
-            <canvas id="canvas"></canvas>
-        </div>
-        <script type="module" src="feedTheMonster.js"></script>
-        <script src="sw.js" type="text/javascript"></script>
-    </body>
+  <body>
+    <div class="game-scene">
+      <div class="loader" id="loading"></div>
+      <img id="monster" src="./assets/images/idle4.png" alt="loading" />
+      <canvas id="canvas"></canvas>
+    </div>
+    <script type="module" src="feedTheMonster.js"></script>
+    <script src="sw.js" type="text/javascript"></script>
+    <script
+      defer
+      type="module"
+      src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"
+    ></script>
+    <script
+     defer
+      type="module"
+      src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"
+    ></script>
+  </body>
 </html>
