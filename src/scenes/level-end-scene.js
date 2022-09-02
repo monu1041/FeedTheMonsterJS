@@ -4,16 +4,26 @@ import NextButton from "../components/buttons/next_button.js";
 import RetryButton from "../components/buttons/retry_button.js";
 import { ProfileData, setDataToStorage } from "../data/profile-data.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
+import { drawStars } from "./level-selection-scene.js";
 var audioUrl = {
   levelWin: "./assets/audios/LevelWinFanfare.mp3",
   levelLose: "./assets/audios/LevelLoseFanfare.mp3",
   intro: "./assets/audios/intro.wav",
 };
 export class LevelEndScene {
-  constructor(canvas, score, monster, levelEndCallBack, levelData) {
+  constructor(
+    canvas,
+    score,
+    monster,
+    levelEndCallBack,
+    levelData,
+    gameLevelData
+  ) {
     this.canvas = canvas;
     this.canvasStack = new CanvasStack("canvas");
     this.monster = monster;
+    this.levelData = levelData;
+    this.gameLevelData = gameLevelData;
     this.starCount =
       score == 200
         ? 1
@@ -98,7 +108,9 @@ export class LevelEndScene {
       self.context,
       self.canvas,
       self.canvas.width * 0.2 - (self.canvas.width * 0.19) / 2,
-      self.canvas.height * 0.7
+      self.canvas.height * 0.7,
+      this.levelData,
+      this.gameLevelData
     );
     document
       .getElementById(this.bottonLayer)

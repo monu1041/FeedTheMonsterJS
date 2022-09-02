@@ -3,10 +3,16 @@ import { LevelStartScene } from "./level-start-scene.js";
 var animationFrame;
 var self;
 export class Game {
-  constructor(width, height, puzzleData, gameSceneCallBack) {
+  constructor(width, height, puzzleData, gameSceneCallBack, gameLevelData) {
     this.width = width;
     this.height = height;
-    this.scene = new LevelStartScene(this, puzzleData, this.levelStartCallBack);
+    this.gameLevelData = gameLevelData;
+    this.scene = new LevelStartScene(
+      this,
+      puzzleData,
+      this.levelStartCallBack,
+      gameLevelData
+    );
     this.gameSceneCallBack = gameSceneCallBack;
     this.render();
     self = this;

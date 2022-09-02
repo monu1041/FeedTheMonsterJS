@@ -28,7 +28,7 @@ var profileMonster = new Image();
 profileMonster.src = "./assets/images/idle4.png";
 var self;
 export class StartScene {
-  constructor(canvas, data, firebase_analytics) {
+  constructor(canvas, data, firebase_analytics, gameLevelData) {
     self = this;
     this.canvas = canvas;
     this.data = data;
@@ -36,6 +36,7 @@ export class StartScene {
     this.height = canvas.height;
     this.canvasStack = new CanvasStack("canvas");
     this.monster = new Monster(this.canvas);
+    this.gameLevelData = gameLevelData;
     this.createCanvas();
     this.createPlayButton();
     this.firebase_analytics = firebase_analytics;
@@ -95,12 +96,12 @@ export class StartScene {
   createPlayButton() {
     var self = this;
     var data = this.data;
-    this.id = this.canvasStack.createLayer(
+    var playButtonId = this.canvasStack.createLayer(
       this.height,
       this.width,
       PlayButtonLayer
     );
-    this.canavsElement = document.getElementById(this.id);
+    this.canavsElement = document.getElementById(playButtonId);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 6;
     self.playButton = new PlayButton(
@@ -124,7 +125,7 @@ export class StartScene {
           delete new Sound().changeSourse("./assets/audios/ButtonClick.wav");
           console.log(this.id);
           self.context.clearRect(0, 0, canvas.width, canvas.height);
-          new LevelSelectionScreen(canvas, data);
+          new LevelSelectionScreen(canvas, data, self.gameLevelData);
           self.canvasStack.deleteLayer(PlayButtonLayer);
           self.monster.deleteCanvas();
           delete self.monster;
