@@ -6,14 +6,20 @@
         <title>Feed The Monster</title>
         <link rel="manifest" href="manifest.json">
         <link rel="shortcut icon" href="./assets/images/favicon.png" sizes="512x512" type="image/png">
+        
     </head>
 
     <body>
         <div class="game-scene">
             <div class="loader" id="loading"></div>
             <img id="monster" src="./assets/images/idle4.png" alt="loading"/>
+            <div id="discription-text">
+                <p>Thanks for trying our Feed The Monster web version!<br>To play the whole game, visit us on the <a href="https://play.google.com/store/apps/details?id=com.eduapp4syria.feedthemonsterENGLISH">Google Play Store.</a></p>
+            </div>
             <canvas id="canvas"></canvas>
         </div>
+        <!-- <script defer type="module" src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+        <script defer type="module" src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script> -->
         <script type="module" src="feedTheMonster.js"></script>
         <script src="sw.js" type="text/javascript"></script>
     </body>

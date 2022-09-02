@@ -38,6 +38,7 @@ var filesToCache = [
   "./assets/images/mapIcon.png",
   "./assets/images/map.jpg",
   "./assets/images/star.png",
+  "./assets/images/ftm_bonus_level_monsters.png",
   "./assets/audios/fantastic.WAV",
   "./assets/audios/good job.WAV",
   "./assets/audios/great.wav",
