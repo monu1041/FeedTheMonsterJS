@@ -1,4 +1,5 @@
 import {
+  FirebaseUserClicked,
   MonsterLayer,
   PlayButtonLayer,
   StartSceneLayer,
@@ -27,7 +28,7 @@ var profileMonster = new Image();
 profileMonster.src = "./assets/images/idle4.png";
 var self;
 export class StartScene {
-  constructor(canvas, data,firebase) {
+  constructor(canvas, data, firebase_analytics) {
     self = this;
     this.canvas = canvas;
     this.data = data;
@@ -37,7 +38,7 @@ export class StartScene {
     this.monster = new Monster(this.canvas);
     this.createCanvas();
     this.createPlayButton();
-    this.firebase = firebase
+    this.firebase_analytics = firebase_analytics;
   }
   createCanvas() {
     this.id = this.canvasStack.createLayer(
@@ -118,8 +119,8 @@ export class StartScene {
         const y = event.clientY - rect.top;
         // console.log(y, this.height / 1.8);
         if (self.playButton.onClick(x, y)) {
-         self.firebase.logEvent('user_clicked', "Check")
-          console.log(self.firebase.app.options.apiKey)
+          self.firebase_analytics.logEvent(FirebaseUserClicked, "click");
+          console.log(self.firebase_analytics);
           delete new Sound().changeSourse("./assets/audios/ButtonClick.wav");
           console.log(this.id);
           self.context.clearRect(0, 0, canvas.width, canvas.height);
