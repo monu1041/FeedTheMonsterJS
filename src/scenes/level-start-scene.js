@@ -15,6 +15,7 @@ import {
 import { LevelEndScene } from "./level-end-scene.js";
 import { LevelStartLayer } from "../common/common.js";
 import Sound from "../common/sound.js";
+import { GameEndScene } from "./game-end-scene.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -99,16 +100,22 @@ export class LevelStartScene {
       self.monster.changeToSpitAnimation();
       current_puzzle_index += 1;
     }
+    console.log(self.levelData)
     if (current_puzzle_index == self.puzzleData.length) {
       setTimeout(() => {
         self.levelStartCallBack();
-        delete new LevelEndScene(
-          self.game,
-          score,
-          self.monster,
-          self.levelEndCallBack,
-          self.levelData
-        );
+        if (self.levelData.levelNumber == 9) {
+          self.exitAllScreens();
+          delete new GameEndScene(self.game);
+        } else {
+          delete new LevelEndScene(
+            self.game,
+            score,
+            self.monster,
+            self.levelEndCallBack,
+            self.levelData
+          );
+        }
       }, 2100);
     } else {
       self.levelIndicators.setIndicators(current_puzzle_index);
