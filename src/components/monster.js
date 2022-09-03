@@ -70,7 +70,7 @@ export class Monster {
       768,
       1386,
       this.x,
-      this.y,
+      this.y * 0.8,
       this.width / 2,
       this.height / 1.5
     );
