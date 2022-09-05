@@ -40,7 +40,7 @@ var self;
 var current_puzzle_index = 0;
 var score = 0;
 export class LevelStartScene {
-  constructor(game, levelData, levelStartCallBack, gameLevelData) {
+  constructor(game, levelData, levelStartCallBack) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
@@ -49,7 +49,6 @@ export class LevelStartScene {
     this.audio = new Sound();
     this.canvasStack = new CanvasStack("canvas");
     this.levelData = levelData;
-    this.gameLevelData = gameLevelData;
     this.timerTicking = new TimerTicking(game, this);
     this.createCanvas();
     this.stones = new StonesLayer(
@@ -57,8 +56,7 @@ export class LevelStartScene {
       levelData.puzzles[current_puzzle_index],
       this.pauseButton,
       this.redrawOfStones,
-      this,
-      this.gameLevelData
+      this
     );
     this.puzzleData = levelData.puzzles;
     this.levelData = levelData;
@@ -109,8 +107,7 @@ export class LevelStartScene {
           score,
           self.monster,
           self.levelEndCallBack,
-          self.levelData,
-          self.gameLevelData
+          self.levelData
         );
       }, 2100);
     } else {

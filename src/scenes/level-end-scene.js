@@ -11,19 +11,11 @@ var audioUrl = {
   intro: "./assets/audios/intro.wav",
 };
 export class LevelEndScene {
-  constructor(
-    canvas,
-    score,
-    monster,
-    levelEndCallBack,
-    levelData,
-    gameLevelData
-  ) {
+  constructor(canvas, score, monster, levelEndCallBack, levelData) {
     this.canvas = canvas;
     this.canvasStack = new CanvasStack("canvas");
     this.monster = monster;
     this.levelData = levelData;
-    this.gameLevelData = gameLevelData;
     this.starCount =
       score == 200
         ? 1
@@ -109,8 +101,7 @@ export class LevelEndScene {
       self.canvas,
       self.canvas.width * 0.2 - (self.canvas.width * 0.19) / 2,
       self.canvas.height * 0.7,
-      this.levelData,
-      this.gameLevelData
+      this.levelData
     );
     document
       .getElementById(this.bottonLayer)

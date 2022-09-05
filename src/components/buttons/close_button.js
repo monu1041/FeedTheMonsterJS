@@ -1,12 +1,11 @@
 import { drawStars } from "../../scenes/level-selection-scene.js";
 export default class CloseButton {
-  constructor(context, canvas, posX, posY, levelData, gameLevelData) {
+  constructor(context, canvas, posX, posY, levelData) {
     this.posX = posX;
     this.posY = posY;
     this.context = context;
     this.canvas = canvas;
     this.levelData = levelData;
-    this.gameLevelData = gameLevelData;
     this.draw();
   }
   draw() {
@@ -24,9 +23,8 @@ export default class CloseButton {
     };
   }
   onClick(xClick, yClick) {
-    if (this.gameLevelData != null) {
-      drawStars(this.gameLevelData);
-    }
+    drawStars();
+
     const distance = Math.sqrt(
       (xClick - this.posX - (this.canvas.width * 0.19) / 2) *
         (xClick - this.posX - (this.canvas.width * 0.19) / 2) +

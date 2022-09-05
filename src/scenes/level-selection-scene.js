@@ -15,7 +15,6 @@ star.src = "./assets/images/star.png";
 var levels = [];
 var levelNumber;
 var self;
-// var levelData = 
 export class LevelSelectionScreen {
   constructor(canvas, data) {
     this.canvas = canvas;
@@ -23,7 +22,6 @@ export class LevelSelectionScreen {
     this.height = canvas.height;
     this.canvasStack = new CanvasStack("canvas");
     this.data = data;
-    this.gameLevelData = getDatafromStorage();
     this.createCanvas();
     self = this;
   }
@@ -105,8 +103,7 @@ export class LevelSelectionScreen {
               canvas.width,
               canvas.height,
               self.data.levels[s.index - 1],
-              self.gameSceneCallBack,
-              this.gameLevelData
+              self.gameSceneCallBack
             );
           }
         }
@@ -129,9 +126,7 @@ export class LevelSelectionScreen {
     for (let s of levels) {
       this.drawlevel(s, canvas);
     }
-    if (this.gameLevelData) {
-      drawStars(this.gameLevelData);
-    }
+    drawStars();
   }
   drawlevel(s, canvas) {
     var imageSize = canvas.height / 5;
@@ -151,13 +146,17 @@ export class LevelSelectionScreen {
   }
 }
 
-export function drawStars(gameLevelData) {
+export function drawStars() {
+  let gameLevelData = getDatafromStorage();
+
   let canvas = document.getElementById("canvas");
-  for (let s of levels) {
-    for (let i = 0; i < gameLevelData.length; i++) {
-      if (s.index - 1 == parseInt(gameLevelData[i].levelNumber)) {
-        drawStar(s, canvas, gameLevelData[i].levelStar);
-        break;
+  if (gameLevelData != null) {
+    for (let s of levels) {
+      for (let i = 0; i < gameLevelData.length; i++) {
+        if (s.index - 1 == parseInt(gameLevelData[i].levelNumber)) {
+          drawStar(s, canvas, gameLevelData[i].levelStar);
+          break;
+        }
       }
     }
   }
