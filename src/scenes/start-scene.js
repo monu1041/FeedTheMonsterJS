@@ -51,7 +51,6 @@ export class StartScene {
     this.canavsElement.style.zIndex = 2;
     this.canavsElement.style.bottom = 0;
     var id = this.id;
-    console.log(id);
     this.context.clearRect(0, 0, this.width, this.height);
     this.context.drawImage(bgImg, 0, 0, this.width, this.height);
     this.context.drawImage(
@@ -95,12 +94,12 @@ export class StartScene {
   createPlayButton() {
     var self = this;
     var data = this.data;
-    this.id = this.canvasStack.createLayer(
+    var playButtonId = this.canvasStack.createLayer(
       this.height,
       this.width,
       PlayButtonLayer
     );
-    this.canavsElement = document.getElementById(this.id);
+    this.canavsElement = document.getElementById(playButtonId);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 6;
     self.playButton = new PlayButton(

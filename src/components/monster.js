@@ -40,9 +40,9 @@ export class Monster {
   changeZindex(index) {
     this.canavsElement.style.zIndex = index;
   }
-  
+
   deleteCanvas() {
-    cancelAnimationFrame(animationFrame)
+    cancelAnimationFrame(animationFrame);
     this.canvasStack.deleteLayer(this.id);
   }
 
