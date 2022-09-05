@@ -15,15 +15,15 @@ star.src = "./assets/images/star.png";
 var levels = [];
 var levelNumber;
 var self;
-var levelData = getDatafromStorage();
+// var levelData = 
 export class LevelSelectionScreen {
-  constructor(canvas, data, gameLevelData) {
+  constructor(canvas, data) {
     this.canvas = canvas;
     this.width = canvas.width;
     this.height = canvas.height;
     this.canvasStack = new CanvasStack("canvas");
     this.data = data;
-    this.gameLevelData = gameLevelData;
+    this.gameLevelData = getDatafromStorage();
     this.createCanvas();
     self = this;
   }
@@ -129,7 +129,9 @@ export class LevelSelectionScreen {
     for (let s of levels) {
       this.drawlevel(s, canvas);
     }
-    drawStars(this.gameLevelData);
+    if (this.gameLevelData) {
+      drawStars(this.gameLevelData);
+    }
   }
   drawlevel(s, canvas) {
     var imageSize = canvas.height / 5;
@@ -147,74 +149,24 @@ export class LevelSelectionScreen {
       s.y + imageSize / 1.3
     );
   }
-  // drawStar(s, canvas) {
-  //   var levelData = getDatafromStorage();
-  //   var imageSize = canvas.height / 5;
-  //   var starCount = 0;
-  //   try {
-  //     starCount = levelData[s.index - 1].levelStar;
-  //   } catch (error) {
-  //     starCount = 0;
-  //   }
-  //   if (starCount >= 1) {
-  //     this.context.drawImage(
-  //       star,
-  //       s.x,
-  //       s.y - imageSize * 0.01,
-  //       imageSize / 5,
-  //       imageSize / 5
-  //     );
-  //   }
-  //   if (starCount > 1) {
-  //     this.context.drawImage(
-  //       star,
-  //       s.x + imageSize / 2.5,
-  //       s.y - imageSize * 0.01,
-  //       imageSize / 5,
-  //       imageSize / 5
-  //     );
-  //   }
-  //   if (starCount == 3) {
-  //     this.context.drawImage(
-  //       star,
-  //       s.x + imageSize / 5,
-  //       s.y - imageSize * 0.1,
-  //       imageSize / 5,
-  //       imageSize / 5
-  //     );
-  //   }
-  // }
 }
-// export function getLevelsPoss() {
-//   return levels;
-// }
 
 export function drawStars(gameLevelData) {
   let canvas = document.getElementById("canvas");
-
   for (let s of levels) {
-    drawStar(s, canvas, gameLevelData);
+    for (let i = 0; i < gameLevelData.length; i++) {
+      if (s.index - 1 == parseInt(gameLevelData[i].levelNumber)) {
+        drawStar(s, canvas, gameLevelData[i].levelStar);
+        break;
+      }
+    }
   }
 }
-function drawStar(s, canvas, gameLevelData) {
+function drawStar(s, canvas, starCount) {
   var canavsElement = document.getElementById("levelSelectionCanvas");
   var context = canavsElement.getContext("2d");
   var imageSize = canvas.height / 5;
-  var starCount = [];
-
-  try {
-    console.log(levelData[s.index].levelStar ? 1 : "null");
-  } catch (e) {}
-  // try {
-  //   if (gameLevelData[s.index - 1].levelNumber) {
-  //     starCount[gameLevelData[s.index - 1].levelNumber] =
-  //       gameLevelData[s.index - 1].levelStar;
-  //     starCount[gameLevelData[s.index].levelNumber] = 0;
-  //   }
-  // } catch (error) {
-  //   starCount[s.index - 1] = 0;
-  // }
-  if (starCount[s.index - 1] >= 1) {
+  if (starCount >= 1) {
     context.drawImage(
       star,
       s.x,
@@ -223,7 +175,7 @@ function drawStar(s, canvas, gameLevelData) {
       imageSize / 5
     );
   }
-  if (starCount[s.index - 1] > 1) {
+  if (starCount > 1) {
     context.drawImage(
       star,
       s.x + imageSize / 2.5,
@@ -232,7 +184,7 @@ function drawStar(s, canvas, gameLevelData) {
       imageSize / 5
     );
   }
-  if (starCount[s.index - 1] == 3) {
+  if (starCount == 3) {
     context.drawImage(
       star,
       s.x + imageSize / 5,
