@@ -52,7 +52,6 @@ export class StartScene {
     this.canavsElement.style.zIndex = 2;
     this.canavsElement.style.bottom = 0;
     var id = this.id;
-    console.log(id);
     this.context.clearRect(0, 0, this.width, this.height);
     this.context.drawImage(bgImg, 0, 0, this.width, this.height);
     this.context.drawImage(

@@ -15,6 +15,7 @@ star.src = "./assets/images/star.png";
 var levels = [];
 var levelNumber;
 var self;
+var levelData = getDatafromStorage();
 export class LevelSelectionScreen {
   constructor(canvas, data, gameLevelData) {
     this.canvas = canvas;
@@ -49,7 +50,6 @@ export class LevelSelectionScreen {
     }
   }
   createCanvas() {
-    console.log(this.gameLevelData);
     this.id = this.canvasStack.createLayer(
       this.height,
       this.width,
@@ -129,7 +129,6 @@ export class LevelSelectionScreen {
     for (let s of levels) {
       this.drawlevel(s, canvas);
     }
-    console.log(this.gameLevelData);
     drawStars(this.gameLevelData);
   }
   drawlevel(s, canvas) {
@@ -191,7 +190,6 @@ export class LevelSelectionScreen {
 // }
 
 export function drawStars(gameLevelData) {
-  console.log("drawStars");
   let canvas = document.getElementById("canvas");
 
   for (let s of levels) {
@@ -199,22 +197,23 @@ export function drawStars(gameLevelData) {
   }
 }
 function drawStar(s, canvas, gameLevelData) {
-  console.log(gameLevelData);
   var canavsElement = document.getElementById("levelSelectionCanvas");
   var context = canavsElement.getContext("2d");
   var imageSize = canvas.height / 5;
   var starCount = [];
-  // console.log(gameLevelData[s.index - 1].levelNumber);
+
   try {
-    if (gameLevelData[s.index - 1].levelNumber) {
-      starCount[gameLevelData[s.index - 1].levelNumber] =
-        gameLevelData[s.index - 1].levelStar;
-      starCount[gameLevelData[s.index].levelNumber] = 0;
-      console.log(s.index);
-    }
-  } catch (error) {
-    starCount[s.index - 1] = 0;
-  }
+    console.log(levelData[s.index].levelStar ? 1 : "null");
+  } catch (e) {}
+  // try {
+  //   if (gameLevelData[s.index - 1].levelNumber) {
+  //     starCount[gameLevelData[s.index - 1].levelNumber] =
+  //       gameLevelData[s.index - 1].levelStar;
+  //     starCount[gameLevelData[s.index].levelNumber] = 0;
+  //   }
+  // } catch (error) {
+  //   starCount[s.index - 1] = 0;
+  // }
   if (starCount[s.index - 1] >= 1) {
     context.drawImage(
       star,

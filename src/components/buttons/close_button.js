@@ -10,7 +10,6 @@ export default class CloseButton {
     this.draw();
   }
   draw() {
-    console.log(this.gameLevelData);
     var self = this;
     var pause_button_image = new Image();
     pause_button_image.src = "./assets/images/map_btn.png";
@@ -25,8 +24,6 @@ export default class CloseButton {
     };
   }
   onClick(xClick, yClick) {
-    console.log("<<<<<<<<<");
-    console.log(this.gameLevelData);
     if (this.gameLevelData != null) {
       drawStars(this.gameLevelData);
     }

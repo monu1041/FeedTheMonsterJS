@@ -26,14 +26,13 @@ window.addEventListener("load", async function () {
     data.FeedbackAudios
   );
   let gameLevelData = getDatafromStorage();
-  console.log(gameLevelData);
   window.addEventListener("resize", async () => {
     canvas.height = window.innerHeight;
     canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
     delete this.monster;
     new CanvasStack("canvas").deleteAllLayers();
     delete this.startScene;
-    this.startScene = new StartScene(canvas, d, this.analytics);
+    this.startScene = new StartScene(canvas, d, this.analytics, gameLevelData);
   });
-  this.startScene = new StartScene(canvas, d, this.analytics);
+  this.startScene = new StartScene(canvas, d, this.analytics, gameLevelData);
 });
