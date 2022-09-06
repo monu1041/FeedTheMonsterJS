@@ -12,7 +12,13 @@ export function setDataToStorage(profileData) {
     ? jsonToArray(getDatafromStorage())
     : [];
   profileData ? dataPushToArray(existingData, profileData) : null;
-
+  existingData.sort((a, b) => {
+    if (a.levelNumber > b.levelNumber) {
+      return 1;
+    } else {
+      return -1;
+    }
+  });
   const data = JSON.stringify(existingData);
   if (data) {
     localStorage.setItem("Profile", data);
