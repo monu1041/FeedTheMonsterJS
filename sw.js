@@ -39,6 +39,8 @@ var filesToCache = [
   "./assets/images/map.jpg",
   "./assets/images/star.png",
   "./assets/images/ftm_bonus_level_monsters.png",
+  "./assets/images/fantastic_01.png",
+  "./assets/images/great_01.png",
   "./assets/audios/fantastic.WAV",
   "./assets/audios/good job.WAV",
   "./assets/audios/great.wav",
@@ -51,6 +53,7 @@ var filesToCache = [
   "./assets/audios/intro.wav",
   "./assets/audios/onDrag.mp3",
   "./assets/audios/timeout.mp3",
+
   //--------------------------------------------------------------------------------------------------------------------
 
   // app files ---------------------------------------------------------------------------------------------------------

@@ -2,6 +2,7 @@ import { Monster } from "../components/monster.js";
 import { TimerTicking } from "../components/timer-ticking.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import StonesLayer from "../components/stones-layer.js";
+import {PromptText} from "../components/prompt-text.js";
 import PauseButton from "../components/buttons/pause_button.js";
 import { LevelIndicators } from "../components/level-indicators.js";
 import {
@@ -11,6 +12,7 @@ import {
   loadingScreen,
   StoneLayer,
   TimetickerLayer,
+  PromptTextLayer,
 } from "../common/common.js";
 import { LevelEndScene } from "./level-end-scene.js";
 import { LevelStartLayer } from "../common/common.js";
@@ -25,11 +27,13 @@ var images = {
   rotating_clock: "./assets/images/timer.png",
   fenchImg: "./assets/images/fence_v01.png",
   promptImg: "./assets/images/promptTextBg.png",
+  fantastic: "./assets/images/fantastic_01.png",
+  great: "./assets/images/great_01.png",
 };
 var audioUrl = {
   phraseAudios: [
     "./assets/audios/fantastic.WAV",
-    "./assets/audios/good job.WAV",
+    // "./assets/audios/good job.WAV",
     "./assets/audios/great.wav",
   ],
   monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
@@ -51,6 +55,7 @@ export class LevelStartScene {
     this.canvasStack = new CanvasStack("canvas");
     this.levelData = levelData;
     this.timerTicking = new TimerTicking(game, this);
+    this.promptText = new PromptText(game, this,levelData.puzzles[current_puzzle_index]);
     this.createCanvas();
     this.stones = new StonesLayer(
       game,
@@ -83,15 +88,23 @@ export class LevelStartScene {
       }
     }
   }
+  getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
 
   redrawOfStones(status) {
     self.timerTicking.stopTimer();
+    var fntsticOrGrtIndex = self.getRandomInt(0,1);
     if (status) {
       self.audio.changeSourse(
-        audioUrl.phraseAudios[Math.floor(Math.random() * 3)]
+        audioUrl.phraseAudios[fntsticOrGrtIndex]
       );
       self.audio.changeSourse(audioUrl.monsterHappy);
       self.monster.changeToEatAnimation();
+      self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
       score += 100;
       current_puzzle_index += 1;
     } else {
@@ -120,8 +133,9 @@ export class LevelStartScene {
       self.levelIndicators.setIndicators(current_puzzle_index);
       setTimeout(() => {
         self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
-        self.stones.setPrompt();
+        self.promptText.setCurrrentPromptText(self.puzzleData[current_puzzle_index].prompt.promptText)
         self.timerTicking.draw();
+        self.promptText.draw();
       }, 3000);
     }
   }
@@ -159,6 +173,7 @@ export class LevelStartScene {
     self.monster.deleteCanvas();
     self.canvasStack.deleteLayer(StoneLayer);
     self.canvasStack.deleteLayer(TimetickerLayer);
+    self.canvasStack.deleteLayer(PromptTextLayer)
     self.monster.changeImage("./assets/images/idle4.png");
     delete self.monster;
     delete self.audio;
@@ -168,6 +183,7 @@ export class LevelStartScene {
     delete self.timerTicking;
     delete self.canvasStack;
     delete self.monster;
+    delete self.promptText;
     current_puzzle_index = 0;
 
     score = 0;
@@ -218,26 +234,11 @@ export class LevelStartScene {
       this.height * 0.06
     );
 
-    this.context.drawImage(
-      this.promptImg,
-      this.width / 2 - (this.width * 0.3) / 2,
-      this.height * 0.15,
-      this.width * 0.3,
-      this.height * 0.25
-    );
-
-    this.context.fillStyle = "black";
-    this.context.font = 30 + "px Arial";
-    this.context.fillText(
-      this.puzzleData[current_puzzle_index].targetStones[0],
-      this.width / 2.1,
-      this.height * 0.26
-    );
-
     this.timerTicking.createBackgroud();
     this.stones.draw();
     this.pauseButton.draw();
     this.levelIndicators.draw();
+    this.promptText.createBackground();
   }
   update() {
     self.timerTicking ? self.timerTicking.update() : null;
@@ -260,8 +261,9 @@ export class LevelStartScene {
           self.levelData
         );
       } else {
-        self.stones.setPrompt();
+        self.promptText.setCurrrentPromptText(self.puzzleData[current_puzzle_index].prompt.promptText)
         self.timerTicking.draw();
+        self.promptText.draw();
         self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
       }
 
@@ -319,17 +321,11 @@ export class LevelStartScene {
         width * 0.12,
         height * 0.06
       );
-      context.drawImage(
-        image.promptImg,
-        width / 2 - (width * 0.5) / 2,
-        height * 0.15,
-        width * 0.5,
-        height * 0.25
-      );
       self.timerTicking.createBackgroud();
       self.stones.draw();
       self.pauseButton.draw();
       self.levelIndicators.draw();
+      self.promptText.createBackground();
       loadingScreen(false, self.canvasStack);
     });
   }
