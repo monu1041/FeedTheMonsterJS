@@ -14,6 +14,7 @@ import {
 } from "../common/common.js";
 import { LevelEndScene } from "./level-end-scene.js";
 import { LevelStartLayer } from "../common/common.js";
+import { GameEndScene } from "./game-end-scene.js";
 import Sound from "../common/sound.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
@@ -102,13 +103,18 @@ export class LevelStartScene {
     if (current_puzzle_index == self.puzzleData.length) {
       setTimeout(() => {
         self.levelStartCallBack();
-        delete new LevelEndScene(
-          self.game,
-          score,
-          self.monster,
-          self.levelEndCallBack,
-          self.levelData
-        );
+        if (self.levelData.levelNumber == 9) {
+          self.exitAllScreens();
+          delete new GameEndScene(self.game);
+        } else {
+          delete new LevelEndScene(
+            self.game,
+            score,
+            self.monster,
+            self.levelEndCallBack,
+            self.levelData
+          );
+        }
       }, 2100);
     } else {
       self.levelIndicators.setIndicators(current_puzzle_index);

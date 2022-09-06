@@ -40,5 +40,6 @@ export const LevelSelectionLayer = "levelSelectionCanvas";
 export const LevelStartLayer = "levelStartCanvas";
 export const StartSceneLayer = "startSceneCanvas";
 export const PlayButtonLayer = "playButtonCanvas";
+export const GameEndLayer = "GameEndCanvas";
 export const FirebaseUserClicked = "user_clicked";
 export const FirebaseUserInstall = "user_installed";
