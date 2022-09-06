@@ -49,7 +49,7 @@ export class LevelStartScene {
     this.monster = new Monster(game);
     this.audio = new Sound();
     this.canvasStack = new CanvasStack("canvas");
-
+    this.levelData = levelData;
     this.timerTicking = new TimerTicking(game, this);
     this.createCanvas();
     this.stones = new StonesLayer(

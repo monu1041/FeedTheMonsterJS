@@ -5,6 +5,7 @@ import { LevelConfig } from "../common/level-config.js";
 import { Game } from "./game.js";
 import { LevelSelectionLayer } from "../common/common.js";
 import Sound from "../common/sound.js";
+import { getDatafromStorage } from "../data/profile-data.js";
 var mapIcon = new Image();
 mapIcon.src = "./assets/images/mapIcon.png";
 var map = new Image();
@@ -125,14 +126,13 @@ export class LevelSelectionScreen {
     for (let s of levels) {
       this.drawlevel(s, canvas);
     }
+    drawStars();
   }
   drawlevel(s, canvas) {
-    var starCount = 2; //Using Hardcoded values for now,Will update as per data
     var imageSize = canvas.height / 5;
     var textFontSize = imageSize / 6;
 
     this.context.drawImage(mapIcon, s.x, s.y, imageSize, imageSize);
-    this.drawStar(s, canvas, starCount);
     this.context.fillStyle = "white";
     this.context.font = textFontSize + "px Arial";
     this.context.textAlign = "center";
@@ -144,16 +144,52 @@ export class LevelSelectionScreen {
       s.y + imageSize / 1.3
     );
   }
-  drawStar(s, canvas, starCount) {
-    for (let i = 1; i <= starCount; i++) {
-      var imageSize = canvas.height / 5;
-      this.context.drawImage(
-        star,
-        (i * imageSize * 0.25) / 2.5 + s.x,
-        s.y + imageSize / 2.5,
-        imageSize / 5,
-        imageSize / 5
-      );
+}
+
+export function drawStars() {
+  let gameLevelData = getDatafromStorage();
+
+  let canvas = document.getElementById("canvas");
+  if (gameLevelData != null) {
+    for (let s of levels) {
+      for (let i = 0; i < gameLevelData.length; i++) {
+        if (s.index - 1 == parseInt(gameLevelData[i].levelNumber)) {
+          drawStar(s, canvas, gameLevelData[i].levelStar);
+          break;
+        }
+      }
     }
+  }
+}
+function drawStar(s, canvas, starCount) {
+  var canavsElement = document.getElementById("levelSelectionCanvas");
+  var context = canavsElement.getContext("2d");
+  var imageSize = canvas.height / 5;
+  if (starCount >= 1) {
+    context.drawImage(
+      star,
+      s.x,
+      s.y - imageSize * 0.01,
+      imageSize / 5,
+      imageSize / 5
+    );
+  }
+  if (starCount > 1) {
+    context.drawImage(
+      star,
+      s.x + imageSize / 2.5,
+      s.y - imageSize * 0.01,
+      imageSize / 5,
+      imageSize / 5
+    );
+  }
+  if (starCount == 3) {
+    context.drawImage(
+      star,
+      s.x + imageSize / 5,
+      s.y - imageSize * 0.1,
+      imageSize / 5,
+      imageSize / 5
+    );
   }
 }
