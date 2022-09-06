@@ -49,7 +49,7 @@ export default class StonesLayer {
     var self = this;
     this.id = this.canvasStack.createLayer(this.height, this.width, StoneLayer);
     this.context = document.getElementById(this.id).getContext("2d");
-    document.getElementById(this.id).style.zIndex = 6;
+    document.getElementById(this.id).style.zIndex = 7;
     document.getElementById(this.id).style.bottom = 0;
     this.stonepos = [
       [
@@ -246,7 +246,6 @@ export default class StonesLayer {
     for (let s of gs.stones) {
       this.drawstone(s, canvas);
     }
-    this.setPrompt();
   }
 
   drawstone(s, canvas) {

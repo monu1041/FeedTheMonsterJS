@@ -102,7 +102,7 @@ export class StartScene {
     );
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
-    this.canavsElement.style.zIndex = 6;
+    this.canavsElement.style.zIndex = 7;
     self.playButton = new PlayButton(
       self.context,
       self.canvas,

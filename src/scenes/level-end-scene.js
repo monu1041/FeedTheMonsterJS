@@ -44,7 +44,7 @@ export class LevelEndScene {
       this.canvas.scene.audio.changeSourse(audioUrl.intro);
       this.monster.changeImage("./assets/images/happy14.png");
     }
-    this.monster.changeZindex(8);
+    this.monster.changeZindex(9);
     var self = this;
     this.id = this.canvasStack.createLayer(
       this.canvas.height,
@@ -52,7 +52,7 @@ export class LevelEndScene {
       LevelEndLayer
     );
     this.context = document.getElementById(this.id).getContext("2d");
-    document.getElementById(this.id).style.zIndex = 7;
+    document.getElementById(this.id).style.zIndex = 8;
     this.bottonLayer = this.canvasStack.createLayer(
       this.canvas.height,
       this.canvas.width,
