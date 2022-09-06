@@ -31,7 +31,7 @@ export class Monster {
     );
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
-    this.canavsElement.style.zIndex = 5;
+    this.canavsElement.style.zIndex = 6;
     this.canavsElement.style.bottom = 0;
     this.draw();
     this.animation(0);

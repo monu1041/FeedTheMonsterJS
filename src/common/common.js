@@ -42,3 +42,4 @@ export const StartSceneLayer = "startSceneCanvas";
 export const PlayButtonLayer = "playButtonCanvas";
 export const FirebaseUserClicked = "user_clicked";
 export const FirebaseUserInstall = "user_installed";
+export const PromptTextLayer = "promptTextCanvas";
