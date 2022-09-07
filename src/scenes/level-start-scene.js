@@ -273,7 +273,7 @@ export class LevelStartScene {
 
   createBackgroud() {
     var self = this;
-    loadingScreen(true, self.canvasStack);
+    loadingScreen(true);
     var context = this.context;
     var width = this.width;
     var height = this.height;
@@ -326,7 +326,7 @@ export class LevelStartScene {
       self.pauseButton.draw();
       self.levelIndicators.draw();
       self.promptText.createBackground();
-      loadingScreen(false, self.canvasStack);
+      loadingScreen(false);
     });
   }
 }
