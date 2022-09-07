@@ -54,6 +54,7 @@ export class LevelStartScene {
     this.audio = new Sound();
     this.canvasStack = new CanvasStack("canvas");
     this.levelData = levelData;
+    this.levelStartCallBack = levelStartCallBack;
     this.timerTicking = new TimerTicking(game, this);
     this.promptText = new PromptText(game, this,levelData.puzzles[current_puzzle_index]);
     this.createCanvas();
@@ -62,26 +63,27 @@ export class LevelStartScene {
       levelData.puzzles[current_puzzle_index],
       this.pauseButton,
       this.redrawOfStones,
-      this
+      this,
+      this.levelStartCallBack
     );
     this.puzzleData = levelData.puzzles;
     this.levelData = levelData;
-    this.levelStartCallBack = levelStartCallBack;
   }
 
   levelEndCallBack(button_name) {
     self.audio.changeSourse(audioUrl.buttonClick);
     switch (button_name) {
-      case "close_button": {
-        self.exitAllScreens();
-        break;
-      }
       case "next_button": {
         self.exitAllScreens();
         self.levelStartCallBack(button_name);
         break;
       }
       case "retry_button": {
+        self.exitAllScreens();
+        self.levelStartCallBack(button_name);
+        break;
+      }
+      case "close_button": {
         self.exitAllScreens();
         self.levelStartCallBack(button_name);
         break;

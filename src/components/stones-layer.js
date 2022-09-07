@@ -100,6 +100,14 @@ export default class StonesLayer {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (
+          Math.sqrt(x - this.width / 3) < 12 &&
+          Math.sqrt(y - this.height / 5.5) < 10
+        ) {
+          self.levelStart.audio.changeSourse(
+            self.puzzleData.prompt.promptAudio
+          );
+        }
+        if (
           Math.sqrt(
             (x - this.width / 2 - (this.width * 0.3) / 2) *
               (x - this.width / 2 - (this.width * 0.3) / 2)
