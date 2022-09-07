@@ -13,7 +13,6 @@ import { PWAInstallStatus } from "./src/common/common.js";
 
 window.addEventListener("load", async function () {
   if (navigator.onLine) {
-
     this.app = firebase.initializeApp(firebaseConfig);
     this.analytics = firebase.analytics(app);
   }

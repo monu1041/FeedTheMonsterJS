@@ -55,6 +55,7 @@ export class StartScene {
       this.width,
       StartSceneLayer
     );
+    document.getElementById("about-company").style.display = "block";
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 2;
@@ -135,6 +136,9 @@ export class StartScene {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (self.playButton.onClick(x, y)) {
+          self.firebase_analytics
+            ? self.firebase_analytics.logEvent(FirebaseUserClicked, "click")
+            : null;
           if (self.pwa_status == "false") {
             pwa_install_status.prompt();
             const { outcome } = await pwa_install_status.userChoice;
@@ -142,21 +146,31 @@ export class StartScene {
               pwa_install_status = null;
               localStorage.setItem(PWAInstallStatus, true);
               self.firebase_analytics
-                ? self.firebase_analytics.logEvent(FirebaseUserInstall, "Install")
+                ? self.firebase_analytics.logEvent(
+                    FirebaseUserInstall,
+                    "Install"
+                  )
                 : null;
               window.location.reload();
             }
           } else {
-            self.firebase_analytics
-              ? self.firebase_analytics.logEvent(FirebaseUserClicked, "click")
-              : null;
-            delete new Sound().changeSourse("./assets/audios/ButtonClick.wav");
-            self.context.clearRect(0, 0, canvas.width, canvas.height);
-            new LevelSelectionScreen(canvas, data);
-            self.canvasStack.deleteLayer(PlayButtonLayer);
-            self.monster.deleteCanvas();
-            delete self.monster;
-            self.canvasStack.deleteLayer(StartSceneLayer);
+            if (
+              !window.matchMedia("(display-mode: standalone)").matches &&
+              self.pwa_status == "true"
+            ) {
+              alert("PWA is installed in your system \nPlease play from there");
+            } else {
+              document.getElementById("about-company").style.display = "none";
+              delete new Sound().changeSourse(
+                "./assets/audios/ButtonClick.wav"
+              );
+              self.context.clearRect(0, 0, canvas.width, canvas.height);
+              new LevelSelectionScreen(canvas, data);
+              self.canvasStack.deleteLayer(PlayButtonLayer);
+              self.monster.deleteCanvas();
+              delete self.monster;
+              self.canvasStack.deleteLayer(StartSceneLayer);
+            }
           }
         }
       },
