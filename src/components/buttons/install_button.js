@@ -17,7 +17,7 @@ export default class InstallButton {
         self.posX,
         self.posY,
         self.canvas.width / 3,
-        self.canvas.width / 5
+        self.canvas.width / 6
       );
     };
   }
@@ -25,8 +25,8 @@ export default class InstallButton {
     const distance = Math.sqrt(
       (xClick - this.posX - this.canvas.width / 6) *
         (xClick - this.posX - this.canvas.width / 6) +
-        (yClick - this.posY - this.canvas.width / 6) *
-          (yClick - this.posY - this.canvas.width / 6)
+        (yClick - this.posY - this.canvas.width / 12) *
+          (yClick - this.posY - this.canvas.width / 12)
     );
 
     if (distance < this.canvas.width / 8) {
