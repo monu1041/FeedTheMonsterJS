@@ -16,6 +16,10 @@ export class Game {
     cancelAnimationFrame(animationFrame);
     animationFrame = null;
     switch (button_name) {
+      case "close_button": {
+        self.gameSceneCallBack(button_name);
+        break;
+      }
       case "next_button": {
         self.gameSceneCallBack(button_name);
         break;
