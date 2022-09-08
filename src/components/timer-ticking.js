@@ -15,6 +15,7 @@ export class TimerTicking {
     this.isTimerRunningOut = false;
     self = this;
     this.createCanvas();
+
   }
   createCanvas() {
     this.id = this.canvasStack.createLayer(
@@ -83,10 +84,13 @@ export class TimerTicking {
   beginTimerOnStart() {
     var self = this;
     setTimeout(() => {
-      if (!self.isTimerStarted && self.timer == 0) {
-        self.timer = 0;
-        self.isTimerStarted = true;
+      if(!this.pauseButtonClicked){
+        if (!self.isTimerStarted && self.timer == 0) {
+          self.timer = 0;
+          self.isTimerStarted = true;
+        }
       }
+      
     }, 6000);
   }
   stopTimer() {
@@ -98,8 +102,10 @@ export class TimerTicking {
   }
   pauseTimer() {
     this.isTimerStarted = false;
+    this.pauseButtonClicked = true;
   }
   resumeTimer() {
     this.isTimerStarted = true;
+    this.pauseButtonClicked = false;
   }
 }
