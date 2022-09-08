@@ -10,7 +10,7 @@ var gs = {
   levelnum: 0,
 };
 gs.puzzle = {
-  target: "",
+  target: [],
   stones: [],
 };
 gs.stones = [];
@@ -27,8 +27,8 @@ export default class StonesLayer {
     this.puzzleData = puzzleData;
     this.setCurrentPuzzle();
     this.levelStart = levelStart;
-    this.createCanvas();
     this.callBack = callBack;
+    this.createCanvas();
   }
 
   setNewPuzzle(currentPuzzle) {
@@ -40,7 +40,10 @@ export default class StonesLayer {
   setCurrentPuzzle() {
     this.levelStart.audio.changeSourse(this.puzzleData.prompt.promptAudio);
     gs.puzzle.stones = [];
-    gs.puzzle.target = this.puzzleData.targetStones[0];
+    gs.puzzle.target = [];
+    for (let target of this.puzzleData.targetStones) {
+      gs.puzzle.target.push(target);
+    }
     gs.puzzle.stones = this.puzzleData.foilStones;
     gs.puzzle.prompt = this.puzzleData.prompt.promptText;
   }
@@ -166,11 +169,17 @@ export default class StonesLayer {
           if (pickedStone) {
             pickedStone.x = -900;
             pickedStone.y = -900;
-            gs.stones = [];
-            if (pickedStone.text == gs.puzzle.target) {
-              self.callBack(true);
+
+            if (pickedStone.text == gs.puzzle.target[0]) {
+              self.callBack(true, false);
+              gs.puzzle.target.shift();
+              if (gs.puzzle.target.length == 0) {
+                gs.stones = [];
+                self.callBack(true, true);
+              }
             } else {
-              self.callBack(false);
+              gs.stones = [];
+              self.callBack(false, true);
             }
           }
           pickedStone = null;
