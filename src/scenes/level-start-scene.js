@@ -2,7 +2,7 @@ import { Monster } from "../components/monster.js";
 import { TimerTicking } from "../components/timer-ticking.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import StonesLayer from "../components/stones-layer.js";
-import {PromptText} from "../components/prompt-text.js";
+import { PromptText } from "../components/prompt-text.js";
 import PauseButton from "../components/buttons/pause_button.js";
 import { LevelIndicators } from "../components/level-indicators.js";
 import {
@@ -56,18 +56,20 @@ export class LevelStartScene {
     this.levelData = levelData;
     this.levelStartCallBack = levelStartCallBack;
     this.timerTicking = new TimerTicking(game, this);
-    this.promptText = new PromptText(game, this,levelData.puzzles[current_puzzle_index]);
+    this.promptText = new PromptText(
+      game,
+      this,
+      levelData.puzzles[current_puzzle_index]
+    );
     this.createCanvas();
     this.stones = new StonesLayer(
       game,
       levelData.puzzles[current_puzzle_index],
       this.pauseButton,
       this.redrawOfStones,
-      this,
-      this.levelStartCallBack
+      this
     );
     this.puzzleData = levelData.puzzles;
-    this.levelData = levelData;
   }
 
   levelEndCallBack(button_name) {
@@ -96,20 +98,22 @@ export class LevelStartScene {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-
-  redrawOfStones(status) {
-    self.timerTicking.stopTimer();
-    var fntsticOrGrtIndex = self.getRandomInt(0,1);
+  redrawOfStones(status, emptyTarget) {
+    var fntsticOrGrtIndex = self.getRandomInt(0, 1);
     if (status) {
-      self.audio.changeSourse(
-        audioUrl.phraseAudios[fntsticOrGrtIndex]
-      );
-      self.audio.changeSourse(audioUrl.monsterHappy);
       self.monster.changeToEatAnimation();
-      self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
-      score += 100;
-      current_puzzle_index += 1;
+      self.audio.changeSourse(audioUrl.monsterHappy);
+      if (emptyTarget) {
+        self.audio.changeSourse(audioUrl.phraseAudios[fntsticOrGrtIndex]);
+
+        self.timerTicking.stopTimer();
+        score += 100;
+        self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
+        current_puzzle_index += 1;
+      } else {
+      }
     } else {
+      self.timerTicking.stopTimer();
       self.audio.changeSourse(audioUrl.monsterSad);
       self.audio.changeSourse(audioUrl.monsterSplit);
       self.monster.changeToSpitAnimation();
@@ -132,13 +136,17 @@ export class LevelStartScene {
         }
       }, 2100);
     } else {
-      self.levelIndicators.setIndicators(current_puzzle_index);
-      setTimeout(() => {
-        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
-        self.promptText.setCurrrentPromptText(self.puzzleData[current_puzzle_index].prompt.promptText)
-        self.timerTicking.draw();
-        self.promptText.draw();
-      }, 3000);
+      if (emptyTarget) {
+        self.levelIndicators.setIndicators(current_puzzle_index);
+        setTimeout(() => {
+          self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+          self.promptText.setCurrrentPromptText(
+            self.puzzleData[current_puzzle_index].prompt.promptText
+          );
+          self.timerTicking.draw();
+          self.promptText.draw();
+        }, 3000);
+      }
     }
   }
 
@@ -175,7 +183,7 @@ export class LevelStartScene {
     self.monster.deleteCanvas();
     self.canvasStack.deleteLayer(StoneLayer);
     self.canvasStack.deleteLayer(TimetickerLayer);
-    self.canvasStack.deleteLayer(PromptTextLayer)
+    self.canvasStack.deleteLayer(PromptTextLayer);
     self.monster.changeImage("./assets/images/idle4.png");
     delete self.monster;
     delete self.audio;
@@ -263,7 +271,9 @@ export class LevelStartScene {
           self.levelData
         );
       } else {
-        self.promptText.setCurrrentPromptText(self.puzzleData[current_puzzle_index].prompt.promptText)
+        self.promptText.setCurrrentPromptText(
+          self.puzzleData[current_puzzle_index].prompt.promptText
+        );
         self.timerTicking.draw();
         self.promptText.draw();
         self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
