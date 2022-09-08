@@ -1,3 +1,5 @@
+import { CanvasStack } from "../utility/canvas-stack.js";
+
 export function loadImages(sources, callback) {
   var images = {};
   var loadedImages = 0;
@@ -16,15 +18,15 @@ export function loadImages(sources, callback) {
     images[src].src = sources[src];
   }
 }
-export function loadingScreen(loading, canvasStack) {
+export function loadingScreen(loading) {
   if (loading) {
     document.getElementById("loading").style.display = "block";
-    canvasStack.bkgCanvas.layers.forEach((element) => {
+    delete new CanvasStack("canvas").bkgCanvas.layers.forEach((element) => {
       document.getElementById(element.id).style.display = "none";
     });
   } else {
     document.getElementById("loading").style.display = "none";
-    canvasStack.bkgCanvas.layers.forEach((element) => {
+    delete new CanvasStack("canvas").bkgCanvas.layers.forEach((element) => {
       document.getElementById(element.id).style.display = "flex";
     });
   }
@@ -40,6 +42,8 @@ export const LevelSelectionLayer = "levelSelectionCanvas";
 export const LevelStartLayer = "levelStartCanvas";
 export const StartSceneLayer = "startSceneCanvas";
 export const PlayButtonLayer = "playButtonCanvas";
+export const GameEndLayer = "GameEndCanvas";
 export const FirebaseUserClicked = "user_clicked";
 export const FirebaseUserInstall = "user_installed";
 export const PromptTextLayer = "promptTextCanvas";
+export const PWAInstallStatus = "pwa_installed_status";

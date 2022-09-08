@@ -9,10 +9,13 @@ import {
   ProfileData,
   setDataToStorage,
 } from "./src/data/profile-data.js";
+import { PWAInstallStatus } from "./src/common/common.js";
 
 window.addEventListener("load", async function () {
-  this.app = firebase.initializeApp(firebaseConfig);
-  this.analytics = firebase.analytics(app);
+  if (navigator.onLine) {
+    this.app = firebase.initializeApp(firebaseConfig);
+    this.analytics = firebase.analytics(app);
+  }
   const canvas = document.getElementById("canvas");
   canvas.height = window.innerHeight;
   canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
