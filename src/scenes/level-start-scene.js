@@ -2,7 +2,7 @@ import { Monster } from "../components/monster.js";
 import { TimerTicking } from "../components/timer-ticking.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import StonesLayer from "../components/stones-layer.js";
-import {PromptText} from "../components/prompt-text.js";
+import { PromptText } from "../components/prompt-text.js";
 import PauseButton from "../components/buttons/pause_button.js";
 import { LevelIndicators } from "../components/level-indicators.js";
 import {
@@ -16,6 +16,7 @@ import {
 } from "../common/common.js";
 import { LevelEndScene } from "./level-end-scene.js";
 import { LevelStartLayer } from "../common/common.js";
+import { GameEndScene } from "./game-end-scene.js";
 import Sound from "../common/sound.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
@@ -53,8 +54,13 @@ export class LevelStartScene {
     this.audio = new Sound();
     this.canvasStack = new CanvasStack("canvas");
     this.levelData = levelData;
+    this.levelStartCallBack = levelStartCallBack;
     this.timerTicking = new TimerTicking(game, this);
-    this.promptText = new PromptText(game, this,levelData.puzzles[current_puzzle_index]);
+    this.promptText = new PromptText(
+      game,
+      this,
+      levelData.puzzles[current_puzzle_index]
+    );
     this.createCanvas();
     this.stones = new StonesLayer(
       game,
@@ -64,23 +70,22 @@ export class LevelStartScene {
       this
     );
     this.puzzleData = levelData.puzzles;
-    this.levelData = levelData;
-    this.levelStartCallBack = levelStartCallBack;
   }
 
   levelEndCallBack(button_name) {
     self.audio.changeSourse(audioUrl.buttonClick);
     switch (button_name) {
-      case "close_button": {
-        self.exitAllScreens();
-        break;
-      }
       case "next_button": {
         self.exitAllScreens();
         self.levelStartCallBack(button_name);
         break;
       }
       case "retry_button": {
+        self.exitAllScreens();
+        self.levelStartCallBack(button_name);
+        break;
+      }
+      case "close_button": {
         self.exitAllScreens();
         self.levelStartCallBack(button_name);
         break;
@@ -93,20 +98,22 @@ export class LevelStartScene {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-
-  redrawOfStones(status) {
-    self.timerTicking.stopTimer();
-    var fntsticOrGrtIndex = self.getRandomInt(0,1);
+  redrawOfStones(status, emptyTarget) {
+    var fntsticOrGrtIndex = self.getRandomInt(0, 1);
     if (status) {
-      self.audio.changeSourse(
-        audioUrl.phraseAudios[fntsticOrGrtIndex]
-      );
-      self.audio.changeSourse(audioUrl.monsterHappy);
       self.monster.changeToEatAnimation();
-      self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
-      score += 100;
-      current_puzzle_index += 1;
+      self.audio.changeSourse(audioUrl.monsterHappy);
+      if (emptyTarget) {
+        self.audio.changeSourse(audioUrl.phraseAudios[fntsticOrGrtIndex]);
+
+        self.timerTicking.stopTimer();
+        score += 100;
+        self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
+        current_puzzle_index += 1;
+      } else {
+      }
     } else {
+      self.timerTicking.stopTimer();
       self.audio.changeSourse(audioUrl.monsterSad);
       self.audio.changeSourse(audioUrl.monsterSplit);
       self.monster.changeToSpitAnimation();
@@ -115,13 +122,18 @@ export class LevelStartScene {
     if (current_puzzle_index == self.puzzleData.length) {
       setTimeout(() => {
         self.levelStartCallBack();
-        delete new LevelEndScene(
-          self.game,
-          score,
-          self.monster,
-          self.levelEndCallBack,
-          self.levelData
-        );
+        if (self.levelData.levelNumber == 9) {
+          self.exitAllScreens();
+          delete new GameEndScene(self.game);
+        } else {
+          delete new LevelEndScene(
+            self.game,
+            score,
+            self.monster,
+            self.levelEndCallBack,
+            self.levelData
+          );
+        }
       }, 2100);
     } else {
       if (emptyTarget) {
@@ -171,7 +183,7 @@ export class LevelStartScene {
     self.monster.deleteCanvas();
     self.canvasStack.deleteLayer(StoneLayer);
     self.canvasStack.deleteLayer(TimetickerLayer);
-    self.canvasStack.deleteLayer(PromptTextLayer)
+    self.canvasStack.deleteLayer(PromptTextLayer);
     self.monster.changeImage("./assets/images/idle4.png");
     delete self.monster;
     delete self.audio;
@@ -259,7 +271,9 @@ export class LevelStartScene {
           self.levelData
         );
       } else {
-        self.promptText.setCurrrentPromptText(self.puzzleData[current_puzzle_index].prompt.promptText)
+        self.promptText.setCurrrentPromptText(
+          self.puzzleData[current_puzzle_index].prompt.promptText
+        );
         self.timerTicking.draw();
         self.promptText.draw();
         self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
@@ -271,7 +285,7 @@ export class LevelStartScene {
 
   createBackgroud() {
     var self = this;
-    loadingScreen(true, self.canvasStack);
+    loadingScreen(true);
     var context = this.context;
     var width = this.width;
     var height = this.height;
@@ -324,7 +338,7 @@ export class LevelStartScene {
       self.pauseButton.draw();
       self.levelIndicators.draw();
       self.promptText.createBackground();
-      loadingScreen(false, self.canvasStack);
+      loadingScreen(false);
     });
   }
 }

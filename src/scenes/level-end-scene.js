@@ -4,7 +4,6 @@ import NextButton from "../components/buttons/next_button.js";
 import RetryButton from "../components/buttons/retry_button.js";
 import { ProfileData, setDataToStorage } from "../data/profile-data.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
-import { drawStars } from "./level-selection-scene.js";
 var audioUrl = {
   levelWin: "./assets/audios/LevelWinFanfare.mp3",
   levelLose: "./assets/audios/LevelLoseFanfare.mp3",
@@ -100,8 +99,7 @@ export class LevelEndScene {
       self.context,
       self.canvas,
       self.canvas.width * 0.2 - (self.canvas.width * 0.19) / 2,
-      self.canvas.height * 0.7,
-      this.levelData
+      self.canvas.height * 0.7
     );
     document
       .getElementById(this.bottonLayer)
