@@ -124,13 +124,17 @@ export class LevelStartScene {
         );
       }, 2100);
     } else {
-      self.levelIndicators.setIndicators(current_puzzle_index);
-      setTimeout(() => {
-        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
-        self.promptText.setCurrrentPromptText(self.puzzleData[current_puzzle_index].prompt.promptText)
-        self.timerTicking.draw();
-        self.promptText.draw();
-      }, 3000);
+      if (emptyTarget) {
+        self.levelIndicators.setIndicators(current_puzzle_index);
+        setTimeout(() => {
+          self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+          self.promptText.setCurrrentPuzzleData(
+            self.puzzleData[current_puzzle_index]
+          );
+          self.timerTicking.draw();
+          self.promptText.draw();
+        }, 3000);
+      }
     }
   }
 
