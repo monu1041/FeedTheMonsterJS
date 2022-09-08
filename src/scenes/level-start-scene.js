@@ -140,8 +140,8 @@ export class LevelStartScene {
         self.levelIndicators.setIndicators(current_puzzle_index);
         setTimeout(() => {
           self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
-          self.promptText.setCurrrentPromptText(
-            self.puzzleData[current_puzzle_index].prompt.promptText
+          self.promptText.setCurrrentPuzzleData(
+            self.puzzleData[current_puzzle_index]
           );
           self.timerTicking.draw();
           self.promptText.draw();
