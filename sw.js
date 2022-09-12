@@ -44,6 +44,7 @@ var filesToCache = [
   "./assets/images/star.png",
   "./assets/images/ftm_bonus_level_monsters.png",
   "./assets/images/fantastic_01.png",
+  "./assets/images/promptTextBg.png",
   "./assets/images/great_01.png",
   "./assets/audios/fantastic.WAV",
   "./assets/audios/good job.WAV",

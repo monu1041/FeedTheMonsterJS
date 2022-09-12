@@ -62,6 +62,7 @@ export class LevelStartScene {
       levelData.puzzles[current_puzzle_index]
     );
     this.createCanvas();
+
     this.stones = new StonesLayer(
       game,
       levelData.puzzles[current_puzzle_index],
@@ -256,6 +257,7 @@ export class LevelStartScene {
 
   changePuzzle() {
     if (self.timerTicking.isTimerEnded) {
+      console.log("time's up");
       current_puzzle_index += 1;
       self.stones.canvas.scene.levelIndicators.setIndicators(
         current_puzzle_index
@@ -271,8 +273,11 @@ export class LevelStartScene {
           self.levelData
         );
       } else {
-        self.promptText.setCurrrentPromptText(
-          self.puzzleData[current_puzzle_index].prompt.promptText
+        // self.promptText.setCurrrentPromptText(
+        //   self.puzzleData[current_puzzle_index].prompt.promptText
+        // );
+        self.promptText.setCurrrentPuzzleData(
+          self.puzzleData[current_puzzle_index]
         );
         self.timerTicking.draw();
         self.promptText.draw();
