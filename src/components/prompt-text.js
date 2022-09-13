@@ -1,12 +1,13 @@
 import { PromptTextLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 export class PromptText {
-  constructor(game, levelStart, currentPuzzleData) {
+  constructor(game, levelStart, currentPuzzleData, levelData) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
     this.canvasStack = new CanvasStack("canvas");
     this.levelStart = levelStart;
+    this.levelData = levelData;
     self = this;
     this.currentPromptText = currentPuzzleData.prompt.promptText;
     this.currentPuzzleData = currentPuzzleData;
@@ -81,7 +82,10 @@ export class PromptText {
     console.log(promptTextLetters);
     console.log(this.currentPuzzleData);
     for (let i = 0; i < promptTextLetters.length; i++) {
-      if (this.currentPuzzleData.targetStones.includes(promptTextLetters[i])) {
+      if (
+        this.currentPuzzleData.targetStones.includes(promptTextLetters[i]) &&
+        this.levelData.levelMeta.levelType == "LetterInWord"
+      ) {
         this.context.fillStyle = "red";
         this.context.fillText(promptTextLetters[i], x + 16 * i, y);
       } else {
