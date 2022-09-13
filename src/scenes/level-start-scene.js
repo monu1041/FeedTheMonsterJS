@@ -59,7 +59,8 @@ export class LevelStartScene {
     this.promptText = new PromptText(
       game,
       this,
-      levelData.puzzles[current_puzzle_index]
+      levelData.puzzles[current_puzzle_index],
+      levelData
     );
     this.createCanvas();
 
@@ -121,6 +122,7 @@ export class LevelStartScene {
       current_puzzle_index += 1;
     }
     if (current_puzzle_index == self.puzzleData.length) {
+      self.levelIndicators.setIndicators(current_puzzle_index);
       setTimeout(() => {
         self.levelStartCallBack();
         if (self.levelData.levelNumber == 9) {

@@ -58,7 +58,12 @@ var filesToCache = [
   "./assets/audios/intro.wav",
   "./assets/audios/onDrag.mp3",
   "./assets/audios/timeout.mp3",
-
+  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_a.wav",
+  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_c.wav",
+  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_t.wav",
+  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_n.wav",
+  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_p.wav",
+  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_m.wav",
   //--------------------------------------------------------------------------------------------------------------------
 
   // app files ---------------------------------------------------------------------------------------------------------
