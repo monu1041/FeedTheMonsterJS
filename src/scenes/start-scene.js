@@ -158,7 +158,19 @@ export class StartScene {
               !window.matchMedia("(display-mode: standalone)").matches &&
               self.pwa_status == "true"
             ) {
-              alert("PWA is installed on your device \nPlease play from there");
+              document.location = "https://devcuriousreader.wpcomstaging.com/FeedTheMonsterJS1.4"
+              // alert("PWA is installed on your device \nPlease play from there");
+              // if(confirm("PWA is installed on your device \nPlease play from there")) 
+              // {
+              //   document.location = "http://127.0.0.1:5500/index.html"
+              //   console.log("Clicked OK")
+              // }
+              // else{
+              //   console.log("Clicked cancel")
+              // }
+
+              // window.location.href = "https://devcuriousreader.wpcomstaging.com/FeedTheMonsterJS1.1/"
+              // document.location = 'https://devcuriousreader.wpcomstaging.com/FeedTheMonsterJS1.1/';
             } else {
               document.getElementById("about-company").style.display = "none";
               delete new Sound().changeSourse(

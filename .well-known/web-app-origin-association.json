@@ -1,0 +1,11 @@
+{
+    "web_apps":[
+        {
+            "manifest":"https://devcuriousreader.wpcomstaging.com/FeedTheMonsterJS1.4/manifest.json",
+            "details":{
+                "paths":["*"],
+                "exclude_paths":[]
+            }
+        }
+    ]
+}
