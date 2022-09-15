@@ -171,12 +171,11 @@ export default class StonesLayer {
             pickedStone.y = -900;
 
             if (pickedStone.text == gs.puzzle.target[0]) {
+              self.callBack(true, false);
               gs.puzzle.target.shift();
               if (gs.puzzle.target.length == 0) {
                 gs.stones = [];
                 self.callBack(true, true);
-              } else {
-                self.callBack(true, false);
               }
             } else {
               gs.stones = [];
