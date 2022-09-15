@@ -54,10 +54,10 @@ export class PromptText {
     );
     this.context.drawImage(
       self.fntstOrGrtImgArr[imageIndex],
-      this.game.width / 2 - (this.game.width * 0.9) / 2,
-      this.height * 0.15,
-      this.game.width * 0.9,
-      this.height * 0.25
+      this.game.width - this.game.width * 0.75,
+      this.height * 0.2,
+      this.game.width * 0.5,
+      this.height * 0.1
     );
   }
 
@@ -82,15 +82,16 @@ export class PromptText {
     console.log(promptTextLetters);
     console.log(this.currentPuzzleData);
     for (let i = 0; i < promptTextLetters.length; i++) {
+      // this.context.textAlign = "center";
       if (
         this.currentPuzzleData.targetStones.includes(promptTextLetters[i]) &&
         this.levelData.levelMeta.levelType == "LetterInWord"
       ) {
         this.context.fillStyle = "red";
-        this.context.fillText(promptTextLetters[i], x + 16 * i, y);
+        this.context.fillText(promptTextLetters[i], x + 20 * i, y);
       } else {
         this.context.fillStyle = "black";
-        this.context.fillText(promptTextLetters[i], x + 16 * i, y);
+        this.context.fillText(promptTextLetters[i], x + 20 * i, y);
       }
     }
     // this.context.fillText(
