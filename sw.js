@@ -64,6 +64,11 @@ var filesToCache = [
   "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_n.wav",
   "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_p.wav",
   "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_m.wav",
+  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_k.wav",
+  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_i.wav",
+  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_s.wav",
+  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_z.wav",
+
   //--------------------------------------------------------------------------------------------------------------------
 
   // app files ---------------------------------------------------------------------------------------------------------

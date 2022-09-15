@@ -106,19 +106,24 @@ export class LevelStartScene {
       self.monster.changeToEatAnimation();
       self.audio.changeSourse(audioUrl.monsterHappy);
       if (emptyTarget) {
-        self.audio.changeSourse(audioUrl.phraseAudios[fntsticOrGrtIndex]);
-
+        setTimeout(() => {
+          self.audio.changeSourse(audioUrl.phraseAudios[fntsticOrGrtIndex]);
+          self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
+        }, 1000);
         self.timerTicking.stopTimer();
         score += 100;
-        self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
+
         current_puzzle_index += 1;
       } else {
       }
     } else {
       self.timerTicking.stopTimer();
-      self.audio.changeSourse(audioUrl.monsterSad);
-      self.audio.changeSourse(audioUrl.monsterSplit);
       self.monster.changeToSpitAnimation();
+      self.audio.changeSourse(audioUrl.monsterSad);
+      setTimeout(() => {
+        self.audio.changeSourse(audioUrl.monsterSplit);
+      }, 1000);
+
       current_puzzle_index += 1;
     }
     if (current_puzzle_index == self.puzzleData.length) {
@@ -137,7 +142,7 @@ export class LevelStartScene {
             self.levelData
           );
         }
-      }, 2100);
+      }, 2500);
     } else {
       if (emptyTarget) {
         self.levelIndicators.setIndicators(current_puzzle_index);
@@ -148,7 +153,7 @@ export class LevelStartScene {
           );
           self.timerTicking.draw();
           self.promptText.draw();
-        }, 3000);
+        }, 3500);
       }
     }
   }

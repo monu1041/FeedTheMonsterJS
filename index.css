@@ -63,7 +63,7 @@ img {
 }
 a {
   text-decoration: none;
-  color: #66FF99;
+  color: #66ff99;
 }
 
 #canvas {
@@ -120,4 +120,15 @@ a {
   100% {
     transform: rotate(360deg);
   }
+}
+
+#version-info-id {
+  position: absolute;
+  height: 10px;
+  width: 10%;
+  left: 55%;
+  top: 2%;
+  color: white;
+  font-size: small;
+  z-index: 9;
 }
