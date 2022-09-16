@@ -22,6 +22,7 @@ export class LevelSelectionScreen {
     this.height = canvas.height;
     this.canvasStack = new CanvasStack("canvas");
     this.data = data;
+    this.sound = new Sound();
     this.createCanvas();
     this.drawStars();
     self = this;
@@ -29,21 +30,11 @@ export class LevelSelectionScreen {
   gameSceneCallBack(button_name) {
     switch (button_name) {
       case "next_button": {
-        new Game(
-          canvas.width,
-          canvas.height,
-          self.data.levels[(levelNumber += 1)],
-          self.gameSceneCallBack
-        );
+        self.startGame((levelNumber += 1));
         break;
       }
       case "retry_button": {
-        new Game(
-          canvas.width,
-          canvas.height,
-          self.data.levels[levelNumber],
-          self.gameSceneCallBack
-        );
+        self.startGame(levelNumber);
         break;
       }
       case "close_button": {
@@ -101,14 +92,10 @@ export class LevelSelectionScreen {
                   (y - s.y - self.canvas.height / 20)
             ) < 45
           ) {
-            delete new Sound().changeSourse("./assets/audios/ButtonClick.wav");
+            self.sound.changeSourse("./assets/audios/ButtonClick.wav");
+            self.sound.pauseSound()
             levelNumber = s.index - 1;
-            delete new Game(
-              canvas.width,
-              canvas.height,
-              self.data.levels[s.index - 1],
-              self.gameSceneCallBack
-            );
+            self.startGame(levelNumber);
           }
         }
       },
@@ -147,7 +134,16 @@ export class LevelSelectionScreen {
       s.y + imageSize / 1.3
     );
   }
+  startGame(level_number) {
+    delete new Game(
+      canvas.width,
+      canvas.height,
+      self.data.levels[level_number],
+      self.gameSceneCallBack
+    );
+  }
   drawStars() {
+    this.sound.changeSourse("./assets/audios/intro.wav");
     let gameLevelData = getDatafromStorage();
 
     let canvas = document.getElementById("canvas");
