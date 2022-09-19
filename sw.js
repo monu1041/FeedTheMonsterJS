@@ -1,6 +1,5 @@
 var cacheName = "ftm";
 var version = 1.0;
-var register;
 var filesToCache = [
   // infrastructure files ----------------------------------------------------------------------------------------------
 
@@ -59,16 +58,6 @@ var filesToCache = [
   "./assets/audios/intro.wav",
   "./assets/audios/onDrag.mp3",
   "./assets/audios/timeout.mp3",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_a.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_c.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_t.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_n.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_p.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_m.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_k.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_i.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_s.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_z.wav",
 
   //--------------------------------------------------------------------------------------------------------------------
 
@@ -89,7 +78,20 @@ if ("serviceWorker" in navigator) {
           return cache.addAll(filesToCache);
         });
       });
-      register = res;
+      fetch("./ftm_english.json", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((res) =>
+        res.json().then((data) => {
+          for (let i = 0; i < 10; i++) {
+            data.Levels[i].Puzzles.forEach((element) => {
+              cacheNewFiles(element.prompt.PromptAudio);
+            });
+          }
+        })
+      );
       // getPWARegistration();
       console.log("sw: registration ok");
     })
@@ -149,3 +151,10 @@ self.addEventListener("fetch", function (event) {
       })
   );
 });
+
+function cacheNewFiles(ftc) {
+  caches.open(cacheName).then(function (cache) {
+    console.log("sw: adding new files");
+    return cache.add(ftc);
+  });
+}
