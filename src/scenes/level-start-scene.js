@@ -159,6 +159,10 @@ export class LevelStartScene {
   }
 
   createCanvas() {
+    window.addEventListener("resize", async () => {
+      self.deleteObjects();
+    });
+
     this.id = this.canvasStack.createLayer(
       this.height,
       this.width,
@@ -193,6 +197,9 @@ export class LevelStartScene {
     self.canvasStack.deleteLayer(TimetickerLayer);
     self.canvasStack.deleteLayer(PromptTextLayer);
     self.monster.changeImage("./assets/images/idle4.png");
+    self.deleteObjects();
+  }
+  deleteObjects() {
     delete self.monster;
     delete self.audio;
     delete self.levelIndicators;

@@ -43,6 +43,13 @@ export class LevelSelectionScreen {
     }
   }
   createCanvas() {
+    document.addEventListener(
+      "visibilitychange",
+      function () {
+        self.sound.activeScreen();
+      },
+      false
+    );
     this.id = this.canvasStack.createLayer(
       this.height,
       this.width,
@@ -93,9 +100,10 @@ export class LevelSelectionScreen {
             ) < 45
           ) {
             self.sound.changeSourse("./assets/audios/ButtonClick.wav");
-            self.sound.pauseSound()
+            self.sound.pauseSound();
             levelNumber = s.index - 1;
             self.startGame(levelNumber);
+            levels = [];
           }
         }
       },
