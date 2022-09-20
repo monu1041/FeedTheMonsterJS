@@ -142,7 +142,7 @@ export class LevelStartScene {
             self.levelData
           );
         }
-      }, 2500);
+      }, 3500);
     } else {
       if (emptyTarget) {
         self.levelIndicators.setIndicators(current_puzzle_index);
@@ -264,6 +264,7 @@ export class LevelStartScene {
 
   changePuzzle() {
     if (self.timerTicking.isTimerEnded) {
+      self.stones.isTimerEnded();
       console.log("time's up");
       current_puzzle_index += 1;
       self.stones.canvas.scene.levelIndicators.setIndicators(

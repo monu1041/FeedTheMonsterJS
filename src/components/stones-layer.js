@@ -47,7 +47,9 @@ export default class StonesLayer {
     gs.puzzle.stones = this.puzzleData.foilStones;
     gs.puzzle.prompt = this.puzzleData.prompt.promptText;
   }
-
+  isTimerEnded() {
+    pickedStone = null;
+  }
   createCanvas() {
     var self = this;
     this.id = this.canvasStack.createLayer(this.height, this.width, StoneLayer);
