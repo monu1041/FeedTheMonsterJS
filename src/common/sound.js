@@ -1,3 +1,4 @@
+let inactive_screen = false;
 export default class Sound {
   constructor() {
     this.audio = new Audio();
@@ -8,10 +9,19 @@ export default class Sound {
       this.audio1.src = src;
       this.audio1.play().catch((e) => {
         this.audio2 = new Audio();
+
         this.audio2.src = src;
         this.audio2.play();
       });
     });
+  }
+  activeScreen() {
+    if (inactive_screen) {
+      inactive_screen = false;
+    } else {
+      this.pauseSound();
+      inactive_screen = true;
+    }
   }
   pauseSound() {
     this.audio ? this.audio.pause() : null;

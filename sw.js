@@ -1,5 +1,5 @@
 var cacheName = "ftm";
-
+var version = 1.0;
 var filesToCache = [
   // infrastructure files ----------------------------------------------------------------------------------------------
 
@@ -58,12 +58,7 @@ var filesToCache = [
   "./assets/audios/intro.wav",
   "./assets/audios/onDrag.mp3",
   "./assets/audios/timeout.mp3",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_a.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_c.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_t.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_n.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_p.wav",
-  "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_letters_m.wav",
+
   //--------------------------------------------------------------------------------------------------------------------
 
   // app files ---------------------------------------------------------------------------------------------------------
@@ -71,11 +66,33 @@ var filesToCache = [
   // -------------------------------------------------------------------------------------------------------------------
 ];
 
-// check if service worker is installed before
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
     .register("sw.js")
-    .then(function () {
+    .then(function (res) {
+      res.addEventListener("updatefound", () => {
+        caches.delete(cacheName);
+        console.log("Service Worker update detected!");
+        caches.open(cacheName).then(function (cache) {
+          console.log("sw: writing files into cache");
+          return cache.addAll(filesToCache);
+        });
+      });
+      fetch("./ftm_english.json", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((res) =>
+        res.json().then((data) => {
+          for (let i = 0; i < 10; i++) {
+            data.Levels[i].Puzzles.forEach((element) => {
+              cacheNewFiles(element.prompt.PromptAudio);
+            });
+          }
+        })
+      );
+      // getPWARegistration();
       console.log("sw: registration ok");
     })
     .catch(function (err) {
@@ -135,9 +152,9 @@ self.addEventListener("fetch", function (event) {
   );
 });
 
-// function cacheNewFiles(ftc){
-//   caches.open(cacheName).then(function(cache) {
-//     console.log("sw: adding new files");
-//     return cache.addAll(ftc);
-//   });
-// }
+function cacheNewFiles(ftc) {
+  caches.open(cacheName).then(function (cache) {
+    console.log("sw: adding new files");
+    return cache.add(ftc);
+  });
+}

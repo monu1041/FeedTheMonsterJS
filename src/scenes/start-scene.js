@@ -139,7 +139,7 @@ export class StartScene {
           self.firebase_analytics
             ? self.firebase_analytics.logEvent(FirebaseUserClicked, "click")
             : null;
-          if (self.pwa_status == "false") {
+          if (self.pwa_status == "false" || !self.pwa_status ) {
             pwa_install_status.prompt();
             const { outcome } = await pwa_install_status.userChoice;
             if (outcome === "accepted") {
