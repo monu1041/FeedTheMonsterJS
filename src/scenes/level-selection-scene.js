@@ -12,7 +12,6 @@ var map = new Image();
 map.src = "./assets/images/map.jpg";
 var star = new Image();
 star.src = "./assets/images/star.png";
-var levels = [];
 var levelNumber;
 var self;
 export class LevelSelectionScreen {
@@ -21,11 +20,12 @@ export class LevelSelectionScreen {
     this.width = canvas.width;
     this.height = canvas.height;
     this.canvasStack = new CanvasStack("canvas");
+    self = this;
     this.data = data;
+    this.levels = [];
     this.sound = new Sound();
     this.createCanvas();
     this.drawStars();
-    self = this;
   }
   gameSceneCallBack(button_name) {
     switch (button_name) {
@@ -90,7 +90,7 @@ export class LevelSelectionScreen {
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        for (let s of levels) {
+        for (let s of self.levels) {
           if (
             Math.sqrt(
               (x - s.x - self.canvas.height / 20) *
@@ -103,7 +103,6 @@ export class LevelSelectionScreen {
             self.sound.pauseSound();
             levelNumber = s.index - 1;
             self.startGame(levelNumber);
-            levels = [];
           }
         }
       },
@@ -116,13 +115,13 @@ export class LevelSelectionScreen {
     var i = 0;
     for (let s = 0; s < 10; s++) {
       var ns = new LevelConfig(poss[i][0], poss[i][1], i + 1);
-      levels.push(ns);
+      self.levels.push(ns);
       i += 1;
     }
     this.draw();
   }
   draw() {
-    for (let s of levels) {
+    for (let s of self.levels) {
       this.drawlevel(s, canvas);
     }
   }
@@ -156,7 +155,7 @@ export class LevelSelectionScreen {
 
     let canvas = document.getElementById("canvas");
     if (gameLevelData != null) {
-      for (let s of levels) {
+      for (let s of self.levels) {
         for (let i = 0; i < gameLevelData.length; i++) {
           if (s.index - 1 == parseInt(gameLevelData[i].levelNumber)) {
             this.drawStar(s, canvas, gameLevelData[i].levelStar);
