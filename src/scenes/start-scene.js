@@ -158,7 +158,8 @@ export class StartScene {
               !window.matchMedia("(display-mode: standalone)").matches &&
               self.pwa_status == "true"
             ) {
-              alert("PWA is installed on your device \nPlease play from there");
+              document.getElementById('pwa_app').click()
+              // alert("PWA is installed on your device \nPlease play from there");
             } else {
               document.getElementById("about-company").style.display = "none";
               delete new Sound().changeSourse(
