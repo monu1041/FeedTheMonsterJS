@@ -3,6 +3,12 @@ import { CanvasStack } from "../utility/canvas-stack.js";
 var lastTime = 0;
 var self;
 var animationFrame;
+const eatImg = new Image();
+eatImg.src = "./assets/images/eat4.png";
+const idleImg = new Image();
+idleImg.src = "./assets/images/idle4.png";
+const spitImg = new Image();
+spitImg.src = "./assets/images/spit4.png";
 export class Monster {
   constructor(game, zindex, imageSrc) {
     this.game = game;
@@ -86,18 +92,18 @@ export class Monster {
   }
 
   changeToEatAnimation() {
-    this.image.src = "./assets/images/eat4.png";
+    this.image = eatImg;
     setTimeout(() => {
       this.changeToIdleAnimation();
     }, 2000);
   }
 
   changeToIdleAnimation() {
-    this.image.src = "./assets/images/idle4.png";
+    this.image = idleImg;
   }
 
   changeToSpitAnimation() {
-    this.image.src = "./assets/images/spit4.png";
+    this.image = spitImg;
     setTimeout(() => {
       this.changeToIdleAnimation();
     }, 2000);
