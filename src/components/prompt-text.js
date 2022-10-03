@@ -79,8 +79,6 @@ export class PromptText {
     const promptTextLetters = this.currentPromptText.split("");
     const x = this.width / 2.1;
     const y = this.height * 0.26;
-    console.log(promptTextLetters);
-    console.log(this.currentPuzzleData);
     for (let i = 0; i < promptTextLetters.length; i++) {
       // this.context.textAlign = "center";
       if (
