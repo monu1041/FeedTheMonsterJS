@@ -87,7 +87,7 @@ export class LevelStartScene {
         }
       } else {
         isGamePause = false;
-        if (noMoreTarget) {
+        if (noMoreTarget && button_name != "close_button") {
           self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
           self.promptText.setCurrrentPuzzleData(
             self.puzzleData[current_puzzle_index]
