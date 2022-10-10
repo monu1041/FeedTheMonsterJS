@@ -46,6 +46,7 @@ var current_puzzle_index = 0;
 var score = 0;
 var isGamePause = false;
 var noMoreTarget = false;
+var isLevelEnded = false;
 export class LevelStartScene {
   constructor(game, levelData, levelStartCallBack) {
     this.game = game;
@@ -79,6 +80,10 @@ export class LevelStartScene {
   levelEndCallBack(button_name) {
     if (!isGamePause) {
       isGamePause = true;
+      if (isLevelEnded) {
+        isLevelEnded = false;
+        isGamePause = false;
+      }
     } else {
       if (current_puzzle_index == self.puzzleData.length) {
         if (noMoreTarget) {
@@ -135,7 +140,6 @@ export class LevelStartScene {
         }, 1000);
         self.timerTicking.stopTimer();
         score += 100;
-        console.log(score);
 
         current_puzzle_index += 1;
       } else {
@@ -191,6 +195,7 @@ export class LevelStartScene {
         self.levelData
       );
     }
+    isLevelEnded = true;
   }
   createCanvas() {
     window.addEventListener("resize", async () => {
