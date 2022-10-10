@@ -45,6 +45,18 @@ export class LevelEndScene {
       this.canvas.scene.audio.changeSourse(audioUrl.intro);
       this.monster.changeImage("./assets/images/happy14.png");
     }
+    document.addEventListener(
+      "visibilitychange",
+      function () {
+        if (document.visibilityState === 'visible') {
+          self.canvas.scene.audio.playSound("./assets/audios/intro.wav")
+          
+        } else {
+          self.canvas.scene.audio.pauseSound();
+        }
+      },
+      false
+    );
     this.monster.changeZindex(9);
     var self = this;
     this.id = this.canvasStack.createLayer(
