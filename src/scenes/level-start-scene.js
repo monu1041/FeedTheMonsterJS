@@ -93,12 +93,14 @@ export class LevelStartScene {
       } else {
         isGamePause = false;
         if (noMoreTarget && button_name != "close_button") {
-          self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
-          self.promptText.setCurrrentPuzzleData(
-            self.puzzleData[current_puzzle_index]
-          );
-          self.timerTicking.draw();
-          self.promptText.draw();
+          setTimeout(() => {
+            self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+            self.promptText.setCurrrentPuzzleData(
+              self.puzzleData[current_puzzle_index]
+            );
+            self.timerTicking.draw();
+            self.promptText.draw();
+          }, 1000);
         }
       }
     }
@@ -115,6 +117,7 @@ export class LevelStartScene {
         break;
       }
       case "close_button": {
+        isGamePause = false;
         self.exitAllScreens();
         self.levelStartCallBack(button_name);
         break;
@@ -192,7 +195,8 @@ export class LevelStartScene {
         score,
         self.monster,
         self.levelEndCallBack,
-        self.levelData
+        self.levelData,
+        isGamePause
       );
     }
     isLevelEnded = true;
