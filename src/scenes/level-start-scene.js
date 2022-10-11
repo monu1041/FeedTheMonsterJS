@@ -44,6 +44,9 @@ var audioUrl = {
 var self;
 var current_puzzle_index = 0;
 var score = 0;
+var isGamePause = false;
+var noMoreTarget = false;
+var isLevelEnded = false;
 export class LevelStartScene {
   constructor(game, levelData, levelStartCallBack) {
     this.game = game;
@@ -75,6 +78,32 @@ export class LevelStartScene {
   }
 
   levelEndCallBack(button_name) {
+    if (!isGamePause) {
+      isGamePause = true;
+      if (isLevelEnded) {
+        isLevelEnded = false;
+        isGamePause = false;
+      }
+    } else {
+      if (current_puzzle_index == self.puzzleData.length) {
+        if (noMoreTarget) {
+          self.levelEnded();
+          current_puzzle_index = 0;
+        }
+      } else {
+        isGamePause = false;
+        if (noMoreTarget && button_name != "close_button") {
+          setTimeout(() => {
+            self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+            self.promptText.setCurrrentPuzzleData(
+              self.puzzleData[current_puzzle_index]
+            );
+            self.timerTicking.draw();
+            self.promptText.draw();
+          }, 1000);
+        }
+      }
+    }
     self.audio.changeSourse(audioUrl.buttonClick);
     switch (button_name) {
       case "next_button": {
@@ -88,6 +117,7 @@ export class LevelStartScene {
         break;
       }
       case "close_button": {
+        isGamePause = false;
         self.exitAllScreens();
         self.levelStartCallBack(button_name);
         break;
@@ -101,6 +131,7 @@ export class LevelStartScene {
   }
 
   redrawOfStones(status, emptyTarget) {
+    noMoreTarget = emptyTarget;
     var fntsticOrGrtIndex = self.getRandomInt(0, 1);
     if (status) {
       self.monster.changeToEatAnimation();
@@ -128,36 +159,48 @@ export class LevelStartScene {
     }
     if (current_puzzle_index == self.puzzleData.length) {
       self.levelIndicators.setIndicators(current_puzzle_index);
-      setTimeout(() => {
-        self.levelStartCallBack();
-        if (self.levelData.levelNumber == 9) {
-          self.exitAllScreens();
-          delete new GameEndScene(self.game);
-        } else {
-          delete new LevelEndScene(
-            self.game,
-            score,
-            self.monster,
-            self.levelEndCallBack,
-            self.levelData
-          );
-        }
-      }, 3500);
+      for (let i = 0; i <= 3; i++) {
+        setTimeout(() => {
+          if (i == 3 && !isGamePause) {
+            self.levelEnded();
+          }
+        }, i * 1166.66);
+      }
     } else {
       if (emptyTarget) {
         self.levelIndicators.setIndicators(current_puzzle_index);
-        setTimeout(() => {
-          self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
-          self.promptText.setCurrrentPuzzleData(
-            self.puzzleData[current_puzzle_index]
-          );
-          self.timerTicking.draw();
-          self.promptText.draw();
-        }, 3500);
+        for (let i = 0; i <= 3; i++) {
+          setTimeout(() => {
+            if (i == 3 && !isGamePause) {
+              self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+              self.promptText.setCurrrentPuzzleData(
+                self.puzzleData[current_puzzle_index]
+              );
+              self.timerTicking.draw();
+              self.promptText.draw();
+            }
+          }, i * 1166.66);
+        }
       }
     }
   }
-
+  levelEnded() {
+    self.levelStartCallBack();
+    if (self.levelData.levelNumber == 9) {
+      self.exitAllScreens();
+      delete new GameEndScene(self.game);
+    } else {
+      delete new LevelEndScene(
+        self.game,
+        score,
+        self.monster,
+        self.levelEndCallBack,
+        self.levelData,
+        isGamePause
+      );
+    }
+    isLevelEnded = true;
+  }
   createCanvas() {
     window.addEventListener("resize", async () => {
       self.deleteObjects();
