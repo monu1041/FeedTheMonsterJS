@@ -1,6 +1,6 @@
 import { CanvasStack } from "../utility/canvas-stack.js";
 
-export function loadImages(sources, callback) {
+export function loadImages(sources: any, callback: any) {
   var images = {};
   var loadedImages = 0;
   var numImages = 0;
@@ -18,16 +18,21 @@ export function loadImages(sources, callback) {
     images[src].src = sources[src];
   }
 }
-export function loadingScreen(loading) {
+export function loadingScreen(loading: any) {
+  const loadingElement = <HTMLElement>document.getElementById("loading");
+
   if (loading) {
-    document.getElementById("loading").style.display = "block";
-    delete new CanvasStack("canvas").bkgCanvas.layers.forEach((element) => {
-      document.getElementById(element.id).style.display = "none";
+    loadingElement.style.display = "block";
+
+    new CanvasStack("canvas").bkgCanvas.layers.forEach((element) => {
+      const htmlElement = <HTMLElement>document.getElementById(element.id);
+      htmlElement.style.display = "none";
     });
   } else {
-    document.getElementById("loading").style.display = "none";
-    delete new CanvasStack("canvas").bkgCanvas.layers.forEach((element) => {
-      document.getElementById(element.id).style.display = "flex";
+    loadingElement.style.display = "none";
+    new CanvasStack("canvas").bkgCanvas.layers.forEach((element) => {
+      const htmlElement = <HTMLElement>document.getElementById(element.id);
+      htmlElement.style.display = "flex";
     });
   }
 }

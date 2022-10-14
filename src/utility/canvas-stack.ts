@@ -4,7 +4,16 @@ export var CanvasStack;
   "use strict";
 
   class Layer {
-    constructor(canvasID, canvasElement) {
+    id: any;
+    cElem: any;
+    dragObjects: never[];
+    constructor({
+      canvasID,
+      canvasElement,
+    }: {
+      canvasID: any;
+      canvasElement: any;
+    }) {
       this.id = canvasID;
       this.cElem = canvasElement;
       this.dragObjects = [];
@@ -12,18 +21,26 @@ export var CanvasStack;
   }
 
   CanvasStack = class {
+    cId: any;
+    stackLimit: any;
+    bkgCanvas: any;
+    rawWidth: number;
+    rawHeight: number;
     constructor(cvsID, stackLimit) {
       const savThis = this;
       this.cId = cvsID;
       this.stackLimit = stackLimit || 12;
-      this.bkgCanvas = document.getElementById(cvsID);
+      this.bkgCanvas = <HTMLElement>document.getElementById(cvsID);
       this.rawWidth = this.bkgCanvas.offsetWidth;
       this.rawHeight = this.bkgCanvas.offsetHeight;
       this.bkgCanvas.resizeFns = [];
 
       if (!this.bkgCanvas.hasOwnProperty("layers")) {
         this.bkgCanvas.layers = [];
-        let bkgL = new Layer(this.cId, this.bkgCanvas); // bkgCanvas is always layer[0]
+        let bkgL = new Layer({
+          canvasID: this.cId,
+          canvasElement: this.bkgCanvas,
+        }); // bkgCanvas is always layer[0]
         this.bkgCanvas.layers[0] = bkgL;
       }
       if (!this.bkgCanvas.hasOwnProperty("unique")) {
@@ -32,44 +49,44 @@ export var CanvasStack;
     }
 
     createLayer(height, width, layerId) {
-      if(!this.isLayerExist(layerId)){
+      if (!this.isLayerExist(layerId)) {
         const w = width + "px",
-        h = height + "px",
-        nLyrs = this.bkgCanvas.layers.length; // bkg is layer 0 so at least 1
-      if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
-        console.log("CanvasStack: missing background canvas");
-        return;
-      }
-      if (this.bkgCanvas.layers.length >= this.stackLimit) {
-        console.error("CanvasStack: too many layers");
-        return;
-      }
-      this.bkgCanvas.unique += 1; // a private static variable
-      // const uniqueTag = this.bkgCanvas.unique.toString();
-      // const ovlId = this.cId + "_ovl_" + uniqueTag;
-      const ovlId = layerId;
-      const ovlHTML =
-        "<canvas id='" +
-        ovlId +
-        "' style='position:absolute' width='" +
-        w +
-        "' height='" +
-        h +
-        "'></canvas>";
-      const topCvs = this.bkgCanvas.layers[nLyrs - 1].cElem;
-      topCvs.insertAdjacentHTML("afterend", ovlHTML);
-      const newCvs = document.getElementById(ovlId);
-      newCvs.style.backgroundColor;
+          h = height + "px",
+          nLyrs = this.bkgCanvas.layers.length; // bkg is layer 0 so at least 1
+        if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
+          console.log("CanvasStack: missing background canvas");
+          return;
+        }
+        if (this.bkgCanvas.layers.length >= this.stackLimit) {
+          console.error("CanvasStack: too many layers");
+          return;
+        }
+        this.bkgCanvas.unique += 1; // a private static variable
+        // const uniqueTag = this.bkgCanvas.unique.toString();
+        // const ovlId = this.cId + "_ovl_" + uniqueTag;
+        const ovlId = layerId;
+        const ovlHTML =
+          "<canvas id='" +
+          ovlId +
+          "' style='position:absolute' width='" +
+          w +
+          "' height='" +
+          h +
+          "'></canvas>";
+        const topCvs = this.bkgCanvas.layers[nLyrs - 1].cElem;
+        topCvs.insertAdjacentHTML("afterend", ovlHTML);
+        const newCvs = <HTMLElement>document.getElementById(ovlId);
+        newCvs.style.backgroundColor;
 
-      newCvs.style.left = "50%";
-      newCvs.style.transform = "translate(-50%, 0%)";
-      newCvs.style.height = h;
-      newCvs.style.width = w;
-      let newL = new Layer(ovlId, newCvs);
-      // save the ID in an array to facilitate removal
-      this.bkgCanvas.layers.push(newL);
+        newCvs.style.left = "50%";
+        newCvs.style.transform = "translate(-50%, 0%)";
+        newCvs.style.height = h;
+        newCvs.style.width = w;
+        let newL = new Layer({ canvasID: ovlId, canvasElement: newCvs });
+        // save the ID in an array to facilitate removal
+        this.bkgCanvas.layers.push(newL);
 
-      return ovlId; // return the new canvas id
+        return ovlId; // return the new canvas id
       }
     }
 
@@ -108,7 +125,7 @@ export var CanvasStack;
       // clear any resize callbacks, the layers are gone
       this.bkgCanvas.resizeFns.length = 0; // remove any added handlers, leave the basic
     }
-    isLayerExist(layerID) {
+    isLayerExist(layerID?) {
       for (let i = 1; i < this.bkgCanvas.layers.length; i++) {
         if (this.bkgCanvas.layers[i].id === layerID) {
           return true;
