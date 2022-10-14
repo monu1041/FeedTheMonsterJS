@@ -1,5 +1,11 @@
 
 export class DataModal {
+	public otherAudios: any;
+	public levels: any;
+	public FeedbackTexts: any;
+	public FeedbackAudios: any;
+	public rightToLeft: any;
+
     constructor(otherAudios, levels, feedbackTexts, rightToLeft, feedbackAudios) {
         this.otherAudios = new OtherAudios(otherAudios);
         this.levels = this.getLevels(levels);
@@ -19,6 +25,10 @@ export class DataModal {
 }
 
 export class OtherAudios {
+	public selctYourPlayer: any;
+	public watchMeGrow: any;
+	public areYouSure: any;
+
     constructor(otherAudios) {
         this.selctYourPlayer = otherAudios["Select your player"];
         this.watchMeGrow = otherAudios["Watch me grow"];
@@ -27,6 +37,10 @@ export class OtherAudios {
 }
 
 export class FeedbackTexts {
+	public fantastic: any;
+	public great: any;
+	public amazing: any;
+
     constructor(feedbackTexts) {
         this.fantastic = feedbackTexts[0];
         this.great = feedbackTexts[1];
@@ -35,6 +49,10 @@ export class FeedbackTexts {
 }
 
 export class FeedbackAudios {
+	public fantastic: any;
+	public great: any;
+	public amazing: any;
+
     constructor(feedbackAudios) {
         this.fantastic = feedbackAudios[0];
         this.great = feedbackAudios[1];
@@ -43,6 +61,10 @@ export class FeedbackAudios {
 }
 
 export class Levels {
+	public puzzles: any;
+	public levelMeta: any;
+	public levelNumber: any;
+
     constructor(levels) {       
         this.puzzles = this.getPuzzleData(levels);
         this.levelMeta = new LevelMeta(levels.LevelMeta)
@@ -74,6 +96,11 @@ export class Levels {
 }
 
 export class Puzzles {
+	public segmentNumber: any;
+	public prompt: any;
+	public foilStones: any;
+	public targetStones: any;
+
     constructor(puzzle) {
         this.segmentNumber = puzzle.SegmentNumber
         this.prompt = new Prompt(puzzle.prompt);
@@ -98,18 +125,25 @@ export class Puzzles {
 }
 
 export class FoilStone {
+	public stoneText: any;
+
     constructor(stoneText) {
         this.stoneText = stoneText;
     }
 }
 
 export class TargetStone {
+	public stoneText: any;
+
     constructor() {
         this.stoneText;
     }
 }
 
 export class Prompt {
+	public promptText: any;
+	public promptAudio: any;
+
     constructor(prompt) {
         this.promptText = prompt.PromptText;
         this.promptAudio = prompt.PromptAudio;
@@ -117,6 +151,12 @@ export class Prompt {
 }
 
 export class LevelMeta {
+	public promptFadeOut: any;
+	public letterGroup: any;
+	public levelNumber: any;
+	public protoType: any;
+	public levelType: any;
+
     constructor(levelMeta) {
         this.promptFadeOut = levelMeta.PromptFadeout;
         this.letterGroup = levelMeta.LetterGroup;
@@ -125,6 +165,3 @@ export class LevelMeta {
         this.levelType = levelMeta.LevelType;
     }
 }
-
-
-

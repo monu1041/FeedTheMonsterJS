@@ -1,4 +1,9 @@
 export class ProfileData {
+	public levelName: any;
+	public levelNumber: any;
+	public levelScore: any;
+	public levelStar: any;
+
   constructor(levelName, levelNumber, levelScore, levelStar) {
     (this.levelName = levelName),
       (this.levelNumber = levelNumber),

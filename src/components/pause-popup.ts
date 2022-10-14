@@ -5,6 +5,15 @@ import CloseButton from "./buttons/close_button.js";
 import RetryButton from "./buttons/retry_button.js";
 
 export default class PausePopUp {
+	public canvas: any;
+	public levelStart: any;
+	public canvasStack: any;
+	public id: any;
+	public context: any;
+	public cancelButton: any;
+	public retryButton: any;
+	public closeButton: any;
+
   constructor(canvas, levelStart) {
     this.canvas = canvas;
     this.levelStart = levelStart;

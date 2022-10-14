@@ -10,6 +10,24 @@ idleImg.src = "./assets/images/idle4.png";
 const spitImg = new Image();
 spitImg.src = "./assets/images/spit4.png";
 export class Monster {
+	public game: any;
+	public zindex: any;
+	public width: any;
+	public height: any;
+	public image: any;
+	public frameX: any;
+	public frameY: any;
+	public maxFrame: any;
+	public x: any;
+	public y: any;
+	public fps: any;
+	public frameInterval: any;
+	public frameTimer: any;
+	public canvasStack: any;
+	public id: any;
+	public canavsElement: any;
+	public context: any;
+
   constructor(game, zindex, imageSrc) {
     this.game = game;
     self = this;

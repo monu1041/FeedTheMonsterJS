@@ -1,4 +1,8 @@
 export class LevelIndicators {
+	public context: any;
+	public canvas: any;
+	public activeIndicators: any;
+
   constructor(context, canvas, activeIndicators) {
     this.context = context;
     this.canvas = canvas;

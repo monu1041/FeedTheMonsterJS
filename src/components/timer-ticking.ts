@@ -1,6 +1,23 @@
 import { TimetickerLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 export class TimerTicking {
+	public game: any;
+	public width: any;
+	public height: any;
+	public widthToClear: any;
+	public maxLimitExhausted: any;
+	public canvasStack: any;
+	public timer: any;
+	public isTimerStarted: any;
+	public isTimerEnded: any;
+	public levelStart: any;
+	public isTimerRunningOut: any;
+	public id: any;
+	public canavsElement: any;
+	public context: any;
+	public timer_full: any;
+	public pauseButtonClicked: any;
+
   constructor(game, levelStart) {
     this.game = game;
     this.width = game.width;
@@ -108,4 +125,3 @@ export class TimerTicking {
     this.isTimerStarted = true;
     this.pauseButtonClicked = false;
   }
-}

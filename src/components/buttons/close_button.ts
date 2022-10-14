@@ -1,4 +1,9 @@
 export default class CloseButton {
+	public posX: any;
+	public posY: any;
+	public context: any;
+	public canvas: any;
+
   constructor(context, canvas, posX, posY) {
     this.posX = posX;
     this.posY = posY;

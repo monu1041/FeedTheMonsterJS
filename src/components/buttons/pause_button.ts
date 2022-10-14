@@ -1,4 +1,9 @@
 export default class PauseButton {
+	public posX: any;
+	public posY: any;
+	public context: any;
+	public canvas: any;
+
   constructor(context, canvas) {
     this.posX = canvas.width - canvas.height * 0.09;
     this.posY = 0;
@@ -27,7 +32,7 @@ export default class PauseButton {
         (yClick - this.posY - (this.canvas.height * 0.09) / 2) *
           (yClick - this.posY - (this.canvas.height * 0.09) / 2)
     );
-    if (distance < (canvas.height * 0.09) / 2) {
+    if (distance < (this.canvas.height * 0.09) / 2) {
       return true;
     }
   }
