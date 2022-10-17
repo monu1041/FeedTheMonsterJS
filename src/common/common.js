@@ -47,3 +47,4 @@ export const FirebaseUserClicked = "user_clicked";
 export const FirebaseUserInstall = "user_installed";
 export const PromptTextLayer = "promptTextCanvas";
 export const PWAInstallStatus = "pwa_installed_status";
+export const UserCancelled = "user_cancel_installation";
