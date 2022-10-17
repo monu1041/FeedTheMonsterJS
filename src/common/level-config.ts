@@ -1,4 +1,10 @@
 export class LevelConfig {
+  public x: any;
+  public y: any;
+  public index: any;
+  public drawready: any;
+  public img: any;
+
   constructor(xPos, yPos, index) {
     this.x = xPos;
     this.y = yPos;
