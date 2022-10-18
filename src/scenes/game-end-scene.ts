@@ -13,8 +13,16 @@ var images = {
     fenchImg: "./assets/images/fence_v01.png",
     bigMonsterImg: "./assets/images/ftm_bonus_level_monsters.png"
 };
-
+var self;
 export class GameEndScene {
+	public game: any;
+	public width: any;
+	public height: any;
+	public canvasStack: any;
+	public id: any;
+	public canavsElement: any;
+	public context: any;
+
     constructor(game) {
       this.game = game;
       this.width = game.width;
@@ -33,12 +41,12 @@ export class GameEndScene {
       this.canavsElement = document.getElementById(this.id);
       this.context = this.canavsElement.getContext("2d");
       this.canavsElement.style.zIndex = 3;
-      document.getElementById("discription-text").style.display = "block";
+      (document.getElementById("discription-text") as HTMLElement).style.display = "block";
       this.createBackgroud()
     }
   
     deleteCanvas() {
-        document.getElementById("discription-text").style.display = "none";
+      (document.getElementById("discription-text") as HTMLElement).style.display = "none";
       this.canvasStack.deleteLayer(this.id);
       delete this;
     }
