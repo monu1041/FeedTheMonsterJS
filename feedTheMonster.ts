@@ -10,7 +10,9 @@ import {
   setDataToStorage,
 } from "./src/data/profile-data.js";
 import { PWAInstallStatus } from "./src/common/common.js";
+import firebase from "firebase";
 declare const window: any;
+declare const app: any;
 window.addEventListener("load", async function () {
   if (navigator.onLine) {
     this.app = firebase.initializeApp(firebaseConfig);
