@@ -5,14 +5,14 @@ import CloseButton from "./buttons/close_button.js";
 import RetryButton from "./buttons/retry_button.js";
 
 export default class PausePopUp {
-	public canvas: any;
-	public levelStart: any;
-	public canvasStack: any;
-	public id: any;
-	public context: any;
-	public cancelButton: any;
-	public retryButton: any;
-	public closeButton: any;
+  public canvas: any;
+  public levelStart: any;
+  public canvasStack: any;
+  public id: any;
+  public context: any;
+  public cancelButton: any;
+  public retryButton: any;
+  public closeButton: any;
 
   constructor(canvas, levelStart) {
     this.canvas = canvas;
@@ -28,10 +28,10 @@ export default class PausePopUp {
       this.canvas.width,
       PausePopupLayer
     );
-    this.context = document.getElementById(this.id).getContext("2d");
-    document.getElementById(this.id).style.zIndex = 11;
-    document.getElementById(this.id).style.backgroundColor =
-      "rgba(0, 0, 0, 0.5)";
+    const selfIdElement = <HTMLCanvasElement>document.getElementById(this.id);
+    this.context = selfIdElement.getContext("2d");
+    selfIdElement.style.zIndex = "11";
+    selfIdElement.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
     var pop_up_image = new Image();
     pop_up_image.src = "./assets/images/popup_bg_v01.png";
 
@@ -61,26 +61,24 @@ export default class PausePopUp {
           (self.canvas.width * 0.19) / 2
       );
     };
-    document
-      .getElementById(self.id)
-      .addEventListener("click", function (event) {
-        var rect = document.getElementById(self.id).getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-        if (self.cancelButton.onClick(x, y)) {
-          self.levelStart.timerTicking.resumeTimer();
-          self.levelStart.levelEndCallBack();
-          self.deleteCanvas(self);
-        }
-        if (self.retryButton.onClick(x, y)) {
-          self.levelStart.levelEndCallBack("retry_button");
-          self.deleteCanvas(self);
-        }
-        if (self.closeButton.onClick(x, y)) {
-          self.levelStart.levelEndCallBack("close_button");
-          self.deleteCanvas(self);
-        }
-      });
+    selfIdElement.addEventListener("click", function (event) {
+      var rect = selfIdElement.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      if (self.cancelButton.onClick(x, y)) {
+        self.levelStart.timerTicking.resumeTimer();
+        self.levelStart.levelEndCallBack();
+        self.deleteCanvas(self);
+      }
+      if (self.retryButton.onClick(x, y)) {
+        self.levelStart.levelEndCallBack("retry_button");
+        self.deleteCanvas(self);
+      }
+      if (self.closeButton.onClick(x, y)) {
+        self.levelStart.levelEndCallBack("close_button");
+        self.deleteCanvas(self);
+      }
+    });
   }
 
   deleteCanvas(self) {
