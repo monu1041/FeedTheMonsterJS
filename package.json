@@ -17,7 +17,8 @@
   },
   "homepage": "https://github.com/curiouslearning/FeedTheMonsterJS#readme",
   "dependencies": {
-    "webpack": "^5.74.0"
+    "webpack": "^5.74.0",
+    "workbox-window": "^4.3.1"
   },
   "devDependencies": {
     "webpack-cli": "^4.10.0"
