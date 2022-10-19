@@ -18,7 +18,7 @@ export class TimerTicking {
 	public timer_full: any;
 	public pauseButtonClicked: any;
 
-  constructor(game, levelStart) {
+  constructor(game:any, levelStart:any) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
@@ -30,7 +30,7 @@ export class TimerTicking {
     this.isTimerEnded = false;
     this.levelStart = levelStart;
     this.isTimerRunningOut = false;
-    self = this;
+    var self = this;
     this.createCanvas();
 
   }

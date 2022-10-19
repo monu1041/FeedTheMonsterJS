@@ -1,5 +1,7 @@
 import { firebaseConfig } from "./firebase_config.js";
 export class FirebaseIntegration {
+  app: any;
+  analytics: any;
   constructor() {
     this.init();
   }
