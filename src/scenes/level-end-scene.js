@@ -10,11 +10,19 @@ var audioUrl = {
   intro: "./assets/audios/intro.wav",
 };
 export class LevelEndScene {
-  constructor(canvas, score, monster, levelEndCallBack, levelData) {
+  constructor(
+    canvas,
+    score,
+    monster,
+    levelEndCallBack,
+    levelData,
+    isGamePause
+  ) {
     this.canvas = canvas;
     this.canvasStack = new CanvasStack("canvas");
     this.monster = monster;
     this.levelData = levelData;
+    this.isGamePause = isGamePause;
     this.starCount =
       score == 200
         ? 1
@@ -42,9 +50,22 @@ export class LevelEndScene {
       this.monster.changeImage("./assets/images/sad14.png");
     } else {
       this.canvas.scene.audio.changeSourse(audioUrl.levelWin);
-      this.canvas.scene.audio.changeSourse(audioUrl.intro);
+      if (!this.isGamePause) {
+        this.canvas.scene.audio.changeSourse(audioUrl.intro);
+      }
       this.monster.changeImage("./assets/images/happy14.png");
     }
+    document.addEventListener(
+      "visibilitychange",
+      function () {
+        if (document.visibilityState === "visible") {
+          self.canvas.scene.audio.playSound("./assets/audios/intro.wav");
+        } else {
+          self.canvas.scene.audio.pauseSound();
+        }
+      },
+      false
+    );
     this.monster.changeZindex(9);
     var self = this;
     this.id = this.canvasStack.createLayer(

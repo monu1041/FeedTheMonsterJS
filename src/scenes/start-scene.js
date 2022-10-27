@@ -5,6 +5,7 @@ import {
   PlayButtonLayer,
   PWAInstallStatus,
   StartSceneLayer,
+  UserCancelled,
 } from "../common/common.js";
 import Sound from "../common/sound.js";
 import InstallButton from "../components/buttons/install_button.js";
@@ -139,12 +140,15 @@ export class StartScene {
           self.firebase_analytics
             ? self.firebase_analytics.logEvent(FirebaseUserClicked, "click")
             : null;
-          if (self.pwa_status == "false" || !self.pwa_status ) {
+          if (self.pwa_status == "false" || !self.pwa_status) {
             pwa_install_status.prompt();
             const { outcome } = await pwa_install_status.userChoice;
             if (outcome === "accepted") {
               pwa_install_status = null;
               localStorage.setItem(PWAInstallStatus, true);
+              fbq("trackCustom", FirebaseUserInstall, {
+                event: "install_count",
+              });
               self.firebase_analytics
                 ? self.firebase_analytics.logEvent(
                     FirebaseUserInstall,
@@ -152,13 +156,21 @@ export class StartScene {
                   )
                 : null;
               window.location.reload();
+            } else {
+              fbq("trackCustom", UserCancelled, {
+                event: "cancel_count",
+              });
+              self.firebase_analytics
+                ? self.firebase_analytics.logEvent(UserCancelled, "Cancelled")
+                : null;
             }
           } else {
             if (
               !window.matchMedia("(display-mode: standalone)").matches &&
               self.pwa_status == "true"
             ) {
-              alert("PWA is installed on your device \nPlease play from there");
+              document.getElementById("pwa_app").click();
+              // alert("PWA is installed on your device \nPlease play from there");
             } else {
               document.getElementById("about-company").style.display = "none";
               delete new Sound().changeSourse(
