@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/curiouslearning/FeedTheMonsterJS#readme",
   "dependencies": {
+    "@capacitor/android": "^4.4.0",
+    "@capacitor/cli": "^4.4.0",
+    "@capacitor/core": "^4.4.0",
     "webpack": "^5.74.0"
   },
   "devDependencies": {
