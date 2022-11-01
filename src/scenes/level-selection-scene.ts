@@ -74,7 +74,7 @@ export class LevelSelectionScreen {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.context.drawImage(map, 0, 0, this.canvas.width, this.canvas.height);
 
-    self.style.zIndex = "2";
+    this.canavsElement.style.zIndex = "2";
 
     this.levelButtonpos = [
       [
@@ -100,11 +100,11 @@ export class LevelSelectionScreen {
       ],
     ];
 
-    self.addEventListener(
+    this.canavsElement.addEventListener(
       "mousedown",
       function (event: any) {
         event.preventDefault();
-        var rect = self.getBoundingClientRect();
+        var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         for (let s of self.levels) {
@@ -159,7 +159,7 @@ export class LevelSelectionScreen {
     );
   }
   startGame(level_number: any) {
-    self.LevelStartScene.deleteObjects();
+    // self.LevelStartScene.deleteObjects();
     new Game(
       self.canvas.width,
       self.canvas.height,
