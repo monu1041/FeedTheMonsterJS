@@ -148,7 +148,7 @@ export class StartScene {
       );
     }
 
-    playButtonLayerElement.addEventListener(
+    document.getElementById(PlayButtonLayer).addEventListener(
       "click",
       async function (event) {
         const selfElement = <HTMLElement>document.getElementById(self.id);
