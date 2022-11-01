@@ -14,10 +14,10 @@ import {
   TimetickerLayer,
   PromptTextLayer,
 } from "../common/common.js";
-import { LevelEndScene } from "./level-end-scene";
 import { LevelStartLayer } from "../common/common.js";
 import { GameEndScene } from "./game-end-scene.js";
 import Sound from "../common/sound.js";
+import { LevelEndScene } from "./level-end-scene.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",

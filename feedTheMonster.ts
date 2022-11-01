@@ -10,13 +10,13 @@ import {
   setDataToStorage,
 } from "./src/data/profile-data.js";
 import { PWAInstallStatus } from "./src/common/common.js";
-import firebase from "firebase";
+//import firebase from "firebase";
 declare const window: any;
 declare const app: any;
 window.addEventListener("load", async function () {
   if (navigator.onLine) {
-    this.app = firebase.initializeApp(firebaseConfig);
-    this.analytics = firebase.analytics(app);
+    // this.app = firebase.initializeApp(firebaseConfig);
+    // this.analytics = firebase.analytics(app);
   }
   const canvas: any = <HTMLElement>document.getElementById("canvas");
   canvas.height = window.innerHeight;

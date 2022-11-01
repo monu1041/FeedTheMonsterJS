@@ -22,7 +22,7 @@ export class TimerTicking {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
-    this.widthToClear = canvas.width / 3.4;
+    this.widthToClear = this.game.width / 3.4;
     this.maxLimitExhausted = false;
     this.canvasStack = new CanvasStack("canvas");
     this.timer = 0;
@@ -71,25 +71,25 @@ export class TimerTicking {
   update() {
     if (this.isTimerStarted) {
       this.timer += 0.06;
-      if (canvas.width * 1.3 - this.widthToClear - 10 * this.timer > 55) {
+      if (this.game.width * 1.3 - this.widthToClear - 10 * this.timer > 55) {
         this.context.clearRect(
-          canvas.width * 1.3 - this.widthToClear - 10 * this.timer,
+          this.game.width * 1.3 - this.widthToClear - 10 * this.timer,
           0,
           this.width,
           this.height
         );
       }
       if (
-        canvas.width * 1.3 - this.widthToClear - 10 * this.timer < 100 &&
-        canvas.width * 1.3 - this.widthToClear - 10 * this.timer > 54 &&
+        this.game.width * 1.3 - this.widthToClear - 10 * this.timer < 100 &&
+        this.game.width * 1.3 - this.widthToClear - 10 * this.timer > 54 &&
         !this.isTimerRunningOut
       ) {
         this.isTimerRunningOut = true;
         this.levelStart.audio.changeSourse("./assets/audios/timeout.mp3");
       }
       if (
-        canvas.width * 1.3 - this.widthToClear - 10 * this.timer < 55 &&
-        canvas.width * 1.3 - this.widthToClear - 10 * this.timer > 54
+        this.game.width * 1.3 - this.widthToClear - 10 * this.timer < 55 &&
+        this.game.width * 1.3 - this.widthToClear - 10 * this.timer > 54
       ) {
         this.isTimerRunningOut = false;
         this.isTimerEnded = true;
@@ -125,3 +125,4 @@ export class TimerTicking {
     this.isTimerStarted = true;
     this.pauseButtonClicked = false;
   }
+}

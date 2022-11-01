@@ -28,7 +28,7 @@ export class Monster {
 	public canavsElement: any;
 	public context: any;
 
-  constructor(game, zindex, imageSrc) {
+  constructor(game, zindex?,) {
     this.game = game;
     self = this;
     this.zindex = zindex;

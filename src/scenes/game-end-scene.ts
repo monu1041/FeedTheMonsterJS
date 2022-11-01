@@ -48,7 +48,7 @@ export class GameEndScene {
     deleteCanvas() {
       (document.getElementById("discription-text") as HTMLElement).style.display = "none";
       this.canvasStack.deleteLayer(this.id);
-      delete this;
+      //delete this;
     }
 
     draw() {

@@ -6,7 +6,7 @@ export var CanvasStack;
   class Layer {
     id: any;
     cElem: any;
-    dragObjects: never[];
+    dragObjects: [];
     constructor({
       canvasID,
       canvasElement,
