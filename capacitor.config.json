@@ -1,0 +1,6 @@
+{
+  "appId": "com.curiousLearning.FTMWEB",
+  "appName": "Feed-The-Monster",
+  "webDir": "build",
+  "bundledWebRuntime": false
+}

@@ -16,6 +16,47 @@
         a.appendChild(r);
       })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
     </script>
+    
+    <!-- Facebook Pixel Code -->
+    <meta
+      name="facebook-domain-verification"
+      content="paiq9ccapyi9yz99wxwrx3ikuwvhiv"
+    />
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "3165489767069069");
+    </script>
+    <noscript>
+      <img
+        height="1"
+        width="1"
+        src="https://www.facebook.com/tr?id=3165489767069069&ev=PageView
+ &noscript=1"
+      />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
     <meta name="viewport" content="width=device-width, user-scalable=no" />
     <link rel="stylesheet" href="./index.css" />
     <title>Feed The Monster</title>
@@ -31,6 +72,12 @@
   <body>
     <div class="game-scene">
       <h1 id="version-info-id">version:"1.0.0"</h1>
+      <!--Keep the server url in href-->
+      <a
+        href="https://devcuriousreader.wpcomstaging.com/FeedTheMonsterJS2.2/"
+        target="_blank"
+        id="pwa_app"
+      ></a>
       <div class="loader" id="loading"></div>
       <img id="monster" src="./assets/images/idle4.png" alt="loading" />
       <div id="discription-text">
@@ -57,7 +104,7 @@
     <!-- <script defer type="module" src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
         <script defer type="module" src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script> -->
     <script type="module" src="feedTheMonster.js"></script>
-    <!-- <script src="sw.js" type="text/javascript"></script> -->
+    <script type="module" src="https://storage.googleapis.com/workbox-cdn/releases/6.4.1/workbox-sw.js"></script>
     <script
       type="module"
       src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"
