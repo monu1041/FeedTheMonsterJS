@@ -5,6 +5,7 @@ import {
   PlayButtonLayer,
   PWAInstallStatus,
   StartSceneLayer,
+  UserCancelled,
 } from "../common/common.js";
 import Sound from "../common/sound.js";
 import InstallButton from "../components/buttons/install_button.js";
@@ -183,6 +184,9 @@ export class StartScene {
             if (outcome === "accepted") {
               pwa_install_status = null;
               localStorage.setItem(PWAInstallStatus, "true");
+              fbq("trackCustom", FirebaseUserInstall, {
+                event: "install_count",
+              });
               self.firebase_analytics
                 ? self.firebase_analytics.logEvent(
                     FirebaseUserInstall,
@@ -190,6 +194,14 @@ export class StartScene {
                   )
                 : null;
               window.location.reload();
+            }
+            else {
+              fbq("trackCustom", UserCancelled, {
+                event: "cancel_count",
+              });
+              self.firebase_analytics
+                ? self.firebase_analytics.logEvent(UserCancelled, "Cancelled")
+                : null;
             }
           } else {
             if (
