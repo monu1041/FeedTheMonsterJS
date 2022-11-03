@@ -3,16 +3,18 @@ import { CanvasStack } from "../utility/canvas-stack.js";
 import CancelButton from "./buttons/cancel_button.js";
 import CloseButton from "./buttons/close_button.js";
 import RetryButton from "./buttons/retry_button.js";
+import { LevelStartScene } from "../scenes/level-start-scene.js";
 
 export default class PausePopUp {
-  public canvas: any;
-  public levelStart: any;
+  public canvas: HTMLCanvasElement;
+  public levelStart: LevelStartScene;
+  public context: CanvasRenderingContext2D;
+  public cancelButton: CancelButton;
+  public retryButton: RetryButton;
+  public closeButton: CloseButton;
+
   public canvasStack: any;
   public id: any;
-  public context: any;
-  public cancelButton: any;
-  public retryButton: any;
-  public closeButton: any;
 
   constructor(canvas, levelStart) {
     this.canvas = canvas;

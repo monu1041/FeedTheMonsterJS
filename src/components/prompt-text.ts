@@ -1,22 +1,26 @@
 import { PromptTextLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
+import { Game } from "../scenes/game.js";
+import { LevelStartScene } from "../scenes/level-start-scene.js";
 var self;
 export class PromptText {
-	public game: any;
-	public width: any;
-	public height: any;
-	public canvasStack: any;
-	public levelStart: any;
-	public levelData: any;
-	public currentPromptText: any;
-	public currentPuzzleData: any;
-	public fntstOrGrtImgArr: any;
-	public fantastic_image: any;
-	public great_image: any;
-	public id: any;
-	public canavsElement: any;
-	public context: any;
-	public prompt_image: any;
+  public game: Game;
+  public width: number;
+  public height: number;
+  public levelStart: LevelStartScene;
+
+  public canvasStack: any;
+
+  public levelData: any;
+  public currentPromptText: any;
+  public currentPuzzleData: any;
+  public fntstOrGrtImgArr: any;
+  public fantastic_image: any;
+  public great_image: any;
+  public id: any;
+  public canavsElement: any;
+  public context: any;
+  public prompt_image: any;
 
   constructor(game, levelStart, currentPuzzleData, levelData) {
     this.game = game;

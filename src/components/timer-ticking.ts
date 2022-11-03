@@ -1,24 +1,26 @@
 import { TimetickerLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
+import { Game } from "../scenes/game.js";
+import { LevelStartScene } from "../scenes/level-start-scene.js";
 export class TimerTicking {
-	public game: any;
-	public width: any;
-	public height: any;
-	public widthToClear: any;
-	public maxLimitExhausted: any;
-	public canvasStack: any;
-	public timer: any;
-	public isTimerStarted: any;
-	public isTimerEnded: any;
-	public levelStart: any;
-	public isTimerRunningOut: any;
-	public id: any;
-	public canavsElement: any;
-	public context: any;
-	public timer_full: any;
-	public pauseButtonClicked: any;
+  public game: Game;
+  public width: number;
+  public height: number;
+  public widthToClear: number;
+  public maxLimitExhausted: boolean;
+  public timer: number;
+  public isTimerStarted: boolean;
+  public isTimerEnded: boolean;
+  public levelStart: LevelStartScene;
+  public isTimerRunningOut: boolean;
+  public canavsElement: HTMLCanvasElement;
+  public context: CanvasRenderingContext2D;
+  public timer_full: HTMLImageElement;
+  public pauseButtonClicked: boolean;
+  public canvasStack: any;
+  public id: any;
 
-  constructor(game:any, levelStart:any) {
+  constructor(game: any, levelStart: any) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
@@ -32,7 +34,6 @@ export class TimerTicking {
     this.isTimerRunningOut = false;
     var self = this;
     this.createCanvas();
-
   }
   createCanvas() {
     this.id = this.canvasStack.createLayer(
@@ -40,9 +41,9 @@ export class TimerTicking {
       this.width,
       TimetickerLayer
     );
-    this.canavsElement = document.getElementById(this.id);
+    this.canavsElement = document.getElementById(this.id) as HTMLCanvasElement;
     this.context = this.canavsElement.getContext("2d");
-    this.canavsElement.style.zIndex = 4;
+    this.canavsElement.style.zIndex = '4';
     // this.animation(0);
   }
   deleteCanvas() {
@@ -101,13 +102,12 @@ export class TimerTicking {
   beginTimerOnStart() {
     var self = this;
     setTimeout(() => {
-      if(!this.pauseButtonClicked){
+      if (!this.pauseButtonClicked) {
         if (!self.isTimerStarted && self.timer == 0) {
           self.timer = 0;
           self.isTimerStarted = true;
         }
       }
-      
     }, 6000);
   }
   stopTimer() {

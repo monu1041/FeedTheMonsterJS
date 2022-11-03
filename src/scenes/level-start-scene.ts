@@ -122,7 +122,7 @@ export class LevelStartScene {
     this.puzzleData = levelData.puzzles;
   }
 
-  levelEndCallBack(button_name: string) {
+  levelEndCallBack(button_name?: string) {
     if (!isGamePause) {
       isGamePause = true;
       if (isLevelEnded) {

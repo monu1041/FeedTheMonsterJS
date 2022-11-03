@@ -1,11 +1,11 @@
 export class StoneConfig {
-  public x: any;
-  public y: any;
-  public origx: any;
-  public origy: any;
-  public drawready: any;
-  public text: any;
-  public img: any;
+  public x: number;
+  public y: number;
+  public origx: number;
+  public origy: number;
+  public drawready: boolean;
+  public text: string;
+  public img: CanvasImageSource;
 
   constructor(stoneLetter, xPos, yPos) {
     this.x = xPos;
