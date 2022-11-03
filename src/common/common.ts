@@ -18,7 +18,7 @@ export function loadImages(sources: any, callback: any) {
     images[src].src = sources[src];
   }
 }
-export function loadingScreen(loading: any) {
+export function loadingScreen(loading: boolean) {
   const loadingElement = <HTMLElement>document.getElementById("loading");
 
   if (loading) {
