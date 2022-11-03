@@ -1,10 +1,33 @@
 export default class CloseButton {
-	public posX: any;
-	public posY: any;
-	public context: any;
-	public canvas: any;
+  public posX: number;
+  public posY: number;
+  public context: {
+    drawImage: (
+      arg0: HTMLImageElement,
+      arg1: number,
+      arg2: number,
+      arg3: number,
+      arg4: number
+    ) => void;
+  };
+  public canvas: { width: number };
 
-  constructor(context, canvas, posX, posY) {
+  constructor(
+    context: CanvasRenderingContext2D,
+    canvas: {
+      scene?: {
+        audio: {
+          changeSourse: (arg0: string) => void;
+          playSound: (arg0: string) => void;
+          pauseSound: () => void;
+        };
+      };
+      height?: number;
+      width: number;
+    },
+    posX: number,
+    posY: number
+  ) {
     this.posX = posX;
     this.posY = posY;
     this.context = context;
@@ -25,7 +48,7 @@ export default class CloseButton {
       );
     };
   }
-  onClick(xClick, yClick) {
+  onClick(xClick: number, yClick: number) {
     const distance = Math.sqrt(
       (xClick - this.posX - (this.canvas.width * 0.19) / 2) *
         (xClick - this.posX - (this.canvas.width * 0.19) / 2) +

@@ -17,10 +17,13 @@ export class TimerTicking {
   public context: CanvasRenderingContext2D;
   public timer_full: HTMLImageElement;
   public pauseButtonClicked: boolean;
-  public canvasStack: any;
-  public id: any;
+  public canvasStack: {
+    createLayer: (arg0: number, arg1: number, arg2: string) => any;
+    deleteLayer: (arg0: any) => void;
+  };
+  public id: string;
 
-  constructor(game: any, levelStart: any) {
+  constructor(game: Game, levelStart: LevelStartScene) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
@@ -43,7 +46,7 @@ export class TimerTicking {
     );
     this.canavsElement = document.getElementById(this.id) as HTMLCanvasElement;
     this.context = this.canavsElement.getContext("2d");
-    this.canavsElement.style.zIndex = '4';
+    this.canavsElement.style.zIndex = "4";
     // this.animation(0);
   }
   deleteCanvas() {

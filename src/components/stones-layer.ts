@@ -1,6 +1,7 @@
 import { StoneLayer } from "../common/common.js";
 import Sound from "../common/sound.js";
 import { StoneConfig } from "../common/stones-config.js";
+import { LevelStartScene } from "../scenes/level-start-scene.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import PauseButton from "./buttons/pause_button.js";
 import PausePopUp from "./pause-popup.js";
@@ -18,22 +19,42 @@ var pickedStone: {
   x: number;
   y: number;
   text: any;
-  origx: any;
-  origy: any;
+  origx: number;
+  origy: number;
 } | null;
 var offsetCoordinateValue = 32;
 export default class StonesLayer {
-  canvas: any;
-  levelStart: any;
-  width: any;
-  pausebutton: any;
-  canvasStack: any;
-  height: any;
-  puzzleData: any;
-  callBack: any;
-  id: any;
-  context: any;
-  constructor(canvas, puzzleData, pausebutton, callBack, levelStart) {
+  canvas: { width?: number; height: number; scene?: any };
+  levelStart: {
+    audio: { changeSourse: (arg0: string) => void };
+    timerTicking: { resumeTimer: () => void; pauseTimer: () => void };
+    levelEndCallBack: () => void;
+  };
+  width: number;
+  pausebutton: { onClick: (arg0: number, arg1: number) => any };
+  canvasStack: {
+    createLayer: (arg0: any, arg1: number, arg2: string) => any;
+    deleteLayer: (arg0: any) => void;
+  };
+  height: number;
+  puzzleData: {
+    prompt: { promptAudio: string; promptText: any };
+    targetStones: any;
+    foilStones: any;
+  };
+  callBack: (arg0: boolean, arg1: boolean) => void;
+  id: string;
+  context: CanvasRenderingContext2D;
+  constructor(
+    canvas: any,
+    puzzleData: any,
+    pausebutton: PauseButton,
+    callBack: {
+      (status: boolean, emptyTarget: boolean): void;
+      (arg0: boolean, arg1: boolean): void;
+    },
+    levelStart: LevelStartScene
+  ) {
     this.canvas = canvas;
     this.levelStart = levelStart;
     this.width = canvas.width;

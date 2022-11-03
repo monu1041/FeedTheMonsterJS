@@ -1,10 +1,43 @@
 export default class PauseButton {
-	public posX: any;
-	public posY: any;
-	public context: any;
-	public canvas: any;
+  public posX: number;
+  public posY: number;
+  public context: {
+    drawImage: (
+      arg0: HTMLImageElement,
+      arg1: number,
+      arg2: number,
+      arg3: number,
+      arg4: number
+    ) => void;
+  };
+  public canvas: { height: number };
 
-  constructor(context, canvas) {
+  constructor(
+    context: {
+      clearRect?: (
+        arg0: number,
+        arg1: number,
+        arg2: number,
+        arg3: number
+      ) => void;
+      drawImage:
+        | ((
+            arg0: HTMLImageElement,
+            arg1: number,
+            arg2: number,
+            arg3: number,
+            arg4: number
+          ) => void)
+        | ((
+            arg0: any,
+            arg1: number,
+            arg2: number,
+            arg3: number,
+            arg4: number
+          ) => void);
+    },
+    canvas: { width?: number; height: number }
+  ) {
     this.posX = canvas.width - canvas.height * 0.09;
     this.posY = 0;
     this.context = context;
@@ -25,7 +58,7 @@ export default class PauseButton {
       );
     };
   }
-  onClick(xClick, yClick) {
+  onClick(xClick: number, yClick: number) {
     const distance = Math.sqrt(
       (xClick - this.posX - (this.canvas.height * 0.09) / 2) *
         (xClick - this.posX - (this.canvas.height * 0.09) / 2) +

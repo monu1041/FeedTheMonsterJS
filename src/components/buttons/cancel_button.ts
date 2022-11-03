@@ -1,10 +1,29 @@
 export default class CancelButton {
-	public posX: any;
-	public posY: any;
-	public context: any;
-	public canvas: any;
+  public posX: number;
+  public posY: number;
+  public context: {
+    drawImage: (
+      arg0: HTMLImageElement,
+      arg1: number,
+      arg2: number,
+      arg3: number,
+      arg4: number
+    ) => void;
+  };
+  public canvas: { width: number };
 
-  constructor(context, canvas) {
+  constructor(
+    context: {
+      drawImage: (
+        arg0: HTMLImageElement,
+        arg1: number,
+        arg2: number,
+        arg3: number,
+        arg4: number
+      ) => void;
+    },
+    canvas: { width: number; height?: number }
+  ) {
     this.posX = canvas.width * 0.1 + (canvas.width * 0.15) / 2;
     this.posY = canvas.height * 0.2;
     this.context = context;
