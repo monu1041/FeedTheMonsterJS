@@ -11,7 +11,15 @@ import {
 } from "./src/data/profile-data.js";
 import { PWAInstallStatus } from "./src/common/common.js";
 //import firebase from "firebase";
-declare const window: any;
+declare const window: {
+  addEventListener: (
+    arg0: string,
+    arg1: { (): Promise<void>; (): Promise<void> }
+  ) => void;
+  innerHeight: number;
+  screen: { width: number };
+  innerWidth: number;
+};
 declare const app: any;
 window.addEventListener("load", async function () {
   if (navigator.onLine) {

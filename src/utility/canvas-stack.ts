@@ -26,7 +26,7 @@ export var CanvasStack;
     bkgCanvas: any;
     rawWidth: number;
     rawHeight: number;
-    constructor(cvsID, stackLimit) {
+    constructor(cvsID: string, stackLimit: number) {
       const savThis = this;
       this.cId = cvsID;
       this.stackLimit = stackLimit || 12;
@@ -48,7 +48,7 @@ export var CanvasStack;
       }
     }
 
-    createLayer(height, width, layerId) {
+    createLayer(height: string, width: string, layerId: any) {
       if (!this.isLayerExist(layerId)) {
         const w = width + "px",
           h = height + "px",
@@ -90,7 +90,7 @@ export var CanvasStack;
       }
     }
 
-    deleteLayer(ovlyId) {
+    deleteLayer(ovlyId: any) {
       // check background canvas is still there
       if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
         console.log("CanvasStack: missing background canvas");
@@ -125,7 +125,7 @@ export var CanvasStack;
       // clear any resize callbacks, the layers are gone
       this.bkgCanvas.resizeFns.length = 0; // remove any added handlers, leave the basic
     }
-    isLayerExist(layerID?) {
+    isLayerExist(layerID?: any) {
       for (let i = 1; i < this.bkgCanvas.layers.length; i++) {
         if (this.bkgCanvas.layers[i].id === layerID) {
           return true;

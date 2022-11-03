@@ -49,22 +49,34 @@ var noMoreTarget = false;
 var isLevelEnded = false;
 export class LevelStartScene {
   public game: any;
-  public width: any;
-  public height: any;
-  public monster: any;
-  public audio: any;
-  public canvasStack: any;
+  public width: number;
+  public height: number;
+  public monster: Monster;
+  public audio: Sound;
+  public canvasStack: {
+    createLayer: (arg0: number, arg1: number, arg2: string) => any;
+    deleteLayer: (arg0: any) => void;
+  };
   public levelData: any;
   public levelStartCallBack: any;
-  public timerTicking: any;
-  public promptText: any;
-  public stones: any;
-  public pauseButton: any;
+  public timerTicking: TimerTicking;
+  public promptText: PromptText;
+  public stones: StonesLayer;
+  public pauseButton: PauseButton;
   public puzzleData: any;
-  public id: any;
+  public id: string;
   public canavsElement: any;
-  public context: any;
-  public levelIndicators: any;
+  public context: {
+    clearRect: (arg0: number, arg1: number, arg2: number, arg3: number) => void;
+    drawImage: (
+      arg0: any,
+      arg1: number,
+      arg2: number,
+      arg3: number,
+      arg4: number
+    ) => void;
+  };
+  public levelIndicators: LevelIndicators;
   public bgImg: any;
   public pillerImg: any;
   public fenchImg: any;
@@ -73,7 +85,15 @@ export class LevelStartScene {
   public timer_empty: any;
   public rotating_clock: any;
 
-  constructor(game: any, levelData: any, levelStartCallBack: any) {
+  constructor({
+    game,
+    levelData,
+    levelStartCallBack,
+  }: {
+    game: any;
+    levelData: { puzzles: any[] };
+    levelStartCallBack: any;
+  }) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
@@ -102,7 +122,7 @@ export class LevelStartScene {
     this.puzzleData = levelData.puzzles;
   }
 
-  levelEndCallBack(button_name: any) {
+  levelEndCallBack(button_name: string) {
     if (!isGamePause) {
       isGamePause = true;
       if (isLevelEnded) {
@@ -149,13 +169,13 @@ export class LevelStartScene {
       }
     }
   }
-  getRandomInt(min: any, max: any) {
+  getRandomInt(min: number, max: number) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  redrawOfStones(status: any, emptyTarget: any) {
+  redrawOfStones(status: boolean, emptyTarget: boolean) {
     noMoreTarget = emptyTarget;
     var fntsticOrGrtIndex = self.getRandomInt(0, 1);
     if (status) {

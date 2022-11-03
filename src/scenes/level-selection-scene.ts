@@ -13,22 +13,27 @@ var map = new Image();
 map.src = "./assets/images/map.jpg";
 var star = new Image();
 star.src = "./assets/images/star.png";
-var levelNumber: any;
+var levelNumber: number;
 var self: any;
 export class LevelSelectionScreen {
-  public canvas: any;
-  public width: any;
-  public height: any;
-  public canvasStack: any;
-  public data: any;
-  public levels: any;
-  public sound: any;
-  public id: any;
+  public canvas: { width: number; height: number };
+  public width: number;
+  public height: number;
+  public canvasStack: {
+    createLayer: (arg0: number, arg1: number, arg2: string) => string;
+  };
+  public data: { levels: { levelMeta: { levelType: any } }[] };
+  public levels: any[];
+  public sound: Sound;
+  public id: string;
   public canavsElement: any;
   public context: any;
   public levelButtonpos: any;
 
-  constructor(canvas: any, data: any) {
+  constructor(
+    canvas: { width: any; height: any },
+    data: { levels: { levelMeta: { levelType: any } }[] }
+  ) {
     this.canvas = canvas;
     this.width = canvas.width;
     this.height = canvas.height;
@@ -102,7 +107,11 @@ export class LevelSelectionScreen {
 
     this.canavsElement.addEventListener(
       "mousedown",
-      function (event: any) {
+      function (event: {
+        preventDefault: () => void;
+        clientX: number;
+        clientY: number;
+      }) {
         event.preventDefault();
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
@@ -127,7 +136,7 @@ export class LevelSelectionScreen {
     );
     this.createLevelButtons(this.levelButtonpos);
   }
-  createLevelButtons(levelButtonpos: any) {
+  createLevelButtons(levelButtonpos: any[]) {
     var poss = levelButtonpos[0];
     var i = 0;
     for (let s = 0; s < 10; s++) {
@@ -142,7 +151,10 @@ export class LevelSelectionScreen {
       this.drawlevel(s, this.canvas);
     }
   }
-  drawlevel(s: any, canvas: any) {
+  drawlevel(
+    s: { x: number; y: number; index: number },
+    canvas: { width?: number; height: number }
+  ) {
     var imageSize = canvas.height / 5;
     var textFontSize = imageSize / 6;
 
@@ -158,7 +170,7 @@ export class LevelSelectionScreen {
       s.y + imageSize / 1.3
     );
   }
-  startGame(level_number: any) {
+  startGame(level_number: number) {
     // self.LevelStartScene.deleteObjects();
     new Game(
       self.canvas.width,
@@ -183,7 +195,7 @@ export class LevelSelectionScreen {
       }
     }
   }
-  drawStar(s: any, canvas: any, starCount: any) {
+  drawStar(s: { x: number; y: number }, canvas: any, starCount: number) {
     var canavsElement = <HTMLCanvasElement>(
       document.getElementById("levelSelectionCanvas")
     );

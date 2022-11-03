@@ -10,6 +10,7 @@ import Sound from "../common/sound.js";
 import InstallButton from "../components/buttons/install_button.js";
 import PlayButton from "../components/buttons/play_butoon.js";
 import { Monster } from "../components/monster.js";
+import { DataModal } from "../data/data-modal.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { LevelSelectionScreen } from "./level-selection-scene.js";
 
@@ -27,8 +28,8 @@ var title = new Image();
 title.src = "./assets/images/title.png";
 var profileMonster = new Image();
 profileMonster.src = "./assets/images/idle4.png";
-var self;
-let pwa_install_status;
+var self: any;
+let pwa_install_status: any;
 const aboutCompanyElement = <HTMLElement>(
   document.getElementById("about-company")
 );
@@ -38,22 +39,38 @@ window.addEventListener("beforeinstallprompt", (e) => {
   localStorage.setItem(PWAInstallStatus, "false");
 });
 export class StartScene {
-  public canvas: any;
+  public canvas: { width: number; height: number };
   public data: any;
-  public width: any;
-  public height: any;
-  public canvasStack: any;
-  public monster: any;
-  public pwa_status: any;
-  public firebase_analytics: any;
-  public id: any;
+  public width: number;
+  public height: number;
+  public canvasStack: {
+    createLayer: (arg0: number, arg1: number, arg2: string) => any;
+    deleteLayer: (arg0: string) => void;
+  };
+  public monster: Monster;
+  public pwa_status: string;
+  public firebase_analytics: { logEvent: (arg0: string, arg1: string) => any };
+  public id: string;
   public canavsElement: any;
-  public context: any;
+  public context: {
+    clearRect: (arg0: number, arg1: number, arg2: number, arg3: number) => void;
+    drawImage: (
+      arg0: HTMLImageElement,
+      arg1: number,
+      arg2: number,
+      arg3: number,
+      arg4: number
+    ) => void;
+  };
   public buttonContext: any;
   public outcome: any;
   public playButton: any;
 
-  constructor(canvas: any, data: any, firebase_analytics: any) {
+  constructor(
+    canvas: HTMLCanvasElement,
+    data: DataModal,
+    firebase_analytics: { logEvent: (arg0: string, arg1: string) => any }
+  ) {
     self = this;
     this.canvas = canvas;
     this.data = data;
