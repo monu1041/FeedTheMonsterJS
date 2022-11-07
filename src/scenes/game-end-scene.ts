@@ -3,6 +3,7 @@ import {
     GameEndLayer,
   loadImages
 } from "../common/common.js";
+import { Game } from "./game.js";
 
 var images = {
     bgImg: "./assets/images/bg_v01.jpg",
@@ -15,15 +16,15 @@ var images = {
 };
 var self;
 export class GameEndScene {
-	public game: any;
-	public width: any;
-	public height: any;
+	public game: Game;
+	public width: number;
+	public height: number;
 	public canvasStack: any;
-	public id: any;
-	public canavsElement: any;
+	public id: string;
+	public canavsElement: HTMLCanvasElement;
 	public context: any;
 
-    constructor(game) {
+    constructor(game:Game) {
       this.game = game;
       this.width = game.width;
       this.height = game.height;
@@ -38,9 +39,9 @@ export class GameEndScene {
         this.width,
         GameEndLayer
       );
-      this.canavsElement = document.getElementById(this.id);
+      this.canavsElement = (document.getElementById(this.id) as HTMLCanvasElement);
       this.context = this.canavsElement.getContext("2d");
-      this.canavsElement.style.zIndex = 3;
+      this.canavsElement.style.zIndex = '3';
       (document.getElementById("discription-text") as HTMLElement).style.display = "block";
       this.createBackgroud()
     }

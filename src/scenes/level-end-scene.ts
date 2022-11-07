@@ -2,28 +2,30 @@ import { LevelEndButtonsLayer, LevelEndLayer } from "../common/common.js";
 import CloseButton from "../components/buttons/close_button.js";
 import NextButton from "../components/buttons/next_button.js";
 import RetryButton from "../components/buttons/retry_button.js";
+import { Monster } from "../components/monster.js";
 import { ProfileData, setDataToStorage } from "../data/profile-data.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
+import { Game } from "./game.js";
 var audioUrl = {
   levelWin: "./assets/audios/LevelWinFanfare.mp3",
   levelLose: "./assets/audios/LevelLoseFanfare.mp3",
   intro: "./assets/audios/intro.wav",
 };
 export class LevelEndScene {
-	public canvas: any;
+	public canvas: Game;
 	public canvasStack: any;
-	public monster: any;
+	public monster: Monster;
 	public levelData: any;
-	public isGamePause: any;
-	public starCount: any;
+	public isGamePause: boolean;
+	public starCount: number;
 	public levelEndCallBack: any;
-	public id: any;
+	public id: string;
 	public context: any;
 	public bottonLayer: any;
 	public bottonContext: any;
-	public nextButton: any;
-	public retryButton: any;
-	public closeButton: any;
+	public nextButton: NextButton;
+	public retryButton: RetryButton;
+	public closeButton: CloseButton;
 
   constructor(
     canvas,
