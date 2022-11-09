@@ -321,6 +321,7 @@ export class LevelStartScene {
         current_puzzle_index
       );
       if (current_puzzle_index == self.puzzleData.length) {
+        isLevelEnded = true;
         self.levelStartCallBack();
         delete self.timerTicking;
         delete new LevelEndScene(
