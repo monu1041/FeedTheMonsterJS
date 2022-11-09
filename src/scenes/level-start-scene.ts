@@ -369,7 +369,6 @@ export class LevelStartScene {
       if (current_puzzle_index == self.puzzleData.length) {
         self.levelStartCallBack();
         delete self.timerTicking;
-        self.deleteObjects();
         new LevelEndScene(
           self.game,
           score,
