@@ -12,8 +12,11 @@ var map = new Image();
 map.src = "./assets/images/map.jpg";
 var star = new Image();
 star.src = "./assets/images/star.png";
+var next = new Image();
+next.src = "./assets/images/next_btn.png";
 var levelNumber;
 var self;
+var level = 0;
 export class LevelSelectionScreen {
   constructor(canvas, data) {
     this.canvas = canvas;
@@ -90,6 +93,15 @@ export class LevelSelectionScreen {
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
+        if (x >= 300 && x < 350 && y > 500 && y < 560) {
+          if (level == 0) {
+            level = 10;
+          } else {
+            level = 0;
+          }
+          self.draw(level);
+          self.downButton(level);
+        }
         for (let s of self.levels) {
           if (
             Math.sqrt(
@@ -101,7 +113,7 @@ export class LevelSelectionScreen {
           ) {
             self.sound.changeSourse("./assets/audios/ButtonClick.wav");
             self.sound.pauseSound();
-            levelNumber = s.index - 1;
+            levelNumber = s.index + level - 1;
             self.startGame(levelNumber);
           }
         }
@@ -118,14 +130,29 @@ export class LevelSelectionScreen {
       self.levels.push(ns);
       i += 1;
     }
-    this.draw();
+    this.draw(level);
+    this.downButton(level);
   }
-  draw() {
+  draw(level) {
+    console.log("drawing");
     for (let s of self.levels) {
-      this.drawlevel(s, canvas);
+      this.drawlevel(s, canvas, level);
     }
   }
+  downButton(level) {
+    var imageSize = canvas.height / 10;
+    this.context.drawImage(next, 300, 500, imageSize, imageSize);
+    // if (level != 0) {
+    //   this.context.clearRect(300, 500, imageSize, imageSize);
+    //   this.context.save();
+    //   this.context.translate(imageSize, imageSize);
+    //   this.context.rotate(90);
+    //   this.context.drawImage(next, 300, 500, imageSize, imageSize);
+    // }
+  }
+
   drawlevel(s, canvas) {
+    console.log("hello");
     var imageSize = canvas.height / 5;
     var textFontSize = imageSize / 6;
 
@@ -133,10 +160,14 @@ export class LevelSelectionScreen {
     this.context.fillStyle = "white";
     this.context.font = textFontSize + "px Arial";
     this.context.textAlign = "center";
-    this.context.fillText(s.index, s.x + imageSize / 3.5, s.y + imageSize / 3);
+    this.context.fillText(
+      s.index + level,
+      s.x + imageSize / 3.5,
+      s.y + imageSize / 3
+    );
     this.context.font = textFontSize - imageSize / 30 + "px Arial";
     this.context.fillText(
-      this.data.levels[s.index - 1].levelMeta.levelType,
+      this.data.levels[s.index + level - 1].levelMeta.levelType,
       s.x + imageSize / 3.5,
       s.y + imageSize / 1.3
     );
