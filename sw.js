@@ -78,7 +78,7 @@ if ("serviceWorker" in navigator) {
           return cache.addAll(filesToCache);
         });
       });
-      fetch("./ftm_english.json", {
+      fetch("./ftm_french.json", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
