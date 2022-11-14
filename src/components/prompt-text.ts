@@ -85,7 +85,7 @@ export class PromptText {
   deleteCanvas() {
     this.canvasStack.deleteLayer(this.id);
   }
-  draw() {
+  draw(droppedStones: number = 0) {
     this.context.clearRect(0, 0, this.width, this.height);
     this.context.drawImage(
       this.prompt_image,
@@ -102,15 +102,33 @@ export class PromptText {
     const y = this.height * 0.26;
     for (let i = 0; i < promptTextLetters.length; i++) {
       // this.context.textAlign = "center";
-      if (
-        this.currentPuzzleData.targetStones.includes(promptTextLetters[i]) &&
-        this.levelData.levelMeta.levelType == "LetterInWord"
-      ) {
-        this.context.fillStyle = "red";
-        this.context.fillText(promptTextLetters[i], x + 20 * i, y);
-      } else {
-        this.context.fillStyle = "black";
-        this.context.fillText(promptTextLetters[i], x + 20 * i, y);
+      switch (this.levelData.levelMeta.levelType) {
+        case "LetterInWord": {
+          if (
+            this.currentPuzzleData.targetStones.includes(promptTextLetters[i])
+          ) {
+            this.context.fillStyle = "red";
+            this.context.fillText(promptTextLetters[i], x + 20 * i, y);
+          } else {
+            this.context.fillStyle = "black";
+            this.context.fillText(promptTextLetters[i], x + 20 * i, y);
+          }
+          break;
+        }
+        case "Word": {
+          if (droppedStones > i || droppedStones == undefined) {
+            this.context.fillStyle = "black";
+            this.context.fillText(promptTextLetters[i], x + 20 * i, y);
+          } else {
+            this.context.fillStyle = "red";
+            this.context.fillText(promptTextLetters[i], x + 20 * i, y);
+          }
+          break;
+        }
+        default: {
+          this.context.fillStyle = "black";
+          this.context.fillText(promptTextLetters[i], x + 20 * i, y);
+        }
       }
     }
     // this.context.fillText(

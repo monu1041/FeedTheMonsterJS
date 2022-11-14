@@ -42,6 +42,7 @@ var audioUrl = {
   buttonClick: "./assets/audios/ButtonClick.wav",
 };
 var self: any;
+var word_dropped_stones = 0;
 var current_puzzle_index = 0;
 var score = 0;
 var isGamePause = false;
@@ -186,11 +187,13 @@ export class LevelStartScene {
           self.audio.changeSourse(audioUrl.phraseAudios[fntsticOrGrtIndex]);
           self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
         }, 1000);
+        self.promptText.draw((word_dropped_stones += 1));
         self.timerTicking.stopTimer();
         score += 100;
-
+        word_dropped_stones = 0;
         current_puzzle_index += 1;
       } else {
+        self.promptText.draw((word_dropped_stones += 1));
       }
     } else {
       self.timerTicking.stopTimer();
@@ -287,6 +290,7 @@ export class LevelStartScene {
     self.canvasStack.deleteLayer(PromptTextLayer);
     self.monster.changeImage("./assets/images/idle4.png");
     self.deleteObjects();
+    word_dropped_stones = 0;
   }
   deleteObjects() {
     delete self.monster;
