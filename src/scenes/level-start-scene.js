@@ -320,6 +320,7 @@ export class LevelStartScene {
     if (self.timerTicking.isTimerEnded) {
       self.stones.isTimerEnded();
       console.log("time's up");
+      word_dropped_stones = 0;
       current_puzzle_index += 1;
       self.stones.canvas.scene.levelIndicators.setIndicators(
         current_puzzle_index
