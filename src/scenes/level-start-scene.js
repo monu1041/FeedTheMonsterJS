@@ -226,6 +226,8 @@ export class LevelStartScene {
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
     });
+    var previousPlayedLevel = self.levelData.levelMeta.levelNumber;
+    localStorage.setItem("storePreviousPlayedLevel", previousPlayedLevel);
   }
 
   deleteCanvas() {
