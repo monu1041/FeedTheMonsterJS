@@ -91,6 +91,84 @@ export class LevelSelectionScreen {
         [this.canvas.width / 10, this.canvas.height / 1.3],
       ],
     ];
+    document.addEventListener("touchstart", handleTouchStart, false);
+    document.addEventListener("touchmove", handleTouchMove, false);
+
+    var xDown = null;
+    var yDown = null;
+
+    function getTouches(evt) {
+      return (
+        evt.touches || // browser API
+        evt.originalEvent.touches
+      ); // jQuery
+    }
+
+    function handleTouchStart(evt) {
+      const firstTouch = getTouches(evt)[0];
+      xDown = firstTouch.clientX;
+      yDown = firstTouch.clientY;
+    }
+
+    function handleTouchMove(evt) {
+      if (!xDown || !yDown) {
+        return;
+      }
+
+      var xUp = evt.touches[0].clientX;
+      var yUp = evt.touches[0].clientY;
+
+      var xDiff = xDown - xUp;
+      var yDiff = yDown - yUp;
+
+      if (Math.abs(xDiff) > Math.abs(yDiff)) {
+        /*most significant*/
+        if (xDiff > 0) {
+          if (level != 140) {
+            self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
+            self.context.drawImage(
+              map,
+              0,
+              0,
+              self.canvas.width,
+              self.canvas.height
+            );
+
+            level = level + 10;
+            self.draw(level);
+            self.downButton(level);
+            self.drawStars();
+            console.log(level);
+          }
+          /* right swipe */
+        } else {
+          if (level != 0) {
+            level = level - 10;
+          }
+          self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
+          self.context.drawImage(
+            map,
+            0,
+            0,
+            self.canvas.width,
+            self.canvas.height
+          );
+          self.draw(level);
+          self.downButton(level);
+          self.drawStars();
+          /* left swipe */
+        }
+      } else {
+        if (yDiff > 0) {
+          /* down swipe */
+        } else {
+          /* up swipe */
+        }
+      }
+      /* reset values */
+      xDown = null;
+      yDown = null;
+    }
     document.getElementById(this.id).addEventListener(
       "mousedown",
       function (event) {
@@ -98,7 +176,12 @@ export class LevelSelectionScreen {
         var rect = document.getElementById(this.id).getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        if (x >= 300 && x < 350 && y > 500 && y < 560) {
+        if (
+          x >= self.canvas.width * 0.7 &&
+          x < self.canvas.width * 0.7 + canvas.height / 10 &&
+          y > self.canvas.height / 1.3 &&
+          y < self.canvas.height / 1.3 + canvas.height / 10
+        ) {
           if (level != 140) {
             self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
             self.context.drawImage(
@@ -117,7 +200,12 @@ export class LevelSelectionScreen {
           }
         }
 
-        if (x >= 200 && x < 260 && y > 500 && y < 560) {
+        if (
+          x >= self.canvas.width * 0.5 &&
+          x < self.canvas.width * 0.5 + canvas.height / 10 &&
+          y > self.canvas.height / 1.3 &&
+          y < self.canvas.height / 1.3 + canvas.height / 10
+        ) {
           if (level != 0) {
             level = level - 10;
           }
@@ -171,8 +259,20 @@ export class LevelSelectionScreen {
   }
   downButton(level) {
     var imageSize = canvas.height / 10;
-    this.context.drawImage(nextbtn, 300, 500, imageSize, imageSize);
-    this.context.drawImage(backbtn, 200, 500, imageSize, imageSize);
+    this.context.drawImage(
+      nextbtn,
+      this.canvas.width * 0.7,
+      this.canvas.height / 1.3,
+      imageSize,
+      imageSize
+    );
+    this.context.drawImage(
+      backbtn,
+      this.canvas.width * 0.5,
+      this.canvas.height / 1.3,
+      imageSize,
+      imageSize
+    );
     // if (level != 0) {
     //   this.context.clearRect(300, 500, imageSize, imageSize);
     //   this.context.save();
