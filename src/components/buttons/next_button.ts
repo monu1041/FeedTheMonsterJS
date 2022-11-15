@@ -1,30 +1,14 @@
+import { Game } from "../../scenes/game";
+
 export default class NextButton {
   public posX: number;
   public posY: number;
-  public context: {
-    drawImage: (
-      arg0: HTMLImageElement,
-      arg1: number,
-      arg2: number,
-      arg3: number,
-      arg4: number
-    ) => void;
-  };
-  public canvas: { width: number };
+  public context: CanvasRenderingContext2D;
+  public canvas: Game;
 
   constructor(
     context: CanvasRenderingContext2D,
-    canvas: {
-      scene?: {
-        audio: {
-          changeSourse: (arg0: string) => void;
-          playSound: (arg0: string) => void;
-          pauseSound: () => void;
-        };
-      };
-      height?: number;
-      width: number;
-    },
+    canvas: Game,
     posX: number,
     posY: number
   ) {

@@ -40,7 +40,7 @@ window.addEventListener("beforeinstallprompt", (e) => {
   localStorage.setItem(PWAInstallStatus, "false");
 });
 export class StartScene {
-  public canvas: { width: number; height: number };
+  public canvas:HTMLCanvasElement;
   public data: any;
   public width: number;
   public height: number;
@@ -53,16 +53,7 @@ export class StartScene {
   public firebase_analytics: { logEvent: (arg0: string, arg1: string) => any };
   public id: string;
   public canavsElement: any;
-  public context: {
-    clearRect: (arg0: number, arg1: number, arg2: number, arg3: number) => void;
-    drawImage: (
-      arg0: HTMLImageElement,
-      arg1: number,
-      arg2: number,
-      arg3: number,
-      arg4: number
-    ) => void;
-  };
+  public context: CanvasRenderingContext2D;
   public buttonContext: any;
   public outcome: any;
   public playButton: any;

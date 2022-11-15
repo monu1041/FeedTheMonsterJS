@@ -67,16 +67,7 @@ export class LevelStartScene {
   public puzzleData: any;
   public id: string;
   public canavsElement: any;
-  public context: {
-    clearRect: (arg0: number, arg1: number, arg2: number, arg3: number) => void;
-    drawImage: (
-      arg0: any,
-      arg1: number,
-      arg2: number,
-      arg3: number,
-      arg4: number
-    ) => void;
-  };
+  public context: CanvasRenderingContext2D;
   public levelIndicators: LevelIndicators;
   public bgImg: any;
   public pillerImg: any;
@@ -260,7 +251,7 @@ export class LevelStartScene {
       LevelStartLayer
     );
     this.canavsElement = document.getElementById(this.id);
-    this.context = this.canavsElement.getContext("2d");
+    this.context = this.canavsElement.getContext("2d") as CanvasRenderingContext2D;
     this.canavsElement.style.zIndex = 3;
     this.pauseButton = new PauseButton(this.context, this.canavsElement);
     this.levelIndicators = new LevelIndicators(
@@ -365,6 +356,8 @@ export class LevelStartScene {
   changePuzzle() {
     if (self.timerTicking.isTimerEnded) {
       self.stones.isTimerEnded();
+      word_dropped_stones = 0;
+      console.log('*********')
       console.log("time's up");
       current_puzzle_index += 1;
       self.stones.canvas.scene.levelIndicators.setIndicators(

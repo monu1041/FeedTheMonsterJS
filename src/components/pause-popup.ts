@@ -4,9 +4,10 @@ import CancelButton from "./buttons/cancel_button.js";
 import CloseButton from "./buttons/close_button.js";
 import RetryButton from "./buttons/retry_button.js";
 import { LevelStartScene } from "../scenes/level-start-scene.js";
+import { Game } from "../scenes/game.js";
 
 export default class PausePopUp {
-  public canvas: HTMLCanvasElement;
+  public canvas: Game;
   public levelStart: LevelStartScene;
   public context: CanvasRenderingContext2D;
   public cancelButton: CancelButton;

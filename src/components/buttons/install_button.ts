@@ -1,30 +1,12 @@
 export default class InstallButton {
   public posX: number;
   public posY: number;
-  public context: {
-    clearRect: (arg0: number, arg1: number, arg2: any, arg3: any) => void;
-    drawImage: (
-      arg0: HTMLImageElement,
-      arg1: number,
-      arg2: number,
-      arg3: number,
-      arg4: number
-    ) => void;
-  };
-  public canvas: { width: number; height: number };
+  public context: CanvasRenderingContext2D;
+  public canvas: HTMLCanvasElement;
 
   constructor(
-    context: {
-      clearRect: (arg0: number, arg1: number, arg2: any, arg3: any) => void;
-      drawImage: (
-        arg0: HTMLImageElement,
-        arg1: number,
-        arg2: number,
-        arg3: number,
-        arg4: number
-      ) => void;
-    },
-    canvas: { width: number; height: number },
+    context: CanvasRenderingContext2D,
+    canvas: HTMLCanvasElement,
     posX: number,
     posY: number
   ) {

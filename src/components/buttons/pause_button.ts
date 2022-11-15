@@ -1,41 +1,11 @@
 export default class PauseButton {
   public posX: number;
   public posY: number;
-  public context: {
-    drawImage: (
-      arg0: HTMLImageElement,
-      arg1: number,
-      arg2: number,
-      arg3: number,
-      arg4: number
-    ) => void;
-  };
+  public context: CanvasRenderingContext2D;
   public canvas: { height: number };
 
   constructor(
-    context: {
-      clearRect?: (
-        arg0: number,
-        arg1: number,
-        arg2: number,
-        arg3: number
-      ) => void;
-      drawImage:
-        | ((
-            arg0: HTMLImageElement,
-            arg1: number,
-            arg2: number,
-            arg3: number,
-            arg4: number
-          ) => void)
-        | ((
-            arg0: any,
-            arg1: number,
-            arg2: number,
-            arg3: number,
-            arg4: number
-          ) => void);
-    },
+    context: CanvasRenderingContext2D,
     canvas: { width?: number; height: number }
   ) {
     this.posX = canvas.width - canvas.height * 0.09;
