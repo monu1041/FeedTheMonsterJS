@@ -88,7 +88,7 @@ export class LevelSelectionScreen {
           this.canvas.width / 3 + this.canvas.width / 2.8,
           this.canvas.height / 1.8,
         ],
-        [this.canvas.width / 10, this.canvas.height / 1.3],
+        [this.canvas.width / 2.5, this.canvas.height / 1.3],
       ],
     ];
     document.addEventListener("touchstart", handleTouchStart, false);
@@ -201,8 +201,8 @@ export class LevelSelectionScreen {
         }
 
         if (
-          x >= self.canvas.width * 0.5 &&
-          x < self.canvas.width * 0.5 + canvas.height / 10 &&
+          x >= self.canvas.width / 10 &&
+          x < self.canvas.width / 10 + canvas.height / 10 &&
           y > self.canvas.height / 1.3 &&
           y < self.canvas.height / 1.3 + canvas.height / 10
         ) {
@@ -268,7 +268,7 @@ export class LevelSelectionScreen {
     );
     this.context.drawImage(
       backbtn,
-      this.canvas.width * 0.5,
+      this.canvas.width / 10,
       this.canvas.height / 1.3,
       imageSize,
       imageSize
