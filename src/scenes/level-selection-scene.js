@@ -311,7 +311,7 @@ export class LevelSelectionScreen {
     );
   }
   drawStars() {
-    // this.sound.changeSourse("./assets/audios/intro.wav");
+    this.sound.changeSourse("./assets/audios/intro.wav");
     let gameLevelData = getDatafromStorage();
     let canvas = document.getElementById("canvas");
     if (gameLevelData != null) {
