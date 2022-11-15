@@ -17,10 +17,7 @@ export class TimerTicking {
   public context: CanvasRenderingContext2D;
   public timer_full: HTMLImageElement;
   public pauseButtonClicked: boolean;
-  public canvasStack: {
-    createLayer: (arg0: number, arg1: number, arg2: string) => any;
-    deleteLayer: (arg0: any) => void;
-  };
+  public canvasStack: any;
   public id: string;
 
   constructor(game: Game, levelStart: LevelStartScene) {

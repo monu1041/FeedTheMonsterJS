@@ -31,28 +31,18 @@ export default class StonesLayer {
     levelEndCallBack: () => void;
   };
   width: number;
-  pausebutton: { onClick: (arg0: number, arg1: number) => any };
-  canvasStack: {
-    createLayer: (arg0: any, arg1: number, arg2: string) => any;
-    deleteLayer: (arg0: any) => void;
-  };
+  pausebutton: PauseButton;
+  canvasStack: any;
   height: number;
-  puzzleData: {
-    prompt: { promptAudio: string; promptText: any };
-    targetStones: any;
-    foilStones: any;
-  };
-  callBack: (arg0: boolean, arg1: boolean) => void;
+  puzzleData: any;
+  callBack: any;
   id: string;
   context: CanvasRenderingContext2D;
   constructor(
     canvas: any,
     puzzleData: any,
     pausebutton: PauseButton,
-    callBack: {
-      (status: boolean, emptyTarget: boolean): void;
-      (arg0: boolean, arg1: boolean): void;
-    },
+    callBack: any,
     levelStart: LevelStartScene
   ) {
     this.canvas = canvas;

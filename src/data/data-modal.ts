@@ -34,7 +34,7 @@ export class OtherAudios {
   public watchMeGrow: any;
   public areYouSure: any;
 
-  constructor(otherAudios: { [x: string]: any }) {
+  constructor(otherAudios: any) {
     this.selctYourPlayer = otherAudios["Select your player"];
     this.watchMeGrow = otherAudios["Watch me grow"];
     this.areYouSure = otherAudios["Are you sure"];

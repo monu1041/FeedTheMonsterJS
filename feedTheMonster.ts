@@ -10,20 +10,12 @@ import {
   setDataToStorage,
 } from "./src/data/profile-data.js";
 import { PWAInstallStatus } from "./src/common/common.js";
-declare const window: {
-  addEventListener: (
-    arg0: string,
-    arg1: { (): Promise<void>; (): Promise<void> }
-  ) => void;
-  innerHeight: number;
-  screen: { width: number };
-  innerWidth: number;
-};
+declare const window: any;
 declare const app: any;
 window.addEventListener("load", async function () {
   if (navigator.onLine) {
     this.app = firebase.initializeApp(firebaseConfig);
-    this.analytics =firebase.analytics(this.app);
+    this.analytics = firebase.analytics(this.app);
   }
   const canvas: any = <HTMLElement>document.getElementById("canvas");
   canvas.height = window.innerHeight;

@@ -40,28 +40,25 @@ window.addEventListener("beforeinstallprompt", (e) => {
   localStorage.setItem(PWAInstallStatus, "false");
 });
 export class StartScene {
-  public canvas:HTMLCanvasElement;
+  public canvas: HTMLCanvasElement;
   public data: any;
   public width: number;
   public height: number;
-  public canvasStack: {
-    createLayer: (arg0: number, arg1: number, arg2: string) => any;
-    deleteLayer: (arg0: string) => void;
-  };
+  public canvasStack: any;
   public monster: Monster;
   public pwa_status: string;
-  public firebase_analytics: { logEvent: (arg0: string, arg1: string) => any };
+  public firebase_analytics: { logEvent: any };
   public id: string;
   public canavsElement: any;
   public context: CanvasRenderingContext2D;
-  public buttonContext: any;
+  public buttonContext: CanvasRenderingContext2D;
   public outcome: any;
-  public playButton: any;
+  public playButton: PlayButton | InstallButton;
 
   constructor(
     canvas: HTMLCanvasElement,
     data: DataModal,
-    firebase_analytics: { logEvent: (arg0: string, arg1: string) => any }
+    firebase_analytics: { logEvent: any }
   ) {
     self = this;
     this.canvas = canvas;
@@ -185,8 +182,7 @@ export class StartScene {
                   )
                 : null;
               window.location.reload();
-            }
-            else {
+            } else {
               fbq("trackCustom", UserCancelled, {
                 event: "cancel_count",
               });

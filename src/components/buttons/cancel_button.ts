@@ -2,7 +2,7 @@ export default class CancelButton {
   public posX: number;
   public posY: number;
   public context: CanvasRenderingContext2D;
-  public canvas: { width: number };
+  public canvas: { width: any; height?: number };
 
   constructor(
     context: CanvasRenderingContext2D,

@@ -18,6 +18,7 @@ import { LevelStartLayer } from "../common/common.js";
 import { GameEndScene } from "./game-end-scene.js";
 import Sound from "../common/sound.js";
 import { LevelEndScene } from "./level-end-scene.js";
+import { Game } from "./game";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -54,10 +55,7 @@ export class LevelStartScene {
   public height: number;
   public monster: Monster;
   public audio: Sound;
-  public canvasStack: {
-    createLayer: (arg0: number, arg1: number, arg2: string) => any;
-    deleteLayer: (arg0: any) => void;
-  };
+  public canvasStack: any;
   public levelData: any;
   public levelStartCallBack: any;
   public timerTicking: TimerTicking;
@@ -82,7 +80,7 @@ export class LevelStartScene {
     levelData,
     levelStartCallBack,
   }: {
-    game: any;
+    game: Game;
     levelData: { puzzles: any[] };
     levelStartCallBack: any;
   }) {
@@ -251,7 +249,9 @@ export class LevelStartScene {
       LevelStartLayer
     );
     this.canavsElement = document.getElementById(this.id);
-    this.context = this.canavsElement.getContext("2d") as CanvasRenderingContext2D;
+    this.context = this.canavsElement.getContext(
+      "2d"
+    ) as CanvasRenderingContext2D;
     this.canavsElement.style.zIndex = 3;
     this.pauseButton = new PauseButton(this.context, this.canavsElement);
     this.levelIndicators = new LevelIndicators(
@@ -266,6 +266,8 @@ export class LevelStartScene {
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
     });
+    var previousPlayedLevel: string = self.levelData.levelMeta.levelNumber;
+    localStorage.setItem("storePreviousPlayedLevel", previousPlayedLevel);
   }
 
   deleteCanvas() {
@@ -357,7 +359,7 @@ export class LevelStartScene {
     if (self.timerTicking.isTimerEnded) {
       self.stones.isTimerEnded();
       word_dropped_stones = 0;
-      console.log('*********')
+      console.log("*********");
       console.log("time's up");
       current_puzzle_index += 1;
       self.stones.canvas.scene.levelIndicators.setIndicators(
