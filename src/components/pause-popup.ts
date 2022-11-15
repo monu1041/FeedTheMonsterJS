@@ -31,7 +31,7 @@ export default class PausePopUp {
       this.canvas.width,
       PausePopupLayer
     );
-    const selfIdElement = <HTMLCanvasElement>document.getElementById(this.id);
+    const selfIdElement = document.getElementById(this.id) as HTMLCanvasElement;
     this.context = selfIdElement.getContext("2d");
     selfIdElement.style.zIndex = "11";
     selfIdElement.style.backgroundColor = "rgba(0, 0, 0, 0.5)";

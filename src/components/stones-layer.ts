@@ -83,7 +83,9 @@ export default class StonesLayer {
   createCanvas() {
     var self = this;
     this.id = this.canvasStack.createLayer(this.height, this.width, StoneLayer);
-    const selfElelementId = <HTMLCanvasElement>document.getElementById(this.id);
+    const selfElelementId = document.getElementById(
+      this.id
+    ) as HTMLCanvasElement;
     this.context = selfElelementId.getContext("2d");
     selfElelementId.style.zIndex = "7";
     selfElelementId.style.bottom = "0";
