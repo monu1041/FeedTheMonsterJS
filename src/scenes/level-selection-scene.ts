@@ -18,11 +18,12 @@ var backbtn = new Image();
 backbtn.src = "./assets/images/back_btn.png";
 var levelNumber: number;
 var self: any;
-var previousPlayedLevel: number = parseInt(
-  localStorage.getItem("storePreviousPlayedLevel")
-);
-var level: number = 10 * Math.floor(previousPlayedLevel / 10);
-
+var previousPlayedLevel: number =
+  parseInt(localStorage.getItem("storePreviousPlayedLevel")) | 0;
+var level: number;
+if (previousPlayedLevel != null) {
+  level = 10 * Math.floor(previousPlayedLevel / 10);
+}
 console.log(previousPlayedLevel);
 export class LevelSelectionScreen {
   public canvas: HTMLCanvasElement;
