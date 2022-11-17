@@ -1,6 +1,7 @@
 const path = require('path');
 var nodeEnv = process.env.NODE_ENV || 'development';
 var isDev = (nodeEnv !== 'production');
+const CopyPlugin = require("copy-webpack-plugin");
 
 var config = {
   mode: 'development',
@@ -12,40 +13,19 @@ var config = {
     path: path.resolve(__dirname, './build'),
     filename: 'feedTheMonster.js',
   },
-  module: {
-    rules: [
-    {
-      test: /\.css$/i,
-      use: ['style-loader', 'css-loader'],
-    },
-    {
-      test: /\.(png|jpe?g|gif)$/i,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: './assets/images/[name].[ext]',
-          },
-        },
-      ],
-    },
-    {
-      test: /\.(WAV|mp3)$/i,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: './assets/audios/[name].[ext]',
-          },
-        },
-      ],
-    },
-    ]
-  },
   resolve: {
     extensions: [ '.tsx', '.ts', '.js', '.json', '.css','.sh','.babelrc','.eslintignore','.gitignore','.d' ],
   },
-  plugins: []
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: "./index.html", to: "./" },
+        { from: "./index.css", to: "./" },
+        { from: "./ftm_english.json", to: "./" },
+        { from: "./assets", to: "./assets" },
+      ],
+    }),
+  ]
 };
 
 if(isDev) {
