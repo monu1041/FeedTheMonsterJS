@@ -35,6 +35,7 @@ function jsonToArray(json) {
 function dataPushToArray(jsonData, profileData) {
   var dataNotExist = true;
   jsonData.forEach((data) => {
+    console.log(parseInt(data.levelNumber));
     if (parseInt(data.levelNumber) == parseInt(profileData.levelNumber)) {
       dataNotExist = false;
       data.levelScore < profileData.levelScore

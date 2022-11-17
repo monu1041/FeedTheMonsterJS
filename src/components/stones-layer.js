@@ -120,6 +120,7 @@ export default class StonesLayer {
             (y - this.height * 0.15) * (y - this.height * 0.15) <=
           1000
         ) {
+          console.log("prompt");
         }
       });
 

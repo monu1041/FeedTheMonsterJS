@@ -2,6 +2,7 @@ import {
   FirebaseUserClicked,
   FirebaseUserInstall,
   MonsterLayer,
+  NativePlayButton,
   PlayButtonLayer,
   PWAInstallStatus,
   StartSceneLayer,
@@ -113,21 +114,12 @@ export class StartScene {
     this.canavsElement = document.getElementById(playButtonId);
     this.buttonContext = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 7;
-    if (this.pwa_status == "true") {
-      self.playButton = new PlayButton(
-        self.buttonContext,
-        self.canvas,
-        self.canvas.width * 0.35,
-        self.canvas.height / 7
-      );
-    } else {
-      self.playButton = new InstallButton(
-        self.buttonContext,
-        self.canvas,
-        self.canvas.width * 0.35,
-        self.canvas.height / 5
-      );
-    }
+    self.playButton = new PlayButton(
+      self.buttonContext,
+      self.canvas,
+      self.canvas.width * 0.35,
+      self.canvas.height / 7
+    );
 
     document.getElementById(PlayButtonLayer).addEventListener(
       "click",
@@ -137,53 +129,20 @@ export class StartScene {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (self.playButton.onClick(x, y)) {
+          fbq("trackCustom", NativePlayButton, {
+            event: "play_count",
+          });
           self.firebase_analytics
-            ? self.firebase_analytics.logEvent(FirebaseUserClicked, "click")
+            ? self.firebase_analytics.logEvent(NativePlayButton, "play_count")
             : null;
-          if (self.pwa_status == "false" || !self.pwa_status) {
-            pwa_install_status.prompt();
-            const { outcome } = await pwa_install_status.userChoice;
-            if (outcome === "accepted") {
-              pwa_install_status = null;
-              localStorage.setItem(PWAInstallStatus, true);
-              fbq("trackCustom", FirebaseUserInstall, {
-                event: "install_count",
-              });
-              self.firebase_analytics
-                ? self.firebase_analytics.logEvent(
-                    FirebaseUserInstall,
-                    "Install"
-                  )
-                : null;
-              window.location.reload();
-            } else {
-              fbq("trackCustom", UserCancelled, {
-                event: "cancel_count",
-              });
-              self.firebase_analytics
-                ? self.firebase_analytics.logEvent(UserCancelled, "Cancelled")
-                : null;
-            }
-          } else {
-            if (
-              !window.matchMedia("(display-mode: standalone)").matches &&
-              self.pwa_status == "true"
-            ) {
-              document.getElementById("pwa_app").click();
-              // alert("PWA is installed on your device \nPlease play from there");
-            } else {
-              document.getElementById("about-company").style.display = "none";
-              delete new Sound().changeSourse(
-                "./assets/audios/ButtonClick.wav"
-              );
-              self.context.clearRect(0, 0, canvas.width, canvas.height);
-              new LevelSelectionScreen(canvas, data);
-              self.canvasStack.deleteLayer(PlayButtonLayer);
-              self.monster.deleteCanvas();
-              delete self.monster;
-              self.canvasStack.deleteLayer(StartSceneLayer);
-            }
-          }
+          document.getElementById("about-company").style.display = "none";
+          delete new Sound().changeSourse("./assets/audios/ButtonClick.wav");
+          self.context.clearRect(0, 0, canvas.width, canvas.height);
+          new LevelSelectionScreen(canvas, data);
+          self.canvasStack.deleteLayer(PlayButtonLayer);
+          self.monster.deleteCanvas();
+          delete self.monster;
+          self.canvasStack.deleteLayer(StartSceneLayer);
         }
       },
       false

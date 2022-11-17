@@ -50,6 +50,7 @@ export class AllLevelScreen{
         levelSelectionButton.textContent=gameData.Levels[i].LevelMeta.LevelType;
         
         document.getElementById(id).addEventListener("click",function(e){
+             console.log(levelSelectionButton.getAttribute("levelNumber"));
             gameDiv.style.display="none";
             this.scene = new LevelStartScene(self.game);
             this.scene.createBackgroud();

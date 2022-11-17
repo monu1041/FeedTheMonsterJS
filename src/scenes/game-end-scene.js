@@ -52,6 +52,7 @@ export class GameEndScene {
       var context = this.context;
       var width = this.width;
       var height = this.height;
+      console.log("iuiiuiu")
       loadImages(images, function (image) {
         context.drawImage(image.bgImg, 0, 0, width, height);
         context.drawImage(
