@@ -44,6 +44,7 @@ var audioUrl = {
 var self;
 var current_puzzle_index = 0;
 var score = 0;
+var word_dropped_stones = 0;
 var isGamePause = false;
 var noMoreTarget = false;
 var isLevelEnded = false;
@@ -142,10 +143,12 @@ export class LevelStartScene {
           self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
         }, 1000);
         self.timerTicking.stopTimer();
+        self.promptText.draw((word_dropped_stones += 1));
         score += 100;
-
+        word_dropped_stones = 0;
         current_puzzle_index += 1;
       } else {
+        self.promptText.draw((word_dropped_stones += 1));
       }
     } else {
       self.timerTicking.stopTimer();
@@ -226,6 +229,8 @@ export class LevelStartScene {
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
     });
+    var previousPlayedLevel = self.levelData.levelMeta.levelNumber;
+    localStorage.setItem("storePreviousPlayedLevel", previousPlayedLevel);
   }
 
   deleteCanvas() {
@@ -241,6 +246,7 @@ export class LevelStartScene {
     self.canvasStack.deleteLayer(PromptTextLayer);
     self.monster.changeImage("./assets/images/idle4.png");
     self.deleteObjects();
+    word_dropped_stones = 0;
   }
   deleteObjects() {
     delete self.monster;
@@ -316,11 +322,13 @@ export class LevelStartScene {
     if (self.timerTicking.isTimerEnded) {
       self.stones.isTimerEnded();
       console.log("time's up");
+      word_dropped_stones = 0;
       current_puzzle_index += 1;
       self.stones.canvas.scene.levelIndicators.setIndicators(
         current_puzzle_index
       );
       if (current_puzzle_index == self.puzzleData.length) {
+        isLevelEnded = true;
         self.levelStartCallBack();
         delete self.timerTicking;
         delete new LevelEndScene(
