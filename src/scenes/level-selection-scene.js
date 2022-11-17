@@ -91,8 +91,12 @@ export class LevelSelectionScreen {
         [this.canvas.width / 2.5, this.canvas.height / 1.3],
       ],
     ];
-    document.addEventListener("touchstart", handleTouchStart, false);
-    document.addEventListener("touchmove", handleTouchMove, false);
+    document
+      .getElementById(this.id)
+      .addEventListener("touchstart", handleTouchStart, false);
+    document
+      .getElementById(this.id)
+      .addEventListener("touchmove", handleTouchMove, false);
 
     var xDown = null;
     var yDown = null;
@@ -259,20 +263,24 @@ export class LevelSelectionScreen {
   }
   downButton(level) {
     var imageSize = canvas.height / 10;
-    this.context.drawImage(
-      nextbtn,
-      this.canvas.width * 0.7,
-      this.canvas.height / 1.3,
-      imageSize,
-      imageSize
-    );
-    this.context.drawImage(
-      backbtn,
-      this.canvas.width / 10,
-      this.canvas.height / 1.3,
-      imageSize,
-      imageSize
-    );
+    if (level != 140) {
+      this.context.drawImage(
+        nextbtn,
+        this.canvas.width * 0.7,
+        this.canvas.height / 1.3,
+        imageSize,
+        imageSize
+      );
+    }
+    if (level != 0) {
+      this.context.drawImage(
+        backbtn,
+        this.canvas.width / 10,
+        this.canvas.height / 1.3,
+        imageSize,
+        imageSize
+      );
+    }
     // if (level != 0) {
     //   this.context.clearRect(300, 500, imageSize, imageSize);
     //   this.context.save();
