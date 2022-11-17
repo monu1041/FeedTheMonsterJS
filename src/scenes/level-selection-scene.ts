@@ -106,8 +106,12 @@ export class LevelSelectionScreen {
         [this.canvas.width / 2.5, this.canvas.height / 1.3],
       ],
     ];
-    document.addEventListener("touchstart", handleTouchStart, false);
-    document.addEventListener("touchmove", handleTouchMove, false);
+    document
+      .getElementById(this.id)
+      .addEventListener("touchstart", handleTouchStart, false);
+    document
+      .getElementById(this.id)
+      .addEventListener("touchmove", handleTouchMove, false);
 
     var xDown = null;
     var yDown = null;
