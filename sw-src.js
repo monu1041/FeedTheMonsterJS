@@ -4,24 +4,18 @@ importScripts(
 
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
-console.log(self);
 
-self.addEventListener('activate', function(e) {
-    console.log("activated");
-    // console.log(e);
-});
+// self.addEventListener('activate', function(e) {
+//     console.log("activated");
+//     // console.log(e);
+// });
 
 self.addEventListener('install', async function(e) {
-    console.log("install");
     let cacheName = await getCacheName();
-    console.log(cacheName);
-
     self.skipWaiting();
-    // console.log(e);
 });
 
 self.registration.addEventListener('updatefound', function(e) {
-    console.log(e);
     caches.keys().then(cacheNames => {
         cacheNames.forEach(cacheName => {
             caches.delete(cacheName);
@@ -37,7 +31,6 @@ self.registration.addEventListener('updatefound', function(e) {
 
 function cacheAudiosFiles(file, cacheName) {
     caches.open(cacheName).then(function (cache) {
-      console.log("sw: adding AUdio files");
       return cache.add(file);
     });
   }

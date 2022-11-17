@@ -13,7 +13,6 @@ import { PWAInstallStatus } from "./src/common/common.js";
 import { Workbox } from "workbox-window";
 
 window.addEventListener("load", async function () {
-  console.log("TTTtllllllllll")
   if ('serviceWorker' in navigator) {
       navigator.serviceWorker.addEventListener("message", function(event) {
         if (event.data.msg == 'Update Found') {
