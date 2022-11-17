@@ -21,7 +21,6 @@ var self;
 var previousPlayedLevel = localStorage.getItem("storePreviousPlayedLevel");
 var level = 10 * Math.floor(previousPlayedLevel / 10);
 
-console.log(level);
 export class LevelSelectionScreen {
   constructor(canvas, data) {
     this.canvas = canvas;
@@ -142,7 +141,6 @@ export class LevelSelectionScreen {
             self.draw(level);
             self.downButton(level);
             self.drawStars();
-            console.log(level);
           }
           /* right swipe */
         } else {
@@ -200,7 +198,6 @@ export class LevelSelectionScreen {
             self.draw(level);
             self.downButton(level);
             self.drawStars();
-            console.log(level);
           }
         }
 
