@@ -37,7 +37,6 @@ export var CanvasStack;
         h = height + "px",
         nLyrs = this.bkgCanvas.layers.length; // bkg is layer 0 so at least 1
       if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
-        console.log("CanvasStack: missing background canvas");
         return;
       }
       if (this.bkgCanvas.layers.length >= this.stackLimit) {
@@ -76,7 +75,6 @@ export var CanvasStack;
     deleteLayer(ovlyId) {
       // check background canvas is still there
       if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
-        console.log("CanvasStack: missing background canvas");
         return;
       }
       for (let i = 1; i < this.bkgCanvas.layers.length; i++) {
@@ -93,7 +91,6 @@ export var CanvasStack;
 
     deleteAllLayers() {
       if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
-        console.log("CanvasStack: missing background canvas");
         return;
       }
       for (let i = this.bkgCanvas.layers.length - 1; i > 0; i--) {
