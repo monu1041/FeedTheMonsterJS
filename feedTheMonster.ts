@@ -10,8 +10,10 @@ import {
   setDataToStorage,
 } from "./src/data/profile-data.js";
 import { PWAInstallStatus } from "./src/common/common.js";
+import { Workbox } from "workbox-window";
 declare const window: any;
 declare const app: any;
+
 window.addEventListener("load", async function () {
   if ('serviceWorker' in navigator) {
       navigator.serviceWorker.addEventListener("message", function(event) {
