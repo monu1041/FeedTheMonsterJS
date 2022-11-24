@@ -13,6 +13,22 @@ import { PWAInstallStatus } from "./src/common/common.js";
 declare const window: any;
 declare const app: any;
 window.addEventListener("load", async function () {
+  if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener("message", function(event) {
+        if (event.data.msg == 'Update Found') {
+          let text = "Update Found\nPress ok to update.";
+          if (confirm(text) == true) {
+            window.location.reload();
+          } else {
+            text = "You canceled!";
+          }
+        }
+      });
+
+      let wb = new Workbox('./sw.js');
+      wb.register()
+  }
+
   if (navigator.onLine) {
     this.app = firebase.initializeApp(firebaseConfig);
     this.analytics = firebase.analytics(this.app);

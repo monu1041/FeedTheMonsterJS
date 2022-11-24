@@ -50,6 +50,8 @@ export class LevelEndScene {
         : score == 500
         ? 3
         : 0;
+        console.log(levelData.levelMeta.levelNumber)
+    console.log(score)
     this.createCanvas();
     this.levelEndCallBack = levelEndCallBack;
     setDataToStorage(

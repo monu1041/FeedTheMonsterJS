@@ -51,32 +51,31 @@ export var CanvasStack;
     createLayer(height: string, width: string, layerId: any) {
       if (!this.isLayerExist(layerId)) {
         const w = width + "px",
-          h = height + "px",
-          nLyrs = this.bkgCanvas.layers.length; // bkg is layer 0 so at least 1
-        if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
-          console.log("CanvasStack: missing background canvas");
-          return;
-        }
-        if (this.bkgCanvas.layers.length >= this.stackLimit) {
-          console.error("CanvasStack: too many layers");
-          return;
-        }
-        this.bkgCanvas.unique += 1; // a private static variable
-        // const uniqueTag = this.bkgCanvas.unique.toString();
-        // const ovlId = this.cId + "_ovl_" + uniqueTag;
-        const ovlId = layerId;
-        const ovlHTML =
-          "<canvas id='" +
-          ovlId +
-          "' style='position:absolute' width='" +
-          w +
-          "' height='" +
-          h +
-          "'></canvas>";
-        const topCvs = this.bkgCanvas.layers[nLyrs - 1].cElem;
-        topCvs.insertAdjacentHTML("afterend", ovlHTML);
-        const newCvs = <HTMLElement>document.getElementById(ovlId);
-        newCvs.style.backgroundColor;
+        h = height + "px",
+        nLyrs = this.bkgCanvas.layers.length; // bkg is layer 0 so at least 1
+      if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
+        return;
+      }
+      if (this.bkgCanvas.layers.length >= this.stackLimit) {
+        console.error("CanvasStack: too many layers");
+        return;
+      }
+      this.bkgCanvas.unique += 1; // a private static variable
+      // const uniqueTag = this.bkgCanvas.unique.toString();
+      // const ovlId = this.cId + "_ovl_" + uniqueTag;
+      const ovlId = layerId;
+      const ovlHTML =
+        "<canvas id='" +
+        ovlId +
+        "' style='position:absolute' width='" +
+        w +
+        "' height='" +
+        h +
+        "'></canvas>";
+      const topCvs = this.bkgCanvas.layers[nLyrs - 1].cElem;
+      topCvs.insertAdjacentHTML("afterend", ovlHTML);
+      const newCvs = document.getElementById(ovlId);
+      newCvs.style.backgroundColor;
 
         newCvs.style.left = "50%";
         newCvs.style.transform = "translate(-50%, 0%)";
@@ -93,7 +92,6 @@ export var CanvasStack;
     deleteLayer(ovlyId: any) {
       // check background canvas is still there
       if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
-        console.log("CanvasStack: missing background canvas");
         return;
       }
       for (let i = 1; i < this.bkgCanvas.layers.length; i++) {
@@ -110,7 +108,6 @@ export var CanvasStack;
 
     deleteAllLayers() {
       if (!(this.bkgCanvas && this.bkgCanvas.layers)) {
-        console.log("CanvasStack: missing background canvas");
         return;
       }
       for (let i = this.bkgCanvas.layers.length - 1; i > 0; i--) {

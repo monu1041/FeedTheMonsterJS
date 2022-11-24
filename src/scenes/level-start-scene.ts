@@ -46,6 +46,7 @@ var self: any;
 var word_dropped_stones = 0;
 var current_puzzle_index = 0;
 var score = 0;
+var word_dropped_stones = 0;
 var isGamePause = false;
 var noMoreTarget = false;
 var isLevelEnded = false;
@@ -178,6 +179,7 @@ export class LevelStartScene {
         }, 1000);
         self.promptText.draw((word_dropped_stones += 1));
         self.timerTicking.stopTimer();
+        self.promptText.draw((word_dropped_stones += 1));
         score += 100;
         word_dropped_stones = 0;
         current_puzzle_index += 1;
@@ -359,8 +361,6 @@ export class LevelStartScene {
     if (self.timerTicking.isTimerEnded) {
       self.stones.isTimerEnded();
       word_dropped_stones = 0;
-      console.log("*********");
-      console.log("time's up");
       current_puzzle_index += 1;
       self.stones.canvas.scene.levelIndicators.setIndicators(
         current_puzzle_index

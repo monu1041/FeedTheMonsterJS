@@ -85,7 +85,7 @@ export class PromptText {
   deleteCanvas() {
     this.canvasStack.deleteLayer(this.id);
   }
-  draw(droppedStones: number = 0) {
+  draw(droppedStones = 0) {
     this.context.clearRect(0, 0, this.width, this.height);
     this.context.drawImage(
       this.prompt_image,
