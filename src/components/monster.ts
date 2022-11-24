@@ -10,13 +10,31 @@ idleImg.src = "./assets/images/idle4.png";
 const spitImg = new Image();
 spitImg.src = "./assets/images/spit4.png";
 export class Monster {
-  constructor(game, zindex, imageSrc) {
+  public zindex: number;
+	public width: number;
+	public height: number;
+	public image: HTMLImageElement;
+	public frameX: number;
+	public frameY: number;
+	public maxFrame: number;
+	public x: number;
+	public y: number;
+	public fps: number;
+	public frameInterval: number;
+	public frameTimer: number;
+	public canvasStack: any;
+	public id: any;
+	public canavsElement: HTMLCanvasElement;
+	public context: CanvasRenderingContext2D;
+	public game: any;
+	
+  constructor(game, zindex?,) {
     this.game = game;
     self = this;
     this.zindex = zindex;
     this.width = this.game.width;
     this.height = this.game.height;
-    this.image = document.getElementById("monster");
+    this.image = document.getElementById("monster") as HTMLImageElement;
     this.frameX = 0;
     this.frameY = 0;
     this.maxFrame = 6;
@@ -35,10 +53,10 @@ export class Monster {
       this.width,
       MonsterLayer
     );
-    this.canavsElement = document.getElementById(this.id);
+    this.canavsElement = document.getElementById(this.id) as HTMLCanvasElement;
     this.context = this.canavsElement.getContext("2d");
-    this.canavsElement.style.zIndex = 6;
-    this.canavsElement.style.bottom = 0;
+    this.canavsElement.style.zIndex = '6';
+    this.canavsElement.style.bottom = '0';
     this.draw();
     this.animation(0);
   }

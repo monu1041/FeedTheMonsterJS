@@ -2,14 +2,31 @@ import { LevelEndButtonsLayer, LevelEndLayer } from "../common/common.js";
 import CloseButton from "../components/buttons/close_button.js";
 import NextButton from "../components/buttons/next_button.js";
 import RetryButton from "../components/buttons/retry_button.js";
+import { Monster } from "../components/monster.js";
 import { ProfileData, setDataToStorage } from "../data/profile-data.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
+import { Game } from "./game.js";
 var audioUrl = {
   levelWin: "./assets/audios/LevelWinFanfare.mp3",
   levelLose: "./assets/audios/LevelLoseFanfare.mp3",
   intro: "./assets/audios/intro.wav",
 };
 export class LevelEndScene {
+	public canvas: Game;
+	public canvasStack: any;
+	public monster: Monster;
+	public levelData: any;
+	public isGamePause: boolean;
+	public starCount: number;
+	public levelEndCallBack: any;
+	public id: string;
+	public context: any;
+	public bottonLayer: any;
+	public bottonContext: any;
+	public nextButton: NextButton;
+	public retryButton: RetryButton;
+	public closeButton: CloseButton;
+
   constructor(
     canvas,
     score,
@@ -75,24 +92,24 @@ export class LevelEndScene {
       this.canvas.width,
       LevelEndLayer
     );
-    this.context = document.getElementById(this.id).getContext("2d");
-    document.getElementById(this.id).style.zIndex = 8;
+    this.context = (document.getElementById(this.id) as HTMLCanvasElement).getContext("2d");
+    (document.getElementById(this.id) as HTMLElement).style.zIndex = '8';
     this.bottonLayer = this.canvasStack.createLayer(
       this.canvas.height,
       this.canvas.width,
       LevelEndButtonsLayer
     );
-    this.bottonContext = document
-      .getElementById(this.bottonLayer)
+    this.bottonContext = (document
+      .getElementById(this.bottonLayer) as HTMLCanvasElement)
       .getContext("2d");
-    document.getElementById(this.bottonLayer).style.zIndex = 9;
-    document.getElementById(this.id).style.backgroundColor = "#00407B";
-    document.getElementById(this.id).style.backgroundImage =
+    (document.getElementById(this.bottonLayer) as HTMLElement).style.zIndex = '9';
+    (document.getElementById(this.id) as HTMLElement).style.backgroundColor = "#00407B";
+    (document.getElementById(this.id) as HTMLElement).style.backgroundImage =
       "url('./assets/images/WIN_screen_bg.png')";
-    document.getElementById(this.id).style.backgroundSize = "contain";
-    document.getElementById(this.id).style.backgroundPosition = "center";
-    document.getElementById(this.id).style.backgroundAttachment = "fixed";
-    document.getElementById(this.id).style.backgroundRepeat = "no-repeat";
+    (document.getElementById(this.id) as HTMLElement).style.backgroundSize = "contain";
+    (document.getElementById(this.id) as HTMLElement).style.backgroundPosition = "center";
+    (document.getElementById(this.id) as HTMLElement).style.backgroundAttachment = "fixed";
+    (document.getElementById(this.id) as HTMLElement).style.backgroundRepeat = "no-repeat";
     var star1 = new Image();
     star1.src = "./assets/images/pinStar1.png";
     var star2 = new Image();
@@ -124,11 +141,11 @@ export class LevelEndScene {
       self.canvas.width * 0.2 - (self.canvas.width * 0.19) / 2,
       self.canvas.height * 0.7
     );
-    document
-      .getElementById(this.bottonLayer)
+    (document
+      .getElementById(this.bottonLayer) as HTMLElement)
       .addEventListener("click", function (event) {
-        var rect = document
-          .getElementById(self.bottonLayer)
+        var rect = (document
+          .getElementById(self.bottonLayer) as HTMLElement)
           .getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;

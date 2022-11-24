@@ -1,5 +1,9 @@
 let inactive_screen = false;
 export default class Sound {
+  public audio: HTMLAudioElement;
+  public audio1: HTMLAudioElement;
+  public audio2: HTMLAudioElement;
+
   constructor() {
     this.audio = new Audio();
   }

@@ -1,4 +1,9 @@
 export class ProfileData {
+  public levelName: string;
+  public levelNumber: number;
+  public levelScore: number;
+  public levelStar: number;
+
   constructor(levelName, levelNumber, levelScore, levelStar) {
     (this.levelName = levelName),
       (this.levelNumber = levelNumber),
@@ -8,7 +13,7 @@ export class ProfileData {
 }
 
 export function setDataToStorage(profileData) {
-  const existingData = getDatafromStorage()
+  const existingData: [any] = getDatafromStorage()
     ? jsonToArray(getDatafromStorage())
     : [];
   profileData ? dataPushToArray(existingData, profileData) : null;
@@ -19,13 +24,13 @@ export function setDataToStorage(profileData) {
       return -1;
     }
   });
-  const data = JSON.stringify(existingData);
+  const data: any = JSON.stringify(existingData);
   if (data) {
     localStorage.setItem("Profile", data);
   }
 }
 function jsonToArray(json) {
-  var data = [];
+  var data: any = [];
   for (var i in json) {
     data.push(json[i]);
   }
@@ -49,6 +54,6 @@ function dataPushToArray(jsonData, profileData) {
   return jsonData;
 }
 export function getDatafromStorage() {
-  const data = JSON.parse(localStorage.getItem("Profile"));
+  const data = JSON.parse(localStorage.getItem("Profile") || "{}");
   return data;
 }

@@ -3,6 +3,7 @@ import {
     GameEndLayer,
   loadImages
 } from "../common/common.js";
+import { Game } from "./game.js";
 
 var images = {
     bgImg: "./assets/images/bg_v01.jpg",
@@ -13,9 +14,17 @@ var images = {
     fenchImg: "./assets/images/fence_v01.png",
     bigMonsterImg: "./assets/images/ftm_bonus_level_monsters.png"
 };
-
+var self;
 export class GameEndScene {
-    constructor(game) {
+	public game: Game;
+	public width: number;
+	public height: number;
+	public canvasStack: any;
+	public id: string;
+	public canavsElement: HTMLCanvasElement;
+	public context: any;
+
+    constructor(game:Game) {
       this.game = game;
       this.width = game.width;
       this.height = game.height;
@@ -30,17 +39,17 @@ export class GameEndScene {
         this.width,
         GameEndLayer
       );
-      this.canavsElement = document.getElementById(this.id);
+      this.canavsElement = (document.getElementById(this.id) as HTMLCanvasElement);
       this.context = this.canavsElement.getContext("2d");
-      this.canavsElement.style.zIndex = 3;
-      document.getElementById("discription-text").style.display = "block";
+      this.canavsElement.style.zIndex = '3';
+      (document.getElementById("discription-text") as HTMLElement).style.display = "block";
       this.createBackgroud()
     }
   
     deleteCanvas() {
-        document.getElementById("discription-text").style.display = "none";
+      (document.getElementById("discription-text") as HTMLElement).style.display = "none";
       this.canvasStack.deleteLayer(this.id);
-      delete this;
+      //delete this;
     }
 
     draw() {

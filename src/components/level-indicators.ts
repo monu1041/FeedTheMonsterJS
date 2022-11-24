@@ -1,4 +1,8 @@
 export class LevelIndicators {
+  public context: CanvasRenderingContext2D;
+  public canvas: HTMLCanvasElement;
+  public activeIndicators: number;
+
   constructor(context, canvas, activeIndicators) {
     this.context = context;
     this.canvas = canvas;

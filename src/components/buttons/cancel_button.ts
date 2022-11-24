@@ -1,5 +1,13 @@
 export default class CancelButton {
-  constructor(context, canvas) {
+  public posX: number;
+  public posY: number;
+  public context: CanvasRenderingContext2D;
+  public canvas: { width: any; height?: number };
+
+  constructor(
+    context: CanvasRenderingContext2D,
+    canvas: { width: number; height?: number }
+  ) {
     this.posX = canvas.width * 0.1 + (canvas.width * 0.15) / 2;
     this.posY = canvas.height * 0.2;
     this.context = context;

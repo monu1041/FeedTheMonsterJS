@@ -1,4 +1,9 @@
 export class LevelConfig {
+  public x: number;
+  public y: number;
+  public index: number;
+  public drawready: boolean;
+  public img: CanvasImageSource;
   constructor(xPos, yPos, index) {
     this.x = xPos;
     this.y = yPos;

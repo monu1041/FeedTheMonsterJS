@@ -1,5 +1,17 @@
-export default class CloseButton {
-  constructor(context, canvas, posX, posY) {
+import { Game } from "../../scenes/game";
+
+export default class RetryButton {
+  public posX: number;
+  public posY: number;
+  public context: CanvasRenderingContext2D;
+  public canvas:Game;
+
+  constructor(
+    context: CanvasRenderingContext2D,
+    canvas: Game,
+    posX: number,
+    posY: number
+  ) {
     this.posX = posX;
     this.posY = posY;
     this.context = context;
@@ -9,7 +21,7 @@ export default class CloseButton {
   draw() {
     var self = this;
     var pause_button_image = new Image();
-    pause_button_image.src = "./assets/images/map_btn.png";
+    pause_button_image.src = "./assets/images/retry_btn.png";
     pause_button_image.onload = function (e) {
       self.context.drawImage(
         pause_button_image,
@@ -20,7 +32,7 @@ export default class CloseButton {
       );
     };
   }
-  onClick(xClick, yClick) {
+  onClick(xClick: number, yClick: number) {
     const distance = Math.sqrt(
       (xClick - this.posX - (this.canvas.width * 0.19) / 2) *
         (xClick - this.posX - (this.canvas.width * 0.19) / 2) +

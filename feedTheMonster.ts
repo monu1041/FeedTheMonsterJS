@@ -11,6 +11,8 @@ import {
 } from "./src/data/profile-data.js";
 import { PWAInstallStatus } from "./src/common/common.js";
 import { Workbox } from "workbox-window";
+declare const window: any;
+declare const app: any;
 
 window.addEventListener("load", async function () {
   if ('serviceWorker' in navigator) {
@@ -31,9 +33,9 @@ window.addEventListener("load", async function () {
 
   if (navigator.onLine) {
     this.app = firebase.initializeApp(firebaseConfig);
-    this.analytics = firebase.analytics(app);
+    this.analytics = firebase.analytics(this.app);
   }
-  const canvas = document.getElementById("canvas");
+  const canvas: any = <HTMLElement>document.getElementById("canvas");
   canvas.height = window.innerHeight;
   canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
 

@@ -1,11 +1,30 @@
 import { TimetickerLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
+import { Game } from "../scenes/game.js";
+import { LevelStartScene } from "../scenes/level-start-scene.js";
 export class TimerTicking {
-  constructor(game, levelStart) {
+  public game: Game;
+  public width: number;
+  public height: number;
+  public widthToClear: number;
+  public maxLimitExhausted: boolean;
+  public timer: number;
+  public isTimerStarted: boolean;
+  public isTimerEnded: boolean;
+  public levelStart: LevelStartScene;
+  public isTimerRunningOut: boolean;
+  public canavsElement: HTMLCanvasElement;
+  public context: CanvasRenderingContext2D;
+  public timer_full: HTMLImageElement;
+  public pauseButtonClicked: boolean;
+  public canvasStack: any;
+  public id: string;
+
+  constructor(game: Game, levelStart: LevelStartScene) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
-    this.widthToClear = canvas.width / 3.4;
+    this.widthToClear = this.game.width / 3.4;
     this.maxLimitExhausted = false;
     this.canvasStack = new CanvasStack("canvas");
     this.timer = 0;
@@ -13,9 +32,8 @@ export class TimerTicking {
     this.isTimerEnded = false;
     this.levelStart = levelStart;
     this.isTimerRunningOut = false;
-    self = this;
+    var self = this;
     this.createCanvas();
-
   }
   createCanvas() {
     this.id = this.canvasStack.createLayer(
@@ -23,9 +41,9 @@ export class TimerTicking {
       this.width,
       TimetickerLayer
     );
-    this.canavsElement = document.getElementById(this.id);
+    this.canavsElement = document.getElementById(this.id) as HTMLCanvasElement;
     this.context = this.canavsElement.getContext("2d");
-    this.canavsElement.style.zIndex = 4;
+    this.canavsElement.style.zIndex = "4";
     // this.animation(0);
   }
   deleteCanvas() {
@@ -54,25 +72,25 @@ export class TimerTicking {
   update() {
     if (this.isTimerStarted) {
       this.timer += 0.06;
-      if (canvas.width * 1.3 - this.widthToClear - 10 * this.timer > 55) {
+      if (this.game.width * 1.3 - this.widthToClear - 10 * this.timer > 55) {
         this.context.clearRect(
-          canvas.width * 1.3 - this.widthToClear - 10 * this.timer,
+          this.game.width * 1.3 - this.widthToClear - 10 * this.timer,
           0,
           this.width,
           this.height
         );
       }
       if (
-        canvas.width * 1.3 - this.widthToClear - 10 * this.timer < 100 &&
-        canvas.width * 1.3 - this.widthToClear - 10 * this.timer > 54 &&
+        this.game.width * 1.3 - this.widthToClear - 10 * this.timer < 100 &&
+        this.game.width * 1.3 - this.widthToClear - 10 * this.timer > 54 &&
         !this.isTimerRunningOut
       ) {
         this.isTimerRunningOut = true;
         this.levelStart.audio.changeSourse("./assets/audios/timeout.mp3");
       }
       if (
-        canvas.width * 1.3 - this.widthToClear - 10 * this.timer < 55 &&
-        canvas.width * 1.3 - this.widthToClear - 10 * this.timer > 54
+        this.game.width * 1.3 - this.widthToClear - 10 * this.timer < 55 &&
+        this.game.width * 1.3 - this.widthToClear - 10 * this.timer > 54
       ) {
         this.isTimerRunningOut = false;
         this.isTimerEnded = true;
@@ -84,13 +102,12 @@ export class TimerTicking {
   beginTimerOnStart() {
     var self = this;
     setTimeout(() => {
-      if(!this.pauseButtonClicked){
+      if (!this.pauseButtonClicked) {
         if (!self.isTimerStarted && self.timer == 0) {
           self.timer = 0;
           self.isTimerStarted = true;
         }
       }
-      
     }, 6000);
   }
   stopTimer() {

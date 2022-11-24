@@ -1,5 +1,13 @@
 export default class PauseButton {
-  constructor(context, canvas) {
+  public posX: number;
+  public posY: number;
+  public context: CanvasRenderingContext2D;
+  public canvas: { height: number };
+
+  constructor(
+    context: CanvasRenderingContext2D,
+    canvas: { width?: number; height: number }
+  ) {
     this.posX = canvas.width - canvas.height * 0.09;
     this.posY = 0;
     this.context = context;
@@ -20,14 +28,14 @@ export default class PauseButton {
       );
     };
   }
-  onClick(xClick, yClick) {
+  onClick(xClick: number, yClick: number) {
     const distance = Math.sqrt(
       (xClick - this.posX - (this.canvas.height * 0.09) / 2) *
         (xClick - this.posX - (this.canvas.height * 0.09) / 2) +
         (yClick - this.posY - (this.canvas.height * 0.09) / 2) *
           (yClick - this.posY - (this.canvas.height * 0.09) / 2)
     );
-    if (distance < (canvas.height * 0.09) / 2) {
+    if (distance < (this.canvas.height * 0.09) / 2) {
       return true;
     }
   }

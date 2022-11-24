@@ -16,13 +16,29 @@ var nextbtn = new Image();
 nextbtn.src = "./assets/images/next_btn.png";
 var backbtn = new Image();
 backbtn.src = "./assets/images/back_btn.png";
-var levelNumber;
-var self;
-var previousPlayedLevel = localStorage.getItem("storePreviousPlayedLevel");
-var level = 10 * Math.floor(previousPlayedLevel / 10);
-
+var levelNumber: number;
+var self: any;
+var previousPlayedLevel: number =
+  parseInt(localStorage.getItem("storePreviousPlayedLevel")) | 0;
+var level: number;
+if (previousPlayedLevel != null) {
+  level = 10 * Math.floor(previousPlayedLevel / 10);
+}
+console.log(previousPlayedLevel);
 export class LevelSelectionScreen {
-  constructor(canvas, data) {
+  public canvas: HTMLCanvasElement;
+  public width: number;
+  public height: number;
+  public canvasStack: any;
+  public data: any;
+  public levels: any[];
+  public sound: Sound;
+  public id: string;
+  public canavsElement: any;
+  public context: CanvasRenderingContext2D;
+  public levelButtonpos: any;
+
+  constructor(canvas: HTMLCanvasElement, data: any) {
     this.canvas = canvas;
     this.width = canvas.width;
     this.height = canvas.height;
@@ -34,7 +50,7 @@ export class LevelSelectionScreen {
     this.createCanvas();
     this.drawStars();
   }
-  gameSceneCallBack(button_name) {
+  gameSceneCallBack(button_name: string) {
     switch (button_name) {
       case "next_button": {
         self.startGame((levelNumber += 1));
@@ -66,7 +82,7 @@ export class LevelSelectionScreen {
     this.context = this.canavsElement.getContext("2d");
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.context.drawImage(map, 0, 0, this.canvas.width, this.canvas.height);
-    document.getElementById(this.id).style.zIndex = 2;
+    this.canavsElement.style.zIndex = 2;
     this.levelButtonpos = [
       [
         [this.canvas.width / 10, this.canvas.height / 10],
@@ -141,6 +157,7 @@ export class LevelSelectionScreen {
             self.draw(level);
             self.downButton(level);
             self.drawStars();
+            console.log(level);
           }
           /* right swipe */
         } else {
@@ -180,9 +197,9 @@ export class LevelSelectionScreen {
         const y = event.clientY - rect.top;
         if (
           x >= self.canvas.width * 0.7 &&
-          x < self.canvas.width * 0.7 + canvas.height / 10 &&
+          x < self.canvas.width * 0.7 + self.canvas.height / 10 &&
           y > self.canvas.height / 1.3 &&
-          y < self.canvas.height / 1.3 + canvas.height / 10
+          y < self.canvas.height / 1.3 + self.canvas.height / 10
         ) {
           if (level != 140) {
             self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
@@ -198,14 +215,15 @@ export class LevelSelectionScreen {
             self.draw(level);
             self.downButton(level);
             self.drawStars();
+            console.log(level);
           }
         }
 
         if (
           x >= self.canvas.width / 10 &&
-          x < self.canvas.width / 10 + canvas.height / 10 &&
+          x < self.canvas.width / 10 + self.canvas.height / 10 &&
           y > self.canvas.height / 1.3 &&
-          y < self.canvas.height / 1.3 + canvas.height / 10
+          y < self.canvas.height / 1.3 + self.canvas.height / 10
         ) {
           if (level != 0) {
             level = level - 10;
@@ -242,7 +260,7 @@ export class LevelSelectionScreen {
     );
     this.createLevelButtons(this.levelButtonpos);
   }
-  createLevelButtons(levelButtonpos) {
+  createLevelButtons(levelButtonpos: any) {
     var poss = levelButtonpos[0];
     var i = 0;
     for (let s = 0; s < 10; s++) {
@@ -253,13 +271,13 @@ export class LevelSelectionScreen {
     this.draw(level);
     this.downButton(level);
   }
-  draw(level) {
+  draw(level: number) {
     for (let s of self.levels) {
-      this.drawlevel(s, canvas, level);
+      this.drawlevel(s, self.canvas);
     }
   }
-  downButton(level) {
-    var imageSize = canvas.height / 10;
+  downButton(level: number) {
+    var imageSize = self.canvas.height / 10;
     if (level != 140) {
       this.context.drawImage(
         nextbtn,
@@ -287,7 +305,7 @@ export class LevelSelectionScreen {
     // }
   }
 
-  drawlevel(s, canvas) {
+  drawlevel(s: any, canvas: { height: number }) {
     var imageSize = canvas.height / 5;
     var textFontSize = imageSize / 6;
 
@@ -307,10 +325,10 @@ export class LevelSelectionScreen {
       s.y + imageSize / 1.3
     );
   }
-  startGame(level_number) {
-    delete new Game(
-      canvas.width,
-      canvas.height,
+  startGame(level_number: string | number) {
+    new Game(
+      this.canvas.width,
+      this.canvas.height,
       self.data.levels[level_number],
       self.gameSceneCallBack
     );
@@ -330,8 +348,10 @@ export class LevelSelectionScreen {
       }
     }
   }
-  drawStar(s, canvas, starCount) {
-    var canavsElement = document.getElementById("levelSelectionCanvas");
+  drawStar(s: any, canvas: any, starCount: number) {
+    var canavsElement = <HTMLCanvasElement>(
+      document.getElementById("levelSelectionCanvas")
+    );
     var context = canavsElement.getContext("2d");
     var imageSize = canvas.height / 5;
     if (starCount >= 1) {

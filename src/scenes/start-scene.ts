@@ -11,6 +11,7 @@ import Sound from "../common/sound.js";
 import InstallButton from "../components/buttons/install_button.js";
 import PlayButton from "../components/buttons/play_butoon.js";
 import { Monster } from "../components/monster.js";
+import { DataModal } from "../data/data-modal.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { LevelSelectionScreen } from "./level-selection-scene.js";
 
@@ -28,16 +29,37 @@ var title = new Image();
 title.src = "./assets/images/title.png";
 var profileMonster = new Image();
 profileMonster.src = "./assets/images/idle4.png";
-var self;
-let pwa_install_status;
-
+var self: any;
+let pwa_install_status: any;
+const aboutCompanyElement = <HTMLElement>(
+  document.getElementById("about-company")
+);
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   pwa_install_status = e;
-  localStorage.setItem(PWAInstallStatus, false);
+  localStorage.setItem(PWAInstallStatus, "false");
 });
 export class StartScene {
-  constructor(canvas, data, firebase_analytics) {
+  public canvas: HTMLCanvasElement;
+  public data: any;
+  public width: number;
+  public height: number;
+  public canvasStack: any;
+  public monster: Monster;
+  public pwa_status: string;
+  public firebase_analytics: { logEvent: any };
+  public id: string;
+  public canavsElement: any;
+  public context: CanvasRenderingContext2D;
+  public buttonContext: CanvasRenderingContext2D;
+  public outcome: any;
+  public playButton: PlayButton | InstallButton;
+
+  constructor(
+    canvas: HTMLCanvasElement,
+    data: DataModal,
+    firebase_analytics: { logEvent: any }
+  ) {
     self = this;
     this.canvas = canvas;
     this.data = data;
@@ -56,7 +78,7 @@ export class StartScene {
       this.width,
       StartSceneLayer
     );
-    document.getElementById("about-company").style.display = "block";
+    aboutCompanyElement.style.display = "block";
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 2;
@@ -103,6 +125,9 @@ export class StartScene {
   }
 
   createPlayButton() {
+    const playButtonLayerElement = <HTMLElement>(
+      document.getElementById(PlayButtonLayer)
+    );
     var self = this;
     var data = this.data;
     var playButtonId = this.canvasStack.createLayer(
@@ -132,8 +157,9 @@ export class StartScene {
     document.getElementById(PlayButtonLayer).addEventListener(
       "click",
       async function (event) {
+        const selfElement = <HTMLElement>document.getElementById(self.id);
         event.preventDefault();
-        var rect = document.getElementById(self.id).getBoundingClientRect();
+        var rect = selfElement.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (self.playButton.onClick(x, y)) {
@@ -145,7 +171,7 @@ export class StartScene {
             const { outcome } = await pwa_install_status.userChoice;
             if (outcome === "accepted") {
               pwa_install_status = null;
-              localStorage.setItem(PWAInstallStatus, true);
+              localStorage.setItem(PWAInstallStatus, "true");
               fbq("trackCustom", FirebaseUserInstall, {
                 event: "install_count",
               });
@@ -169,15 +195,17 @@ export class StartScene {
               !window.matchMedia("(display-mode: standalone)").matches &&
               self.pwa_status == "true"
             ) {
-              document.getElementById("pwa_app").click();
-              // alert("PWA is installed on your device \nPlease play from there");
+              alert("PWA is installed on your device \nPlease play from there");
             } else {
-              document.getElementById("about-company").style.display = "none";
-              delete new Sound().changeSourse(
-                "./assets/audios/ButtonClick.wav"
+              aboutCompanyElement.style.display = "none";
+              new Sound().changeSourse("./assets/audios/ButtonClick.wav");
+              self.context.clearRect(
+                0,
+                0,
+                self.canvas.width,
+                self.canvas.height
               );
-              self.context.clearRect(0, 0, canvas.width, canvas.height);
-              new LevelSelectionScreen(canvas, data);
+              new LevelSelectionScreen(self.canvas, data);
               self.canvasStack.deleteLayer(PlayButtonLayer);
               self.monster.deleteCanvas();
               delete self.monster;

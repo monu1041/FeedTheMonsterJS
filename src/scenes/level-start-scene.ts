@@ -14,10 +14,11 @@ import {
   TimetickerLayer,
   PromptTextLayer,
 } from "../common/common.js";
-import { LevelEndScene } from "./level-end-scene.js";
 import { LevelStartLayer } from "../common/common.js";
 import { GameEndScene } from "./game-end-scene.js";
 import Sound from "../common/sound.js";
+import { LevelEndScene } from "./level-end-scene.js";
+import { Game } from "./game";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -41,7 +42,8 @@ var audioUrl = {
   monsterSad: "./assets/audios/Disapointed-05.mp3",
   buttonClick: "./assets/audios/ButtonClick.wav",
 };
-var self;
+var self: any;
+var word_dropped_stones = 0;
 var current_puzzle_index = 0;
 var score = 0;
 var word_dropped_stones = 0;
@@ -49,7 +51,40 @@ var isGamePause = false;
 var noMoreTarget = false;
 var isLevelEnded = false;
 export class LevelStartScene {
-  constructor(game, levelData, levelStartCallBack) {
+  public game: any;
+  public width: number;
+  public height: number;
+  public monster: Monster;
+  public audio: Sound;
+  public canvasStack: any;
+  public levelData: any;
+  public levelStartCallBack: any;
+  public timerTicking: TimerTicking;
+  public promptText: PromptText;
+  public stones: StonesLayer;
+  public pauseButton: PauseButton;
+  public puzzleData: any;
+  public id: string;
+  public canavsElement: any;
+  public context: CanvasRenderingContext2D;
+  public levelIndicators: LevelIndicators;
+  public bgImg: any;
+  public pillerImg: any;
+  public fenchImg: any;
+  public hillImg: any;
+  public grassImg: any;
+  public timer_empty: any;
+  public rotating_clock: any;
+
+  constructor({
+    game,
+    levelData,
+    levelStartCallBack,
+  }: {
+    game: Game;
+    levelData: { puzzles: any[] };
+    levelStartCallBack: any;
+  }) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
@@ -78,7 +113,7 @@ export class LevelStartScene {
     this.puzzleData = levelData.puzzles;
   }
 
-  levelEndCallBack(button_name) {
+  levelEndCallBack(button_name?: string) {
     if (!isGamePause) {
       isGamePause = true;
       if (isLevelEnded) {
@@ -125,13 +160,13 @@ export class LevelStartScene {
       }
     }
   }
-  getRandomInt(min, max) {
+  getRandomInt(min: number, max: number) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  redrawOfStones(status, emptyTarget) {
+  redrawOfStones(status: boolean, emptyTarget: boolean) {
     noMoreTarget = emptyTarget;
     var fntsticOrGrtIndex = self.getRandomInt(0, 1);
     if (status) {
@@ -142,6 +177,7 @@ export class LevelStartScene {
           self.audio.changeSourse(audioUrl.phraseAudios[fntsticOrGrtIndex]);
           self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
         }, 1000);
+        self.promptText.draw((word_dropped_stones += 1));
         self.timerTicking.stopTimer();
         self.promptText.draw((word_dropped_stones += 1));
         score += 100;
@@ -191,9 +227,9 @@ export class LevelStartScene {
     self.levelStartCallBack();
     if (self.levelData.levelNumber == 9) {
       self.exitAllScreens();
-      delete new GameEndScene(self.game);
+      new GameEndScene(self.game);
     } else {
-      delete new LevelEndScene(
+      new LevelEndScene(
         self.game,
         score,
         self.monster,
@@ -215,7 +251,9 @@ export class LevelStartScene {
       LevelStartLayer
     );
     this.canavsElement = document.getElementById(this.id);
-    this.context = this.canavsElement.getContext("2d");
+    this.context = this.canavsElement.getContext(
+      "2d"
+    ) as CanvasRenderingContext2D;
     this.canavsElement.style.zIndex = 3;
     this.pauseButton = new PauseButton(this.context, this.canavsElement);
     this.levelIndicators = new LevelIndicators(
@@ -224,12 +262,13 @@ export class LevelStartScene {
       0
     );
     var self = this;
+    const selfElement = <HTMLElement>document.getElementById(self.id);
     this.canavsElement.addEventListener("click", function (event) {
-      var rect = document.getElementById(self.id).getBoundingClientRect();
+      var rect = selfElement.getBoundingClientRect();
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
     });
-    var previousPlayedLevel = self.levelData.levelMeta.levelNumber;
+    var previousPlayedLevel: string = self.levelData.levelMeta.levelNumber;
     localStorage.setItem("storePreviousPlayedLevel", previousPlayedLevel);
   }
 
@@ -330,12 +369,13 @@ export class LevelStartScene {
         isLevelEnded = true;
         self.levelStartCallBack();
         delete self.timerTicking;
-        delete new LevelEndScene(
+        new LevelEndScene(
           self.game,
           score,
           self.monster,
           self.levelEndCallBack,
-          self.levelData
+          self.levelData,
+          isGamePause
         );
       } else {
         // self.promptText.setCurrrentPromptText(
