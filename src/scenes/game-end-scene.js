@@ -34,6 +34,7 @@ export class GameEndScene {
       this.context = this.canavsElement.getContext("2d");
       this.canavsElement.style.zIndex = 3;
       document.getElementById("discription-text").style.display = "block";
+      document.getElementById("discription-text").innerHTML = window.descriptionText;
       this.createBackgroud()
     }
   

@@ -24,7 +24,7 @@ grassImg.src = "./assets/images/FG_a_v01.png";
 var fenchImg = new Image();
 fenchImg.src = "./assets/images/fence_v01.png";
 var title = new Image();
-title.src = "./assets/images/title.png";
+title.src = "../../lang/"+window.lang+"/images/title.png";
 var profileMonster = new Image();
 profileMonster.src = "./assets/images/idle4.png";
 var self;
@@ -56,6 +56,7 @@ export class StartScene {
       StartSceneLayer
     );
     document.getElementById("about-company").style.display = "block";
+    document.getElementById("about-company").innerHTML = window.aboutCompany;
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 2;

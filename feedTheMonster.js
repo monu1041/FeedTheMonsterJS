@@ -11,6 +11,8 @@ import {
 } from "./src/data/profile-data.js";
 import { PWAInstallStatus } from "./src/common/common.js";
 
+
+window.lang = 'english';
 window.addEventListener("load", async function () {
   if (navigator.onLine) {
     this.app = firebase.initializeApp(firebaseConfig);
@@ -28,6 +30,8 @@ window.addEventListener("load", async function () {
     data.RightToLeft,
     data.FeedbackAudios
   );
+  window.aboutCompany = data.aboutCompany;
+  window.descriptionText = data.descriptionText;
   window.addEventListener("resize", async () => {
     canvas.height = window.innerHeight;
     canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;

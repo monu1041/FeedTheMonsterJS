@@ -5,7 +5,7 @@ export class DataModal {
         this.levels = this.getLevels(levels);
         this.FeedbackTexts = new FeedbackTexts(feedbackTexts);
         this.FeedbackAudios = new FeedbackAudios(feedbackAudios);
-        this.rightToLeft = rightToLeft;
+        this.rightToLeft = rightToLeft
     }
 
     getLevels(levels){

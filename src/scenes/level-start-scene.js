@@ -27,14 +27,15 @@ var images = {
   rotating_clock: "./assets/images/timer.png",
   fenchImg: "./assets/images/fence_v01.png",
   promptImg: "./assets/images/promptTextBg.png",
-  fantastic: "./assets/images/fantastic_01.png",
-  great: "./assets/images/great_01.png",
+  fantastic: "../../lang/"+window.lang+"/images/fantastic_01.png",
+  great: "../../lang/"+window.lang+"/images/great_01.png",
 };
+console.log(window.lang);
 var audioUrl = {
   phraseAudios: [
-    "./assets/audios/fantastic.WAV",
+    "../../lang/"+window.lang+"/audios/fantastic.WAV",
     // "./assets/audios/good job.WAV",
-    "./assets/audios/great.wav",
+    "../../lang/"+window.lang+"/audios/great.wav",
   ],
   monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
   monsterHappy: "./assets/audios/Cheering-02.mp3",

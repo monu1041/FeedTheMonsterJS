@@ -19,11 +19,10 @@ export class PromptText {
   loadFantasticAndGreatImage() {
     var self = this;
     this.fantastic_image = new Image();
-    this.fantastic_image.src = "./assets/images/fantastic_01.png";
-
+    this.fantastic_image.src = "../../lang/"+window.lang+"/images/fantastic_01.png";
     this.fntstOrGrtImgArr.push(this.fantastic_image);
     this.great_image = new Image();
-    this.great_image.src = "./assets/images/great_01.png";
+    this.great_image.src = "../../lang/"+window.lang+"/images/great_01.png";
     this.fntstOrGrtImgArr.push(this.great_image);
   }
 

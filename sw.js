@@ -1,5 +1,6 @@
 var cacheName = "ftm";
 var version = 1.0;
+var lang = 'english';
 var filesToCache = [
   // infrastructure files ----------------------------------------------------------------------------------------------
 
@@ -38,17 +39,17 @@ var filesToCache = [
   "./assets/images/stone_pink_v02.png",
   "./assets/images/retry_btn.png",
   "./assets/images/Play_button.png",
-  "./assets/images/title.png",
+  "../../lang/"+lang+"/images/title.png",
   "./assets/images/mapIcon.png",
   "./assets/images/map.jpg",
   "./assets/images/star.png",
   "./assets/images/ftm_bonus_level_monsters.png",
-  "./assets/images/fantastic_01.png",
+  "../../lang/"+lang+"/images/fantastic_01.png",
   "./assets/images/promptTextBg.png",
-  "./assets/images/great_01.png",
-  "./assets/audios/fantastic.WAV",
+  "../../lang/"+lang+"/images/great_01.png",
+  "../../lang/"+lang+"/audios/fantastic.WAV",
   "./assets/audios/good job.WAV",
-  "./assets/audios/great.wav",
+  "../../lang/"+lang+"/audios/great.wav",
   "./assets/audios/Monster Spits wrong stones-01.mp3",
   "./assets/audios/Cheering-02.mp3",
   "./assets/audios/Disapointed-05.mp3",
@@ -65,7 +66,6 @@ var filesToCache = [
 
   // -------------------------------------------------------------------------------------------------------------------
 ];
-
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker
     .register("sw.js")
@@ -78,7 +78,7 @@ if ("serviceWorker" in navigator) {
           return cache.addAll(filesToCache);
         });
       });
-      fetch("./ftm_english.json", {
+      fetch("./ftm_"+lang+".json", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
