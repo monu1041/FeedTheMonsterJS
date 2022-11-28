@@ -3,32 +3,36 @@ import { CanvasStack } from "../utility/canvas-stack.js";
 var lastTime = 0;
 var self;
 var animationFrame;
-const eatImg = new Image();
-eatImg.src = "./assets/images/eat4.png";
-const idleImg = new Image();
-idleImg.src = "./assets/images/idle4.png";
-const spitImg = new Image();
-spitImg.src = "./assets/images/spit4.png";
+var monsterPhaseNumber = localStorage.getItem("storeMonsterPhaseNumber") || 1;
+console.log(">>>>>>>>>.");
+console.log(monsterPhaseNumber);
+var eatImg = new Image();
+eatImg.src = "./assets/images/eat1" + monsterPhaseNumber + ".png";
+var idleImg = new Image();
+idleImg.src = "./assets/images/idle1" + monsterPhaseNumber + ".png";
+var spitImg = new Image();
+spitImg.src = "./assets/images/spit1" + monsterPhaseNumber + ".png";
+console.log("monsterexecuting");
 export class Monster {
   public zindex: number;
-	public width: number;
-	public height: number;
-	public image: HTMLImageElement;
-	public frameX: number;
-	public frameY: number;
-	public maxFrame: number;
-	public x: number;
-	public y: number;
-	public fps: number;
-	public frameInterval: number;
-	public frameTimer: number;
-	public canvasStack: any;
-	public id: any;
-	public canavsElement: HTMLCanvasElement;
-	public context: CanvasRenderingContext2D;
-	public game: any;
-	
-  constructor(game, zindex?,) {
+  public width: number;
+  public height: number;
+  public image: HTMLImageElement;
+  public frameX: number;
+  public frameY: number;
+  public maxFrame: number;
+  public x: number;
+  public y: number;
+  public fps: number;
+  public frameInterval: number;
+  public frameTimer: number;
+  public canvasStack: any;
+  public id: any;
+  public canavsElement: HTMLCanvasElement;
+  public context: CanvasRenderingContext2D;
+  public game: any;
+
+  constructor(game, zindex?) {
     this.game = game;
     self = this;
     this.zindex = zindex;
@@ -55,8 +59,8 @@ export class Monster {
     );
     this.canavsElement = document.getElementById(this.id) as HTMLCanvasElement;
     this.context = this.canavsElement.getContext("2d");
-    this.canavsElement.style.zIndex = '6';
-    this.canavsElement.style.bottom = '0';
+    this.canavsElement.style.zIndex = "6";
+    this.canavsElement.style.bottom = "0";
     this.draw();
     this.animation(0);
   }
@@ -101,6 +105,7 @@ export class Monster {
   }
 
   changeImage(src) {
+    this.animation(0);
     // if (this.frameY == 1) {
     //   this.frameY = 0;
     // } else {
@@ -108,7 +113,19 @@ export class Monster {
     // }
     this.image.src = src;
   }
-
+  changePhaseNumber(monsterPhaseNum) {
+    console.log("monster changing");
+    eatImg = new Image();
+    eatImg.src = "./assets/images/eat1" + monsterPhaseNum + ".png";
+    idleImg = new Image();
+    idleImg.src = "./assets/images/idle1" + monsterPhaseNum + ".png";
+    spitImg = new Image();
+    spitImg.src = "./assets/images/spit1" + monsterPhaseNum + ".png";
+    console.log(eatImg.src);
+    console.log(idleImg.src);
+    console.log(spitImg.src);
+    console.log(monsterPhaseNumber);
+  }
   changeToEatAnimation() {
     this.image = eatImg;
     setTimeout(() => {

@@ -19,6 +19,7 @@ import { GameEndScene } from "./game-end-scene.js";
 import Sound from "../common/sound.js";
 import { LevelEndScene } from "./level-end-scene.js";
 import { Game } from "./game";
+import { getDatafromStorage } from "../data/profile-data.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -75,15 +76,18 @@ export class LevelStartScene {
   public grassImg: any;
   public timer_empty: any;
   public rotating_clock: any;
+  public monsterPhaseNumber: any;
 
   constructor({
     game,
     levelData,
     levelStartCallBack,
+    monsterPhaseNumber,
   }: {
     game: Game;
     levelData: { puzzles: any[] };
     levelStartCallBack: any;
+    monsterPhaseNumber: any;
   }) {
     this.game = game;
     this.width = game.width;
@@ -92,6 +96,7 @@ export class LevelStartScene {
     this.monster = new Monster(game);
     this.audio = new Sound();
     this.canvasStack = new CanvasStack("canvas");
+    this.monsterPhaseNumber = monsterPhaseNumber || 1;
     this.levelData = levelData;
     this.levelStartCallBack = levelStartCallBack;
     this.timerTicking = new TimerTicking(game, this);
@@ -224,8 +229,34 @@ export class LevelStartScene {
     }
   }
   levelEnded() {
+    console.log("Level");
+    let totalStarsCount = 0;
+    let monsterPhaseNumber = self.monsterPhaseNumber || 1;
+    var gameLevelData = getDatafromStorage();
+    if (gameLevelData != null) {
+      for (let i = 0; i < gameLevelData.length; i++) {
+        totalStarsCount = totalStarsCount + gameLevelData[i].levelStar;
+      }
+      monsterPhaseNumber = Math.floor(totalStarsCount / 12) + 1 || 1;
+      console.log(totalStarsCount + "total star count");
+      if (self.monsterPhaseNumber < monsterPhaseNumber) {
+        if (monsterPhaseNumber <= 4) {
+          self.monsterPhaseNumber = monsterPhaseNumber;
+          console.log("setting data" + monsterPhaseNumber);
+          localStorage.setItem("storeMonsterPhaseNumber", monsterPhaseNumber);
+          self.monster.changePhaseNumber(monsterPhaseNumber);
+          self.monster.changeImage(
+            "./assets/images/idle1" + self.monsterPhaseNumber + ".png"
+          );
+        } else {
+          self.monsterPhaseNumber = 4;
+        }
+      }
+      console.log(self.monsterPhaseNumber);
+      console.log(monsterPhaseNumber);
+    }
     self.levelStartCallBack();
-    if (self.levelData.levelNumber == 9) {
+    if (self.levelData.levelNumber == 149) {
       self.exitAllScreens();
       new GameEndScene(self.game);
     } else {
@@ -235,12 +266,19 @@ export class LevelStartScene {
         self.monster,
         self.levelEndCallBack,
         self.levelData,
-        isGamePause
+        isGamePause,
+        self.monsterPhaseNumber
       );
     }
     isLevelEnded = true;
   }
   createCanvas() {
+    var monsterPhaseNumber = this.monsterPhaseNumber || 1;
+    console.log("levelStartScene>>>>>>>>>>>.");
+    console.log(monsterPhaseNumber);
+    this.monster.changeImage(
+      "./assets/images/idle1" + monsterPhaseNumber + ".png"
+    );
     window.addEventListener("resize", async () => {
       self.deleteObjects();
     });
@@ -286,6 +324,9 @@ export class LevelStartScene {
     self.monster.changeImage("./assets/images/idle4.png");
     self.deleteObjects();
     word_dropped_stones = 0;
+    self.monster.changeImage(
+      "./assets/images/idle1" + self.monsterPhaseNumber + ".png"
+    );
   }
   deleteObjects() {
     delete self.monster;

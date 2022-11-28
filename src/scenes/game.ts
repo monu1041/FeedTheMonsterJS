@@ -7,6 +7,7 @@ export class Game {
   public height: number;
   public scene: LevelStartScene;
   public gameSceneCallBack: any;
+  public monsterPhaseNumber: any;
 
   constructor(
     width: number,
@@ -16,10 +17,13 @@ export class Game {
   ) {
     this.width = width;
     this.height = height;
+    this.monsterPhaseNumber =
+      localStorage.getItem("storeMonsterPhaseNumber") || 1;
     this.scene = new LevelStartScene({
       game: this,
       levelData: puzzleData,
       levelStartCallBack: this.levelStartCallBack,
+      this.monsterPhaseNumber,
     });
     this.gameSceneCallBack = gameSceneCallBack;
     this.render();
