@@ -1,9 +1,9 @@
-import { MonsterLayer } from "../common/common.js";
+import { MonsterLayer, StoreMonsterPhaseNumber } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 var lastTime = 0;
 var self;
 var animationFrame;
-var monsterPhaseNumber = localStorage.getItem("storeMonsterPhaseNumber") || 1;
+var monsterPhaseNumber = localStorage.getItem(StoreMonsterPhaseNumber) || 1;
 console.log(">>>>>>>>>.");
 console.log(monsterPhaseNumber);
 var eatImg = new Image();

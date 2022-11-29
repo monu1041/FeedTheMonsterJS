@@ -54,3 +54,5 @@ export const PromptTextLayer = "promptTextCanvas";
 export const PWAInstallStatus = "pwa_installed_status";
 export const UserCancelled = "user_cancel_installation";
 export const NativePlayButton = "native_playbutton_clicked";
+export const PreviousPlayedLevel = "storePreviousPlayedLevel";
+export const StoreMonsterPhaseNumber ="storeMonsterPhaseNumber";
