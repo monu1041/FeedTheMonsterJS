@@ -13,6 +13,8 @@ import {
   StoneLayer,
   TimetickerLayer,
   PromptTextLayer,
+  PreviousPlayedLevel,
+  StoreMonsterPhaseNumber,
 } from "../common/common.js";
 import { LevelStartLayer } from "../common/common.js";
 import { GameEndScene } from "./game-end-scene.js";
@@ -243,7 +245,7 @@ export class LevelStartScene {
         if (monsterPhaseNumber <= 4) {
           self.monsterPhaseNumber = monsterPhaseNumber;
           console.log("setting data" + monsterPhaseNumber);
-          localStorage.setItem("storeMonsterPhaseNumber", monsterPhaseNumber);
+          localStorage.setItem(StoreMonsterPhaseNumber, monsterPhaseNumber);
           self.monster.changePhaseNumber(monsterPhaseNumber);
           self.monster.changeImage(
             "./assets/images/idle1" + self.monsterPhaseNumber + ".png"
@@ -274,7 +276,6 @@ export class LevelStartScene {
   }
   createCanvas() {
     var monsterPhaseNumber = this.monsterPhaseNumber || 1;
-    console.log("levelStartScene>>>>>>>>>>>.");
     console.log(monsterPhaseNumber);
     this.monster.changeImage(
       "./assets/images/idle1" + monsterPhaseNumber + ".png"
@@ -307,7 +308,7 @@ export class LevelStartScene {
       const y = event.clientY - rect.top;
     });
     var previousPlayedLevel: string = self.levelData.levelMeta.levelNumber;
-    localStorage.setItem("storePreviousPlayedLevel", previousPlayedLevel);
+    localStorage.setItem(PreviousPlayedLevel, previousPlayedLevel);
   }
 
   deleteCanvas() {
@@ -317,16 +318,16 @@ export class LevelStartScene {
     self.canvasStack.deleteLayer(LevelEndLayer);
     self.canvasStack.deleteLayer(LevelEndButtonsLayer);
     self.canvasStack.deleteLayer(LevelStartLayer);
-    self.monster.deleteCanvas();
     self.canvasStack.deleteLayer(StoneLayer);
     self.canvasStack.deleteLayer(TimetickerLayer);
     self.canvasStack.deleteLayer(PromptTextLayer);
-    self.monster.changeImage("./assets/images/idle4.png");
-    self.deleteObjects();
-    word_dropped_stones = 0;
+    // self.monster.changeImage("./assets/images/idle4.png");
     self.monster.changeImage(
       "./assets/images/idle1" + self.monsterPhaseNumber + ".png"
     );
+    self.monster.deleteCanvas();
+    self.deleteObjects();
+    word_dropped_stones = 0;
   }
   deleteObjects() {
     delete self.monster;
@@ -416,7 +417,8 @@ export class LevelStartScene {
           self.monster,
           self.levelEndCallBack,
           self.levelData,
-          isGamePause
+          isGamePause,
+          this.monsterPhaseNumber
         );
       } else {
         // self.promptText.setCurrrentPromptText(

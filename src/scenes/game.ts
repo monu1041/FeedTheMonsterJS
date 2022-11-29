@@ -1,3 +1,4 @@
+import { StoreMonsterPhaseNumber } from "../common/common.js";
 import { LevelStartScene } from "./level-start-scene.js";
 
 var animationFrame: number;
@@ -18,12 +19,12 @@ export class Game {
     this.width = width;
     this.height = height;
     this.monsterPhaseNumber =
-      localStorage.getItem("storeMonsterPhaseNumber") || 1;
+      localStorage.getItem(StoreMonsterPhaseNumber) || 1;
     this.scene = new LevelStartScene({
       game: this,
       levelData: puzzleData,
       levelStartCallBack: this.levelStartCallBack,
-      this.monsterPhaseNumber,
+      monsterPhaseNumber: this.monsterPhaseNumber,
     });
     this.gameSceneCallBack = gameSceneCallBack;
     this.render();

@@ -3,11 +3,13 @@ import { CanvasStack } from "../utility/canvas-stack.js";
 import { gameData } from "../../data.js";
 import { LevelConfig } from "../common/level-config.js";
 import { Game } from "./game.js";
-import { LevelSelectionLayer } from "../common/common.js";
+import { LevelSelectionLayer, PreviousPlayedLevel } from "../common/common.js";
 import Sound from "../common/sound.js";
 import { getDatafromStorage } from "../data/profile-data.js";
 var mapIcon = new Image();
 mapIcon.src = "./assets/images/mapIcon.png";
+var mapLock = new Image();
+mapLock.src = "./assets/images/mapLock.png";
 var map = new Image();
 map.src = "./assets/images/map.jpg";
 var star = new Image();
@@ -19,12 +21,11 @@ backbtn.src = "./assets/images/back_btn.png";
 var levelNumber: number;
 var self: any;
 var previousPlayedLevel: number =
-  parseInt(localStorage.getItem("storePreviousPlayedLevel")) | 0;
+  parseInt(localStorage.getItem(PreviousPlayedLevel)) | 0;
 var level: number;
 if (previousPlayedLevel != null) {
   level = 10 * Math.floor(previousPlayedLevel / 10);
 }
-console.log(previousPlayedLevel);
 export class LevelSelectionScreen {
   public canvas: HTMLCanvasElement;
   public width: number;
@@ -37,7 +38,9 @@ export class LevelSelectionScreen {
   public canavsElement: any;
   public context: CanvasRenderingContext2D;
   public levelButtonpos: any;
-
+  public starsId: any;
+  public starsCanavsElement: HTMLElement;
+  public starsContext: any;
   constructor(canvas: HTMLCanvasElement, data: any) {
     this.canvas = canvas;
     this.width = canvas.width;
@@ -83,6 +86,14 @@ export class LevelSelectionScreen {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.context.drawImage(map, 0, 0, this.canvas.width, this.canvas.height);
     this.canavsElement.style.zIndex = 2;
+    this.starsId = this.canvasStack.createLayer(
+      this.height,
+      this.width,
+      LevelSelectionLayer + 1
+    );
+    this.starsCanavsElement = document.getElementById(this.starsId);
+    this.starsContext = this.canavsElement.getContext("2d");
+    this.starsCanavsElement.style.zIndex = "3";
     this.levelButtonpos = [
       [
         [this.canvas.width / 10, this.canvas.height / 10],
@@ -107,10 +118,10 @@ export class LevelSelectionScreen {
       ],
     ];
     document
-      .getElementById(this.id)
+      .getElementById(this.starsId)
       .addEventListener("touchstart", handleTouchStart, false);
     document
-      .getElementById(this.id)
+      .getElementById(this.starsId)
       .addEventListener("touchmove", handleTouchMove, false);
 
     var xDown = null;
@@ -157,7 +168,6 @@ export class LevelSelectionScreen {
             self.draw(level);
             self.downButton(level);
             self.drawStars();
-            console.log(level);
           }
           /* right swipe */
         } else {
@@ -188,7 +198,7 @@ export class LevelSelectionScreen {
       xDown = null;
       yDown = null;
     }
-    document.getElementById(this.id).addEventListener(
+    document.getElementById(this.starsId).addEventListener(
       "mousedown",
       function (event) {
         event.preventDefault();
@@ -215,7 +225,6 @@ export class LevelSelectionScreen {
             self.draw(level);
             self.downButton(level);
             self.drawStars();
-            console.log(level);
           }
         }
 
@@ -249,10 +258,13 @@ export class LevelSelectionScreen {
                   (y - s.y - self.canvas.height / 20)
             ) < 45
           ) {
+            if(s.index + level <=
+              (getDatafromStorage().length == undefined ? 1 : getDatafromStorage().length + 1)){
             self.sound.changeSourse("./assets/audios/ButtonClick.wav");
             self.sound.pauseSound();
             levelNumber = s.index + level - 1;
             self.startGame(levelNumber);
+            }
           }
         }
       },
@@ -337,22 +349,33 @@ export class LevelSelectionScreen {
     this.sound.changeSourse("./assets/audios/intro.wav");
     let gameLevelData = getDatafromStorage();
     let canvas = document.getElementById("canvas");
+    var canavsElement = <HTMLCanvasElement>(
+      document.getElementById("levelSelectionCanvas1")
+    );
+    var context = canavsElement.getContext("2d");
+    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     if (gameLevelData != null) {
       for (let s of self.levels) {
+        s.index + level >
+        (gameLevelData.length == undefined ? 1 : gameLevelData.length + 1)
+          ? context.drawImage(
+              mapLock,
+              s.x,
+              s.y,
+              this.canvas.height / 13,
+              this.canvas.height / 13
+            )
+          : null;
         for (let i = 0; i < gameLevelData.length; i++) {
           if (s.index - 1 + level == parseInt(gameLevelData[i].levelNumber)) {
-            this.drawStar(s, canvas, gameLevelData[i].levelStar);
+            this.drawStar(s, canvas, gameLevelData[i].levelStar, context);
             break;
           }
         }
       }
     }
   }
-  drawStar(s: any, canvas: any, starCount: number) {
-    var canavsElement = <HTMLCanvasElement>(
-      document.getElementById("levelSelectionCanvas")
-    );
-    var context = canavsElement.getContext("2d");
+  drawStar(s: any, canvas: any, starCount: number, context) {
     var imageSize = canvas.height / 5;
     if (starCount >= 1) {
       context.drawImage(
