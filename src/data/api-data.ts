@@ -1,6 +1,7 @@
 import { DataModal } from "./data-modal.js";
+import { lang } from "../../global-variables";
 
-const URL = "./ftm_english.json";
+const URL = "../../lang/"+lang+"/ftm_"+lang+".json";
 
 export function getFtmData() {
   return fetch(URL, {
