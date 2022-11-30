@@ -11,8 +11,10 @@ import {
 } from "./src/data/profile-data.js";
 import { PWAInstallStatus } from "./src/common/common.js";
 import { Workbox } from "workbox-window";
+import { lang } from "./global-variables.js";
 declare const window: any;
 declare const app: any;
+
 
 window.addEventListener("load", async function () {
   if ('serviceWorker' in navigator) {
@@ -47,6 +49,10 @@ window.addEventListener("load", async function () {
     data.RightToLeft,
     data.FeedbackAudios
   );
+
+  global.aboutCompany = data.aboutCompany;
+  global.descriptionText = data.descriptionText;
+
   window.addEventListener("resize", async () => {
     canvas.height = window.innerHeight;
     canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;

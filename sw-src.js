@@ -2,6 +2,7 @@ importScripts(
     'https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js'
 );
 
+
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 
 
@@ -16,6 +17,7 @@ self.addEventListener('install', async function(e) {
 });
 
 self.registration.addEventListener('updatefound', function(e) {
+  
     caches.keys().then(cacheNames => {
         cacheNames.forEach(cacheName => {
             caches.delete(cacheName);
@@ -44,7 +46,8 @@ function getCacheName() {
 }
 
 function getALLAudioUrls(cacheName) { 
-    fetch("./ftm_english.json", {
+    let lang = "english";
+    fetch("../../lang/"+lang+"/ftm_"+lang+".json", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

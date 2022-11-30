@@ -14,6 +14,7 @@ import { Monster } from "../components/monster.js";
 import { DataModal } from "../data/data-modal.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { LevelSelectionScreen } from "./level-selection-scene.js";
+import { lang } from "../../global-variables";
 
 var bgImg = new Image();
 bgImg.src = "./assets/images/bg_v01.jpg";
@@ -26,7 +27,7 @@ grassImg.src = "./assets/images/FG_a_v01.png";
 var fenchImg = new Image();
 fenchImg.src = "./assets/images/fence_v01.png";
 var title = new Image();
-title.src = "./assets/images/title.png";
+title.src = "../../lang/"+lang+"/images/title.png";
 var profileMonster = new Image();
 profileMonster.src = "./assets/images/idle4.png";
 var self: any;
@@ -71,6 +72,7 @@ export class StartScene {
     this.createCanvas();
     this.createPlayButton();
     this.firebase_analytics = firebase_analytics;
+   
   }
   createCanvas() {
     this.id = this.canvasStack.createLayer(
@@ -79,6 +81,7 @@ export class StartScene {
       StartSceneLayer
     );
     aboutCompanyElement.style.display = "block";
+    aboutCompanyElement.innerHTML = global.aboutCompany;
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 2;
