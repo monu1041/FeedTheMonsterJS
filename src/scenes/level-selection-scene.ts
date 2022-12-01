@@ -20,6 +20,7 @@ var backbtn = new Image();
 backbtn.src = "./assets/images/back_btn.png";
 var levelNumber: number;
 var self: any;
+var unlockLevelIndex = -1;
 var previousPlayedLevel: number =
   parseInt(localStorage.getItem(PreviousPlayedLevel)) | 0;
 var level: number;
@@ -258,12 +259,11 @@ export class LevelSelectionScreen {
                   (y - s.y - self.canvas.height / 20)
             ) < 45
           ) {
-            if(s.index + level <=
-              (getDatafromStorage().length == undefined ? 1 : getDatafromStorage().length + 1)){
-            self.sound.changeSourse("./assets/audios/ButtonClick.wav");
-            self.sound.pauseSound();
-            levelNumber = s.index + level - 1;
-            self.startGame(levelNumber);
+            if (s.index + level - 1 <= unlockLevelIndex + 1) {
+              self.sound.changeSourse("./assets/audios/ButtonClick.wav");
+              self.sound.pauseSound();
+              levelNumber = s.index + level - 1;
+              self.startGame(levelNumber);
             }
           }
         }
@@ -355,9 +355,16 @@ export class LevelSelectionScreen {
     var context = canavsElement.getContext("2d");
     context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     if (gameLevelData != null) {
+      if (gameLevelData.length != undefined) {
+        for (let game of gameLevelData) {
+          game.levelStar >= 2
+            ? (unlockLevelIndex = parseInt(game.levelNumber))
+            : null;
+        }
+      }
+
       for (let s of self.levels) {
-        s.index + level >
-        (gameLevelData.length == undefined ? 1 : gameLevelData.length + 1)
+        s.index + level - 1 > unlockLevelIndex + 1
           ? context.drawImage(
               mapLock,
               s.x,
