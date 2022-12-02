@@ -14,7 +14,7 @@ import { Monster } from "../components/monster.js";
 import { DataModal } from "../data/data-modal.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { LevelSelectionScreen } from "./level-selection-scene.js";
-import { lang } from "../../global-variables";
+import { lang } from "../../global-variables.js";
 
 var bgImg = new Image();
 bgImg.src = "./assets/images/bg_v01.jpg";
@@ -27,7 +27,7 @@ grassImg.src = "./assets/images/FG_a_v01.png";
 var fenchImg = new Image();
 fenchImg.src = "./assets/images/fence_v01.png";
 var title = new Image();
-title.src = "../../lang/"+lang+"/images/title.png";
+title.src = "./lang/"+lang+"/images/title.png";
 var profileMonster = new Image();
 profileMonster.src = "./assets/images/idle4.png";
 var self: any;

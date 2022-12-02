@@ -2,7 +2,7 @@ import { PromptTextLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { Game } from "../scenes/game.js";
 import { LevelStartScene } from "../scenes/level-start-scene.js";
-import { lang } from "../../global-variables";
+import { lang } from "../../global-variables.js";
 var self;
 export class PromptText {
   public game: Game;
@@ -41,11 +41,11 @@ export class PromptText {
   loadFantasticAndGreatImage() {
     var self = this;
     this.fantastic_image = new Image();
-    this.fantastic_image.src = "../../lang/"+lang+"/images/fantastic_01.png";
+    this.fantastic_image.src = "./lang/"+lang+"/images/fantastic_01.png";
 
     this.fntstOrGrtImgArr.push(this.fantastic_image);
     this.great_image = new Image();
-    this.great_image.src = "../../lang/"+lang+"/images/great_01.png";
+    this.great_image.src = "./lang/"+lang+"/images/great_01.png";
     this.fntstOrGrtImgArr.push(this.great_image);
   }
 
