@@ -22,7 +22,7 @@ import Sound from "../common/sound.js";
 import { LevelEndScene } from "./level-end-scene.js";
 import { Game } from "./game";
 import { getDatafromStorage } from "../data/profile-data.js";
-import { lang } from "../../global-variables";
+import { lang } from "../../global-variables.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -32,14 +32,14 @@ var images = {
   rotating_clock: "./assets/images/timer.png",
   fenchImg: "./assets/images/fence_v01.png",
   promptImg: "./assets/images/promptTextBg.png",
-  fantastic: "../../lang/"+lang+"/images/fantastic_01.png",
-  great: "../../lang/"+lang+"/images/great_01.png",
+  fantastic: "./lang/"+lang+"/images/fantastic_01.png",
+  great: "./lang/"+lang+"/images/great_01.png",
 };
 var audioUrl = {
   phraseAudios: [
-    "../../lang/"+lang+"/audios/fantastic.WAV",
+    "./lang/"+lang+"/audios/fantastic.WAV",
     // "./assets/audios/good job.WAV",
-    "../../lang/"+lang+"/audios/great.wav",
+    "./lang/"+lang+"/audios/great.wav",
   ],
   monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
   monsterHappy: "./assets/audios/Cheering-02.mp3",
