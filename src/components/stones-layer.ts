@@ -200,18 +200,18 @@ export default class StonesLayer {
           if (pickedStone) {
             pickedStone.x = -900;
             pickedStone.y = -900;
-
             if (pickedStone.text == gs.puzzle.target[0]) {
+             
               gs.puzzle.target.shift();
               if (gs.puzzle.target.length == 0) {
                 gs.stones = [];
-                self.callBack(true, true);
+                self.callBack(true, true,pickedStone.text.length);
               } else {
-                self.callBack(true, false);
+                self.callBack(true, false,pickedStone.text.length);
               }
             } else {
               gs.stones = [];
-              self.callBack(false, true);
+              self.callBack(false, true,pickedStone.text.length);
             }
           }
           pickedStone = null;
