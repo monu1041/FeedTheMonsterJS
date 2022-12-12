@@ -174,25 +174,26 @@ export class LevelStartScene {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  redrawOfStones(status: boolean, emptyTarget: boolean) {
+  redrawOfStones(status: boolean, emptyTarget: boolean,picked_stone_lenghth:number) {
     noMoreTarget = emptyTarget;
     var fntsticOrGrtIndex = self.getRandomInt(0, 1);
     if (status) {
       self.monster.changeToEatAnimation();
       self.audio.changeSourse(audioUrl.monsterHappy);
       if (emptyTarget) {
+       
         setTimeout(() => {
           self.audio.changeSourse(audioUrl.phraseAudios[fntsticOrGrtIndex]);
           self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
         }, 1000);
-        self.promptText.draw((word_dropped_stones += 1));
+        self.promptText.draw((word_dropped_stones += picked_stone_lenghth));
         self.timerTicking.stopTimer();
-        self.promptText.draw((word_dropped_stones += 1));
+        // self.promptText.draw((word_dropped_stones += 1));
         score += 100;
         word_dropped_stones = 0;
         current_puzzle_index += 1;
       } else {
-        self.promptText.draw((word_dropped_stones += 1));
+        self.promptText.draw((word_dropped_stones += picked_stone_lenghth));
       }
     } else {
       self.timerTicking.stopTimer();
