@@ -14,7 +14,10 @@ import { Workbox } from "workbox-window";
 import { lang } from "./global-variables.js";
 declare const window: any;
 declare const app: any;
-
+declare global {
+  var aboutCompany: string;
+  var descriptionText: string;
+}
 
 window.addEventListener("load", async function () {
   if ('serviceWorker' in navigator) {
@@ -49,9 +52,9 @@ window.addEventListener("load", async function () {
     data.RightToLeft,
     data.FeedbackAudios
   );
-
-  global.aboutCompany = data.aboutCompany;
-  global.descriptionText = data.descriptionText;
+  
+  globalThis.aboutCompany = data.aboutCompany;
+  globalThis.descriptionText = data.descriptionText;
 
   window.addEventListener("resize", async () => {
     canvas.height = window.innerHeight;
