@@ -41,11 +41,12 @@ export class PromptText {
   loadFantasticAndGreatImage() {
     var self = this;
     this.fantastic_image = new Image();
-    this.fantastic_image.src = "../../lang/"+lang+"/images/fantastic_01.png";
+    this.fantastic_image.src =
+      "../../lang/" + lang + "/images/fantastic_01.png";
 
     this.fntstOrGrtImgArr.push(this.fantastic_image);
     this.great_image = new Image();
-    this.great_image.src = "../../lang/"+lang+"/images/great_01.png";
+    this.great_image.src = "../../lang/" + lang + "/images/great_01.png";
     this.fntstOrGrtImgArr.push(this.great_image);
   }
 
@@ -106,7 +107,9 @@ export class PromptText {
       switch (this.levelData.levelMeta.levelType) {
         case "LetterInWord": {
           if (
-            this.currentPuzzleData.targetStones.includes(promptTextLetters[i])
+            this.currentPuzzleData.targetStones[0]
+              .split("")
+              .includes(promptTextLetters[i])
           ) {
             this.context.fillStyle = "red";
             this.context.fillText(promptTextLetters[i], x + 20 * i, y);
