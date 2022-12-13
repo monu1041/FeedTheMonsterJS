@@ -47,7 +47,7 @@ function getCacheName() {
 
 function getALLAudioUrls(cacheName) { 
     let lang = "english";
-    fetch("../../lang/"+lang+"/ftm_"+lang+".json", {
+    fetch("./lang/"+lang+"/ftm_"+lang+".json", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
