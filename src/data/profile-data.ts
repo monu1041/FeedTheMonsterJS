@@ -1,3 +1,5 @@
+import { lang } from "../../global-variables.js";
+
 export class ProfileData {
   public levelName: string;
   public levelNumber: number;
@@ -26,7 +28,7 @@ export function setDataToStorage(profileData) {
   });
   const data: any = JSON.stringify(existingData);
   if (data) {
-    localStorage.setItem("Profile", data);
+    localStorage.setItem(lang+"Profile", data);
   }
 }
 function jsonToArray(json) {
@@ -54,6 +56,6 @@ function dataPushToArray(jsonData, profileData) {
   return jsonData;
 }
 export function getDatafromStorage() {
-  const data = JSON.parse(localStorage.getItem("Profile") || "{}");
+  const data = JSON.parse(localStorage.getItem(lang+"Profile") || "{}");
   return data;
 }
