@@ -41,11 +41,11 @@ export class PromptText {
   loadFantasticAndGreatImage() {
     var self = this;
     this.fantastic_image = new Image();
-    this.fantastic_image.src = "./lang/"+lang+"/images/fantastic_01.png";
+    this.fantastic_image.src = "./lang/" + lang + "/images/fantastic_01.png";
 
     this.fntstOrGrtImgArr.push(this.fantastic_image);
     this.great_image = new Image();
-    this.great_image.src = "./lang/"+lang+"/images/great_01.png";
+    this.great_image.src = "./lang/" + lang + "/images/great_01.png";
     this.fntstOrGrtImgArr.push(this.great_image);
   }
 
@@ -109,20 +109,52 @@ export class PromptText {
             this.currentPuzzleData.targetStones.includes(promptTextLetters[i])
           ) {
             this.context.fillStyle = "red";
-            this.context.fillText(promptTextLetters[i], x + 20 * i, y);
+            this.context.fillText(
+              promptTextLetters[i],
+              x * 0.66 +
+                x / promptTextLetters.length +
+                ((promptTextLetters.length * i * 12) /
+                  promptTextLetters.length) *
+                  1.45,
+              y
+            );
           } else {
             this.context.fillStyle = "black";
-            this.context.fillText(promptTextLetters[i], x + 20 * i, y);
+            this.context.fillText(
+              promptTextLetters[i],
+              x * 0.66 +
+                x / promptTextLetters.length +
+                ((promptTextLetters.length * i * 12) /
+                  promptTextLetters.length) *
+                  1.45,
+              y
+            );
           }
           break;
         }
         case "Word": {
           if (droppedStones > i || droppedStones == undefined) {
             this.context.fillStyle = "black";
-            this.context.fillText(promptTextLetters[i], x + 20 * i, y);
+            this.context.fillText(
+              promptTextLetters[i],
+              x * 0.66 +
+                x / promptTextLetters.length +
+                ((promptTextLetters.length * i * 12) /
+                  promptTextLetters.length) *
+                  1.45,
+              y
+            );
           } else {
             this.context.fillStyle = "red";
-            this.context.fillText(promptTextLetters[i], x + 20 * i, y);
+            this.context.fillText(
+              promptTextLetters[i],
+              x * 0.66 +
+                x / promptTextLetters.length +
+                ((promptTextLetters.length * i * 12) /
+                  promptTextLetters.length) *
+                  1.45,
+              y
+            );
           }
           break;
         }
