@@ -101,13 +101,17 @@ export class PromptText {
     const promptTextLetters = this.currentPromptText.split("");
     const x = this.width / 2.1;
     const y = this.height * 0.26;
+    var letterHighlight:Array<string> =
+            this.currentPuzzleData.targetStones[0].split("");
     for (let i = 0; i < promptTextLetters.length; i++) {
       // this.context.textAlign = "center";
       switch (this.levelData.levelMeta.levelType) {
         case "LetterInWord": {
           if (
-            this.currentPuzzleData.targetStones.includes(promptTextLetters[i])
+           letterHighlight
+              .includes(promptTextLetters[i])
           ) {
+           letterHighlight= letterHighlight.slice(1,letterHighlight.length)
             this.context.fillStyle = "red";
             this.context.fillText(
               promptTextLetters[i],

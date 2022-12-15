@@ -23,6 +23,7 @@ var config = {
         { from: "./index.css", to: "./" },
         { from: "./ftm_english.json", to: "./" },
         { from: "./assets", to: "./assets" },
+        { from: "./lang", to: "./lang" },
       ],
     }),
   ]

@@ -1,4 +1,5 @@
 import { CanvasStack } from "../utility/canvas-stack.js";
+import { lang } from "../../global-variables.js";
 
 export function loadImages(sources: any, callback: any) {
   var images = {};
@@ -54,5 +55,5 @@ export const PromptTextLayer = "promptTextCanvas";
 export const PWAInstallStatus = "pwa_installed_status";
 export const UserCancelled = "user_cancel_installation";
 export const NativePlayButton = "native_playbutton_clicked";
-export const PreviousPlayedLevel = "storePreviousPlayedLevel";
-export const StoreMonsterPhaseNumber ="storeMonsterPhaseNumber";
+export const PreviousPlayedLevel = "storePreviousPlayedLevel"+lang;
+export const StoreMonsterPhaseNumber ="storeMonsterPhaseNumber"+lang;
