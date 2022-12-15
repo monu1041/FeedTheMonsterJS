@@ -357,12 +357,13 @@ export class LevelSelectionScreen {
     if (gameLevelData != null) {
       if (gameLevelData.length != undefined) {
         for (let game of gameLevelData) {
-          game.levelStar >= 2
-            ? (unlockLevelIndex = parseInt(game.levelNumber))
-            : null;
+          if (unlockLevelIndex < parseInt(game.levelNumber)) {
+            game.levelStar >= 2
+              ? (unlockLevelIndex = parseInt(game.levelNumber))
+              : null;
+          }
         }
       }
-
       for (let s of self.levels) {
         s.index + level - 1 > unlockLevelIndex + 1
           ? context.drawImage(
