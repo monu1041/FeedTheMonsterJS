@@ -4,6 +4,8 @@
 
 <div id="screenshots">
 <p>
+<img src="https://github.com/curiouslearning/Media/blob/master/FTM%20JS/ftm_js_1.png" height="400" width="200">
+<img src="https://github.com/curiouslearning/Media/blob/master/FTM%20JS/ftm_js_2.png" height="400" width="200">
 </p>
 </div>
 
@@ -56,13 +58,7 @@ Feed The Monster uses proven ‘play to learn’ techniques to engage kids and h
 
 • Fun and engaging phonics puzzles
 
-• Letter tracing games to aid reading and writing
-
-• Vocabulary memory games.
-
 • Challenging “sound only” levels
-
-• Parental progress report.
 
 • Collectable, evolvable, and fun monsters
 
@@ -205,7 +201,8 @@ The following section is NOT necessary in understanding the Feed The Monster bui
 ### Creating a new gameplay feature
 
 To help understand how to extend functionality of this version of Feed The Monster, we will be creating a theoretical feature of adding a scoreboard to the main gameplay screen when a user answers a question in Feed The Monster.
-We willbe using canvas context which is an object with properties and methods that you can use to render graphics inside the canvas element.
+
+We will be using canvas context which is an object with properties and methods that you can use to render graphics inside the canvas element.
 
 For creating this new gameplay feature, navigate to `home\src\components` folder.
 
@@ -370,10 +367,7 @@ In our exploration of previous React version of Feed The Monster, we found React
 [issues-shield]: https://img.shields.io/github/issues/curiouslearning/FeedTheMonsterJS?style=for-the-badge
 [issues-url]: https://github.com/curiouslearning/FeedTheMonsterJS/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/screenshot.png
-[react.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[react-url]: https://reactjs.org/
 
 ```
 
