@@ -139,7 +139,8 @@ The following steps will walk through a local development setup for building and
 2. Clone the repo by running the following:
    `  https://github.com/curiouslearning/FeedTheMonsterJS`
 
-3. Now build the project using `tsconfig.json`.
+3. Now build the project using `tsconfig.json`,
+Also using shortcut Shift+b .
 
 4. Next install NPM packages:
    `   npm install`
