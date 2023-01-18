@@ -74,11 +74,25 @@ export default class StonesLayer {
     for (let target of this.puzzleData.targetStones) {
       gs.puzzle.target.push(target);
     }
-    gs.puzzle.stones = this.puzzleData.foilStones;
+    gs.puzzle.stones = this.gameStoneOptions(
+      this.puzzleData.foilStones,
+      this.puzzleData.targetStones
+    );
     gs.puzzle.prompt = this.puzzleData.prompt.promptText;
   }
   isTimerEnded() {
     pickedStone = null;
+  }
+  gameStoneOptions(foilStones: Array<String>, targetStones: Array<String>) {
+    targetStones.forEach((e) => {
+      foilStones.indexOf(e) != -1
+        ? foilStones.splice(foilStones.indexOf(e), 1)
+        : null;
+    });
+    targetStones.forEach((e) => {
+      foilStones.push(e);
+    });
+    return foilStones.sort(() => Math.random() - 0.5);
   }
   createCanvas() {
     var self = this;
@@ -201,17 +215,16 @@ export default class StonesLayer {
             pickedStone.x = -900;
             pickedStone.y = -900;
             if (pickedStone.text == gs.puzzle.target[0]) {
-             
               gs.puzzle.target.shift();
               if (gs.puzzle.target.length == 0) {
                 gs.stones = [];
-                self.callBack(true, true,pickedStone.text.length);
+                self.callBack(true, true, pickedStone.text.length);
               } else {
-                self.callBack(true, false,pickedStone.text.length);
+                self.callBack(true, false, pickedStone.text.length);
               }
             } else {
               gs.stones = [];
-              self.callBack(false, true,pickedStone.text.length);
+              self.callBack(false, true, pickedStone.text.length);
             }
           }
           pickedStone = null;
