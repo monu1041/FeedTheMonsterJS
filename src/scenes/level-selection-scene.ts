@@ -42,6 +42,7 @@ export class LevelSelectionScreen {
   public starsId: any;
   public starsCanavsElement: HTMLElement;
   public starsContext: any;
+  public levelsSectionCount: number;
   constructor(canvas: HTMLCanvasElement, data: any) {
     this.canvas = canvas;
     this.width = canvas.width;
@@ -50,6 +51,10 @@ export class LevelSelectionScreen {
     self = this;
     this.data = data;
     this.levels = [];
+    this.levelsSectionCount =
+      self.data.levels.length / 10 > Math.floor(self.data.levels.length / 10)
+        ? Math.floor(self.data.levels.length / 10) + 1
+        : Math.floor(self.data.levels.length / 10);
     this.sound = new Sound();
     this.createCanvas();
     this.drawStars();
@@ -155,7 +160,7 @@ export class LevelSelectionScreen {
       if (Math.abs(xDiff) > Math.abs(yDiff)) {
         /*most significant*/
         if (xDiff > 0) {
-          if (level != 140) {
+          if (level != self.levelsSectionCount * 10 - 10) {
             self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
             self.context.drawImage(
               map,
@@ -212,7 +217,7 @@ export class LevelSelectionScreen {
           y > self.canvas.height / 1.3 &&
           y < self.canvas.height / 1.3 + self.canvas.height / 10
         ) {
-          if (level != 140) {
+          if (level != self.levelsSectionCount * 10 - 10) {
             self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
             self.context.drawImage(
               map,
@@ -290,7 +295,7 @@ export class LevelSelectionScreen {
   }
   downButton(level: number) {
     var imageSize = self.canvas.height / 10;
-    if (level != 140) {
+    if (level != self.levelsSectionCount * 10 - 10) {
       this.context.drawImage(
         nextbtn,
         this.canvas.width * 0.7,
@@ -320,22 +325,23 @@ export class LevelSelectionScreen {
   drawlevel(s: any, canvas: { height: number }) {
     var imageSize = canvas.height / 5;
     var textFontSize = imageSize / 6;
-
-    this.context.drawImage(mapIcon, s.x, s.y, imageSize, imageSize);
-    this.context.fillStyle = "white";
-    this.context.font = textFontSize + "px Arial";
-    this.context.textAlign = "center";
-    this.context.fillText(
-      s.index + level,
-      s.x + imageSize / 3.5,
-      s.y + imageSize / 3
-    );
-    this.context.font = textFontSize - imageSize / 30 + "px Arial";
-    this.context.fillText(
-      this.data.levels[s.index + level - 1].levelMeta.levelType,
-      s.x + imageSize / 3.5,
-      s.y + imageSize / 1.3
-    );
+    if (s.index + level <= self.data.levels.length) {
+      this.context.drawImage(mapIcon, s.x, s.y, imageSize, imageSize);
+      this.context.fillStyle = "white";
+      this.context.font = textFontSize + "px Arial";
+      this.context.textAlign = "center";
+      this.context.fillText(
+        s.index + level,
+        s.x + imageSize / 3.5,
+        s.y + imageSize / 3
+      );
+      this.context.font = textFontSize - imageSize / 30 + "px Arial";
+      this.context.fillText(
+        this.data.levels[s.index + level - 1].levelMeta.levelType,
+        s.x + imageSize / 3.5,
+        s.y + imageSize / 1.3
+      );
+    }
   }
   startGame(level_number: string | number) {
     new Game(
@@ -365,19 +371,21 @@ export class LevelSelectionScreen {
         }
       }
       for (let s of self.levels) {
-        s.index + level - 1 > unlockLevelIndex + 1
-          ? context.drawImage(
-              mapLock,
-              s.x,
-              s.y,
-              this.canvas.height / 13,
-              this.canvas.height / 13
-            )
-          : null;
-        for (let i = 0; i < gameLevelData.length; i++) {
-          if (s.index - 1 + level == parseInt(gameLevelData[i].levelNumber)) {
-            this.drawStar(s, canvas, gameLevelData[i].levelStar, context);
-            break;
+        if (s.index + level <= self.data.levels.length) {
+          s.index + level - 1 > unlockLevelIndex + 1
+            ? context.drawImage(
+                mapLock,
+                s.x,
+                s.y,
+                this.canvas.height / 13,
+                this.canvas.height / 13
+              )
+            : null;
+          for (let i = 0; i < gameLevelData.length; i++) {
+            if (s.index - 1 + level == parseInt(gameLevelData[i].levelNumber)) {
+              this.drawStar(s, canvas, gameLevelData[i].levelStar, context);
+              break;
+            }
           }
         }
       }
