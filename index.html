@@ -71,18 +71,16 @@
 
   <body>
     <div class="game-scene">
-      <h1 id="version-info-id">version:"1.0.1"</h1>
+      <h1 id="version-info-id">version:"1.0.2"</h1>
       <!--Keep the server url in href-->
       <a
         href="https://devcuriousreader.wpcomstaging.com/FeedTheMonsterJS2.2/"
         target="_blank"
         id="pwa_app"
       ></a>
-      <div class="loader" id="loading">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
+      <div id="loading-screen">
+        <div class="loading-spinner"></div>
+        <p id="loading_text">Please wait, loading...</p>
       </div>
       <img id="monster" src="./assets/images/idle4.png" alt="loading" />
       <div id="discription-text">

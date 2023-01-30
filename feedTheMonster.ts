@@ -12,14 +12,12 @@ import {
 import { PWAInstallStatus } from "./src/common/common.js";
 import { Workbox } from "workbox-window";
 import { lang } from "./global-variables.js";
-import { loadingScreen } from "./src/common/common.js";
 declare const window: any;
 declare const app: any;
 declare global {
   var aboutCompany: string;
   var descriptionText: string;
 }
-loadingScreen(true);
 window.addEventListener("load", async function () {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.addEventListener("message", function (event) {

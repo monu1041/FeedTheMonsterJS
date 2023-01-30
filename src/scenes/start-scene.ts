@@ -27,7 +27,7 @@ grassImg.src = "./assets/images/FG_a_v01.png";
 var fenchImg = new Image();
 fenchImg.src = "./assets/images/fence_v01.png";
 var title = new Image();
-title.src = "./lang/"+lang+"/images/title.png";
+title.src = "./lang/" + lang + "/images/title.png";
 var profileMonster = new Image();
 profileMonster.src = "./assets/images/idle4.png";
 var self: any;
@@ -72,7 +72,6 @@ export class StartScene {
     this.createCanvas();
     this.createPlayButton();
     this.firebase_analytics = firebase_analytics;
-   
   }
   createCanvas() {
     this.id = this.canvasStack.createLayer(
@@ -125,6 +124,7 @@ export class StartScene {
       this.width,
       this.height / 6
     );
+    document.getElementById("loading-screen").style.display = "none";
   }
 
   createPlayButton() {
@@ -141,7 +141,7 @@ export class StartScene {
     this.canavsElement = document.getElementById(playButtonId);
     this.buttonContext = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 7;
-    if (this.pwa_status == "true") {
+    if (true) {
       self.playButton = new PlayButton(
         self.buttonContext,
         self.canvas,
@@ -169,52 +169,64 @@ export class StartScene {
           self.firebase_analytics
             ? self.firebase_analytics.logEvent(FirebaseUserClicked, "click")
             : null;
-          if (self.pwa_status == "false" || !self.pwa_status) {
-            pwa_install_status.prompt();
-            const { outcome } = await pwa_install_status.userChoice;
-            if (outcome === "accepted") {
-              pwa_install_status = null;
-              localStorage.setItem(PWAInstallStatus, "true");
-              fbq("trackCustom", FirebaseUserInstall, {
-                event: "install_count",
-              });
-              self.firebase_analytics
-                ? self.firebase_analytics.logEvent(
-                    FirebaseUserInstall,
-                    "Install"
-                  )
-                : null;
-              window.location.reload();
-            } else {
-              fbq("trackCustom", UserCancelled, {
-                event: "cancel_count",
-              });
-              self.firebase_analytics
-                ? self.firebase_analytics.logEvent(UserCancelled, "Cancelled")
-                : null;
-            }
-          } else {
-            if (
-              !window.matchMedia("(display-mode: standalone)").matches &&
-              self.pwa_status == "true"
-            ) {
-              alert("PWA is installed on your device \nPlease play from there");
-            } else {
-              aboutCompanyElement.style.display = "none";
-              new Sound().changeSourse("./assets/audios/ButtonClick.wav");
-              self.context.clearRect(
-                0,
-                0,
-                self.canvas.width,
-                self.canvas.height
-              );
-              new LevelSelectionScreen(self.canvas, data);
-              self.canvasStack.deleteLayer(PlayButtonLayer);
-              self.monster.deleteCanvas();
-              delete self.monster;
-              self.canvasStack.deleteLayer(StartSceneLayer);
-            }
-          }
+          fbq("trackCustom", FirebaseUserClicked, {
+            event: "click",
+          });
+
+          aboutCompanyElement.style.display = "none";
+          new Sound().changeSourse("./assets/audios/ButtonClick.wav");
+          self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
+          new LevelSelectionScreen(self.canvas, data);
+          self.canvasStack.deleteLayer(PlayButtonLayer);
+          self.monster.deleteCanvas();
+          delete self.monster;
+          self.canvasStack.deleteLayer(StartSceneLayer);
+          // if (self.pwa_status == "false" || !self.pwa_status) {
+          //   pwa_install_status.prompt();
+          //   const { outcome } = await pwa_install_status.userChoice;
+          //   if (outcome === "accepted") {
+          //     pwa_install_status = null;
+          //     localStorage.setItem(PWAInstallStatus, "true");
+          //     fbq("trackCustom", FirebaseUserInstall, {
+          //       event: "install_count",
+          //     });
+          //     self.firebase_analytics
+          //       ? self.firebase_analytics.logEvent(
+          //           FirebaseUserInstall,
+          //           "Install"
+          //         )
+          //       : null;
+          //     window.location.reload();
+          //   } else {
+          //     fbq("trackCustom", UserCancelled, {
+          //       event: "cancel_count",
+          //     });
+          //     self.firebase_analytics
+          //       ? self.firebase_analytics.logEvent(UserCancelled, "Cancelled")
+          //       : null;
+          //   }
+          // } else {
+          //   if (
+          //     !window.matchMedia("(display-mode: standalone)").matches &&
+          //     self.pwa_status == "true"
+          //   ) {
+          //     alert("PWA is installed on your device \nPlease play from there");
+          //   } else {
+          //     aboutCompanyElement.style.display = "none";
+          //     new Sound().changeSourse("./assets/audios/ButtonClick.wav");
+          //     self.context.clearRect(
+          //       0,
+          //       0,
+          //       self.canvas.width,
+          //       self.canvas.height
+          //     );
+          //     new LevelSelectionScreen(self.canvas, data);
+          //     self.canvasStack.deleteLayer(PlayButtonLayer);
+          //     self.monster.deleteCanvas();
+          //     delete self.monster;
+          //     self.canvasStack.deleteLayer(StartSceneLayer);
+          //   }
+          // }
         }
       },
       false

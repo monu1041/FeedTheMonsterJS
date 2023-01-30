@@ -20,11 +20,11 @@ export function loadImages(sources: any, callback: any) {
   }
 }
 export function loadingScreen(loading: boolean) {
-  const loadingElement = <HTMLElement>document.getElementById("loading");
-
+  const loadingElement = <HTMLElement>document.getElementById("loading-screen");
+  const loadingText = <HTMLElement>document.getElementById("loading_text");
+  loadingText.style.display = "none";
   if (loading) {
     loadingElement.style.display = "block";
-
     new CanvasStack("canvas").bkgCanvas.layers.forEach((element) => {
       const htmlElement = <HTMLElement>document.getElementById(element.id);
       htmlElement.style.display = "none";
@@ -55,5 +55,5 @@ export const PromptTextLayer = "promptTextCanvas";
 export const PWAInstallStatus = "pwa_installed_status";
 export const UserCancelled = "user_cancel_installation";
 export const NativePlayButton = "native_playbutton_clicked";
-export const PreviousPlayedLevel = "storePreviousPlayedLevel"+lang;
-export const StoreMonsterPhaseNumber ="storeMonsterPhaseNumber"+lang;
+export const PreviousPlayedLevel = "storePreviousPlayedLevel" + lang;
+export const StoreMonsterPhaseNumber = "storeMonsterPhaseNumber" + lang;
