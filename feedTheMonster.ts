@@ -9,7 +9,7 @@ import {
   ProfileData,
   setDataToStorage,
 } from "./src/data/profile-data.js";
-import { PWAInstallStatus } from "./src/common/common.js";
+import { CachedData, PWAInstallStatus } from "./src/common/common.js";
 import { Workbox } from "workbox-window";
 import { lang } from "./global-variables.js";
 declare const window: any;
@@ -21,9 +21,19 @@ declare global {
 window.addEventListener("load", async function () {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.addEventListener("message", function (event) {
+      if (event.data.msg == "Loading") {
+        document.getElementById("loading_number").innerHTML = " "+" downloading... "+event.data.data +"%";
+        if(event.data.data == 100){
+         localStorage.setItem(CachedData,'true')
+         window.location.reload();
+        }
+      }
+    });
+    navigator.serviceWorker.addEventListener("message", function (event) {
       if (event.data.msg == "Update Found") {
         let text = "Update Found\nPress ok to update.";
         if (confirm(text) == true) {
+          localStorage.setItem(CachedData,'false')
           window.location.reload();
         } else {
           text = "You canceled!";
@@ -51,17 +61,20 @@ window.addEventListener("load", async function () {
     data.RightToLeft,
     data.FeedbackAudios
   );
-
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
 
   window.addEventListener("resize", async () => {
+   if(localStorage.getItem(CachedData) =='true'){
     canvas.height = window.innerHeight;
     canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
     delete this.monster;
     new CanvasStack("canvas").deleteAllLayers();
     delete this.startScene;
     this.startScene = new StartScene(canvas, d, this.analytics);
+   }
   });
+ if(localStorage.getItem(CachedData) =='true'){
   this.startScene = new StartScene(canvas, d, this.analytics);
+ }
 });
