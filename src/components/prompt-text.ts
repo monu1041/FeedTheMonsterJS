@@ -99,38 +99,28 @@ export class PromptText {
     this.context.font = 30 + "px Arial";
     this.context.textAlign = "center";
     const promptTextLetters = this.currentPromptText.split("");
-    const x = this.width / 2.1;
+    const x = this.width / 2;
     const y = this.height * 0.26;
-    var letterHighlight:Array<string> =
-            this.currentPuzzleData.targetStones[0].split("");
+    var fontSize = 20;
+    var letterHighlight: Array<string> =
+      this.currentPuzzleData.targetStones[0].split("");
     for (let i = 0; i < promptTextLetters.length; i++) {
       // this.context.textAlign = "center";
       switch (this.levelData.levelMeta.levelType) {
         case "LetterInWord": {
-          if (
-           letterHighlight
-              .includes(promptTextLetters[i])
-          ) {
-           letterHighlight= letterHighlight.slice(1,letterHighlight.length)
+          if (letterHighlight.includes(promptTextLetters[i])) {
+            letterHighlight = letterHighlight.slice(1, letterHighlight.length);
             this.context.fillStyle = "red";
             this.context.fillText(
               promptTextLetters[i],
-              x * 0.66 +
-                x / promptTextLetters.length +
-                ((promptTextLetters.length * i * 12) /
-                  promptTextLetters.length) *
-                  1.45,
+              fontSize * i + x - promptTextLetters.length * 6,
               y
             );
           } else {
             this.context.fillStyle = "black";
             this.context.fillText(
               promptTextLetters[i],
-              x * 0.66 +
-                x / promptTextLetters.length +
-                ((promptTextLetters.length * i * 12) /
-                  promptTextLetters.length) *
-                  1.45,
+              fontSize * i + x - promptTextLetters.length * 6,
               y
             );
           }
@@ -141,22 +131,14 @@ export class PromptText {
             this.context.fillStyle = "black";
             this.context.fillText(
               promptTextLetters[i],
-              x * 0.66 +
-                x / promptTextLetters.length +
-                ((promptTextLetters.length * i * 12) /
-                  promptTextLetters.length) *
-                  1.45,
+              fontSize * i + x - promptTextLetters.length * 6,
               y
             );
           } else {
             this.context.fillStyle = "red";
             this.context.fillText(
               promptTextLetters[i],
-              x * 0.66 +
-                x / promptTextLetters.length +
-                ((promptTextLetters.length * i * 12) /
-                  promptTextLetters.length) *
-                  1.45,
+              fontSize * i + x - promptTextLetters.length * 6,
               y
             );
           }
@@ -164,7 +146,11 @@ export class PromptText {
         }
         default: {
           this.context.fillStyle = "black";
-          this.context.fillText(promptTextLetters[i], x + 20 * i, y);
+          this.context.fillText(
+            promptTextLetters[i],
+            fontSize * i + x - promptTextLetters.length * 6,
+            y
+          );
         }
       }
     }
