@@ -51,12 +51,7 @@ window.addEventListener("load", async function () {
     data.RightToLeft,
     data.FeedbackAudios
   );
-  let IsThisFirstTime_Log_From_LiveServer = sessionStorage.getItem(
-    "IsThisFirstTime_Log_From_LiveServer"
-  );
-  if (window.Android) {
-    window.Android.receiveData(data, IsThisFirstTime_Log_From_LiveServer);
-  }
+
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
 
