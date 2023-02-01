@@ -45,20 +45,20 @@ function getCacheName() {
     });
 }
 
-function getALLAudioUrls(cacheName) { 
-    let lang = "english";
-    fetch("./lang/"+lang+"/ftm_"+lang+".json", {
+function getALLAudioUrls(cacheName) {
+  let lang = "english";
+  fetch("./lang/" + lang + "/ftm_" + lang + ".json", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
-    }).then((res) =>
+  }).then((res) =>
     res.json().then((data) => {
-      for (let i = 0; i < 10; i++) {
-        data.Levels[i].Puzzles.forEach((element) => {
-            cacheAudiosFiles(element.prompt.PromptAudio, cacheName);
+      data.Levels.forEach((level) => {
+        level.Puzzles.forEach((element) => {
+          cacheAudiosFiles(element.prompt.PromptAudio, cacheName);
         });
-      }
+      });
     })
   );
 }

@@ -18,22 +18,21 @@ declare global {
   var aboutCompany: string;
   var descriptionText: string;
 }
-
 window.addEventListener("load", async function () {
-  if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.addEventListener("message", function(event) {
-        if (event.data.msg == 'Update Found') {
-          let text = "Update Found\nPress ok to update.";
-          if (confirm(text) == true) {
-            window.location.reload();
-          } else {
-            text = "You canceled!";
-          }
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.addEventListener("message", function (event) {
+      if (event.data.msg == "Update Found") {
+        let text = "Update Found\nPress ok to update.";
+        if (confirm(text) == true) {
+          window.location.reload();
+        } else {
+          text = "You canceled!";
         }
-      });
+      }
+    });
 
-      let wb = new Workbox('./sw.js');
-      wb.register()
+    let wb = new Workbox("./sw.js");
+    wb.register();
   }
 
   if (navigator.onLine) {
@@ -52,7 +51,7 @@ window.addEventListener("load", async function () {
     data.RightToLeft,
     data.FeedbackAudios
   );
-  
+
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
 
