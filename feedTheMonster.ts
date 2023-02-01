@@ -52,6 +52,12 @@ window.addEventListener("load", async function () {
     data.FeedbackAudios
   );
 
+  var englishProfile = localStorage.getItem("englishProfile");
+  var previousLevel = localStorage.getItem("storePreviousPlayedLevelenglish");
+  if (window.Android) {
+    window.Android.receiveData(englishProfile, previousLevel);
+  }
+  console.log(previousLevel);
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
 
