@@ -73,13 +73,15 @@ export class LevelEndScene {
         "./assets/images/sad1" + this.monsterPhaseNumber + ".png"
       );
     } else {
-      this.canvas.scene.audio.changeSourse(audioUrl.levelWin);
-      if (!this.isGamePause) {
-        this.canvas.scene.audio.changeSourse(audioUrl.intro);
-      }
+     
       this.monster.changeImage(
         "./assets/images/happy1" + this.monsterPhaseNumber + ".png"
       );
+      this.canvas.scene.audio.changeSourse(audioUrl.levelWin);
+      
+      if (!this.isGamePause) {
+        this.canvas.scene.audio.changeSourse(audioUrl.intro);
+      }
     }
     document.addEventListener(
       "visibilitychange",
