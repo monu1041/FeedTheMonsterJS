@@ -18,8 +18,24 @@ declare global {
   var aboutCompany: string;
   var descriptionText: string;
 }
+var cachedData: boolean = false;
 window.addEventListener("load", async function () {
   if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.addEventListener("message", function (event) {
+      if (event.data.msg == "Loading") {
+        document.getElementById("loading_number").innerHTML =
+          " " + " downloading... " + event.data.data + "%";
+        if (event.data.data == 100) {
+          console.log("PPPPPPPPPPPPPPPP P");
+          cachedData = true;
+          if (window.Android) {
+            window.Android.receiveData(cachedData);
+          }
+          localStorage.setItem("Cached Data", "true");
+          window.location.reload();
+        }
+      }
+    });
     navigator.serviceWorker.addEventListener("message", function (event) {
       if (event.data.msg == "Update Found") {
         let text = "Update Found\nPress ok to update.";
@@ -34,7 +50,9 @@ window.addEventListener("load", async function () {
     let wb = new Workbox("./sw.js");
     wb.register();
   }
-
+  if (window.Android) {
+    window.Android.receiveData(cachedData);
+  }
   if (navigator.onLine) {
     this.app = firebase.initializeApp(firebaseConfig);
     this.analytics = firebase.analytics(this.app);
@@ -52,12 +70,6 @@ window.addEventListener("load", async function () {
     data.FeedbackAudios
   );
 
-  var englishProfile = localStorage.getItem("englishProfile");
-  var previousLevel = localStorage.getItem("storePreviousPlayedLevelenglish");
-  if (window.Android) {
-    window.Android.receiveData(englishProfile, previousLevel);
-  }
-  console.log(previousLevel);
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
 
