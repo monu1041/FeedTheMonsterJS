@@ -9,7 +9,7 @@ import {
   ProfileData,
   setDataToStorage,
 } from "./src/data/profile-data.js";
-import { PWAInstallStatus } from "./src/common/common.js";
+import { CachedData, PWAInstallStatus } from "./src/common/common.js";
 import { Workbox } from "workbox-window";
 import { lang } from "./global-variables.js";
 declare const window: any;
@@ -18,7 +18,6 @@ declare global {
   var aboutCompany: string;
   var descriptionText: string;
 }
-var cachedData: boolean = false;
 window.addEventListener("load", async function () {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker.addEventListener("message", function (event) {
@@ -26,12 +25,7 @@ window.addEventListener("load", async function () {
         document.getElementById("loading_number").innerHTML =
           " " + " downloading... " + event.data.data + "%";
         if (event.data.data == 100) {
-          console.log("PPPPPPPPPPPPPPPP P");
-          cachedData = true;
-          if (window.Android) {
-            window.Android.receiveData(cachedData);
-          }
-          localStorage.setItem("Cached Data", "true");
+          localStorage.setItem(CachedData, "true");
           window.location.reload();
         }
       }
@@ -41,6 +35,7 @@ window.addEventListener("load", async function () {
         let text = "Update Found\nPress ok to update.";
         if (confirm(text) == true) {
           window.location.reload();
+          localStorage.setItem(CachedData, "false");
         } else {
           text = "You canceled!";
         }
@@ -50,9 +45,7 @@ window.addEventListener("load", async function () {
     let wb = new Workbox("./sw.js");
     wb.register();
   }
-  if (window.Android) {
-    window.Android.receiveData(cachedData);
-  }
+
   if (navigator.onLine) {
     this.app = firebase.initializeApp(firebaseConfig);
     this.analytics = firebase.analytics(this.app);
@@ -69,7 +62,11 @@ window.addEventListener("load", async function () {
     data.RightToLeft,
     data.FeedbackAudios
   );
-
+  let isDataCached = localStorage.getItem(CachedData);
+  console.log(isDataCached);
+  if (window.Android) {
+    window.Android.receiveData(isDataCached);
+  }
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
 

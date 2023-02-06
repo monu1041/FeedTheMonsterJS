@@ -3,10 +3,11 @@ importScripts(
 );
 
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+var number = 0;
 
 // self.addEventListener('activate', function(e) {
 //     console.log("activated");
-//     // console.log(e);
+//
 // });
 
 self.addEventListener("install", async function (e) {
@@ -26,7 +27,6 @@ self.registration.addEventListener("updatefound", function (e) {
     });
   });
 });
-
 function cacheAudiosFiles(file, cacheName, length) {
   caches.open(cacheName).then(function (cache) {
     cache
@@ -47,6 +47,7 @@ function cacheAudiosFiles(file, cacheName, length) {
       });
   });
 }
+
 function getCacheName() {
   caches.keys().then((cacheNames) => {
     cacheNames.forEach((cacheName) => {
@@ -64,11 +65,15 @@ function getALLAudioUrls(cacheName) {
     },
   }).then((res) =>
     res.json().then((data) => {
-      data.Levels.forEach((level) => {
-        level.Puzzles.forEach((element) => {
-          cacheAudiosFiles(element.prompt.PromptAudio, cacheName);
+      for (var i = 0; i < data.Levels.length; i++) {
+        data.Levels[i].Puzzles.forEach((element) => {
+          cacheAudiosFiles(
+            element.prompt.PromptAudio,
+            cacheName,
+            data.Levels.length
+          );
         });
-      });
+      }
     })
   );
 }
