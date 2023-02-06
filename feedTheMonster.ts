@@ -20,6 +20,8 @@ declare global {
 }
 window.addEventListener("load", async function () {
   if ("serviceWorker" in navigator) {
+    let wb = new Workbox("./sw.js");
+     wb.register()
     navigator.serviceWorker.addEventListener("message", function (event) {
       if (event.data.msg == "Loading") {
         document.getElementById("loading_number").innerHTML = " "+" downloading... "+event.data.data +"%";
@@ -40,9 +42,6 @@ window.addEventListener("load", async function () {
         }
       }
     });
-
-    let wb = new Workbox("./sw.js");
-    wb.register();
   }
 
   if (navigator.onLine) {
