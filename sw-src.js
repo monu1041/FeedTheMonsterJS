@@ -10,8 +10,8 @@ self.addEventListener("install", async function (e) {
   self.skipWaiting();
 });
 self.addEventListener('activate', function(event) {
+  console.log('Service worker activated')
   event.waitUntil(self.clients.claim())
-  console.log(event)
 });
 
 self.registration.addEventListener("updatefound", function (e) {
