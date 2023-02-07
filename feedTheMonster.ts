@@ -60,6 +60,11 @@ window.addEventListener("load", async function () {
     data.RightToLeft,
     data.FeedbackAudios
   );
+  
+  let isDataCached = localStorage.getItem(CachedData);
+  if (window.Android) {
+    window.Android.receiveData(isDataCached);
+  }
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
 
