@@ -1,48 +1,59 @@
 importScripts(
-    'https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js'
+  "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js"
 );
 
-
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+var number = 0;
 
-
-// self.addEventListener('activate', function(e) {
-//     console.log("activated");
-//     // console.log(e);
-// });
-
-self.addEventListener('install', async function(e) {
-    let cacheName = await getCacheName();
-    self.skipWaiting();
+self.addEventListener("install", async function (e) {
+  let cacheName = await getCacheName();
+  self.skipWaiting();
+});
+self.addEventListener('activate', function(event) {
+  console.log('Service worker activated')
+  event.waitUntil(self.clients.claim())
 });
 
-self.registration.addEventListener('updatefound', function(e) {
-  
-    caches.keys().then(cacheNames => {
-        cacheNames.forEach(cacheName => {
-            caches.delete(cacheName);
-            self.clients.matchAll().then(clients => {
-                clients.forEach(client => client.postMessage({msg: 'Update Found'}));
-            })
+self.registration.addEventListener("updatefound", function (e) {
+  caches.keys().then((cacheNames) => {
+    cacheNames.forEach((cacheName) => {
+      caches.delete(cacheName);
+      self.clients.matchAll().then((clients) => {
+        clients.forEach((client) =>
+          client.postMessage({ msg: "Update Found" })
+        );
+      });
+    });
+  });
+});
+
+function cacheAudiosFiles(file, cacheName, length) {
+  caches.open(cacheName).then(function (cache) {
+    cache
+      .add(file)
+      .then(() => {
+        number = number + 1;
+        self.clients.matchAll().then((clients) => {
+          clients.forEach((client) => {
+            client.postMessage({
+              msg: "Loading",
+              data: Math.round((number / (length * 5)) * 100),
+            });
+          });
         });
-    });
-});
-
-
-
-
-function cacheAudiosFiles(file, cacheName) {
-    caches.open(cacheName).then(function (cache) {
-      return cache.add(file);
-    });
-  }
+      })
+      .catch(function (error) {
+        number = number + 1;
+      });
+  });
+}
 
 function getCacheName() {
-    caches.keys().then(cacheNames => {
-        cacheNames.forEach(cacheName => {
-            getALLAudioUrls(cacheName)
-        })
+  caches.keys().then((cacheNames) => {
+    cacheNames.forEach((cacheName) => {
+      getALLAudioUrls(cacheName);
     });
+  });
 }
 
 function getALLAudioUrls(cacheName) {
@@ -54,11 +65,15 @@ function getALLAudioUrls(cacheName) {
     },
   }).then((res) =>
     res.json().then((data) => {
-      data.Levels.forEach((level) => {
-        level.Puzzles.forEach((element) => {
-          cacheAudiosFiles(element.prompt.PromptAudio, cacheName);
+      for (var i = 0; i < data.Levels.length; i++) {
+        data.Levels[i].Puzzles.forEach((element) => {
+          cacheAudiosFiles(
+            element.prompt.PromptAudio,
+            cacheName,
+            data.Levels.length
+          );
         });
-      });
+      }
     })
   );
 }

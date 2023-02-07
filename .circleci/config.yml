@@ -32,4 +32,8 @@ jobs:
 workflows:
   s3-deploy-workflow:
     jobs:
-      - s3-deploy
+      - s3-deploy:
+          filters:
+            branches:
+              only:
+                - main
