@@ -1,4 +1,5 @@
 import { LevelEndButtonsLayer, LevelEndLayer } from "../common/common.js";
+import Sound from "../common/sound.js";
 import CloseButton from "../components/buttons/close_button.js";
 import NextButton from "../components/buttons/next_button.js";
 import RetryButton from "../components/buttons/retry_button.js";
@@ -57,6 +58,7 @@ export class LevelEndScene {
     console.log(score);
     this.createCanvas();
     this.levelEndCallBack = levelEndCallBack;
+    
     setDataToStorage(
       new ProfileData(
         levelData.levelMeta.levelType,
@@ -73,15 +75,10 @@ export class LevelEndScene {
         "./assets/images/sad1" + this.monsterPhaseNumber + ".png"
       );
     } else {
-     
       this.monster.changeImage(
         "./assets/images/happy1" + this.monsterPhaseNumber + ".png"
       );
-      this.canvas.scene.audio.changeSourse(audioUrl.levelWin);
-      
-      if (!this.isGamePause) {
-        this.canvas.scene.audio.changeSourse(audioUrl.intro);
-      }
+      this.canvas.scene.audio.playLevelEndHappyAudio(audioUrl.levelWin);
     }
     document.addEventListener(
       "visibilitychange",
