@@ -5,13 +5,14 @@ importScripts(
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
 var number = 0;
 
+// self.addEventListener('activate', function(e) {
+//     console.log("activated");
+//
+// });
+
 self.addEventListener("install", async function (e) {
   let cacheName = await getCacheName();
   self.skipWaiting();
-});
-self.addEventListener('activate', function(event) {
-  console.log('Service worker activated')
-  event.waitUntil(self.clients.claim())
 });
 
 self.registration.addEventListener("updatefound", function (e) {
@@ -26,7 +27,6 @@ self.registration.addEventListener("updatefound", function (e) {
     });
   });
 });
-
 function cacheAudiosFiles(file, cacheName, length) {
   caches.open(cacheName).then(function (cache) {
     cache
@@ -34,12 +34,12 @@ function cacheAudiosFiles(file, cacheName, length) {
       .then(() => {
         number = number + 1;
         self.clients.matchAll().then((clients) => {
-          clients.forEach((client) => {
+          clients.forEach((client) =>
             client.postMessage({
               msg: "Loading",
               data: Math.round((number / (length * 5)) * 100),
-            });
-          });
+            })
+          );
         });
       })
       .catch(function (error) {

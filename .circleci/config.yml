@@ -24,7 +24,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY
           aws-region: AWS_DEFAULT_REGION
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          from: ./build
+          from: ./
           to: 's3://feedthemonster-development'
 
 # Invoke jobs via workflows
@@ -32,8 +32,4 @@ jobs:
 workflows:
   s3-deploy-workflow:
     jobs:
-      - s3-deploy:
-          filters:
-            branches:
-              only:
-                - main
+      - s3-deploy
