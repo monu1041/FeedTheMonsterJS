@@ -21,13 +21,14 @@ declare global {
 window.addEventListener("load", async function () {
   if ("serviceWorker" in navigator) {
     let wb = new Workbox("./sw.js");
-     wb.register()
+    wb.register();
     navigator.serviceWorker.addEventListener("message", function (event) {
       if (event.data.msg == "Loading") {
-        document.getElementById("loading_number").innerHTML = " "+" downloading... "+event.data.data +"%";
-        if(event.data.data == 100){
-         localStorage.setItem(CachedData,'true')
-         window.location.reload();
+        document.getElementById("loading_number").innerHTML =
+          " " + " downloading... " + event.data.data + "%";
+        if (event.data.data == 100) {
+          localStorage.setItem(CachedData, "true");
+          window.location.reload();
         }
       }
     });
@@ -35,7 +36,7 @@ window.addEventListener("load", async function () {
       if (event.data.msg == "Update Found") {
         let text = "Update Found\nPress ok to update.";
         if (confirm(text) == true) {
-          localStorage.setItem(CachedData,'false')
+          localStorage.setItem(CachedData, "false");
           window.location.reload();
         } else {
           text = "You canceled!";
@@ -60,25 +61,27 @@ window.addEventListener("load", async function () {
     data.RightToLeft,
     data.FeedbackAudios
   );
-  
-  let isDataCached = localStorage.getItem(CachedData);
-  if (window.Android) {
-    window.Android.receiveData(isDataCached);
-  }
+
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
 
   window.addEventListener("resize", async () => {
-   if(localStorage.getItem(CachedData) =='true'){
-    canvas.height = window.innerHeight;
-    canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
-    delete this.monster;
-    new CanvasStack("canvas").deleteAllLayers();
-    delete this.startScene;
-    this.startScene = new StartScene(canvas, d, this.analytics);
-   }
+    if (localStorage.getItem(CachedData) == "true") {
+      if (window.Android) {
+        window.Android.receiveData(true);
+      }
+      canvas.height = window.innerHeight;
+      canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
+      delete this.monster;
+      new CanvasStack("canvas").deleteAllLayers();
+      delete this.startScene;
+      this.startScene = new StartScene(canvas, d, this.analytics);
+    }
   });
- if(localStorage.getItem(CachedData) =='true'){
-  this.startScene = new StartScene(canvas, d, this.analytics);
- }
+  if (localStorage.getItem(CachedData) == "true") {
+    if (window.Android) {
+      window.Android.receiveData(true);
+    }
+    this.startScene = new StartScene(canvas, d, this.analytics);
+  }
 });
