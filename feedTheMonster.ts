@@ -20,6 +20,8 @@ declare global {
 }
 window.addEventListener("load", async function () {
   if ("serviceWorker" in navigator) {
+    let wb = new Workbox("./sw.js");
+    wb.register();
     navigator.serviceWorker.addEventListener("message", function (event) {
       if (event.data.msg == "Loading") {
         document.getElementById("loading_number").innerHTML =
@@ -41,9 +43,6 @@ window.addEventListener("load", async function () {
         }
       }
     });
-
-    let wb = new Workbox("./sw.js");
-    wb.register();
   }
 
   if (navigator.onLine) {
@@ -71,12 +70,16 @@ window.addEventListener("load", async function () {
   globalThis.descriptionText = data.descriptionText;
 
   window.addEventListener("resize", async () => {
-    canvas.height = window.innerHeight;
-    canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
-    delete this.monster;
-    new CanvasStack("canvas").deleteAllLayers();
-    delete this.startScene;
-    this.startScene = new StartScene(canvas, d, this.analytics);
+    if (localStorage.getItem(CachedData) == "true") {
+      canvas.height = window.innerHeight;
+      canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
+      delete this.monster;
+      new CanvasStack("canvas").deleteAllLayers();
+      delete this.startScene;
+      this.startScene = new StartScene(canvas, d, this.analytics);
+    }
   });
-  this.startScene = new StartScene(canvas, d, this.analytics);
+  if (localStorage.getItem(CachedData) == "true") {
+    this.startScene = new StartScene(canvas, d, this.analytics);
+  }
 });

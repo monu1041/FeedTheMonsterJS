@@ -14,7 +14,10 @@ self.addEventListener("install", async function (e) {
   let cacheName = await getCacheName();
   self.skipWaiting();
 });
-
+self.addEventListener("activate", function (event) {
+  console.log("Service worker activated");
+  event.waitUntil(self.clients.claim());
+});
 self.registration.addEventListener("updatefound", function (e) {
   caches.keys().then((cacheNames) => {
     cacheNames.forEach((cacheName) => {

@@ -57,3 +57,4 @@ export const UserCancelled = "user_cancel_installation";
 export const NativePlayButton = "native_playbutton_clicked";
 export const PreviousPlayedLevel = "storePreviousPlayedLevel" + lang;
 export const StoreMonsterPhaseNumber = "storeMonsterPhaseNumber" + lang;
+export const CachedData = "cachedData" + lang;
