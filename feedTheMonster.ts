@@ -18,10 +18,22 @@ declare global {
   var aboutCompany: string;
   var descriptionText: string;
 }
+const channel = new BroadcastChannel("my-channel");
 window.addEventListener("load", async function () {
   if ("serviceWorker" in navigator) {
-    let wb = new Workbox("./sw.js");
-    wb.register();
+    let wb = new Workbox("./sw.js",{});
+    wb.register().then((registration) => {
+      registration.installing.postMessage({
+        type: "Registration",
+        value: lang,
+      });
+    });
+    if (
+      !!!localStorage.getItem(CachedData) ||
+      localStorage.getItem(CachedData) == "false"
+    ) {
+      channel.postMessage({ command: "Cache", data: lang });
+    }
     navigator.serviceWorker.addEventListener("message", function (event) {
       if (event.data.msg == "Loading") {
         document.getElementById("loading_number").innerHTML =
@@ -31,8 +43,6 @@ window.addEventListener("load", async function () {
           window.location.reload();
         }
       }
-    });
-    navigator.serviceWorker.addEventListener("message", function (event) {
       if (event.data.msg == "Update Found") {
         let text = "Update Found\nPress ok to update.";
         if (confirm(text) == true) {

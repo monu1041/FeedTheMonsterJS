@@ -9,15 +9,29 @@ var number = 0;
 //     console.log("activated");
 //
 // });
-
 self.addEventListener("install", async function (e) {
-  let cacheName = await getCacheName();
+  self.addEventListener("message", async (event) => {
+    if (event.data.type === "Registration") {
+      if (!!!caches.keys().length) {
+        number = 0;
+        let cacheName = await getCacheName(event.data.value);
+      } // The value passed from the main JavaScript file
+    }
+  });
   self.skipWaiting();
 });
+const channel = new BroadcastChannel("my-channel");
 self.addEventListener("activate", function (event) {
   console.log("Service worker activated");
   event.waitUntil(self.clients.claim());
 });
+channel.addEventListener("message", async function (event) {
+  if (event.data.command === "Cache") {
+    number = 0;
+    await getCacheName(event.data.data);
+  }
+});
+
 self.registration.addEventListener("updatefound", function (e) {
   caches.keys().then((cacheNames) => {
     cacheNames.forEach((cacheName) => {
@@ -51,17 +65,16 @@ function cacheAudiosFiles(file, cacheName, length) {
   });
 }
 
-function getCacheName() {
+function getCacheName(language) {
   caches.keys().then((cacheNames) => {
     cacheNames.forEach((cacheName) => {
-      getALLAudioUrls(cacheName);
+      getALLAudioUrls(cacheName, language);
     });
   });
 }
 
-function getALLAudioUrls(cacheName) {
-  let lang = "english";
-  fetch("./lang/" + lang + "/ftm_" + lang + ".json", {
+function getALLAudioUrls(cacheName, language) {
+  fetch("./lang/" + language + "/ftm_" + language + ".json", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
