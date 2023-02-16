@@ -2,7 +2,9 @@ importScripts(
   "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js"
 );
 
-workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+workbox.precaching.precacheAndRoute(self.__WB_MANIFEST, {
+  ignoreURLParametersMatching: [/^ftm_/],
+});
 var number = 0;
 
 // self.addEventListener('activate', function(e) {
