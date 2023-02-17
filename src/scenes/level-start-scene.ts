@@ -32,14 +32,26 @@ var images = {
   rotating_clock: "./assets/images/timer.png",
   fenchImg: "./assets/images/fence_v01.png",
   promptImg: "./assets/images/promptTextBg.png",
-  fantastic: "./lang/"+lang+"/images/fantastic_01.png",
-  great: "./lang/"+lang+"/images/great_01.png",
+  fantastic: "./lang/" + lang + "/images/fantastic_01.png",
+  great: "./lang/" + lang + "/images/great_01.png",
+  autumnBgImg: "./assets/images/Autumn_bg_v01.jpg",
+  autumnHillImg: "./assets/images/Autumn_hill_v01.png",
+  autumnSignImg: "./assets/images/Autumn_sign_v01.png",
+  autumnGrassImg: "./assets/images/Autumn_FG_v01.png",
+  autumnFenceImg: "./assets/images/Autumn_fence_v01.png",
+  autumnPillerImg: "./assets/images/Autumn_sign_v01.png",
+  winterBgImg: "./assets/images/Winter_bg_01.jpg",
+  winterHillImg: "./assets/images/Winter_hill_v01.png",
+  winterSignImg: "./assets/images/Winter_sign_v01.png",
+  winterGrassImg: "./assets/images/Winter_FG_v01.png",
+  winterFenceImg: "./assets/images/Winter_fence_v01.png",
+  winterPillerImg: "./assets/images/Winter_sign_v01.png",
 };
 var audioUrl = {
   phraseAudios: [
-    "./lang/"+lang+"/audios/fantastic.WAV",
+    "./lang/" + lang + "/audios/fantastic.WAV",
     // "./assets/audios/good job.WAV",
-    "./lang/"+lang+"/audios/great.wav",
+    "./lang/" + lang + "/audios/great.wav",
   ],
   monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
   monsterHappy: "./assets/audios/Cheering-02.mp3",
@@ -174,14 +186,17 @@ export class LevelStartScene {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  redrawOfStones(status: boolean, emptyTarget: boolean,picked_stone_lenghth:number) {
+  redrawOfStones(
+    status: boolean,
+    emptyTarget: boolean,
+    picked_stone_lenghth: number
+  ) {
     noMoreTarget = emptyTarget;
     var fntsticOrGrtIndex = self.getRandomInt(0, 1);
     if (status) {
       self.monster.changeToEatAnimation();
       self.audio.changeSourse(audioUrl.monsterHappy);
       if (emptyTarget) {
-       
         setTimeout(() => {
           self.audio.changeSourse(audioUrl.phraseAudios[fntsticOrGrtIndex]);
           self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
@@ -445,35 +460,100 @@ export class LevelStartScene {
     var width = this.width;
     var height = this.height;
     loadImages(images, function (image) {
-      context.drawImage(image.bgImg, 0, 0, width, height);
-      context.drawImage(
-        image.pillerImg,
-        width * 0.6,
-        height / 6,
-        width,
-        height / 2
-      );
-      context.drawImage(
-        image.fenchImg,
-        -width * 0.4,
-        height / 3,
-        width,
-        height / 3
-      );
-      context.drawImage(
-        image.hillImg,
-        -width * 0.25,
-        height / 2,
-        width * 1.5,
-        height / 2
-      );
-      context.drawImage(
-        image.grassImg,
-        -width * 0.25,
-        height / 2 + (height / 2) * 0.1,
-        width * 1.5,
-        height / 2
-      );
+      if (self.levelData.levelNumber >= 20) {
+        context.drawImage(image.winterBgImg, 0, 0, width, height);
+        context.drawImage(
+          image.winterPillerImg,
+          width * 0.38,
+          height / 6,
+          width / 1.2,
+          height / 2
+        );
+        context.drawImage(
+          image.winterFenceImg,
+          -width * 0.4,
+          height / 4,
+          width,
+          height / 2
+        );
+        context.drawImage(
+          image.winterHillImg,
+          -width * 0.25,
+          height / 2,
+          width * 1.5,
+          height / 2
+        );
+        context.drawImage(
+          image.winterGrassImg,
+          -width * 0.25,
+          height / 2 + (height / 2) * 0.1,
+          width * 1.5,
+          height / 2
+        );
+      } else if (
+        self.levelData.levelNumber >= 10 &&
+        self.levelData.levelNumber < 20
+      ) {
+        context.drawImage(image.autumnBgImg, 0, 0, width, height);
+        context.drawImage(
+          image.autumnPillerImg,
+          width * 0.38,
+          height / 6,
+          width / 1.2,
+          height / 2
+        );
+        context.drawImage(
+          image.autumnFenceImg,
+          -width * 0.4,
+          height / 4,
+          width,
+          height / 2
+        );
+        context.drawImage(
+          image.autumnHillImg,
+          -width * 0.25,
+          height / 2,
+          width * 1.5,
+          height / 2
+        );
+        context.drawImage(
+          image.autumnGrassImg,
+          -width * 0.25,
+          height / 2 + (height / 2) * 0.1,
+          width * 1.5,
+          height / 2
+        );
+      } else {
+        context.drawImage(image.bgImg, 0, 0, width, height);
+        context.drawImage(
+          image.pillerImg,
+          width * 0.6,
+          height / 6,
+          width,
+          height / 2
+        );
+        context.drawImage(
+          image.fenchImg,
+          -width * 0.4,
+          height / 3,
+          width,
+          height / 3
+        );
+        context.drawImage(
+          image.hillImg,
+          -width * 0.25,
+          height / 2,
+          width * 1.5,
+          height / 2
+        );
+        context.drawImage(
+          image.grassImg,
+          -width * 0.25,
+          height / 2 + (height / 2) * 0.1,
+          width * 1.5,
+          height / 2
+        );
+      }
       context.drawImage(
         image.timer_empty,
         0,
