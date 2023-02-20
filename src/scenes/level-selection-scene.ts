@@ -1,6 +1,5 @@
 import { LevelStartScene } from "./level-start-scene.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
-import { gameData } from "../../data.js";
 import { LevelConfig } from "../common/level-config.js";
 import { Game } from "./game.js";
 import { LevelSelectionLayer, PreviousPlayedLevel } from "../common/common.js";
