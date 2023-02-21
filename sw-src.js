@@ -32,9 +32,20 @@ self.registration.addEventListener("updatefound", function (e) {
 });
 function cacheAudiosFiles(file, cacheName, length) {
   caches.open(cacheName).then(function (cache) {
-    cache
-      .add(file)
-      .then(() => {
+    fetch(file)
+      .then(function (response) {
+        var headers = new Headers(response.headers);
+        headers.append("Cache-Control", "max-age=31536000");
+
+        var modifiedResponse = new Response(response.body, {
+          status: response.status,
+          statusText: response.statusText,
+          headers: headers,
+        });
+
+        cache.put(file, modifiedResponse);
+      })
+      .then((event) => {
         number = number + 1;
         self.clients.matchAll().then((clients) => {
           clients.forEach((client) =>
@@ -80,3 +91,13 @@ function getALLAudioUrls(cacheName) {
     })
   );
 }
+self.addEventListener("fetch", function (event) {
+  event.respondWith(
+    caches.match(event.request).then(function (response) {
+      if (response) {
+        return response;
+      }
+      return fetch(event.request);
+    })
+  );
+});
