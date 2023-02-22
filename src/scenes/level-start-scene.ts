@@ -455,104 +455,119 @@ export class LevelStartScene {
 
   createBackgroud() {
     var self = this;
+    const availableBackgroundTypes = ["Summer", "Autumn", "Winter"];
+    var backgroundType =
+      Math.floor(self.levelData.levelNumber / 10) %
+      availableBackgroundTypes.length;
+    if (self.levelData.levelNumber >= 30) {
+      backgroundType = backgroundType % 3;
+    }
     loadingScreen(true);
     var context = this.context;
     var width = this.width;
     var height = this.height;
     loadImages(images, function (image) {
-      if (self.levelData.levelNumber >= 20) {
-        context.drawImage(image.winterBgImg, 0, 0, width, height);
-        context.drawImage(
-          image.winterPillerImg,
-          width * 0.38,
-          height / 6,
-          width / 1.2,
-          height / 2
-        );
-        context.drawImage(
-          image.winterFenceImg,
-          -width * 0.4,
-          height / 4,
-          width,
-          height / 2
-        );
-        context.drawImage(
-          image.winterHillImg,
-          -width * 0.25,
-          height / 2,
-          width * 1.5,
-          height / 2
-        );
-        context.drawImage(
-          image.winterGrassImg,
-          -width * 0.25,
-          height / 2 + (height / 2) * 0.1,
-          width * 1.5,
-          height / 2
-        );
-      } else if (
-        self.levelData.levelNumber >= 10 &&
-        self.levelData.levelNumber < 20
-      ) {
-        context.drawImage(image.autumnBgImg, 0, 0, width, height);
-        context.drawImage(
-          image.autumnPillerImg,
-          width * 0.38,
-          height / 6,
-          width / 1.2,
-          height / 2
-        );
-        context.drawImage(
-          image.autumnFenceImg,
-          -width * 0.4,
-          height / 4,
-          width,
-          height / 2
-        );
-        context.drawImage(
-          image.autumnHillImg,
-          -width * 0.25,
-          height / 2,
-          width * 1.5,
-          height / 2
-        );
-        context.drawImage(
-          image.autumnGrassImg,
-          -width * 0.25,
-          height / 2 + (height / 2) * 0.1,
-          width * 1.5,
-          height / 2
-        );
-      } else {
-        context.drawImage(image.bgImg, 0, 0, width, height);
-        context.drawImage(
-          image.pillerImg,
-          width * 0.6,
-          height / 6,
-          width,
-          height / 2
-        );
-        context.drawImage(
-          image.fenchImg,
-          -width * 0.4,
-          height / 3,
-          width,
-          height / 3
-        );
-        context.drawImage(
-          image.hillImg,
-          -width * 0.25,
-          height / 2,
-          width * 1.5,
-          height / 2
-        );
-        context.drawImage(
-          image.grassImg,
-          -width * 0.25,
-          height / 2 + (height / 2) * 0.1,
-          width * 1.5,
-          height / 2
-        );
+      switch (availableBackgroundTypes[backgroundType]) {
+        case "Winter":
+          {
+            context.drawImage(image.winterBgImg, 0, 0, width, height);
+            context.drawImage(
+              image.winterPillerImg,
+              width * 0.38,
+              height / 6,
+              width / 1.2,
+              height / 2
+            );
+            context.drawImage(
+              image.winterFenceImg,
+              -width * 0.4,
+              height / 4,
+              width,
+              height / 2
+            );
+            context.drawImage(
+              image.winterHillImg,
+              -width * 0.25,
+              height / 2,
+              width * 1.5,
+              height / 2
+            );
+            context.drawImage(
+              image.winterGrassImg,
+              -width * 0.25,
+              height / 2 + (height / 2) * 0.1,
+              width * 1.5,
+              height / 2
+            );
+          }
+
+          break;
+        case "Autumn":
+          {
+            context.drawImage(image.autumnBgImg, 0, 0, width, height);
+            context.drawImage(
+              image.autumnPillerImg,
+              width * 0.38,
+              height / 6,
+              width / 1.2,
+              height / 2
+            );
+            context.drawImage(
+              image.autumnFenceImg,
+              -width * 0.4,
+              height / 4,
+              width,
+              height / 2
+            );
+            context.drawImage(
+              image.autumnHillImg,
+              -width * 0.25,
+              height / 2,
+              width * 1.5,
+              height / 2
+            );
+            context.drawImage(
+              image.autumnGrassImg,
+              -width * 0.25,
+              height / 2 + (height / 2) * 0.1,
+              width * 1.5,
+              height / 2
+            );
+          }
+          break;
+        default:
+          {
+            context.drawImage(image.bgImg, 0, 0, width, height);
+            context.drawImage(
+              image.pillerImg,
+              width * 0.6,
+              height / 6,
+              width,
+              height / 2
+            );
+            context.drawImage(
+              image.fenchImg,
+              -width * 0.4,
+              height / 3,
+              width,
+              height / 3
+            );
+            context.drawImage(
+              image.hillImg,
+              -width * 0.25,
+              height / 2,
+              width * 1.5,
+              height / 2
+            );
+            context.drawImage(
+              image.grassImg,
+              -width * 0.25,
+              height / 2 + (height / 2) * 0.1,
+              width * 1.5,
+              height / 2
+            );
+          }
+          break;
       }
       context.drawImage(
         image.timer_empty,
