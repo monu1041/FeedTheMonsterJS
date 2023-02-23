@@ -48,22 +48,17 @@ self.registration.addEventListener("updatefound", function (e) {
 });
 function cacheAudiosFiles(file, cacheName, length) {
   caches.open(cacheName).then(function (cache) {
-    cache
-      .add(file)
-      .then(() => {
-        number = number + 1;
-        self.clients.matchAll().then((clients) => {
-          clients.forEach((client) =>
-            client.postMessage({
-              msg: "Loading",
-              data: Math.round((number / (length * 5)) * 100),
-            })
-          );
-        });
-      })
-      .catch(function (error) {
-        number = number + 1;
+    cache.add(file).finally(() => {
+      number = number + 1;
+      self.clients.matchAll().then((clients) => {
+        clients.forEach((client) =>
+          client.postMessage({
+            msg: "Loading",
+            data: Math.round((number / (length * 5)) * 100),
+          })
+        );
       });
+    });
   });
 }
 
@@ -95,3 +90,13 @@ function getALLAudioUrls(cacheName, language) {
     })
   );
 }
+self.addEventListener("fetch", function (event) {
+  event.respondWith(
+    caches.match(event.request).then(function (response) {
+      if (response) {
+        return response;
+      }
+      return fetch(event.request);
+    })
+  );
+});
