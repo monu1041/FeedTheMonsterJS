@@ -10,11 +10,10 @@ export default class Sound {
   constructor() {
     this.audio = new Audio();
     this.introAudio = new Howl({
-      src: ["./assets/audios/intro.wav"]
+      src: ["./assets/audios/intro.wav"],
     });
   }
   playSound(src) {
-  
     this.audio.play().catch((e) => {
       this.audio1 = new Audio();
       this.audio1.src = src;
@@ -44,10 +43,11 @@ export default class Sound {
     this.audio.src = src;
     this.playSound(src);
   }
-  playLevelEndHappyAudio(levelWinAudio){
+  playLevelEndHappyAudio(levelWinAudio) {
     this.audio.src = levelWinAudio;
     this.playSound(levelWinAudio);
-    setTimeout(()=>{this.introAudio.play();},700)
-    
+    setTimeout(() => {
+      this.introAudio.play();
+    }, 700);
   }
 }
