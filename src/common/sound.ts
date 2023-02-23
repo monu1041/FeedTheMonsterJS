@@ -1,4 +1,4 @@
-import { Howl } from "howler";
+import {Howl, Howler} from "Howler";
 
 let inactive_screen = false;
 export default class Sound {
