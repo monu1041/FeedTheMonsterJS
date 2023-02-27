@@ -1,4 +1,4 @@
-import { StoneLayer } from "../common/common.js";
+import { MonsterAudio, PromptAudio, StoneLayer } from "../common/common.js";
 import Sound from "../common/sound.js";
 import { StoneConfig } from "../common/stones-config.js";
 import { LevelStartScene } from "../scenes/level-start-scene.js";
@@ -28,11 +28,7 @@ dragAudio.src = "./assets/audios/onDrag.mp3";
 dragAudio.preload = "auto";
 export default class StonesLayer {
   canvas: { width?: number; height: number; scene?: any };
-  levelStart: {
-    audio: { changeSourse: (arg0: string) => void };
-    timerTicking: { resumeTimer: () => void; pauseTimer: () => void };
-    levelEndCallBack: () => void;
-  };
+  levelStart: LevelStartScene;
   width: number;
   pausebutton: PauseButton;
   canvasStack: any;
@@ -71,7 +67,7 @@ export default class StonesLayer {
   }
 
   setCurrentPuzzle() {
-    this.levelStart.audio.changeSourse(this.puzzleData.prompt.promptAudio);
+    this.levelStart.audio.playSound(this.puzzleData.prompt.promptAudio,PromptAudio);
     gs.puzzle.stones = [];
     gs.puzzle.target = [];
     for (let target of this.puzzleData.targetStones) {
@@ -156,7 +152,7 @@ export default class StonesLayer {
         Math.sqrt(x - this.width / 3) < 12 &&
         Math.sqrt(y - this.height / 5.5) < 10
       ) {
-        self.levelStart.audio.changeSourse(self.puzzleData.prompt.promptAudio);
+        self.levelStart.audio.playSound(self.puzzleData.prompt.promptAudio,PromptAudio);
       }
       if (
         Math.sqrt(
