@@ -343,6 +343,7 @@ export class LevelSelectionScreen {
     }
   }
   startGame(level_number: string | number) {
+    this.sound.pauseSound();
     new Game(
       this.canvas.width,
       this.canvas.height,
