@@ -16,7 +16,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY
           aws-region: AWS_DEFAULT_REGION
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          from: ./
+          from: ./build/
           to: 's3://feedthemonster-development'
   
   s3-deploy-prod:
@@ -31,7 +31,7 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY
           aws-region: AWS_PROD_REGION
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          from: ./
+          from: ./build/
           to: 's3://feedthemonster-production'
 
 # http://curious-reader-books-production.s3-website.ap-south-1.amazonaws.com/
