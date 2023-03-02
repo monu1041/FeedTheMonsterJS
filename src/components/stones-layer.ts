@@ -23,9 +23,6 @@ var pickedStone: {
   origy: number;
 } | null;
 var offsetCoordinateValue = 32;
-const dragAudio = new Audio();
-dragAudio.src = "./assets/audios/onDrag.mp3";
-dragAudio.preload = "auto";
 export default class StonesLayer {
   canvas: { width?: number; height: number; scene?: any };
   levelStart: {
@@ -184,8 +181,7 @@ export default class StonesLayer {
         }
         for (let s of gs.stones) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {
-            dragAudio.currentTime = 0;
-            dragAudio.play();
+            self.levelStart.audio.changeSourse("./assets/audios/onDrag.mp3");
             pickedStone = s;
           }
         }

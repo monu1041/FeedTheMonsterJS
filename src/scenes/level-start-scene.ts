@@ -200,7 +200,7 @@ export class LevelStartScene {
         setTimeout(() => {
           self.audio.changeSourse(audioUrl.phraseAudios[fntsticOrGrtIndex]);
           self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
-        }, 1000);
+        }, 200);
         self.promptText.draw((word_dropped_stones += picked_stone_lenghth));
         self.timerTicking.stopTimer();
         // self.promptText.draw((word_dropped_stones += 1));

@@ -58,7 +58,7 @@ export class LevelEndScene {
     console.log(score);
     this.createCanvas();
     this.levelEndCallBack = levelEndCallBack;
-    
+
     setDataToStorage(
       new ProfileData(
         levelData.levelMeta.levelType,
@@ -69,6 +69,7 @@ export class LevelEndScene {
     );
   }
   createCanvas() {
+    this.canvas.scene.audio.playSound("./assets/audios/intro.wav");
     if (this.starCount <= 1) {
       this.canvas.scene.audio.changeSourse(audioUrl.levelLose);
       this.monster.changeImage(
@@ -78,7 +79,7 @@ export class LevelEndScene {
       this.monster.changeImage(
         "./assets/images/happy1" + this.monsterPhaseNumber + ".png"
       );
-      this.canvas.scene.audio.playLevelEndHappyAudio(audioUrl.levelWin);
+      this.canvas.scene.audio.changeSourse(audioUrl.levelWin);
     }
     document.addEventListener(
       "visibilitychange",

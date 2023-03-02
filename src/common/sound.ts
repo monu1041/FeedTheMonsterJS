@@ -1,30 +1,21 @@
-import {Howl, Howler} from "Howler";
+import { Howl } from "howler";
 
 let inactive_screen = false;
 export default class Sound {
-  public audio: HTMLAudioElement;
-  public audio1: HTMLAudioElement;
-  public audio2: HTMLAudioElement;
-  public introAudio: Howl;
-
-  constructor() {
-    this.audio = new Audio();
-    this.introAudio = new Howl({
-      src: ["./assets/audios/intro.wav"]
-    });
-  }
+  public playingSources: Array<AudioBufferSourceNode> = [];
+  public audioContext: AudioContext = new AudioContext();
   playSound(src) {
-  
-    this.audio.play().catch((e) => {
-      this.audio1 = new Audio();
-      this.audio1.src = src;
-      this.audio1.play().catch((e) => {
-        this.audio2 = new Audio();
-
-        this.audio2.src = src;
-        this.audio2.play();
+    fetch(src)
+      .then((response) => response.arrayBuffer())
+      .then((buffer) => this.audioContext.decodeAudioData(buffer))
+      .then((audioBuffer) => {
+        var source = this.audioContext.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(this.audioContext.destination);
+        this.playingSources.push(source);
+        console.log("Started", source);
+        source.start();
       });
-    });
   }
   activeScreen() {
     if (inactive_screen) {
@@ -35,19 +26,21 @@ export default class Sound {
     }
   }
   pauseSound() {
-    this.introAudio.pause();
-    this.audio ? this.audio.pause() : null;
-    this.audio2 ? this.audio1.pause() : null;
-    this.audio2 ? this.audio2.pause() : null;
+    for (var i = 0; i < this.playingSources.length; i++) {
+      console.log("Playing", this.playingSources[i]);
+      this.playingSources[i].stop();
+    }
+    this.playingSources = [];
   }
   changeSourse(src) {
-    this.audio.src = src;
+    // this.audio.src = src;
     this.playSound(src);
   }
-  playLevelEndHappyAudio(levelWinAudio){
-    this.audio.src = levelWinAudio;
-    this.playSound(levelWinAudio);
-    setTimeout(()=>{this.introAudio.play();},700)
-    
+  playLevelEndHappyAudio(levelWinAudio) {
+    // this.audio.src = levelWinAudio;
+    // this.playSound(levelWinAudio);
+    // setTimeout(() => {
+    //   this.introAudio.play();
+    // }, 700);
   }
 }

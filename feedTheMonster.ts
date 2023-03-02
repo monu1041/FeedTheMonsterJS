@@ -20,8 +20,18 @@ declare global {
 }
 window.addEventListener("load", async function () {
   if ("serviceWorker" in navigator) {
-    let wb = new Workbox("./sw.js");
-    wb.register();
+    let wb = new Workbox("./sw.js", {});
+    wb.register().then((registration) => {
+      if (registration.installing) {
+        registration.installing.postMessage({
+          type: "Registration",
+          value: lang,
+        });
+      }
+    });
+    if (!cached_languages.has(lang)) {
+      channel.postMessage({ command: "Cache", data: lang });
+    }
     navigator.serviceWorker.addEventListener("message", function (event) {
       if (event.data.msg == "Loading") {
         document.getElementById("loading_number").innerHTML =
