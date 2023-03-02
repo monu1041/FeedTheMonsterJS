@@ -1,4 +1,4 @@
-import { TimetickerLayer } from "../common/common.js";
+import { TimeOver, TimetickerLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { Game } from "../scenes/game.js";
 import { LevelStartScene } from "../scenes/level-start-scene.js";
@@ -86,7 +86,7 @@ export class TimerTicking {
         !this.isTimerRunningOut
       ) {
         this.isTimerRunningOut = true;
-        this.levelStart.audio.changeSourse("./assets/audios/timeout.mp3");
+        this.levelStart.audio.playSound("./assets/audios/timeout.mp3",TimeOver);
       }
       if (
         this.game.width * 1.3 - this.widthToClear - 10 * this.timer < 55 &&

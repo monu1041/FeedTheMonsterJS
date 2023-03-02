@@ -1,4 +1,5 @@
 import {
+  ButtonClick,
   FirebaseUserClicked,
   FirebaseUserInstall,
   MonsterLayer,
@@ -174,7 +175,7 @@ export class StartScene {
           });
 
           aboutCompanyElement.style.display = "none";
-          new Sound().changeSourse("./assets/audios/ButtonClick.wav");
+          new Sound().playSound("./assets/audios/ButtonClick.wav",ButtonClick);
           self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
           new LevelSelectionScreen(self.canvas, data);
           self.canvasStack.deleteLayer(PlayButtonLayer);
