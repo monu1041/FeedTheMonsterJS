@@ -1,4 +1,9 @@
-import { LevelEndButtonsLayer, LevelEndLayer } from "../common/common.js";
+import {
+  IntroMusic,
+  LevelEndAudio,
+  LevelEndButtonsLayer,
+  LevelEndLayer,
+} from "../common/common.js";
 import Sound from "../common/sound.js";
 import CloseButton from "../components/buttons/close_button.js";
 import NextButton from "../components/buttons/next_button.js";
@@ -58,7 +63,7 @@ export class LevelEndScene {
     console.log(score);
     this.createCanvas();
     this.levelEndCallBack = levelEndCallBack;
-    
+
     setDataToStorage(
       new ProfileData(
         levelData.levelMeta.levelType,
@@ -69,8 +74,9 @@ export class LevelEndScene {
     );
   }
   createCanvas() {
+    this.canvas.scene.audio.playSound("./assets/audios/intro.wav", IntroMusic);
     if (this.starCount <= 1) {
-      this.canvas.scene.audio.changeSourse(audioUrl.levelLose);
+      this.canvas.scene.audio.playSound(audioUrl.levelLose, LevelEndAudio);
       this.monster.changeImage(
         "./assets/images/sad1" + this.monsterPhaseNumber + ".png"
       );
@@ -78,13 +84,16 @@ export class LevelEndScene {
       this.monster.changeImage(
         "./assets/images/happy1" + this.monsterPhaseNumber + ".png"
       );
-      this.canvas.scene.audio.playLevelEndHappyAudio(audioUrl.levelWin);
+      this.canvas.scene.audio.playSound(audioUrl.levelWin, LevelEndAudio);
     }
     document.addEventListener(
       "visibilitychange",
       function () {
         if (document.visibilityState === "visible") {
-          self.canvas.scene.audio.playSound("./assets/audios/intro.wav");
+          self.canvas.scene.audio.playSound(
+            "./assets/audios/intro.wav",
+            IntroMusic
+          );
         } else {
           self.canvas.scene.audio.pauseSound();
         }
