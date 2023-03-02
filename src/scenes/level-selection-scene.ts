@@ -74,11 +74,13 @@ export class LevelSelectionScreen {
         break;
       }
       case "close_button": {
+        self.sound.playSound("./assets/audios/intro.wav", IntroMusic);
         self.drawStars();
       }
     }
   }
   createCanvas() {
+    this.sound.playSound("./assets/audios/intro.wav", IntroMusic);
     document.addEventListener(
       "visibilitychange",
       function () {
@@ -360,7 +362,6 @@ export class LevelSelectionScreen {
     );
   }
   drawStars() {
-    this.sound.playSound("./assets/audios/intro.wav", IntroMusic);
     let gameLevelData = getDatafromStorage();
     let canvas = document.getElementById("canvas");
     var canavsElement = <HTMLCanvasElement>(
