@@ -58,7 +58,9 @@ export class TimerTicking {
       this.game.width - 50,
       this.height * 0.05
     );
-    this.beginTimerOnStart();
+    setTimeout(() => {
+      this.beginTimerOnStart();
+    }, 2500);
   }
   createBackgroud() {
     var self = this;
@@ -66,7 +68,9 @@ export class TimerTicking {
     this.timer_full.src = "./assets/images/timer_full.png";
     this.timer_full.onload = function (e) {
       self.draw();
-      self.beginTimerOnStart();
+      setTimeout(() => {
+        self.beginTimerOnStart();
+      }, 2500);
     };
   }
   update() {
@@ -86,7 +90,10 @@ export class TimerTicking {
         !this.isTimerRunningOut
       ) {
         this.isTimerRunningOut = true;
-        this.levelStart.audio.playSound("./assets/audios/timeout.mp3",TimeOver);
+        this.levelStart.audio.playSound(
+          "./assets/audios/timeout.mp3",
+          TimeOver
+        );
       }
       if (
         this.game.width * 1.3 - this.widthToClear - 10 * this.timer < 55 &&
