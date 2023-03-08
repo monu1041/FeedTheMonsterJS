@@ -15,6 +15,9 @@ import {
   PromptTextLayer,
   PreviousPlayedLevel,
   StoreMonsterPhaseNumber,
+  ButtonClick,
+  FeedbackAudio,
+  PhraseAudio,
 } from "../common/common.js";
 import { LevelStartLayer } from "../common/common.js";
 import { GameEndScene } from "./game-end-scene.js";
@@ -160,7 +163,7 @@ export class LevelStartScene {
         }
       }
     }
-    self.audio.changeSourse(audioUrl.buttonClick);
+    self.audio.playSound(audioUrl.buttonClick, ButtonClick);
     switch (button_name) {
       case "next_button": {
         self.exitAllScreens();
@@ -195,12 +198,15 @@ export class LevelStartScene {
     var fntsticOrGrtIndex = self.getRandomInt(0, 1);
     if (status) {
       self.monster.changeToEatAnimation();
-      self.audio.changeSourse(audioUrl.monsterHappy);
+      self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);
       if (emptyTarget) {
         setTimeout(() => {
-          self.audio.changeSourse(audioUrl.phraseAudios[fntsticOrGrtIndex]);
+          self.audio.playSound(
+            audioUrl.phraseAudios[fntsticOrGrtIndex],
+            FeedbackAudio
+          );
           self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
-        }, 200);
+        }, 100);
         self.promptText.draw((word_dropped_stones += picked_stone_lenghth));
         self.timerTicking.stopTimer();
         // self.promptText.draw((word_dropped_stones += 1));
@@ -213,9 +219,9 @@ export class LevelStartScene {
     } else {
       self.timerTicking.stopTimer();
       self.monster.changeToSpitAnimation();
-      self.audio.changeSourse(audioUrl.monsterSad);
+      self.audio.playSound(audioUrl.monsterSad, PhraseAudio);
       setTimeout(() => {
-        self.audio.changeSourse(audioUrl.monsterSplit);
+        self.audio.playSound(audioUrl.monsterSplit, PhraseAudio);
       }, 1000);
 
       current_puzzle_index += 1;
@@ -227,7 +233,7 @@ export class LevelStartScene {
           if (i == 3 && !isGamePause) {
             self.levelEnded();
           }
-        }, i * 1166.66);
+        }, i * 1300.66);
       }
     } else {
       if (emptyTarget) {
@@ -242,13 +248,12 @@ export class LevelStartScene {
               self.timerTicking.draw();
               self.promptText.draw();
             }
-          }, i * 1166.66);
+          }, i * 1300.66);
         }
       }
     }
   }
   levelEnded() {
-    console.log("Level");
     let totalStarsCount = 0;
     let monsterPhaseNumber = self.monsterPhaseNumber || 1;
     var gameLevelData = getDatafromStorage();
@@ -279,15 +284,17 @@ export class LevelStartScene {
       self.exitAllScreens();
       new GameEndScene(self.game);
     } else {
-      new LevelEndScene(
-        self.game,
-        score,
-        self.monster,
-        self.levelEndCallBack,
-        self.levelData,
-        isGamePause,
-        self.monsterPhaseNumber
-      );
+      setTimeout(() => {
+        new LevelEndScene(
+          self.game,
+          score,
+          self.monster,
+          self.levelEndCallBack,
+          self.levelData,
+          isGamePause,
+          self.monsterPhaseNumber
+        );
+      }, 1000);
     }
     isLevelEnded = true;
   }
@@ -425,22 +432,25 @@ export class LevelStartScene {
         current_puzzle_index
       );
       if (current_puzzle_index == self.puzzleData.length) {
-        isLevelEnded = true;
-        self.levelStartCallBack();
-        delete self.timerTicking;
-        new LevelEndScene(
-          self.game,
-          score,
-          self.monster,
-          self.levelEndCallBack,
-          self.levelData,
-          isGamePause,
-          this.monsterPhaseNumber
-        );
+        setTimeout(() => {
+          isLevelEnded = true;
+          self.levelStartCallBack();
+          delete self.timerTicking;
+          new LevelEndScene(
+            self.game,
+            score,
+            self.monster,
+            self.levelEndCallBack,
+            self.levelData,
+            isGamePause,
+            this.monsterPhaseNumber
+          );
+        }, 1000);
       } else {
         // self.promptText.setCurrrentPromptText(
         //   self.puzzleData[current_puzzle_index].prompt.promptText
         // );
+
         self.promptText.setCurrrentPuzzleData(
           self.puzzleData[current_puzzle_index]
         );

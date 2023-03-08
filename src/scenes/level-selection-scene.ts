@@ -2,7 +2,12 @@ import { LevelStartScene } from "./level-start-scene.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { LevelConfig } from "../common/level-config.js";
 import { Game } from "./game.js";
-import { LevelSelectionLayer, PreviousPlayedLevel } from "../common/common.js";
+import {
+  ButtonClick,
+  IntroMusic,
+  LevelSelectionLayer,
+  PreviousPlayedLevel,
+} from "../common/common.js";
 import Sound from "../common/sound.js";
 import { getDatafromStorage } from "../data/profile-data.js";
 var mapIcon = new Image();
@@ -266,7 +271,10 @@ export class LevelSelectionScreen {
             ) < 45
           ) {
             if (s.index + level - 1 <= unlockLevelIndex + 1) {
-              self.sound.changeSourse("./assets/audios/ButtonClick.wav");
+              self.sound.playSound(
+                "./assets/audios/ButtonClick.wav",
+                ButtonClick
+              );
               self.sound.pauseSound();
               levelNumber = s.index + level - 1;
               self.startGame(levelNumber);

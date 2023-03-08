@@ -84,7 +84,7 @@ window.addEventListener("load", async function () {
   }
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
-
+  console.log("Added Console Statement to test");
   window.addEventListener("resize", async () => {
     if (cached_languages.has(lang)) {
       canvas.height = window.innerHeight;
