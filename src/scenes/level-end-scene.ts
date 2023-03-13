@@ -74,13 +74,16 @@ export class LevelEndScene {
     );
   }
   createCanvas() {
-    this.canvas.scene.audio.playSound("./assets/audios/intro.wav", IntroMusic);
     if (this.starCount <= 1) {
       this.canvas.scene.audio.playSound(audioUrl.levelLose, LevelEndAudio);
       this.monster.changeImage(
         "./assets/images/sad1" + this.monsterPhaseNumber + ".png"
       );
     } else {
+      this.canvas.scene.audio.playSound(
+        "./assets/audios/intro.wav",
+        IntroMusic
+      );
       this.monster.changeImage(
         "./assets/images/happy1" + this.monsterPhaseNumber + ".png"
       );
