@@ -58,9 +58,7 @@ export class TimerTicking {
       this.game.width - 50,
       this.height * 0.05
     );
-    setTimeout(() => {
-      this.beginTimerOnStart();
-    }, 2500);
+    this.beginTimerOnStart();
   }
   createBackgroud() {
     var self = this;
@@ -68,9 +66,7 @@ export class TimerTicking {
     this.timer_full.src = "./assets/images/timer_full.png";
     this.timer_full.onload = function (e) {
       self.draw();
-      setTimeout(() => {
-        self.beginTimerOnStart();
-      }, 2500);
+      self.beginTimerOnStart();
     };
   }
   update() {
@@ -115,14 +111,13 @@ export class TimerTicking {
           self.isTimerStarted = true;
         }
       }
-    }, 6500);
+    }, 5000);
   }
   stopTimer() {
     this.isTimerStarted = false;
     setTimeout(() => {
       this.timer = 0;
     }, 3000);
-    this.timer = 0;
   }
   pauseTimer() {
     this.isTimerStarted = false;
