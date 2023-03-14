@@ -95,6 +95,7 @@ export class LevelStartScene {
   public timer_empty: any;
   public rotating_clock: any;
   public monsterPhaseNumber: any;
+  public levelStartTime: number;
 
   constructor({
     game,
@@ -292,13 +293,15 @@ export class LevelStartScene {
           self.levelEndCallBack,
           self.levelData,
           isGamePause,
-          self.monsterPhaseNumber
+          self.monsterPhaseNumber,
+          this.levelStartTime
         );
       }, 1000);
     }
     isLevelEnded = true;
   }
   createCanvas() {
+    this.levelStartTime = new Date().getTime();
     var monsterPhaseNumber = this.monsterPhaseNumber || 1;
     console.log(monsterPhaseNumber);
     this.monster.changeImage(
@@ -424,6 +427,7 @@ export class LevelStartScene {
   }
 
   changePuzzle() {
+    console.log("Puzzle changes");
     if (self.timerTicking.isTimerEnded) {
       self.stones.isTimerEnded();
       word_dropped_stones = 0;
@@ -443,7 +447,8 @@ export class LevelStartScene {
             self.levelEndCallBack,
             self.levelData,
             isGamePause,
-            this.monsterPhaseNumber
+            this.monsterPhaseNumber,
+            this.levelStartTime
           );
         }, 1000);
       } else {
