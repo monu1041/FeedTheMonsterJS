@@ -58,6 +58,7 @@ export class TimerTicking {
       this.game.width - 50,
       this.height * 0.05
     );
+    this.timer = 0;
     this.beginTimerOnStart();
   }
   createBackgroud() {
@@ -115,9 +116,6 @@ export class TimerTicking {
   }
   stopTimer() {
     this.isTimerStarted = false;
-    setTimeout(() => {
-      this.timer = 0;
-    }, 3000);
   }
   pauseTimer() {
     this.isTimerStarted = false;
