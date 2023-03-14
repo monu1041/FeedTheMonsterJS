@@ -49,18 +49,7 @@ export class TimerTicking {
   deleteCanvas() {
     this.canvasStack.deleteLayer(this.id);
   }
-  draw() {
-    this.context.clearRect(0, 0, this.width, this.height);
-    this.context.drawImage(
-      this.timer_full,
-      this.game.width * 0.12,
-      this.height * 0.099,
-      this.game.width - 50,
-      this.height * 0.05
-    );
-    this.timer = 0;
-    this.beginTimerOnStart();
-  }
+
   createBackgroud() {
     var self = this;
     this.timer_full = new Image();
@@ -105,6 +94,7 @@ export class TimerTicking {
   }
   beginTimerOnStart() {
     var self = this;
+
     setTimeout(() => {
       if (!this.pauseButtonClicked) {
         if (!self.isTimerStarted && self.timer == 0) {
@@ -116,6 +106,7 @@ export class TimerTicking {
   }
   stopTimer() {
     this.isTimerStarted = false;
+    console.log("Timer Stopped");
   }
   pauseTimer() {
     this.isTimerStarted = false;
@@ -124,5 +115,18 @@ export class TimerTicking {
   resumeTimer() {
     this.isTimerStarted = true;
     this.pauseButtonClicked = false;
+  }
+  draw() {
+    this.isTimerStarted = false;
+    this.context.clearRect(0, 0, this.width, this.height);
+    this.context.drawImage(
+      this.timer_full,
+      this.game.width * 0.12,
+      this.height * 0.099,
+      this.game.width - 50,
+      this.height * 0.05
+    );
+    this.timer = 0;
+    this.beginTimerOnStart();
   }
 }
