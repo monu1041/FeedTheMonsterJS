@@ -192,12 +192,33 @@ export class LevelStartScene {
   }
 
   redrawOfStones(
+    dragAnimation: string,
     status: boolean,
     emptyTarget: boolean,
     picked_stone: string,
     picked_stones: Array<string>
-  ) {
-    noMoreTarget = emptyTarget;
+  ) 
+  {
+    if(dragAnimation!= undefined){
+      switch(dragAnimation){
+        case 'dragMonsterAnimation':
+          {
+            self.monster.changeToDragAnimation();
+            break;
+          }
+        case 'stopDragMonsterAnimation':
+          {
+            self.monster.changeToIdleAnimation();
+            break;
+          }  
+        default:{
+          self.monster.changeToIdleAnimation();
+        }
+      }
+      
+    }
+    else{
+      noMoreTarget = emptyTarget;
     var fntsticOrGrtIndex = self.getRandomInt(0, 1);
     if (status) {
       self.monster.changeToEatAnimation();
@@ -271,6 +292,7 @@ export class LevelStartScene {
           }, i * 1300.66);
         }
       }
+    }
     }
   }
   levelEnded() {

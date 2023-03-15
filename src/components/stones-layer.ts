@@ -191,6 +191,7 @@ export default class StonesLayer {
             dragAudio.currentTime = 0;
             dragAudio.play();
             pickedStone = s;
+            self.callBack('dragMonsterAnimation');
           }
         }
       },
@@ -202,7 +203,6 @@ export default class StonesLayer {
         var rect = selfElelementId.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-
         if (
           Math.sqrt(
             (x -
@@ -227,15 +227,15 @@ export default class StonesLayer {
               gs.puzzle.target.shift();
               if (gs.puzzle.target.length == 0) {
                 gs.stones = [];
-                self.callBack(true, true, pickedStone.text, self.pickedStones);
+                self.callBack(undefined,true, true, pickedStone.text, self.pickedStones);
                 self.pickedStones = [];
               } else {
-                self.callBack(true, false, pickedStone.text, self.pickedStones);
+                self.callBack(undefined,true, false, pickedStone.text, self.pickedStones);
               }
             } else {
               self.pickedStones.push(pickedStone.text);
               gs.stones = [];
-              self.callBack(false, true, pickedStone.text, self.pickedStones);
+              self.callBack(undefined,false, true, pickedStone.text, self.pickedStones);
               self.pickedStones = [];
             }
           }
@@ -244,6 +244,7 @@ export default class StonesLayer {
         if (pickedStone) {
           pickedStone.x = pickedStone.origx;
           pickedStone.y = pickedStone.origy;
+          self.callBack('stopDragMonsterAnimation');
         }
         pickedStone = null;
       },
