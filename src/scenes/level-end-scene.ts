@@ -69,7 +69,7 @@ export class LevelEndScene {
         ? 3
         : 0;
     this.createCanvas();
-    this.firebaseEvents();
+    this.levelEndFirebaseEvents();
     this.levelEndCallBack = levelEndCallBack;
 
     setDataToStorage(
@@ -245,7 +245,7 @@ export class LevelEndScene {
     self.canvasStack.deleteLayer(this.id);
     self.canvasStack.deleteLayer(this.bottonLayer);
   }
-  firebaseEvents() {
+  levelEndFirebaseEvents() {
     FirebaseIntegration.customEvents("level_completed", {
       date_time:
         this.levelEndTime.getDate() +
@@ -263,7 +263,8 @@ export class LevelEndScene {
       success_or_failure: this.starCount >= 3 ? "success" : "failure",
       level_number: this.levelData.levelMeta.levelNumber,
       number_of_successful_puzzles: this.score / 100,
-      language: lang,
+      ftm_language: lang,
+      profile_number: 0,
       version_number: document.getElementById("version-info-id").innerHTML,
       duration: Math.abs(
         Math.ceil((this.levelEndTime.getTime() - this.levelStartTime) / 1000)

@@ -37,6 +37,7 @@ export default class StonesLayer {
   callBack: any;
   id: string;
   context: CanvasRenderingContext2D;
+  pickedStones: Array<string> = [];
   constructor(
     canvas: any,
     puzzleData: any,
@@ -67,7 +68,10 @@ export default class StonesLayer {
   }
 
   setCurrentPuzzle() {
-    this.levelStart.audio.playSound(this.puzzleData.prompt.promptAudio,PromptAudio);
+    this.levelStart.audio.playSound(
+      this.puzzleData.prompt.promptAudio,
+      PromptAudio
+    );
     gs.puzzle.stones = [];
     gs.puzzle.target = [];
     for (let target of this.puzzleData.targetStones) {
@@ -81,6 +85,7 @@ export default class StonesLayer {
   }
   isTimerEnded() {
     pickedStone = null;
+    this.pickedStones = [];
   }
   gameStoneOptions(foilStones: Array<String>, targetStones: Array<String>) {
     targetStones.forEach((e) => {
@@ -152,7 +157,10 @@ export default class StonesLayer {
         Math.sqrt(x - this.width / 3) < 12 &&
         Math.sqrt(y - this.height / 5.5) < 10
       ) {
-        self.levelStart.audio.playSound(self.puzzleData.prompt.promptAudio,PromptAudio);
+        self.levelStart.audio.playSound(
+          self.puzzleData.prompt.promptAudio,
+          PromptAudio
+        );
       }
       if (
         Math.sqrt(
@@ -215,16 +223,20 @@ export default class StonesLayer {
             pickedStone.x = -900;
             pickedStone.y = -900;
             if (pickedStone.text == gs.puzzle.target[0]) {
+              self.pickedStones.push(pickedStone.text);
               gs.puzzle.target.shift();
               if (gs.puzzle.target.length == 0) {
                 gs.stones = [];
-                self.callBack(true, true, pickedStone.text.length);
+                self.callBack(true, true, pickedStone.text, self.pickedStones);
+                self.pickedStones = [];
               } else {
-                self.callBack(true, false, pickedStone.text.length);
+                self.callBack(true, false, pickedStone.text, self.pickedStones);
               }
             } else {
+              self.pickedStones.push(pickedStone.text);
               gs.stones = [];
-              self.callBack(false, true, pickedStone.text.length);
+              self.callBack(false, true, pickedStone.text, self.pickedStones);
+              self.pickedStones = [];
             }
           }
           pickedStone = null;

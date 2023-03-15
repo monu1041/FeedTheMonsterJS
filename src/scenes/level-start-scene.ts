@@ -26,6 +26,7 @@ import { LevelEndScene } from "./level-end-scene.js";
 import { Game } from "./game";
 import { getDatafromStorage } from "../data/profile-data.js";
 import { lang } from "../../global-variables.js";
+import { FirebaseIntegration } from "../firebase/firebase_integration.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -96,6 +97,7 @@ export class LevelStartScene {
   public rotating_clock: any;
   public monsterPhaseNumber: any;
   public levelStartTime: number;
+  public puzzleStartTime: number;
 
   constructor({
     game,
@@ -126,7 +128,6 @@ export class LevelStartScene {
       levelData
     );
     this.createCanvas();
-
     this.stones = new StonesLayer(
       game,
       levelData.puzzles[current_puzzle_index],
@@ -193,7 +194,8 @@ export class LevelStartScene {
   redrawOfStones(
     status: boolean,
     emptyTarget: boolean,
-    picked_stone_lenghth: number
+    picked_stone: string,
+    picked_stones: Array<string>
   ) {
     noMoreTarget = emptyTarget;
     var fntsticOrGrtIndex = self.getRandomInt(0, 1);
@@ -201,6 +203,14 @@ export class LevelStartScene {
       self.monster.changeToEatAnimation();
       self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);
       if (emptyTarget) {
+        self.puzzleEndFirebaseEvents(
+          "success",
+          current_puzzle_index,
+          picked_stones,
+          self.levelData.puzzles[current_puzzle_index].targetStones,
+          self.levelData.puzzles[current_puzzle_index].foilStones,
+          self.puzzleStartTime
+        );
         setTimeout(() => {
           self.audio.playSound(
             audioUrl.phraseAudios[fntsticOrGrtIndex],
@@ -208,19 +218,27 @@ export class LevelStartScene {
           );
           self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
         }, 100);
-        self.promptText.draw((word_dropped_stones += picked_stone_lenghth));
+        self.promptText.draw((word_dropped_stones += picked_stone.length));
         self.timerTicking.stopTimer();
         // self.promptText.draw((word_dropped_stones += 1));
         score += 100;
         word_dropped_stones = 0;
         current_puzzle_index += 1;
       } else {
-        self.promptText.draw((word_dropped_stones += picked_stone_lenghth));
+        self.promptText.draw((word_dropped_stones += picked_stone.length));
       }
     } else {
       self.timerTicking.stopTimer();
       self.monster.changeToSpitAnimation();
       self.audio.playSound(audioUrl.monsterSad, PhraseAudio);
+      self.puzzleEndFirebaseEvents(
+        "failure",
+        current_puzzle_index,
+        picked_stones,
+        self.levelData.puzzles[current_puzzle_index].targetStones,
+        self.levelData.puzzles[current_puzzle_index].foilStones,
+        self.puzzleStartTime
+      );
       setTimeout(() => {
         self.audio.playSound(audioUrl.monsterSplit, PhraseAudio);
       }, 1000);
@@ -243,6 +261,7 @@ export class LevelStartScene {
           setTimeout(() => {
             if (i == 3 && !isGamePause) {
               self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+              self.puzzleStartTime = new Date().getTime();
               self.promptText.setCurrrentPuzzleData(
                 self.puzzleData[current_puzzle_index]
               );
@@ -263,11 +282,9 @@ export class LevelStartScene {
         totalStarsCount = totalStarsCount + gameLevelData[i].levelStar;
       }
       monsterPhaseNumber = Math.floor(totalStarsCount / 12) + 1 || 1;
-      console.log(totalStarsCount + "total star count");
       if (self.monsterPhaseNumber < monsterPhaseNumber) {
         if (monsterPhaseNumber <= 4) {
           self.monsterPhaseNumber = monsterPhaseNumber;
-          console.log("setting data" + monsterPhaseNumber);
           localStorage.setItem(StoreMonsterPhaseNumber, monsterPhaseNumber);
           self.monster.changePhaseNumber(monsterPhaseNumber);
           self.monster.changeImage(
@@ -277,8 +294,6 @@ export class LevelStartScene {
           self.monsterPhaseNumber = 4;
         }
       }
-      console.log(self.monsterPhaseNumber);
-      console.log(monsterPhaseNumber);
     }
     self.levelStartCallBack();
     if (self.levelData.levelNumber == 149) {
@@ -302,8 +317,8 @@ export class LevelStartScene {
   }
   createCanvas() {
     this.levelStartTime = new Date().getTime();
+    this.puzzleStartTime = new Date().getTime();
     var monsterPhaseNumber = this.monsterPhaseNumber || 1;
-    console.log(monsterPhaseNumber);
     this.monster.changeImage(
       "./assets/images/idle1" + monsterPhaseNumber + ".png"
     );
@@ -427,7 +442,6 @@ export class LevelStartScene {
   }
 
   changePuzzle() {
-    console.log("Puzzle changes");
     if (self.timerTicking.isTimerEnded) {
       self.stones.isTimerEnded();
       word_dropped_stones = 0;
@@ -455,7 +469,7 @@ export class LevelStartScene {
         // self.promptText.setCurrrentPromptText(
         //   self.puzzleData[current_puzzle_index].prompt.promptText
         // );
-
+        self.puzzleStartTime = new Date().getTime();
         self.promptText.setCurrrentPuzzleData(
           self.puzzleData[current_puzzle_index]
         );
@@ -604,6 +618,43 @@ export class LevelStartScene {
       self.levelIndicators.draw();
       self.promptText.createBackground();
       loadingScreen(false);
+    });
+  }
+  puzzleEndFirebaseEvents(
+    success_or_failure,
+    puzzle_number,
+    item_selected,
+    target,
+    foils,
+    response_time
+  ) {
+    var puzzleEndTime = new Date();
+    FirebaseIntegration.customEvents("puzzle_completed", {
+      date_time:
+        puzzleEndTime.getDate() +
+        "/" +
+        puzzleEndTime.getMonth() +
+        1 +
+        "/" +
+        puzzleEndTime.getFullYear() +
+        "," +
+        puzzleEndTime.getHours() +
+        ":" +
+        puzzleEndTime.getMinutes() +
+        ":" +
+        puzzleEndTime.getSeconds(),
+      success_or_failure: success_or_failure,
+      level_number: this.levelData.levelNumber,
+      puzzle_number: puzzle_number,
+      item_selected: item_selected,
+      target: target,
+      foils: foils,
+      profile_number: 0,
+      ftm_language: lang,
+      version_number: document.getElementById("version-info-id").innerHTML,
+      response_time: Math.abs(
+        Math.ceil((puzzleEndTime.getTime() - response_time) / 1000)
+      ),
     });
   }
 }

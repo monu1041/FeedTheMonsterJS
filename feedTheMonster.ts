@@ -29,9 +29,6 @@ window.addEventListener("beforeunload", (event) => {
 });
 window.addEventListener("load", async function () {
   registerWorkbox();
-  if (navigator.onLine) {
-    FirebaseIntegration.initializeFirebase();
-  }
   const canvas: any = <HTMLElement>document.getElementById("canvas");
   canvas.height = window.innerHeight;
   canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
@@ -52,6 +49,9 @@ window.addEventListener("load", async function () {
   globalThis.descriptionText = data.descriptionText;
   window.addEventListener("resize", async () => {
     if (cached_languages.has(lang)) {
+      if (navigator.onLine) {
+        FirebaseIntegration.initializeFirebase();
+      }
       canvas.height = window.innerHeight;
       canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
       delete this.monster;
@@ -61,6 +61,9 @@ window.addEventListener("load", async function () {
     }
   });
   if (cached_languages.has(lang)) {
+    if (navigator.onLine) {
+      FirebaseIntegration.initializeFirebase();
+    }
     this.startScene = new StartScene(canvas, d, this.analytics);
   }
 });
