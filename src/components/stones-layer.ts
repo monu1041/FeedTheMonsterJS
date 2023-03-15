@@ -183,6 +183,7 @@ export default class StonesLayer {
             dragAudio.currentTime = 0;
             dragAudio.play();
             pickedStone = s;
+            self.callBack('dragMouseDownAnimation');
           }
         }
       },
@@ -194,7 +195,6 @@ export default class StonesLayer {
         var rect = selfElelementId.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-
         if (
           Math.sqrt(
             (x -
@@ -218,13 +218,13 @@ export default class StonesLayer {
               gs.puzzle.target.shift();
               if (gs.puzzle.target.length == 0) {
                 gs.stones = [];
-                self.callBack(true, true, pickedStone.text.length);
+                self.callBack(undefined,true, true, pickedStone.text.length);
               } else {
-                self.callBack(true, false, pickedStone.text.length);
+                self.callBack(undefined,true, false, pickedStone.text.length);
               }
             } else {
               gs.stones = [];
-              self.callBack(false, true, pickedStone.text.length);
+              self.callBack(undefined,false, true, pickedStone.text.length);
             }
           }
           pickedStone = null;
@@ -232,6 +232,7 @@ export default class StonesLayer {
         if (pickedStone) {
           pickedStone.x = pickedStone.origx;
           pickedStone.y = pickedStone.origy;
+          self.callBack('stopDragMouseDownAnimation');
         }
         pickedStone = null;
       },
