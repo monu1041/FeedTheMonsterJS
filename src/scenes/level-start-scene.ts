@@ -198,12 +198,12 @@ export class LevelStartScene {
   {
     if(dragAnimation!= undefined){
       switch(dragAnimation){
-        case 'dragMouseDownAnimation':
+        case 'dragMonsterAnimation':
           {
             self.monster.changeToDragAnimation();
             break;
           }
-        case 'stopDragMouseDownAnimation':
+        case 'stopDragMonsterAnimation':
           {
             self.monster.changeToIdleAnimation();
             break;

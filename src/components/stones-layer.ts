@@ -183,7 +183,7 @@ export default class StonesLayer {
             dragAudio.currentTime = 0;
             dragAudio.play();
             pickedStone = s;
-            self.callBack('dragMouseDownAnimation');
+            self.callBack('dragMonsterAnimation');
           }
         }
       },
@@ -232,7 +232,7 @@ export default class StonesLayer {
         if (pickedStone) {
           pickedStone.x = pickedStone.origx;
           pickedStone.y = pickedStone.origy;
-          self.callBack('stopDragMouseDownAnimation');
+          self.callBack('stopDragMonsterAnimation');
         }
         pickedStone = null;
       },
