@@ -309,9 +309,9 @@ export class LevelStartScene {
           self.monsterPhaseNumber = monsterPhaseNumber;
           localStorage.setItem(StoreMonsterPhaseNumber, monsterPhaseNumber);
           self.monster.changePhaseNumber(monsterPhaseNumber);
-          self.monster.changeImage(
-            "./assets/images/idle1" + self.monsterPhaseNumber + ".png"
-          );
+          // self.monster.changeImage(
+          //   "./assets/images/idle1" + self.monsterPhaseNumber + ".png"
+          // );
         } else {
           self.monsterPhaseNumber = 4;
         }
