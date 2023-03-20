@@ -49,47 +49,49 @@ export default class Sound {
     switch (type) {
       case MonsterAudio: {
         this.monster_audio.src = src;
-        this.monster_audio.play();
+        this.monster_audio.play().catch(() => {
+          console.log("Error");
+        });
         break;
       }
       case FeedbackAudio: {
         this.feedback_audio.src = src;
-        this.feedback_audio.play();
+        this.feedback_audio.play().catch(() => {});
         break;
       }
       case IntroMusic: {
         this.intro_music.src = src;
-        this.intro_music.play();
+        this.intro_music.play().catch(() => {});
         break;
       }
       case PromptAudio: {
         this.prompt_audio.src = src;
-        this.prompt_audio.play();
+        this.prompt_audio.play().catch(() => {});
         break;
       }
       case ButtonClick: {
         this.button_click.src = src;
-        this.button_click.play();
+        this.button_click.play().catch(() => {});
         break;
       }
       case TimeOver: {
         this.time_over.src = src;
-        this.time_over.play();
+        this.time_over.play().catch(() => {});
         break;
       }
       case StoneMusic: {
         this.stone_music.src = src;
-        this.stone_music.play();
+        this.stone_music.play().catch(() => {});
         break;
       }
       case PhraseAudio: {
         this.phrase_audio.src = src;
-        this.phrase_audio.play();
+        this.phrase_audio.play().catch(() => {});
         break;
       }
       case LevelEndAudio: {
         this.level_end_audio.src = src;
-        this.level_end_audio.play();
+        this.level_end_audio.play().catch(() => {});
         break;
       }
 
@@ -111,11 +113,11 @@ export default class Sound {
     this.intro_music.pause();
     this.level_end_audio.pause();
     this.phrase_audio.pause();
-    this.time_over.pause()
-    this.stone_music.pause()
-    this.prompt_audio.pause()
-    this.button_click.pause()
-    this.time_over.pause()
+    this.time_over.pause();
+    this.stone_music.pause();
+    this.prompt_audio.pause();
+    this.button_click.pause();
+    this.time_over.pause();
     // this.introAudio.pause();
     // this.audio ? this.audio.pause() : null;
     // this.audio2 ? this.audio1.pause() : null;
