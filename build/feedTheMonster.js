@@ -2577,7 +2577,9 @@ class LevelStartScene {
                     self.monsterPhaseNumber = monsterPhaseNumber;
                     localStorage.setItem(_common_common_js__WEBPACK_IMPORTED_MODULE_7__.StoreMonsterPhaseNumber, monsterPhaseNumber);
                     self.monster.changePhaseNumber(monsterPhaseNumber);
-                    self.monster.changeImage("./assets/images/idle1" + self.monsterPhaseNumber + ".png");
+                    // self.monster.changeImage(
+                    //   "./assets/images/idle1" + self.monsterPhaseNumber + ".png"
+                    // );
                 }
                 else {
                     self.monsterPhaseNumber = 4;
