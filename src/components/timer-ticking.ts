@@ -2,6 +2,10 @@ import { TimeOver, TimetickerLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { Game } from "../scenes/game.js";
 import { LevelStartScene } from "../scenes/level-start-scene.js";
+var self: any;
+let x = 0;
+let y = 50;
+let speed = 1;
 export class TimerTicking {
   public game: Game;
   public width: number;
@@ -19,6 +23,7 @@ export class TimerTicking {
   public pauseButtonClicked: boolean;
   public canvasStack: any;
   public id: string;
+  public progress: number;
 
   constructor(game: Game, levelStart: LevelStartScene) {
     this.game = game;
@@ -32,7 +37,8 @@ export class TimerTicking {
     this.isTimerEnded = false;
     this.levelStart = levelStart;
     this.isTimerRunningOut = false;
-    var self = this;
+    self = this;
+    this.progress = 0;
     this.createCanvas();
   }
   createCanvas() {
@@ -51,14 +57,20 @@ export class TimerTicking {
   }
 
   createBackgroud() {
-    var self = this;
+    console.log(this.progress);
+
+    this.progress = 0;
     this.timer_full = new Image();
     this.timer_full.src = "./assets/images/timer_full.png";
     this.timer_full.onload = function (e) {
+      x = self.game.width;
       self.draw();
-      self.beginTimerOnStart();
+      // self.beginTimerOnStart();
+      self.animate();
     };
   }
+  animate() {}
+
   update() {
     if (this.isTimerStarted) {
       this.timer += 0.06;
@@ -93,40 +105,52 @@ export class TimerTicking {
     }
   }
   beginTimerOnStart() {
-    var self = this;
-
-    setTimeout(() => {
-      if (!this.pauseButtonClicked) {
-        if (!self.isTimerStarted && self.timer == 0) {
-          self.timer = 0;
-          self.isTimerStarted = true;
-        }
-      }
-    }, 5000);
+    // var self = this;
+    // setTimeout(() => {
+    //   if (!this.pauseButtonClicked) {
+    //     if (!self.isTimerStarted && self.timer == 0) {
+    //       self.timer = 0;
+    //       self.isTimerStarted = true;
+    //     }
+    //   }
+    // }, 5000);
   }
   stopTimer() {
-    this.isTimerStarted = false;
-    console.log("Timer Stopped");
+    // this.isTimerStarted = false;
+    // console.log("Timer Stopped");
   }
   pauseTimer() {
-    this.isTimerStarted = false;
-    this.pauseButtonClicked = true;
+    // this.isTimerStarted = false;
+    // this.pauseButtonClicked = true;
   }
   resumeTimer() {
-    this.isTimerStarted = true;
-    this.pauseButtonClicked = false;
+    // this.isTimerStarted = true;
+    // this.pauseButtonClicked = false;
   }
   draw() {
-    this.isTimerStarted = false;
-    this.context.clearRect(0, 0, this.width, this.height);
-    this.context.drawImage(
-      this.timer_full,
-      this.game.width * 0.12,
-      this.height * 0.099,
-      this.game.width - 50,
-      this.height * 0.05
+    self.context.clearRect(0, 0, self.width, self.height);
+    self.context.drawImage(
+      self.timer_full,
+      self.game.width * 0.12,
+      self.height * 0.099,
+      x,
+      self.height * 0.05
     );
-    this.timer = 0;
-    this.beginTimerOnStart();
+    x -= speed;
+    if (x < 10) {
+      x = 10;
+    }
+    requestAnimationFrame(self.draw);
+    // this.isTimerStarted = false;
+    // this.context.clearRect(0, 0, this.width, this.height);
+    // this.context.drawImage(
+    //   this.timer_full,
+    //   this.game.width * 0.12,
+    //   this.height * 0.099,
+    //   this.game.width - 50,
+    //   this.height * 0.05
+    // );
+    // this.timer = 0;
+    // this.beginTimerOnStart();
   }
 }
