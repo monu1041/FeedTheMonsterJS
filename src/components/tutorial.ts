@@ -63,26 +63,44 @@ export class Tutorial {
     this.canvasStack.deleteLayer(this.id);
   }
 
+  isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  } 
+
   animateImage() {
     let x = startX;
     let y = startY;
-    const dx = (endX - startX) / 60; 
-    const dy = (endY - startY) / 60; 
-    let absdx = Math.abs(dx);
-    let absdy = Math.abs(dy);
-    setTimeout(()=>{
- 
-        const interval = setInterval(() => {
-            if ((x<= endX+absdx && x>= endX-absdx) && (y<= endY+absdy && y>= endY-absdy)) {
-                clearInterval(interval); 
-                setTimeout(()=>{self.deleteCanvas();},500);
-              }
-            x =(dx>=0)?x+absdx:x-absdx; 
-            y =(dy>=0)?y+absdy:y-absdy;
-            this.draw(x, y); 
-          }, 16);
-
-    },1500);
+    const dx = (endX - startX) / 60;
+    const dy = (endY - startY) / 60;
+    console.log(this.isMobile())
+    let absdx = (this.isMobile)?Math.abs(dx)*4:Math.abs(dx);
+    let absdy = (this.isMobile)?Math.abs(dy)*4:Math.abs(dy);
+  
+    setTimeout(() => {
+      const startTime = performance.now();
+  
+      const animate = (currentTime) => {
+        const deltaTime = currentTime - startTime;
+        if (
+          (x <= endX + absdx && x >= endX - absdx) &&
+          (y <= endY + absdy && y >= endY - absdy)
+        ) {
+          setTimeout(() => {
+            this.deleteCanvas();
+          }, 500);
+          return;
+        }
+  
+        x = (dx >= 0) ? x + absdx  : x - absdx;
+        y = (dy >= 0) ? y + absdy : y - absdy;
+  
+        this.draw(x, y);
+  
+        requestAnimationFrame(animate);
+        
+      };
+      requestAnimationFrame(animate);
+    }, 1300);
   }
 
   draw(x: number, y: number) {
