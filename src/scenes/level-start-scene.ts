@@ -27,6 +27,7 @@ import { Game } from "./game";
 import { getDatafromStorage } from "../data/profile-data.js";
 import { lang } from "../../global-variables.js";
 import { FirebaseIntegration } from "../firebase/firebase_integration.js";
+import { Tutorial } from "../components/tutorial.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -51,6 +52,8 @@ var images = {
   winterFenceImg: "./assets/images/Winter_fence_v01.png",
   winterPillerImg: "./assets/images/Winter_sign_v01.png",
 };
+
+
 var audioUrl = {
   phraseAudios: [
     "./lang/" + lang + "/audios/fantastic.WAV",
@@ -75,6 +78,7 @@ export class LevelStartScene {
   public width: number;
   public height: number;
   public monster: Monster;
+  public tutorial: Tutorial;
   public audio: Sound;
   public canvasStack: any;
   public levelData: any;
@@ -98,6 +102,7 @@ export class LevelStartScene {
   public monsterPhaseNumber: any;
   public levelStartTime: number;
   public puzzleStartTime: number;
+  public showTutorial: boolean;
 
   constructor({
     game,
@@ -115,6 +120,7 @@ export class LevelStartScene {
     this.height = game.height;
     self = this;
     this.monster = new Monster(game);
+    this.tutorial = new Tutorial(game);
     this.audio = new Sound();
     this.canvasStack = new CanvasStack("canvas");
     this.monsterPhaseNumber = monsterPhaseNumber || 1;
@@ -128,6 +134,8 @@ export class LevelStartScene {
       levelData
     );
     this.createCanvas();
+    this.showTutorial = (getDatafromStorage().length==undefined)?true:false;
+    (this.showTutorial)?this.tutorial.createCanvas():()=>{};
     this.stones = new StonesLayer(
       game,
       levelData.puzzles[current_puzzle_index],
@@ -299,6 +307,7 @@ export class LevelStartScene {
     let totalStarsCount = 0;
     let monsterPhaseNumber = self.monsterPhaseNumber || 1;
     var gameLevelData = getDatafromStorage();
+    this.showTutorial = (gameLevelData.length ==undefined )?true:false;
     if (gameLevelData != null) {
       for (let i = 0; i < gameLevelData.length; i++) {
         totalStarsCount = totalStarsCount + gameLevelData[i].levelStar;
@@ -347,6 +356,7 @@ export class LevelStartScene {
     window.addEventListener("resize", async () => {
       self.deleteObjects();
     });
+   
 
     this.id = this.canvasStack.createLayer(
       this.height,
@@ -460,10 +470,10 @@ export class LevelStartScene {
     this.stones.draw();
     this.pauseButton.draw();
     this.levelIndicators.draw();
-    this.promptText.createBackground();
+    this.promptText.createBackground()
   }
   update() {
-    self.timerTicking ? self.timerTicking.update() : null;
+     self.timerTicking ? self.timerTicking.update() : null;
   }
 
   changePuzzle() {
