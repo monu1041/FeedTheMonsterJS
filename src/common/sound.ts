@@ -1,102 +1,34 @@
-import {
-  ButtonClick,
-  FeedbackAudio,
-  IntroMusic,
-  LevelEndAudio,
-  MonsterAudio,
-  PhraseAudio,
-  PromptAudio,
-  StoneMusic,
-  TimeOver,
-} from "./common.js";
+import { lang } from "../../global-variables.js";
+import { IntroMusic, PromptAudio } from "./common.js";
 
 let inactive_screen = false;
 export default class Sound {
-  public monster_audio: HTMLAudioElement;
-  public feedback_audio: HTMLAudioElement;
-  public intro_music: HTMLAudioElement;
-  public prompt_audio: HTMLAudioElement;
-  public button_click: HTMLAudioElement;
-  public time_over: HTMLAudioElement;
-  public stone_music: HTMLAudioElement;
-  public phrase_audio: HTMLAudioElement;
-  public level_end_audio: HTMLAudioElement;
+  public playingSources: Array<AudioBufferSourceNode> = [];
+  public introSound: AudioBufferSourceNode;
+  public audioContext: AudioContext = new AudioContext();
 
-  constructor() {
-    this.monster_audio = document.getElementById(
-      MonsterAudio
-    ) as HTMLAudioElement;
-    this.feedback_audio = document.getElementById(
-      FeedbackAudio
-    ) as HTMLAudioElement;
-    this.intro_music = document.getElementById(IntroMusic) as HTMLAudioElement;
-    this.prompt_audio = document.getElementById(
-      PromptAudio
-    ) as HTMLAudioElement;
-    this.button_click = document.getElementById(
-      ButtonClick
-    ) as HTMLAudioElement;
-    this.time_over = document.getElementById(TimeOver) as HTMLAudioElement;
-    this.stone_music = document.getElementById(StoneMusic) as HTMLAudioElement;
-    this.phrase_audio = document.getElementById(
-      PhraseAudio
-    ) as HTMLAudioElement;
-    this.level_end_audio = document.getElementById(
-      PhraseAudio
-    ) as HTMLAudioElement;
-  }
-  playSound(src, type) {
-    switch (type) {
-      case MonsterAudio: {
-        this.monster_audio.src = src;
-        this.monster_audio.play().catch(() => {
-          console.log("Error");
+  playSound(src, type?) {
+    if (type != PromptAudio) {
+      let source = audioContext.createBufferSource();
+      source.buffer = audioBuffers[src];
+      source.connect(audioContext.destination);
+      source.start(0);
+      this.playingSources.push(source);
+    } else {
+      fetch(src)
+        .then((response) => response.arrayBuffer())
+        .then((buffer) => this.audioContext.decodeAudioData(buffer))
+        .then((audioBuffer) => {
+          var source = this.audioContext.createBufferSource();
+          source.buffer = audioBuffer;
+          source.connect(this.audioContext.destination);
+          if (type == "Intro") {
+            this.playingSources.push(source);
+          } else {
+            this.playingSources.push(source);
+          }
+          source.start();
         });
-        break;
-      }
-      case FeedbackAudio: {
-        this.feedback_audio.src = src;
-        this.feedback_audio.play().catch(() => {});
-        break;
-      }
-      case IntroMusic: {
-        this.intro_music.src = src;
-        this.intro_music.play().catch(() => {});
-        break;
-      }
-      case PromptAudio: {
-        this.prompt_audio.src = src;
-        this.prompt_audio.play().catch(() => {});
-        break;
-      }
-      case ButtonClick: {
-        this.button_click.src = src;
-        this.button_click.play().catch(() => {});
-        break;
-      }
-      case TimeOver: {
-        this.time_over.src = src;
-        this.time_over.play().catch(() => {});
-        break;
-      }
-      case StoneMusic: {
-        this.stone_music.src = src;
-        this.stone_music.play().catch(() => {});
-        break;
-      }
-      case PhraseAudio: {
-        this.phrase_audio.src = src;
-        this.phrase_audio.play().catch(() => {});
-        break;
-      }
-      case LevelEndAudio: {
-        this.level_end_audio.src = src;
-        this.level_end_audio.play().catch(() => {});
-        break;
-      }
-
-      default:
-        break;
     }
   }
   activeScreen() {
@@ -108,24 +40,14 @@ export default class Sound {
     }
   }
   pauseSound() {
-    this.monster_audio.pause();
-    this.feedback_audio.pause();
-    this.intro_music.pause();
-    this.level_end_audio.pause();
-    this.phrase_audio.pause();
-    this.time_over.pause();
-    this.stone_music.pause();
-    this.prompt_audio.pause();
-    this.button_click.pause();
-    this.time_over.pause();
-    // this.introAudio.pause();
-    // this.audio ? this.audio.pause() : null;
-    // this.audio2 ? this.audio1.pause() : null;
-    // this.audio2 ? this.audio2.pause() : null;
+    for (var i = 0; i < this.playingSources.length; i++) {
+      this.playingSources[i].stop();
+    }
+    this.playingSources = [];
   }
   changeSourse(src) {
     // this.audio.src = src;
-    // this.playSound(src);
+    this.playSound(src);
   }
   playLevelEndHappyAudio(levelWinAudio) {
     // this.audio.src = levelWinAudio;
@@ -135,3 +57,46 @@ export default class Sound {
     // }, 700);
   }
 }
+let audioContext = new AudioContext();
+let audioBuffers = {};
+let audioUrls = [
+  "./assets/audios/intro.wav",
+  "./assets/audios/Cheering-02.mp3",
+  "./assets/audios/onDrag.mp3",
+  "./assets/audios/timeout.mp3",
+  "./assets/audios/LevelWinFanfare.mp3",
+  "./assets/audios/LevelLoseFanfare.mp3",
+  "./assets/audios/ButtonClick.wav",
+  "./lang/" + lang + "/audios/fantastic.WAV",
+  "./lang/" + lang + "/audios/great.wav",
+  "./assets/audios/Monster Spits wrong stones-01.mp3",
+  "./assets/audios/Disapointed-05.mp3",
+];
+
+function loadAudio(url) {
+  return new Promise<void>((resolve, reject) => {
+    let request = new XMLHttpRequest();
+    request.open("GET", url, true);
+    request.responseType = "arraybuffer";
+    request.onload = function () {
+      audioContext.decodeAudioData(request.response, function (buffer) {
+        audioBuffers[url] = buffer;
+        resolve();
+      });
+    };
+    request.onerror = function () {
+      reject(new Error("Error loading audio file"));
+    };
+    request.send();
+  });
+}
+
+let loadPromises = audioUrls.map((url) => loadAudio(url));
+Promise.all(loadPromises)
+  .then(() => {
+    console.log("All audio files preloaded");
+    // You can now use the audioBuffers object to play the preloaded audio files
+  })
+  .catch((error) => {
+    console.error(error);
+  });
