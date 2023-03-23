@@ -61,7 +61,12 @@ export class TimerTicking {
   }
   update() {
     if (this.isTimerStarted) {
-      this.timer += 0.06;
+      if (window.Android) {
+        this.timer += 0.2;
+      } else {
+        this.timer += 0.06;
+      }
+
       if (this.game.width * 1.3 - this.widthToClear - 10 * this.timer > 55) {
         this.context.clearRect(
           this.game.width * 1.3 - this.widthToClear - 10 * this.timer,
