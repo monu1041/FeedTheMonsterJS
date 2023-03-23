@@ -308,10 +308,6 @@ export class LevelStartScene {
     let monsterPhaseNumber = self.monsterPhaseNumber || 1;
     var gameLevelData = getDatafromStorage();
     this.showTutorial = (gameLevelData.length ==undefined )?true:false;
-    console.log('Called level ended');
-    console.log(this.showTutorial);
-    console.log(gameLevelData.length);
-    console.log(gameLevelData);
     if (gameLevelData != null) {
       for (let i = 0; i < gameLevelData.length; i++) {
         totalStarsCount = totalStarsCount + gameLevelData[i].levelStar;
@@ -351,7 +347,6 @@ export class LevelStartScene {
     isLevelEnded = true;
   }
   createCanvas() {
-    console.log('Call create canvas');
     this.levelStartTime = new Date().getTime();
     this.puzzleStartTime = new Date().getTime();
     var monsterPhaseNumber = this.monsterPhaseNumber || 1;
@@ -476,7 +471,6 @@ export class LevelStartScene {
     this.pauseButton.draw();
     this.levelIndicators.draw();
     this.promptText.createBackground()
-    this.promptText.animate();
   }
   update() {
      self.timerTicking ? self.timerTicking.update() : null;

@@ -17,17 +17,11 @@ export class PromptText {
   public currentPuzzleData: any;
   public fntstOrGrtImgArr: any;
   public fantastic_image: any;
-  public tutorial_hand_image: any;
   public great_image: any;
   public id: any;
   public canavsElement: any;
   public context: any;
   public prompt_image: any;
-
-  public x=0;
-  public y=0;
-  public destX=400;
-  public destY=400;
 
   constructor(game, levelStart, currentPuzzleData, levelData) {
     this.game = game;
@@ -42,12 +36,10 @@ export class PromptText {
     this.fntstOrGrtImgArr = [];
     this.createCanvas();
     this.loadFantasticAndGreatImage();
-    this.loadTutorialHandImage();
 
   }
 
   loadFantasticAndGreatImage() {
-    console.log('Called Fantastic')
     var self = this;
     this.fantastic_image = new Image();
     this.fantastic_image.src = "./lang/" + lang + "/images/fantastic_01.png";
@@ -58,11 +50,6 @@ export class PromptText {
     this.fntstOrGrtImgArr.push(this.great_image);
   }
 
-  loadTutorialHandImage (){
-    var self = this;
-    this.tutorial_hand_image = new Image();
-    this.tutorial_hand_image.src = "./assets/images/tutorial_hand.png"
-  }
   createCanvas() {
     this.id = this.canvasStack.createLayer(
       this.height,
@@ -102,7 +89,6 @@ export class PromptText {
     this.canvasStack.deleteLayer(this.id);
   }
   draw(droppedStones = 0) {
-    console.log('Called dropped');
     this.context.clearRect(0, 0, this.width, this.height);
     this.context.drawImage(
       this.prompt_image,
@@ -184,34 +170,7 @@ export class PromptText {
       self.draw();
     };
   }
-  animate() {
-    this.context.clearRect(
-      this.game.width / 2 - (this.game.width * 0.5) / 2,
-      this.height * 0.15,
-      this.game.width * 0.5,
-      this.height * 0.25
-    );
-    this.context.drawImage(this.tutorial_hand_image, this.x, this.y);
-     // Calculate the distance between the current and destination position
-  const dx = this.destX - this.x;
-  const dy = this.destY - this.y;
-
-  // Calculate the movement speed
-  const speedX = 2;
-  const speedY = 2;
-
-  // Update the position of the image
-  this.x += speedX;
-  this.y += speedY;
-
-  // If the image has not reached the destination position, continue the animation
-  if (this.x < this.destX || this.y < this.destY) {
-    console.log(self.animateImage);
-    requestAnimationFrame(this.animate);
-  }
-}
   update() {
-    console.log('called the update method')
     this.createBackground();
   }
  
