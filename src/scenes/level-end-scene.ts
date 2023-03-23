@@ -69,7 +69,9 @@ export class LevelEndScene {
         ? 3
         : 0;
     this.createCanvas();
-    this.levelEndFirebaseEvents();
+    if (navigator.onLine) {
+      this.levelEndFirebaseEvents();
+    }
     this.levelEndCallBack = levelEndCallBack;
 
     setDataToStorage(
