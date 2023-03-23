@@ -42,10 +42,10 @@ export class Tutorial {
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = "8";
     this.canavsElement.style.bottom = "0";
-    startX =this.game.width / 5 - 32,
-    startY =this.game.height / 2.8 - 32,
+    startX =this.game.width / 5 - 42,
+    startY =this.game.height / 2.8+20 ,
     endX = this.width/2;
-    endY = this.height / 2 - 82;
+    endY = this.height / 2 ;
     this.animateImage();
     self.elementId.addEventListener('click',function(event){
 
@@ -73,8 +73,8 @@ export class Tutorial {
     const dx = (endX - startX) / 60;
     const dy = (endY - startY) / 60;
     console.log(this.isMobile())
-    let absdx = (this.isMobile)?Math.abs(dx)*4:Math.abs(dx);
-    let absdy = (this.isMobile)?Math.abs(dy)*4:Math.abs(dy);
+    let absdx = (this.isMobile())?Math.abs(dx)*3:Math.abs(dx);
+    let absdy = (this.isMobile())?Math.abs(dy)*3:Math.abs(dy);
   
     setTimeout(() => {
       const startTime = performance.now();
@@ -100,7 +100,7 @@ export class Tutorial {
         
       };
       requestAnimationFrame(animate);
-    }, 1300);
+    }, 1500);
   }
 
   draw(x: number, y: number) {
