@@ -366,6 +366,9 @@ export class LevelStartScene {
     );
     var self = this;
     const selfElement = <HTMLElement>document.getElementById(self.id);
+    document.addEventListener("selectstart", function (e) {
+      e.preventDefault();
+    });
     this.canavsElement.addEventListener("click", function (event) {
       var rect = selfElement.getBoundingClientRect();
       const x = event.clientX - rect.left;
