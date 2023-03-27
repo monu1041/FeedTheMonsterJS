@@ -39,6 +39,7 @@ export function loadingScreen(loading: boolean) {
 }
 
 export const MonsterLayer = "monsterCanvas";
+export const TutorialLayer = "tutorialCanvas";
 export const PausePopupLayer = "pausepopupCanvas";
 export const StoneLayer = "stoneCanvas";
 export const TimetickerLayer = "timetickCanvas";

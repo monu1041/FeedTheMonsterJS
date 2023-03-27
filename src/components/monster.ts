@@ -12,6 +12,8 @@ var idleImg = new Image();
 idleImg.src = "./assets/images/idle1" + monsterPhaseNumber + ".png";
 var spitImg = new Image();
 spitImg.src = "./assets/images/spit1" + monsterPhaseNumber + ".png";
+var dragImg = new Image();
+dragImg.src = "./assets/images/drag1" + monsterPhaseNumber + ".png";
 console.log("monsterexecuting");
 export class Monster {
   public zindex: number;
@@ -121,11 +123,17 @@ export class Monster {
     idleImg.src = "./assets/images/idle1" + monsterPhaseNum + ".png";
     spitImg = new Image();
     spitImg.src = "./assets/images/spit1" + monsterPhaseNum + ".png";
+    dragImg = new Image();
+    dragImg.src = "./assets/images/drag1" + monsterPhaseNum + ".png";
     console.log(eatImg.src);
     console.log(idleImg.src);
     console.log(spitImg.src);
     console.log(monsterPhaseNumber);
   }
+  changeToDragAnimation() {
+    this.image = dragImg;
+  }
+  
   changeToEatAnimation() {
     this.image = eatImg;
     setTimeout(() => {

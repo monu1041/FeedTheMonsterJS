@@ -1,3 +1,4 @@
+import { lang } from "../../global-variables.js";
 import {
   IntroMusic,
   LevelEndAudio,
@@ -10,6 +11,7 @@ import NextButton from "../components/buttons/next_button.js";
 import RetryButton from "../components/buttons/retry_button.js";
 import { Monster } from "../components/monster.js";
 import { ProfileData, setDataToStorage } from "../data/profile-data.js";
+import { FirebaseIntegration } from "../firebase/firebase_integration.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { Game } from "./game.js";
 var audioUrl = {
@@ -33,6 +35,9 @@ export class LevelEndScene {
   public retryButton: RetryButton;
   public closeButton: CloseButton;
   public monsterPhaseNumber: any;
+  public levelStartTime: number;
+  public levelEndTime: Date;
+  public score: number;
 
   constructor(
     canvas,
@@ -41,7 +46,8 @@ export class LevelEndScene {
     levelEndCallBack,
     levelData,
     isGamePause,
-    monsterPhaseNumber
+    monsterPhaseNumber,
+    levelStartTime
   ) {
     this.canvas = canvas;
     this.canvasStack = new CanvasStack("canvas");
@@ -49,6 +55,9 @@ export class LevelEndScene {
     this.levelData = levelData;
     this.isGamePause = isGamePause;
     this.monsterPhaseNumber = monsterPhaseNumber || 1;
+    this.levelStartTime = levelStartTime;
+    this.levelEndTime = new Date();
+    this.score = score;
     this.starCount =
       score == 200
         ? 1
@@ -59,9 +68,10 @@ export class LevelEndScene {
         : score == 500
         ? 3
         : 0;
-    console.log(levelData.levelMeta.levelNumber);
-    console.log(score);
     this.createCanvas();
+    if (navigator.onLine) {
+      this.levelEndFirebaseEvents();
+    }
     this.levelEndCallBack = levelEndCallBack;
 
     setDataToStorage(
@@ -74,13 +84,16 @@ export class LevelEndScene {
     );
   }
   createCanvas() {
-    this.canvas.scene.audio.playSound("./assets/audios/intro.wav", IntroMusic);
     if (this.starCount <= 1) {
       this.canvas.scene.audio.playSound(audioUrl.levelLose, LevelEndAudio);
       this.monster.changeImage(
         "./assets/images/sad1" + this.monsterPhaseNumber + ".png"
       );
     } else {
+      this.canvas.scene.audio.playSound(
+        "./assets/audios/intro.wav",
+        IntroMusic
+      );
       this.monster.changeImage(
         "./assets/images/happy1" + this.monsterPhaseNumber + ".png"
       );
@@ -233,5 +246,31 @@ export class LevelEndScene {
   deleteCanvas(self) {
     self.canvasStack.deleteLayer(this.id);
     self.canvasStack.deleteLayer(this.bottonLayer);
+  }
+  levelEndFirebaseEvents() {
+    FirebaseIntegration.customEvents("level_completed", {
+      date_time:
+        this.levelEndTime.getDate() +
+        "/" +
+        this.levelEndTime.getMonth() +
+        1 +
+        "/" +
+        this.levelEndTime.getFullYear() +
+        "," +
+        this.levelEndTime.getHours() +
+        ":" +
+        this.levelEndTime.getMinutes() +
+        ":" +
+        this.levelEndTime.getSeconds(),
+      success_or_failure: this.starCount >= 3 ? "success" : "failure",
+      level_number: this.levelData.levelMeta.levelNumber,
+      number_of_successful_puzzles: this.score / 100,
+      ftm_language: lang,
+      profile_number: 0,
+      version_number: document.getElementById("version-info-id").innerHTML,
+      duration: Math.abs(
+        Math.ceil((this.levelEndTime.getTime() - this.levelStartTime) / 1000)
+      ),
+    });
   }
 }

@@ -61,11 +61,6 @@ img {
   color: white;
   text-align: center;
 }
-a {
-  text-decoration: none;
-  color: #66ff99;
-}
-
 #canvas {
   position: absolute;
   /* background-color: white; */

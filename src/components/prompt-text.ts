@@ -36,6 +36,7 @@ export class PromptText {
     this.fntstOrGrtImgArr = [];
     this.createCanvas();
     this.loadFantasticAndGreatImage();
+
   }
 
   loadFantasticAndGreatImage() {
@@ -64,6 +65,7 @@ export class PromptText {
     this.currentPuzzleData = data;
     this.currentPromptText = data.prompt.promptText;
   }
+
 
   showFantasticOrGreat(imageIndex) {
     var self = this;
@@ -171,4 +173,5 @@ export class PromptText {
   update() {
     this.createBackground();
   }
+ 
 }
