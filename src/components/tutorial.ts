@@ -78,7 +78,6 @@ export class Tutorial {
     let absdy = (this.isMobile())?Math.abs(dy)*3:Math.abs(dy);
 
     function between(x, min, max) {
-      console.log(x,min,max);
       return x >= min && x <= max;
     }
   
@@ -86,15 +85,11 @@ export class Tutorial {
       const startTime = performance.now();
   
       const animate = () => {
-        console.log(x,x-10,x+10);
-        console.log(y,y-10,y+10);
         if(between(x,startX-15,startX+15) && between(y,startY-15,startY+15))
         {
-          console.log('Entered if');
           this.changeZindex(7);
         }
         else{
-          console.log('Entered else');
           this.changeZindex(6);
         }
         if (
