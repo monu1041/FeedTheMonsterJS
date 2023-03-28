@@ -18,6 +18,7 @@ export class Tutorial {
   public canavsElement: HTMLCanvasElement;
   public context: CanvasRenderingContext2D;
   public game: any;
+  public targetStonePositions: any;
 
   constructor(game, zindex?) {
     this.game = game;
@@ -29,7 +30,7 @@ export class Tutorial {
     
   }
 
-  createCanvas() {
+  createCanvas(targetStonePosition) {
     this.id = this.canvasStack.createLayer(
       this.height,
       this.width,
@@ -40,10 +41,10 @@ export class Tutorial {
       ) as HTMLCanvasElement;
     this.canavsElement = document.getElementById(this.id) as HTMLCanvasElement;
     this.context = this.canavsElement.getContext("2d");
-    this.canavsElement.style.zIndex = "8";
+    this.canavsElement.style.zIndex = "6";
     this.canavsElement.style.bottom = "0";
-    startX =this.game.width / 5 - 42,
-    startY =this.game.height / 2.8+20 ,
+    startX = targetStonePosition[0] - 22,
+    startY = targetStonePosition[1] - 50 ,
     endX = this.width/2;
     endY = this.height / 2 ;
     this.animateImage();
@@ -75,17 +76,37 @@ export class Tutorial {
     console.log(this.isMobile())
     let absdx = (this.isMobile())?Math.abs(dx)*3:Math.abs(dx);
     let absdy = (this.isMobile())?Math.abs(dy)*3:Math.abs(dy);
+
+    function between(x, min, max) {
+      console.log(x,min,max);
+      return x >= min && x <= max;
+    }
   
     setTimeout(() => {
       const startTime = performance.now();
   
-      const animate = (currentTime) => {
-        const deltaTime = currentTime - startTime;
+      const animate = () => {
+        console.log(x,x-10,x+10);
+        console.log(y,y-10,y+10);
+        if(between(x,startX-15,startX+15) && between(y,startY-15,startY+15))
+        {
+          console.log('Entered if');
+          this.changeZindex(7);
+        }
+        else{
+          console.log('Entered else');
+          this.changeZindex(6);
+        }
         if (
           (x <= endX + absdx && x >= endX - absdx) &&
           (y <= endY + absdy && y >= endY - absdy)
         ) {
           setTimeout(() => {
+            
+            // setTimeout(()=>{
+            //   this.deleteCanvas();
+            // },500)
+            // requestAnimationFrame(animate);
             this.deleteCanvas();
           }, 500);
           return;
