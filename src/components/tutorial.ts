@@ -19,6 +19,11 @@ export class Tutorial {
   public context: CanvasRenderingContext2D;
   public game: any;
   public targetStonePositions: any;
+  public startx:number;
+  public starty:number;
+  public endx:number;
+  public endy:number;
+  public animationFrame: number;
 
   constructor(game, zindex?) {
     this.game = game;
@@ -27,10 +32,14 @@ export class Tutorial {
     this.width = this.game.width;
     this.height = this.game.height
     this.canvasStack = new CanvasStack("canvas");
+    this.startx = startX;
+    this.starty = startY;
+    this.endx = this.game.width/2;
+    this.endy = this.game.height / 2;
     
   }
 
-  createCanvas(targetStonePosition) {
+  createCanvas() {
     this.id = this.canvasStack.createLayer(
       this.height,
       this.width,
@@ -43,11 +52,10 @@ export class Tutorial {
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = "6";
     this.canavsElement.style.bottom = "0";
-    startX = targetStonePosition[0] - 22,
-    startY = targetStonePosition[1] - 50 ,
+   
     endX = this.width/2;
     endY = this.height / 2 ;
-    this.animateImage();
+    // this.animateImage();
     self.elementId.addEventListener('click',function(event){
 
         console.log('Clicked and touched');
@@ -55,6 +63,12 @@ export class Tutorial {
     })
   }
 
+  updateTargetStonePositions(targetStonePosition){
+    startX = targetStonePosition[0] - 22;
+    startY = targetStonePosition[1] - 50;
+    this.startx = targetStonePosition[0] - 22;
+    this.starty = targetStonePosition[1] - 50;
+  }
   
   changeZindex(index) {
     this.canavsElement.style.zIndex = index;
@@ -71,9 +85,8 @@ export class Tutorial {
   animateImage() {
     let x = startX;
     let y = startY;
-    const dx = (endX - startX) / 60;
-    const dy = (endY - startY) / 60;
-    console.log(this.isMobile())
+    const dx = (this.endx - this.startx) / 60;
+    const dy = (this.endy - this.starty) / 60;
     let absdx = (this.isMobile())?Math.abs(dx)*3:Math.abs(dx);
     let absdy = (this.isMobile())?Math.abs(dy)*3:Math.abs(dy);
 
@@ -85,7 +98,7 @@ export class Tutorial {
       const startTime = performance.now();
   
       const animate = () => {
-        if(between(x,startX-15,startX+15) && between(y,startY-15,startY+15))
+        if(between(x,this.startx-15,startX+15) && between(y,this.starty-15,startY+15))
         {
           this.changeZindex(7);
         }
@@ -93,17 +106,25 @@ export class Tutorial {
           this.changeZindex(6);
         }
         if (
-          (x <= endX + absdx && x >= endX - absdx) &&
-          (y <= endY + absdy && y >= endY - absdy)
+          (x <= this.endx + absdx && x >= this.endx - absdx) &&
+          (y <= this.endy + absdy && y >= this.endy - absdy)
         ) {
-          setTimeout(() => {
+          // setTimeout(() => {
             
+           setTimeout(()=>{
+            x = this.startx;
+            y = this.starty
+            cancelAnimationFrame(this.animationFrame);
+            this.changeZindex(0);
+            // this.animationFrame=requestAnimationFrame(animate)
+           },500)
+
             // setTimeout(()=>{
             //   this.deleteCanvas();
             // },500)
             // requestAnimationFrame(animate);
-            this.deleteCanvas();
-          }, 500);
+            // this.deleteCanvas();
+          // }, 500);
           return;
         }
   
@@ -112,10 +133,10 @@ export class Tutorial {
   
         this.draw(x, y);
   
-        requestAnimationFrame(animate);
+        this.animationFrame=requestAnimationFrame(animate);
         
       };
-      requestAnimationFrame(animate);
+      this.animationFrame=requestAnimationFrame(animate);
     }, 1500);
   }
 

@@ -67,6 +67,8 @@ export default class StonesLayer {
     this.tutorial = new Tutorial(canvas);
     this.showTutorial = (getDatafromStorage().length==undefined)?true:false;
     this.createCanvas();
+    this.tutorial.updateTargetStonePositions(this.getTargetStonePosition(gs.stones));
+    this.tutorial.createCanvas();
   }
 
   setNewPuzzle(currentPuzzle: any) {
@@ -377,7 +379,8 @@ export default class StonesLayer {
       i += 1;
     }
     // setTimeout(() => {
-      (this.showTutorial && this.puzzleIndex==0)?this.tutorial.createCanvas(this.getTargetStonePosition(gs.stones)):()=>{};
+      this.tutorial.updateTargetStonePositions(this.getTargetStonePosition(gs.stones));
+      (this.showTutorial && this.puzzleIndex==0)?this.tutorial.animateImage():()=>{};
     // }, 500);
     
     this.draw();
