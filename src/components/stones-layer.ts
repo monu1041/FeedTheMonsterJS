@@ -5,6 +5,8 @@ import { LevelStartScene } from "../scenes/level-start-scene.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import PauseButton from "./buttons/pause_button.js";
 import PausePopUp from "./pause-popup.js";
+import { Tutorial } from "../components/tutorial.js";
+import { getDatafromStorage } from "../data/profile-data.js";
 
 var gs: any = {
   mode: "gameplay",
@@ -36,14 +38,19 @@ export default class StonesLayer {
   puzzleData: any;
   callBack: any;
   id: string;
+  puzzleIndex: number;
+  targetStonePositions:Promise<any[]>;
   context: CanvasRenderingContext2D;
+  public tutorial: Tutorial;
+  public showTutorial: Boolean;
   pickedStones: Array<string> = [];
   constructor(
     canvas: any,
     puzzleData: any,
     pausebutton: PauseButton,
     callBack: any,
-    levelStart: LevelStartScene
+    levelStart: LevelStartScene,
+    puzzleIndex:number
   ) {
     this.canvas = canvas;
     this.levelStart = levelStart;
@@ -55,7 +62,13 @@ export default class StonesLayer {
     this.setCurrentPuzzle();
     this.levelStart = levelStart;
     this.callBack = callBack;
+    this.puzzleIndex = puzzleIndex;
+    // this.targetStonePositions = this.getTargetStonePosition(gs.stones);
+    this.tutorial = new Tutorial(canvas);
+    this.showTutorial = (getDatafromStorage().length==undefined)?true:false;
     this.createCanvas();
+    this.tutorial.updateTargetStonePositions(this.getTargetStonePosition(gs.stones));
+    this.tutorial.createCanvas();
   }
 
   setNewPuzzle(currentPuzzle: any) {
@@ -66,7 +79,6 @@ export default class StonesLayer {
   stonepos(stonepos: any) {
     throw new Error("Method not implemented.");
   }
-
   setCurrentPuzzle() {
     this.levelStart.audio.playSound(
       this.puzzleData.prompt.promptAudio,
@@ -306,6 +318,18 @@ export default class StonesLayer {
     this.createStones(<any>this.stonepos);
   }
 
+  getTargetStonePosition(stones){
+    let targetPositions = []
+    for(let i=0;i<gs.stones.length;i++){
+      if(gs.stones[i].text == gs.puzzle.target[0])
+      {
+        targetPositions.push(gs.stones[i].origx);
+        targetPositions.push(gs.stones[i].origy);
+        break;
+       }
+  }
+    return targetPositions;
+  }
   setPrompt() {
     this.context.fillStyle = "black";
     this.context.font = this.width * 0.09 + "px Arial";
@@ -347,13 +371,18 @@ export default class StonesLayer {
 
   createStones(stonepos: any[]) {
     var poss = stonepos[0];
-    var i = 0;
+    var i = 0; 
     gs.stones.splice(0, gs.stones.length);
     for (let s of gs.puzzle.stones) {
       var ns = new StoneConfig(s, poss[i][0], poss[i][1]);
       gs.stones.push(ns);
       i += 1;
     }
+    // setTimeout(() => {
+      this.tutorial.updateTargetStonePositions(this.getTargetStonePosition(gs.stones));
+      (this.showTutorial && this.puzzleIndex==0)?this.tutorial.animateImage():()=>{};
+    // }, 500);
+    
     this.draw();
   }
 

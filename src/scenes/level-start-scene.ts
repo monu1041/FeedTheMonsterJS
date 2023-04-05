@@ -18,6 +18,7 @@ import {
   ButtonClick,
   FeedbackAudio,
   PhraseAudio,
+  TutorialLayer,
 } from "../common/common.js";
 import { LevelStartLayer } from "../common/common.js";
 import { GameEndScene } from "./game-end-scene.js";
@@ -27,7 +28,7 @@ import { Game } from "./game";
 import { getDatafromStorage } from "../data/profile-data.js";
 import { lang } from "../../global-variables.js";
 import { FirebaseIntegration } from "../firebase/firebase_integration.js";
-import { Tutorial } from "../components/tutorial.js";
+
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -77,7 +78,7 @@ export class LevelStartScene {
   public width: number;
   public height: number;
   public monster: Monster;
-  public tutorial: Tutorial;
+  
   public audio: Sound;
   public canvasStack: any;
   public levelData: any;
@@ -119,7 +120,7 @@ export class LevelStartScene {
     this.height = game.height;
     self = this;
     this.monster = new Monster(game);
-    this.tutorial = new Tutorial(game);
+   
     this.audio = new Sound();
     this.canvasStack = new CanvasStack("canvas");
     this.monsterPhaseNumber = monsterPhaseNumber || 1;
@@ -133,18 +134,21 @@ export class LevelStartScene {
       levelData
     );
     this.createCanvas();
-    this.showTutorial = getDatafromStorage().length == undefined ? true : false;
-    this.showTutorial ? this.tutorial.createCanvas() : () => {};
+    
+   
     this.stones = new StonesLayer(
       game,
       levelData.puzzles[current_puzzle_index],
       this.pauseButton,
       this.redrawOfStones,
-      this
+      this,
+      current_puzzle_index
     );
     this.puzzleData = levelData.puzzles;
+    
   }
 
+  
   levelEndCallBack(button_name?: string) {
     if (!isGamePause) {
       isGamePause = true;
@@ -160,16 +164,16 @@ export class LevelStartScene {
         }
       } else {
         isGamePause = false;
-        if (noMoreTarget && button_name != "close_button") {
-          setTimeout(() => {
-            self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
-            self.promptText.setCurrrentPuzzleData(
-              self.puzzleData[current_puzzle_index]
-            );
-            self.timerTicking.draw();
-            self.promptText.draw();
-          }, 1000);
-        }
+        // if (noMoreTarget && button_name != "close_button") {
+        //   setTimeout(() => {
+        //     self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+        //     self.promptText.setCurrrentPuzzleData(
+        //       self.puzzleData[current_puzzle_index]
+        //     );
+        //     self.timerTicking.draw();
+        //     self.promptText.draw();
+        //   }, 1000);
+        // }
       }
     }
     self.audio.playSound(audioUrl.buttonClick, ButtonClick);
@@ -395,6 +399,7 @@ export class LevelStartScene {
     self.canvasStack.deleteLayer(StoneLayer);
     self.canvasStack.deleteLayer(TimetickerLayer);
     self.canvasStack.deleteLayer(PromptTextLayer);
+    self.canvasStack.deleteLayer(TutorialLayer);
     // self.monster.changeImage("./assets/images/idle4.png");
     self.monster.changeImage(
       "./assets/images/idle1" + self.monsterPhaseNumber + ".png"
