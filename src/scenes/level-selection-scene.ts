@@ -74,13 +74,13 @@ export class LevelSelectionScreen {
         break;
       }
       case "close_button": {
-        self.sound.playSound("./assets/audios/intro.wav", IntroMusic);
+        self.sound.playSound("./assets/audios/intro.mp3", IntroMusic);
         self.drawStars();
       }
     }
   }
   createCanvas() {
-    this.sound.playSound("./assets/audios/intro.wav", IntroMusic);
+    this.sound.playSound("./assets/audios/intro.mp3", IntroMusic);
     document.addEventListener(
       "visibilitychange",
       function () {
