@@ -2,6 +2,7 @@ import {
   ButtonClick,
   FirebaseUserClicked,
   FirebaseUserInstall,
+  loadingScreen,
   MonsterLayer,
   PlayButtonLayer,
   PWAInstallStatus,
@@ -125,7 +126,8 @@ export class StartScene {
       this.width,
       this.height / 6
     );
-    document.getElementById("loading-screen").style.display = "none";
+    // loadingScreen(false);
+    //  document.getElementById("loading-screen").style.display = "none";
   }
 
   createPlayButton() {
