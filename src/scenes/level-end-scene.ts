@@ -17,7 +17,7 @@ import { Game } from "./game.js";
 var audioUrl = {
   levelWin: "./assets/audios/LevelWinFanfare.mp3",
   levelLose: "./assets/audios/LevelLoseFanfare.mp3",
-  intro: "./assets/audios/intro.wav",
+  intro: "./assets/audios/intro.mp3",
 };
 export class LevelEndScene {
   public canvas: Game;
@@ -91,7 +91,7 @@ export class LevelEndScene {
       );
     } else {
       this.canvas.scene.audio.playSound(
-        "./assets/audios/intro.wav",
+        "./assets/audios/intro.mp3",
         IntroMusic
       );
       this.monster.changeImage(
@@ -104,7 +104,7 @@ export class LevelEndScene {
       function () {
         if (document.visibilityState === "visible") {
           self.canvas.scene.audio.playSound(
-            "./assets/audios/intro.wav",
+            "./assets/audios/intro.mp3",
             IntroMusic
           );
         } else {

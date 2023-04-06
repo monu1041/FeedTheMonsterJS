@@ -8,7 +8,9 @@ export class FirebaseIntegration {
     this.analytics = firebase.analytics(this.firebaseApp);
   }
   static sessionEnd() {
-    this.analytics.logEvent("session_end");
+    if (navigator.onLine) {
+      this.analytics.logEvent("session_end");
+    }
   }
   static customEvents(key, value) {
     this.analytics.logEvent(key, value);
