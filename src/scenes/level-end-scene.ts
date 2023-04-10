@@ -10,7 +10,7 @@ import CloseButton from "../components/buttons/close_button.js";
 import NextButton from "../components/buttons/next_button.js";
 import RetryButton from "../components/buttons/retry_button.js";
 import { Monster } from "../components/monster.js";
-import { ProfileData, setDataToStorage } from "../data/profile-data.js";
+import { ProfileData, setDataToStorage, setTotalStarCount, } from "../data/profile-data.js";
 import { FirebaseIntegration } from "../firebase/firebase_integration.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { Game } from "./game.js";
@@ -73,7 +73,7 @@ export class LevelEndScene {
       this.levelEndFirebaseEvents();
     }
     this.levelEndCallBack = levelEndCallBack;
-
+    setTotalStarCount(this.starCount);
     setDataToStorage(
       new ProfileData(
         levelData.levelMeta.levelType,
