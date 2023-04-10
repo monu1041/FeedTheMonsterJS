@@ -31,6 +31,21 @@ export function setDataToStorage(profileData) {
     localStorage.setItem(lang+"Profile", data);
   }
 }
+
+export function setTotalStarCount(starCount){
+  let totalStarCount = getTotalStarCount();
+  totalStarCount = totalStarCount + (starCount);
+  localStorage.setItem('totalStarCount',totalStarCount.toString());
+}
+
+export function getTotalStarCount(){
+  let totalStarCount;
+  totalStarCount = localStorage.getItem('totalStarCount');
+  return (totalStarCount)?
+           typeof(totalStarCount)=="string"?parseInt(totalStarCount):totalStarCount
+           :0;
+}
+
 function jsonToArray(json) {
   var data: any = [];
   for (var i in json) {

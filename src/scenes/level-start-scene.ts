@@ -25,7 +25,7 @@ import { GameEndScene } from "./game-end-scene.js";
 import Sound from "../common/sound.js";
 import { LevelEndScene } from "./level-end-scene.js";
 import { Game } from "./game";
-import { getDatafromStorage } from "../data/profile-data.js";
+import { getDatafromStorage, getTotalStarCount } from "../data/profile-data.js";
 import { lang } from "../../global-variables.js";
 import { FirebaseIntegration } from "../firebase/firebase_integration.js";
 
@@ -306,15 +306,15 @@ export class LevelStartScene {
     }
   }
   levelEnded() {
-    let totalStarsCount = 0;
+    let totalStarsCount = getTotalStarCount();
     let monsterPhaseNumber = self.monsterPhaseNumber || 1;
     var gameLevelData = getDatafromStorage();
     this.showTutorial = gameLevelData.length == undefined ? true : false;
     if (gameLevelData != null) {
-      for (let i = 0; i < gameLevelData.length; i++) {
-        totalStarsCount = totalStarsCount + gameLevelData[i].levelStar;
-      }
-      monsterPhaseNumber = Math.floor(totalStarsCount / 12) + 1 || 1;
+      // for (let i = 0; i < gameLevelData.length; i++) {
+      //   totalStarsCount = totalStarsCount + gameLevelData[i].levelStar;
+      // }
+      monsterPhaseNumber = Math.floor(totalStarsCount / 12)+1 || 1;
       if (self.monsterPhaseNumber < monsterPhaseNumber) {
         if (monsterPhaseNumber <= 4) {
           self.monsterPhaseNumber = monsterPhaseNumber;
