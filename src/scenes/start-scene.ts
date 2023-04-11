@@ -16,7 +16,7 @@ import { Monster } from "../components/monster.js";
 import { DataModal } from "../data/data-modal.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { LevelSelectionScreen } from "./level-selection-scene.js";
-import { lang } from "../../global-variables.js";
+import { Debugger, lang } from "../../global-variables.js";
 
 var bgImg = new Image();
 bgImg.src = "./assets/images/bg_v01.jpg";
@@ -37,6 +37,7 @@ let pwa_install_status: any;
 const aboutCompanyElement = <HTMLElement>(
   document.getElementById("about-company")
 );
+const toggleBtn = document.getElementById("toggle-btn") as HTMLElement;
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   pwa_install_status = e;
@@ -76,6 +77,18 @@ export class StartScene {
     this.firebase_analytics = firebase_analytics;
   }
   createCanvas() {
+    toggleBtn.addEventListener("click", () => {
+      toggleBtn.classList.toggle("on");
+
+      if (toggleBtn.classList.contains("on")) {
+        console.log('Entered')
+        Debugger.DebugMode = true;
+        toggleBtn.innerText = "Dev";
+      } else {
+        Debugger.DebugMode = false;
+        toggleBtn.innerText = "Dev";
+      }
+    });
     this.id = this.canvasStack.createLayer(
       this.height,
       this.width,
@@ -177,7 +190,7 @@ export class StartScene {
           fbq("trackCustom", FirebaseUserClicked, {
             event: "click",
           });
-
+          toggleBtn.style.display = "none";
           aboutCompanyElement.style.display = "none";
           new Sound().playSound("./assets/audios/ButtonClick.wav", ButtonClick);
           self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
