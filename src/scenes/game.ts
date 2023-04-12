@@ -1,3 +1,4 @@
+import { lang } from "../../global-variables.js";
 import { StoreMonsterPhaseNumber } from "../common/common.js";
 import { LevelStartScene } from "./level-start-scene.js";
 
@@ -19,7 +20,7 @@ export class Game {
     this.width = width;
     this.height = height;
     this.monsterPhaseNumber =
-      localStorage.getItem(StoreMonsterPhaseNumber) || 1;
+      localStorage.getItem(StoreMonsterPhaseNumber+lang) || 1;
     this.scene = new LevelStartScene({
       game: this,
       levelData: puzzleData,

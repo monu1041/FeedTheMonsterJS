@@ -81,7 +81,6 @@ export class StartScene {
       toggleBtn.classList.toggle("on");
 
       if (toggleBtn.classList.contains("on")) {
-        console.log('Entered')
         Debugger.DebugMode = true;
         toggleBtn.innerText = "Dev";
       } else {
