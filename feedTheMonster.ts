@@ -12,7 +12,7 @@ import {
 } from "./src/data/profile-data.js";
 import { CachedLanguages, PWAInstallStatus } from "./src/common/common.js";
 import { Workbox } from "workbox-window";
-import { lang } from "./global-variables.js";
+import { Debugger, lang } from "./global-variables.js";
 import { FirebaseIntegration } from "./src/firebase/firebase_integration.js";
 declare const window: any;
 declare const app: any;
@@ -48,8 +48,12 @@ window.addEventListener("load", async function () {
   }
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
+
   window.addEventListener("resize", async () => {
     if (cached_languages.has(lang)) {
+      Debugger.DevelopmentLink
+        ? (document.getElementById("toggle-btn").style.display = "block")
+        : null;
       if (navigator.onLine) {
         FirebaseIntegration.initializeFirebase();
       }
@@ -65,6 +69,9 @@ window.addEventListener("load", async function () {
     if (navigator.onLine) {
       FirebaseIntegration.initializeFirebase();
     }
+    Debugger.DevelopmentLink
+      ? (document.getElementById("toggle-btn").style.display = "block")
+      : null;
     this.startScene = new StartScene(canvas, d, this.analytics);
   }
 });
