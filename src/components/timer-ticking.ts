@@ -3,6 +3,11 @@ import { CanvasStack } from "../utility/canvas-stack.js";
 import { Game } from "../scenes/game.js";
 import { LevelStartScene } from "../scenes/level-start-scene.js";
 import { Tutorial } from "./tutorial.js";
+declare global {
+  interface Window {
+    Android?: any;
+  }
+}
 export class TimerTicking {
   public game: Game;
   public width: number;
@@ -62,7 +67,7 @@ export class TimerTicking {
   }
   update() {
     if (this.isTimerStarted) {
-      if (!this.isMobile) {
+      if (window.Android) {
         this.timer += 0.2;
       } else {
         this.timer += 0.06;
@@ -134,10 +139,5 @@ export class TimerTicking {
     );
     this.timer = 0;
     this.beginTimerOnStart();
-  }
-  isMobile() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
   }
 }
