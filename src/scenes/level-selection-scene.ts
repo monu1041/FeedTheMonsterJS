@@ -82,7 +82,6 @@ export class LevelSelectionScreen {
     }
   }
   createCanvas() {
-    console.log("Debuger", Debugger.DebugMode);
     this.sound.playSound("./assets/audios/intro.mp3", IntroMusic);
     document.addEventListener(
       "visibilitychange",

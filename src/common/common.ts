@@ -69,4 +69,4 @@ export const StoneMusic = "stone_music";
 export const PhraseAudio = "phrase_audio";
 export const LevelEndAudio = "level_end_audio";
 export const DevelopmentServer =
-  "https://devcuriousreader.wpcomstaging.com/testing/";
+  "https://feedthemonsterdev.curiouscontent.org/";

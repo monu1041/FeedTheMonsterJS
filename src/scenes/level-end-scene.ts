@@ -249,28 +249,13 @@ export class LevelEndScene {
   }
   levelEndFirebaseEvents() {
     FirebaseIntegration.customEvents("level_completed", {
-      date_time:
-        this.levelEndTime.getDate() +
-        "/" +
-        this.levelEndTime.getMonth() +
-        1 +
-        "/" +
-        this.levelEndTime.getFullYear() +
-        "," +
-        this.levelEndTime.getHours() +
-        ":" +
-        this.levelEndTime.getMinutes() +
-        ":" +
-        this.levelEndTime.getSeconds(),
       success_or_failure: this.starCount >= 3 ? "success" : "failure",
       level_number: this.levelData.levelMeta.levelNumber,
       number_of_successful_puzzles: this.score / 100,
       ftm_language: lang,
       profile_number: 0,
       version_number: document.getElementById("version-info-id").innerHTML,
-      duration: Math.abs(
-        Math.ceil((this.levelEndTime.getTime() - this.levelStartTime) / 1000)
-      ),
+      duration: (this.levelEndTime.getTime() - this.levelStartTime) / 1000,
     });
   }
 }

@@ -78,7 +78,7 @@ export class LevelStartScene {
   public width: number;
   public height: number;
   public monster: Monster;
-  
+
   public audio: Sound;
   public canvasStack: any;
   public levelData: any;
@@ -120,7 +120,7 @@ export class LevelStartScene {
     this.height = game.height;
     self = this;
     this.monster = new Monster(game);
-   
+
     this.audio = new Sound();
     this.canvasStack = new CanvasStack("canvas");
     this.monsterPhaseNumber = monsterPhaseNumber || 1;
@@ -134,8 +134,7 @@ export class LevelStartScene {
       levelData
     );
     this.createCanvas();
-    
-   
+
     this.stones = new StonesLayer(
       game,
       levelData.puzzles[current_puzzle_index],
@@ -145,10 +144,8 @@ export class LevelStartScene {
       current_puzzle_index
     );
     this.puzzleData = levelData.puzzles;
-    
   }
 
-  
   levelEndCallBack(button_name?: string) {
     if (!isGamePause) {
       isGamePause = true;
@@ -667,19 +664,6 @@ export class LevelStartScene {
   ) {
     var puzzleEndTime = new Date();
     FirebaseIntegration.customEvents("puzzle_completed", {
-      date_time:
-        puzzleEndTime.getDate() +
-        "/" +
-        puzzleEndTime.getMonth() +
-        1 +
-        "/" +
-        puzzleEndTime.getFullYear() +
-        "," +
-        puzzleEndTime.getHours() +
-        ":" +
-        puzzleEndTime.getMinutes() +
-        ":" +
-        puzzleEndTime.getSeconds(),
       success_or_failure: success_or_failure,
       level_number: this.levelData.levelNumber,
       puzzle_number: puzzle_number,
@@ -689,9 +673,7 @@ export class LevelStartScene {
       profile_number: 0,
       ftm_language: lang,
       version_number: document.getElementById("version-info-id").innerHTML,
-      response_time: Math.abs(
-        Math.ceil((puzzleEndTime.getTime() - response_time) / 1000)
-      ),
+      response_time: (puzzleEndTime.getTime() - response_time) / 1000,
     });
   }
 }
