@@ -10,7 +10,7 @@ import {
 } from "../common/common.js";
 import Sound from "../common/sound.js";
 import { getDatafromStorage } from "../data/profile-data.js";
-import { Debugger } from "../../global-variables.js";
+import { Debugger, lang } from "../../global-variables.js";
 
 var mapIcon = new Image();
 mapIcon.src = "./assets/images/mapIcon.png";
@@ -28,7 +28,12 @@ var levelNumber: number;
 var self: any;
 var unlockLevelIndex = -1;
 var previousPlayedLevel: number =
-  parseInt(localStorage.getItem(PreviousPlayedLevel)) | 0;
+  parseInt(
+    Debugger.DebugMode
+      ? localStorage.getItem(PreviousPlayedLevel + lang + "Debug")
+      : localStorage.getItem(PreviousPlayedLevel + lang)
+  ) | 0;
+
 var level: number;
 if (previousPlayedLevel != null) {
   level = 10 * Math.floor(previousPlayedLevel / 10);

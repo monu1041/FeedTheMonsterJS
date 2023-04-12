@@ -26,7 +26,7 @@ import Sound from "../common/sound.js";
 import { LevelEndScene } from "./level-end-scene.js";
 import { Game } from "./game";
 import { getDatafromStorage, getTotalStarCount } from "../data/profile-data.js";
-import { lang } from "../../global-variables.js";
+import { Debugger, lang } from "../../global-variables.js";
 import { FirebaseIntegration } from "../firebase/firebase_integration.js";
 
 var images = {
@@ -311,11 +311,19 @@ export class LevelStartScene {
       // for (let i = 0; i < gameLevelData.length; i++) {
       //   totalStarsCount = totalStarsCount + gameLevelData[i].levelStar;
       // }
-      monsterPhaseNumber = Math.floor(totalStarsCount / 12)+1 || 1;
+      monsterPhaseNumber = Math.floor(totalStarsCount / 12) + 1 || 1;
       if (self.monsterPhaseNumber < monsterPhaseNumber) {
         if (monsterPhaseNumber <= 4) {
           self.monsterPhaseNumber = monsterPhaseNumber;
-          localStorage.setItem(StoreMonsterPhaseNumber, monsterPhaseNumber);
+          Debugger.DebugMode
+            ? localStorage.setItem(
+                StoreMonsterPhaseNumber + lang + "Debug",
+                monsterPhaseNumber
+              )
+            : localStorage.setItem(
+                StoreMonsterPhaseNumber + lang,
+                monsterPhaseNumber
+              );
           self.monster.changePhaseNumber(monsterPhaseNumber);
           // self.monster.changeImage(
           //   "./assets/images/idle1" + self.monsterPhaseNumber + ".png"
@@ -383,7 +391,12 @@ export class LevelStartScene {
       const y = event.clientY - rect.top;
     });
     var previousPlayedLevel: string = self.levelData.levelMeta.levelNumber;
-    localStorage.setItem(PreviousPlayedLevel, previousPlayedLevel);
+    Debugger.DebugMode
+      ? localStorage.setItem(
+          PreviousPlayedLevel + lang + "Debug",
+          previousPlayedLevel
+        )
+      : localStorage.setItem(PreviousPlayedLevel + lang, previousPlayedLevel);
   }
 
   deleteCanvas() {
