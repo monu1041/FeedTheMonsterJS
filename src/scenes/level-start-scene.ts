@@ -18,16 +18,17 @@ import {
   ButtonClick,
   FeedbackAudio,
   PhraseAudio,
+  TutorialLayer,
 } from "../common/common.js";
 import { LevelStartLayer } from "../common/common.js";
 import { GameEndScene } from "./game-end-scene.js";
 import Sound from "../common/sound.js";
 import { LevelEndScene } from "./level-end-scene.js";
 import { Game } from "./game";
-import { getDatafromStorage } from "../data/profile-data.js";
-import { lang } from "../../global-variables.js";
+import { getDatafromStorage, getTotalStarCount } from "../data/profile-data.js";
+import { Debugger, lang } from "../../global-variables.js";
 import { FirebaseIntegration } from "../firebase/firebase_integration.js";
-import { Tutorial } from "../components/tutorial.js";
+
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -77,7 +78,7 @@ export class LevelStartScene {
   public width: number;
   public height: number;
   public monster: Monster;
-  public tutorial: Tutorial;
+
   public audio: Sound;
   public canvasStack: any;
   public levelData: any;
@@ -119,7 +120,7 @@ export class LevelStartScene {
     this.height = game.height;
     self = this;
     this.monster = new Monster(game);
-    this.tutorial = new Tutorial(game);
+
     this.audio = new Sound();
     this.canvasStack = new CanvasStack("canvas");
     this.monsterPhaseNumber = monsterPhaseNumber || 1;
@@ -133,14 +134,14 @@ export class LevelStartScene {
       levelData
     );
     this.createCanvas();
-    this.showTutorial = getDatafromStorage().length == undefined ? true : false;
-    this.showTutorial ? this.tutorial.createCanvas() : () => {};
+
     this.stones = new StonesLayer(
       game,
       levelData.puzzles[current_puzzle_index],
       this.pauseButton,
       this.redrawOfStones,
-      this
+      this,
+      current_puzzle_index
     );
     this.puzzleData = levelData.puzzles;
   }
@@ -160,16 +161,16 @@ export class LevelStartScene {
         }
       } else {
         isGamePause = false;
-        if (noMoreTarget && button_name != "close_button") {
-          setTimeout(() => {
-            self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
-            self.promptText.setCurrrentPuzzleData(
-              self.puzzleData[current_puzzle_index]
-            );
-            self.timerTicking.draw();
-            self.promptText.draw();
-          }, 1000);
-        }
+        // if (noMoreTarget && button_name != "close_button") {
+        //   setTimeout(() => {
+        //     self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+        //     self.promptText.setCurrrentPuzzleData(
+        //       self.puzzleData[current_puzzle_index]
+        //     );
+        //     self.timerTicking.draw();
+        //     self.promptText.draw();
+        //   }, 1000);
+        // }
       }
     }
     self.audio.playSound(audioUrl.buttonClick, ButtonClick);
@@ -302,19 +303,27 @@ export class LevelStartScene {
     }
   }
   levelEnded() {
-    let totalStarsCount = 0;
+    let totalStarsCount = getTotalStarCount();
     let monsterPhaseNumber = self.monsterPhaseNumber || 1;
     var gameLevelData = getDatafromStorage();
     this.showTutorial = gameLevelData.length == undefined ? true : false;
     if (gameLevelData != null) {
-      for (let i = 0; i < gameLevelData.length; i++) {
-        totalStarsCount = totalStarsCount + gameLevelData[i].levelStar;
-      }
+      // for (let i = 0; i < gameLevelData.length; i++) {
+      //   totalStarsCount = totalStarsCount + gameLevelData[i].levelStar;
+      // }
       monsterPhaseNumber = Math.floor(totalStarsCount / 12) + 1 || 1;
       if (self.monsterPhaseNumber < monsterPhaseNumber) {
         if (monsterPhaseNumber <= 4) {
           self.monsterPhaseNumber = monsterPhaseNumber;
-          localStorage.setItem(StoreMonsterPhaseNumber, monsterPhaseNumber);
+          Debugger.DebugMode
+            ? localStorage.setItem(
+                StoreMonsterPhaseNumber + lang + "Debug",
+                monsterPhaseNumber
+              )
+            : localStorage.setItem(
+                StoreMonsterPhaseNumber + lang,
+                monsterPhaseNumber
+              );
           self.monster.changePhaseNumber(monsterPhaseNumber);
           // self.monster.changeImage(
           //   "./assets/images/idle1" + self.monsterPhaseNumber + ".png"
@@ -382,7 +391,12 @@ export class LevelStartScene {
       const y = event.clientY - rect.top;
     });
     var previousPlayedLevel: string = self.levelData.levelMeta.levelNumber;
-    localStorage.setItem(PreviousPlayedLevel, previousPlayedLevel);
+    Debugger.DebugMode
+      ? localStorage.setItem(
+          PreviousPlayedLevel + lang + "Debug",
+          previousPlayedLevel
+        )
+      : localStorage.setItem(PreviousPlayedLevel + lang, previousPlayedLevel);
   }
 
   deleteCanvas() {
@@ -395,6 +409,7 @@ export class LevelStartScene {
     self.canvasStack.deleteLayer(StoneLayer);
     self.canvasStack.deleteLayer(TimetickerLayer);
     self.canvasStack.deleteLayer(PromptTextLayer);
+    self.canvasStack.deleteLayer(TutorialLayer);
     // self.monster.changeImage("./assets/images/idle4.png");
     self.monster.changeImage(
       "./assets/images/idle1" + self.monsterPhaseNumber + ".png"
@@ -662,19 +677,6 @@ export class LevelStartScene {
   ) {
     var puzzleEndTime = new Date();
     FirebaseIntegration.customEvents("puzzle_completed", {
-      date_time:
-        puzzleEndTime.getDate() +
-        "/" +
-        puzzleEndTime.getMonth() +
-        1 +
-        "/" +
-        puzzleEndTime.getFullYear() +
-        "," +
-        puzzleEndTime.getHours() +
-        ":" +
-        puzzleEndTime.getMinutes() +
-        ":" +
-        puzzleEndTime.getSeconds(),
       success_or_failure: success_or_failure,
       level_number: this.levelData.levelNumber,
       puzzle_number: puzzle_number,
@@ -684,9 +686,7 @@ export class LevelStartScene {
       profile_number: 0,
       ftm_language: lang,
       version_number: document.getElementById("version-info-id").innerHTML,
-      response_time: Math.abs(
-        Math.ceil((puzzleEndTime.getTime() - response_time) / 1000)
-      ),
+      response_time: (puzzleEndTime.getTime() - response_time) / 1000,
     });
   }
 }

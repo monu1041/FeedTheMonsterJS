@@ -10,14 +10,14 @@ import CloseButton from "../components/buttons/close_button.js";
 import NextButton from "../components/buttons/next_button.js";
 import RetryButton from "../components/buttons/retry_button.js";
 import { Monster } from "../components/monster.js";
-import { ProfileData, setDataToStorage } from "../data/profile-data.js";
+import { ProfileData, setDataToStorage, setTotalStarCount, } from "../data/profile-data.js";
 import { FirebaseIntegration } from "../firebase/firebase_integration.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { Game } from "./game.js";
 var audioUrl = {
   levelWin: "./assets/audios/LevelWinFanfare.mp3",
   levelLose: "./assets/audios/LevelLoseFanfare.mp3",
-  intro: "./assets/audios/intro.wav",
+  intro: "./assets/audios/intro.mp3",
 };
 export class LevelEndScene {
   public canvas: Game;
@@ -73,7 +73,7 @@ export class LevelEndScene {
       this.levelEndFirebaseEvents();
     }
     this.levelEndCallBack = levelEndCallBack;
-
+    setTotalStarCount(this.starCount);
     setDataToStorage(
       new ProfileData(
         levelData.levelMeta.levelType,
@@ -91,7 +91,7 @@ export class LevelEndScene {
       );
     } else {
       this.canvas.scene.audio.playSound(
-        "./assets/audios/intro.wav",
+        "./assets/audios/intro.mp3",
         IntroMusic
       );
       this.monster.changeImage(
@@ -104,7 +104,7 @@ export class LevelEndScene {
       function () {
         if (document.visibilityState === "visible") {
           self.canvas.scene.audio.playSound(
-            "./assets/audios/intro.wav",
+            "./assets/audios/intro.mp3",
             IntroMusic
           );
         } else {
@@ -249,28 +249,13 @@ export class LevelEndScene {
   }
   levelEndFirebaseEvents() {
     FirebaseIntegration.customEvents("level_completed", {
-      date_time:
-        this.levelEndTime.getDate() +
-        "/" +
-        this.levelEndTime.getMonth() +
-        1 +
-        "/" +
-        this.levelEndTime.getFullYear() +
-        "," +
-        this.levelEndTime.getHours() +
-        ":" +
-        this.levelEndTime.getMinutes() +
-        ":" +
-        this.levelEndTime.getSeconds(),
       success_or_failure: this.starCount >= 3 ? "success" : "failure",
       level_number: this.levelData.levelMeta.levelNumber,
       number_of_successful_puzzles: this.score / 100,
       ftm_language: lang,
       profile_number: 0,
       version_number: document.getElementById("version-info-id").innerHTML,
-      duration: Math.abs(
-        Math.ceil((this.levelEndTime.getTime() - this.levelStartTime) / 1000)
-      ),
+      duration: (this.levelEndTime.getTime() - this.levelStartTime) / 1000,
     });
   }
 }

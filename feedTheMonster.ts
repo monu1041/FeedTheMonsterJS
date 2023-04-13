@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/browser";
 import { LevelSelectionScreen } from "./src/scenes/level-selection-scene.js";
 import { getData } from "./src/data/api-data.js";
 import { DataModal } from "./src/data/data-modal.js";
@@ -11,7 +12,7 @@ import {
 } from "./src/data/profile-data.js";
 import { CachedLanguages, PWAInstallStatus } from "./src/common/common.js";
 import { Workbox } from "workbox-window";
-import { lang } from "./global-variables.js";
+import { Debugger, lang } from "./global-variables.js";
 import { FirebaseIntegration } from "./src/firebase/firebase_integration.js";
 declare const window: any;
 declare const app: any;
@@ -47,8 +48,12 @@ window.addEventListener("load", async function () {
   }
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
+
   window.addEventListener("resize", async () => {
     if (cached_languages.has(lang)) {
+      Debugger.DevelopmentLink
+        ? (document.getElementById("toggle-btn").style.display = "block")
+        : null;
       if (navigator.onLine) {
         FirebaseIntegration.initializeFirebase();
       }
@@ -64,8 +69,20 @@ window.addEventListener("load", async function () {
     if (navigator.onLine) {
       FirebaseIntegration.initializeFirebase();
     }
+    Debugger.DevelopmentLink
+      ? (document.getElementById("toggle-btn").style.display = "block")
+      : null;
     this.startScene = new StartScene(canvas, d, this.analytics);
   }
+});
+Sentry.init({
+  dsn: "https://b9be4420e3f449bdb00a0ac861357746@o4504951275651072.ingest.sentry.io/4504951279058944",
+  integrations: [new Sentry.BrowserTracing()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
 });
 function registerWorkbox(): void {
   if ("serviceWorker" in navigator) {

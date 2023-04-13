@@ -1,6 +1,13 @@
 import { lang } from "../../global-variables.js";
-import { IntroMusic, PromptAudio } from "./common.js";
-
+import {
+  CachedLanguages,
+  IntroMusic,
+  loadingScreen,
+  PromptAudio,
+} from "./common.js";
+let cached_languages = localStorage.getItem(CachedLanguages)
+  ? new Map(JSON.parse(localStorage.getItem(CachedLanguages)))
+  : new Map();
 let inactive_screen = false;
 export default class Sound {
   public playingSources: Array<AudioBufferSourceNode> = [];
@@ -11,25 +18,27 @@ export default class Sound {
     if (type != PromptAudio) {
       let source = audioContext.createBufferSource();
       source.buffer = audioBuffers[src];
+      if (source.buffer == null) {
+         this.fetchFromServer(src);
+      }
       source.connect(audioContext.destination);
       source.start(0);
       this.playingSources.push(source);
     } else {
-      fetch(src)
-        .then((response) => response.arrayBuffer())
-        .then((buffer) => this.audioContext.decodeAudioData(buffer))
-        .then((audioBuffer) => {
-          var source = this.audioContext.createBufferSource();
-          source.buffer = audioBuffer;
-          source.connect(this.audioContext.destination);
-          if (type == "Intro") {
-            this.playingSources.push(source);
-          } else {
-            this.playingSources.push(source);
-          }
-          source.start();
-        });
+      this.fetchFromServer(src);
     }
+  }
+  fetchFromServer(src) {
+    fetch(src)
+      .then((response) => response.arrayBuffer())
+      .then((buffer) => this.audioContext.decodeAudioData(buffer))
+      .then((audioBuffer) => {
+        var source = this.audioContext.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(this.audioContext.destination);
+        this.playingSources.push(source);
+        source.start();
+      });
   }
   activeScreen() {
     if (inactive_screen) {
@@ -60,7 +69,7 @@ export default class Sound {
 let audioContext = new AudioContext();
 let audioBuffers = {};
 let audioUrls = [
-  "./assets/audios/intro.wav",
+  "./assets/audios/intro.mp3",
   "./assets/audios/Cheering-02.mp3",
   "./assets/audios/onDrag.mp3",
   "./assets/audios/timeout.mp3",
@@ -91,12 +100,10 @@ function loadAudio(url) {
   });
 }
 
-let loadPromises = audioUrls.map((url) => loadAudio(url));
-Promise.all(loadPromises)
-  .then(() => {
-    console.log("All audio files preloaded");
-    // You can now use the audioBuffers object to play the preloaded audio files
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+let loadPromises = audioUrls.map((url) => loadAudio(url).catch((err) => {}));
+Promise.all(loadPromises).then(() => {
+  if (cached_languages.has(lang)) {
+    loadingScreen(false);
+  }
+  // You can now use the audioBuffers object to play the preloaded audio files
+});

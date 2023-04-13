@@ -19,6 +19,7 @@
   "dependencies": {
     "@capacitor/android": "^4.4.0",
     "@capacitor/core": "^4.4.0",
+    "@sentry/browser": "^7.47.0",
     "@types/workbox-window": "^4.3.4",
     "copy-webpack-plugin": "^11.0.0",
     "howler": "^2.2.3",

@@ -2,6 +2,12 @@ import { TimeOver, TimetickerLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { Game } from "../scenes/game.js";
 import { LevelStartScene } from "../scenes/level-start-scene.js";
+import { Tutorial } from "./tutorial.js";
+declare global {
+  interface Window {
+    Android?: any;
+  }
+}
 export class TimerTicking {
   public game: Game;
   public width: number;

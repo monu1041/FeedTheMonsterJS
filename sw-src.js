@@ -10,6 +10,7 @@ var number = 0;
 // self.addEventListener('activate', function(e) {
 //     console.log("activated");
 //
+//
 // });
 self.addEventListener("install", async function (e) {
   self.addEventListener("message", async (event) => {
