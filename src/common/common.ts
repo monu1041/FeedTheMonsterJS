@@ -67,4 +67,5 @@ export const TimeOver = "time_over";
 export const StoneMusic = "stone_music";
 export const PhraseAudio = "phrase_audio";
 export const LevelEndAudio = "level_end_audio";
-export const DevelopmentServer = "http://127.0.0.1:5500/build/index.html";
+export const DevelopmentServer =
+  "https://feedthemonsterdev.curiouscontent.org/";
