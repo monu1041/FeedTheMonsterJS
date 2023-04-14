@@ -1,12 +1,7 @@
 import { lang } from "../../global-variables.js";
-import {
-  CachedLanguages,
-  IntroMusic,
-  loadingScreen,
-  PromptAudio,
-} from "./common.js";
-let cached_languages = localStorage.getItem(CachedLanguages)
-  ? new Map(JSON.parse(localStorage.getItem(CachedLanguages)))
+import { IsCached, IntroMusic, loadingScreen, PromptAudio } from "./common.js";
+let is_cached = localStorage.getItem(IsCached)
+  ? new Map(JSON.parse(localStorage.getItem(IsCached)))
   : new Map();
 let inactive_screen = false;
 export default class Sound {
@@ -19,7 +14,7 @@ export default class Sound {
       let source = audioContext.createBufferSource();
       source.buffer = audioBuffers[src];
       if (source.buffer == null) {
-         this.fetchFromServer(src);
+        this.fetchFromServer(src);
       }
       source.connect(audioContext.destination);
       source.start(0);
@@ -102,7 +97,7 @@ function loadAudio(url) {
 
 let loadPromises = audioUrls.map((url) => loadAudio(url).catch((err) => {}));
 Promise.all(loadPromises).then(() => {
-  if (cached_languages.has(lang)) {
+  if (is_cached.has(lang)) {
     loadingScreen(false);
   }
   // You can now use the audioBuffers object to play the preloaded audio files

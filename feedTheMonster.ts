@@ -10,7 +10,7 @@ import {
   ProfileData,
   setDataToStorage,
 } from "./src/data/profile-data.js";
-import { CachedLanguages, PWAInstallStatus } from "./src/common/common.js";
+import { IsCached, PWAInstallStatus } from "./src/common/common.js";
 import { Workbox } from "workbox-window";
 import { Debugger, lang } from "./global-variables.js";
 import { FirebaseIntegration } from "./src/firebase/firebase_integration.js";
@@ -22,8 +22,8 @@ declare global {
   var descriptionText: string;
 }
 const channel = new BroadcastChannel("my-channel");
-let cached_languages = localStorage.getItem(CachedLanguages)
-  ? new Map(JSON.parse(localStorage.getItem(CachedLanguages)))
+let is_cached = localStorage.getItem(IsCached)
+  ? new Map(JSON.parse(localStorage.getItem(IsCached)))
   : new Map();
 window.addEventListener("beforeunload", (event) => {
   FirebaseIntegration.sessionEnd();
@@ -42,15 +42,15 @@ window.addEventListener("load", async function () {
     data.FeedbackAudios
   );
   if (window.Android) {
-    window.Android.receiveData(
-      cached_languages.has(lang) ? cached_languages.get(lang) : null
+    window.Android.cachedStatus(
+      is_cached.has(lang) ? is_cached.get(lang) : null
     );
   }
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
 
   window.addEventListener("resize", async () => {
-    if (cached_languages.has(lang)) {
+    if (is_cached.has(lang)) {
       Debugger.DevelopmentLink
         ? (document.getElementById("toggle-btn").style.display = "block")
         : null;
@@ -65,7 +65,7 @@ window.addEventListener("load", async function () {
       this.startScene = new StartScene(canvas, d, this.analytics);
     }
   });
-  if (cached_languages.has(lang)) {
+  if (is_cached.has(lang)) {
     if (navigator.onLine) {
       FirebaseIntegration.initializeFirebase();
     }
@@ -88,7 +88,7 @@ function registerWorkbox(): void {
   if ("serviceWorker" in navigator) {
     let wb = new Workbox("./sw.js", {});
     wb.register().then(handleServiceWorkerRegistration);
-    if (!cached_languages.has(lang)) {
+    if (!is_cached.has(lang)) {
       channel.postMessage({ command: "Cache", data: lang });
     }
     navigator.serviceWorker.addEventListener(
@@ -117,10 +117,10 @@ function handleLoadingMessage(data): void {
   document.getElementById("loading_number").innerHTML =
     " " + " downloading... " + data.data + "%";
   if (data.data == 100) {
-    cached_languages.set(lang, "true");
+    is_cached.set(lang, "true");
     localStorage.setItem(
-      CachedLanguages,
-      JSON.stringify(Array.from(cached_languages.entries()))
+      IsCached,
+      JSON.stringify(Array.from(is_cached.entries()))
     );
     window.location.reload();
   }
@@ -128,7 +128,7 @@ function handleLoadingMessage(data): void {
 function handleUpdateFoundMessage(): void {
   let text = "Update Found\nPress ok to update.";
   if (confirm(text) == true) {
-    localStorage.removeItem(CachedLanguages);
+    localStorage.removeItem(IsCached);
     window.location.reload();
   } else {
     text = "You canceled!";
