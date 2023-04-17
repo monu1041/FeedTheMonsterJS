@@ -17773,7 +17773,7 @@ class LevelEndScene {
     }
     levelEndFirebaseEvents() {
         _firebase_firebase_integration_js__WEBPACK_IMPORTED_MODULE_6__.FirebaseIntegration.customEvents("level_completed", {
-            user_id: _global_variables_js__WEBPACK_IMPORTED_MODULE_0__.pseudoId,
+            user_key: _global_variables_js__WEBPACK_IMPORTED_MODULE_0__.pseudoId,
             success_or_failure: this.starCount >= 3 ? "success" : "failure",
             level_number: this.levelData.levelMeta.levelNumber,
             number_of_successful_puzzles: this.score / 100,
@@ -18562,7 +18562,7 @@ class LevelStartScene {
     puzzleEndFirebaseEvents(success_or_failure, puzzle_number, item_selected, target, foils, response_time) {
         var puzzleEndTime = new Date();
         _firebase_firebase_integration_js__WEBPACK_IMPORTED_MODULE_13__.FirebaseIntegration.customEvents("puzzle_completed", {
-            user_id: _global_variables_js__WEBPACK_IMPORTED_MODULE_12__.pseudoId,
+            user_key: _global_variables_js__WEBPACK_IMPORTED_MODULE_12__.pseudoId,
             success_or_failure: success_or_failure,
             level_number: this.levelData.levelNumber,
             puzzle_number: puzzle_number,

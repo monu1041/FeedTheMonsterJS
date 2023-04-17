@@ -677,7 +677,7 @@ export class LevelStartScene {
   ) {
     var puzzleEndTime = new Date();
     FirebaseIntegration.customEvents("puzzle_completed", {
-      user_id: pseudoId,
+      user_key: pseudoId,
       success_or_failure: success_or_failure,
       level_number: this.levelData.levelNumber,
       puzzle_number: puzzle_number,
