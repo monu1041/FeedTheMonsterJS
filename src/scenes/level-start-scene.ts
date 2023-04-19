@@ -675,9 +675,10 @@ export class LevelStartScene {
     foils,
     response_time
   ) {
+    console.log("User_id", pseudoId);
     var puzzleEndTime = new Date();
     FirebaseIntegration.customEvents("puzzle_completed", {
-      user_key: pseudoId,
+      cr_user_id: pseudoId,
       success_or_failure: success_or_failure,
       level_number: this.levelData.levelNumber,
       puzzle_number: puzzle_number,
