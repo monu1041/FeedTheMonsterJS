@@ -3,7 +3,7 @@ importScripts(
 );
 
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST, {
-  ignoreURLParametersMatching: [/^ftm_/],
+  ignoreURLParametersMatching: [/^cr_/],
 });
 var number = 0;
 

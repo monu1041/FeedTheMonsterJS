@@ -252,8 +252,9 @@ export class LevelEndScene {
     self.canvasStack.deleteLayer(this.bottonLayer);
   }
   levelEndFirebaseEvents() {
+    console.log("User_id", pseudoId);
     FirebaseIntegration.customEvents("level_completed", {
-      user_key: pseudoId,
+      cr_user_id: pseudoId,
       success_or_failure: this.starCount >= 3 ? "success" : "failure",
       level_number: this.levelData.levelMeta.levelNumber,
       number_of_successful_puzzles: this.score / 100,
