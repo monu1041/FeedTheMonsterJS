@@ -26,7 +26,7 @@ import Sound from "../common/sound.js";
 import { LevelEndScene } from "./level-end-scene.js";
 import { Game } from "./game";
 import { getDatafromStorage, getTotalStarCount } from "../data/profile-data.js";
-import { Debugger, lang } from "../../global-variables.js";
+import { Debugger, lang, pseudoId } from "../../global-variables.js";
 import { FirebaseIntegration } from "../firebase/firebase_integration.js";
 
 var images = {
@@ -675,8 +675,10 @@ export class LevelStartScene {
     foils,
     response_time
   ) {
+    console.log("User_id", pseudoId);
     var puzzleEndTime = new Date();
     FirebaseIntegration.customEvents("puzzle_completed", {
+      cr_user_id: pseudoId,
       success_or_failure: success_or_failure,
       level_number: this.levelData.levelNumber,
       puzzle_number: puzzle_number,

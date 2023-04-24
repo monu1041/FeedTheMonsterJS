@@ -1,4 +1,4 @@
-import { lang } from "../../global-variables.js";
+import { lang, pseudoId } from "../../global-variables.js";
 import {
   IntroMusic,
   LevelEndAudio,
@@ -10,7 +10,11 @@ import CloseButton from "../components/buttons/close_button.js";
 import NextButton from "../components/buttons/next_button.js";
 import RetryButton from "../components/buttons/retry_button.js";
 import { Monster } from "../components/monster.js";
-import { ProfileData, setDataToStorage, setTotalStarCount, } from "../data/profile-data.js";
+import {
+  ProfileData,
+  setDataToStorage,
+  setTotalStarCount,
+} from "../data/profile-data.js";
 import { FirebaseIntegration } from "../firebase/firebase_integration.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import { Game } from "./game.js";
@@ -248,7 +252,9 @@ export class LevelEndScene {
     self.canvasStack.deleteLayer(this.bottonLayer);
   }
   levelEndFirebaseEvents() {
+    console.log("User_id", pseudoId);
     FirebaseIntegration.customEvents("level_completed", {
+      cr_user_id: pseudoId,
       success_or_failure: this.starCount >= 3 ? "success" : "failure",
       level_number: this.levelData.levelMeta.levelNumber,
       number_of_successful_puzzles: this.score / 100,
