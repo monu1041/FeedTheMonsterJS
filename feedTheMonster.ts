@@ -128,7 +128,7 @@ function handleLoadingMessage(data): void {
 function handleUpdateFoundMessage(): void {
   let text = "Update Found\nPress ok to update.";
   if (confirm(text) == true) {
-    localStorage.removeItem(IsCached);
+    // localStorage.removeItem(IsCached);
     window.location.reload();
   } else {
     text = "You canceled!";

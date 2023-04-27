@@ -1,9 +1,9 @@
 importScripts(
   "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js"
 );
-
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST, {
   ignoreURLParametersMatching: [/^cr_/],
+  exclude: [/^lang\//],
 });
 var number = 0;
 
@@ -38,12 +38,14 @@ channel.addEventListener("message", async function (event) {
 self.registration.addEventListener("updatefound", function (e) {
   caches.keys().then((cacheNames) => {
     cacheNames.forEach((cacheName) => {
-      caches.delete(cacheName);
-      self.clients.matchAll().then((clients) => {
-        clients.forEach((client) =>
-          client.postMessage({ msg: "Update Found" })
-        );
-      });
+      if (cacheName == workbox.core.cacheNames.precache) {
+        // caches.delete(cacheName);
+        self.clients.matchAll().then((clients) => {
+          clients.forEach((client) =>
+            client.postMessage({ msg: "Update Found" })
+          );
+        });
+      }
     });
   });
 });
@@ -62,7 +64,11 @@ function cacheAudiosFiles(file, cacheName, length) {
     });
   });
 }
-
+function cacheLangAssets(file, cacheName) {
+  caches.open(cacheName).then((cache) => {
+    cache.add(file);
+  });
+}
 function getCacheName(language) {
   caches.keys().then((cacheNames) => {
     cacheNames.forEach((cacheName) => {
@@ -72,6 +78,17 @@ function getCacheName(language) {
 }
 
 function getALLAudioUrls(cacheName, language) {
+  [
+    "./lang/" + language + "/audios/fantastic.WAV",
+    "./lang/" + language + "/audios/great.wav",
+    "./lang/" + language + "/images/fantastic_01.png",
+    "./lang/" + language + "/images/great_01.png",
+    "./lang/" + language + "/images/title.png",
+    "./lang/" + language + "/ftm_" + language + ".json",
+  ].forEach((res) => {
+    cacheLangAssets(res, workbox.core.cacheNames.precache + language);
+  });
+
   fetch("./lang/" + language + "/ftm_" + language + ".json", {
     method: "GET",
     headers: {
@@ -83,7 +100,7 @@ function getALLAudioUrls(cacheName, language) {
         data.Levels[i].Puzzles.forEach((element) => {
           cacheAudiosFiles(
             element.prompt.PromptAudio,
-            cacheName,
+            workbox.core.cacheNames.precache + language,
             data.Levels.length
           );
         });
