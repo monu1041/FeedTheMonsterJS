@@ -243,7 +243,7 @@ export class LevelStartScene {
               FeedbackAudio
             );
             self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
-          }, 100);
+          }, 1100);
           self.promptText.draw((word_dropped_stones += picked_stone.length));
           self.timerTicking.stopTimer();
           // self.promptText.draw((word_dropped_stones += 1));
