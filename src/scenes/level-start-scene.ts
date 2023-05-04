@@ -61,6 +61,7 @@ var audioUrl = {
     "./lang/" + lang + "/audios/great.wav",
   ],
   monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
+  monsterEat: "./assets/audios/Eat.mp3",
   monsterHappy: "./assets/audios/Cheering-02.mp3",
   monsterSad: "./assets/audios/Disapointed-05.mp3",
   buttonClick: "./assets/audios/ButtonClick.wav",
@@ -225,6 +226,7 @@ export class LevelStartScene {
       var fntsticOrGrtIndex = self.getRandomInt(0, 1);
       if (status) {
         self.monster.changeToEatAnimation();
+        self.audio.playSound(audioUrl.monsterEat, PhraseAudio);
         self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);
         if (emptyTarget) {
           if (navigator.onLine) {
