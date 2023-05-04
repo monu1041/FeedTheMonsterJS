@@ -227,7 +227,7 @@ export class LevelStartScene {
       if (status) {
         self.monster.changeToEatAnimation();
         self.audio.playSound(audioUrl.monsterEat, PhraseAudio);
-        self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);
+        setTimeout(()=>{ self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);},300)
         if (emptyTarget) {
           if (navigator.onLine) {
             self.puzzleEndFirebaseEvents(
