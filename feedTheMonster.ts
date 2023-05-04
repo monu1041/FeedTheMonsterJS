@@ -41,11 +41,12 @@ window.addEventListener("load", async function () {
     data.RightToLeft,
     data.FeedbackAudios
   );
-  if (window.Android) {
-    window.Android.cachedStatus(
-      is_cached.has(lang) ? is_cached.get(lang) : null
-    );
-  }
+
+  // if (window.Android) {
+  //   window.Android.cachedStatus(
+  //     is_cached.has(lang) ? is_cached.get(lang) : null
+  //   );
+  // }
   globalThis.aboutCompany = data.aboutCompany;
   globalThis.descriptionText = data.descriptionText;
 
@@ -63,6 +64,7 @@ window.addEventListener("load", async function () {
       new CanvasStack("canvas").deleteAllLayers();
       delete this.startScene;
       this.startScene = new StartScene(canvas, d, this.analytics);
+      passingDataToContainer();
     }
   });
   if (is_cached.has(lang)) {
@@ -73,6 +75,7 @@ window.addEventListener("load", async function () {
       ? (document.getElementById("toggle-btn").style.display = "block")
       : null;
     this.startScene = new StartScene(canvas, d, this.analytics);
+    passingDataToContainer();
   }
 });
 Sentry.init({
@@ -132,5 +135,10 @@ function handleUpdateFoundMessage(): void {
     window.location.reload();
   } else {
     text = "You canceled!";
+  }
+}
+function passingDataToContainer() {
+  if (window.Android) {
+    window.Android.cachedStatus(is_cached.get(lang)=='true'?true:false);
   }
 }
