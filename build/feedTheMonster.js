@@ -14093,6 +14093,7 @@ let audioUrls = [
     "./lang/" + _global_variables_js__WEBPACK_IMPORTED_MODULE_0__.lang + "/audios/great.wav",
     "./assets/audios/Monster Spits wrong stones-01.mp3",
     "./assets/audios/Disapointed-05.mp3",
+    "./assets/audios/Eat.mp3"
 ];
 function loadAudio(url) {
     return new Promise((resolve, reject) => {
@@ -15579,11 +15580,11 @@ function setDataToStorage(profileData) {
 function setTotalStarCount(starCount) {
     let totalStarCount = getTotalStarCount();
     totalStarCount = totalStarCount + starCount;
-    localStorage.setItem("totalStarCount", totalStarCount.toString());
+    localStorage.setItem(_global_variables_js__WEBPACK_IMPORTED_MODULE_0__.lang + "totalStarCount", totalStarCount.toString());
 }
 function getTotalStarCount() {
     let totalStarCount;
-    totalStarCount = localStorage.getItem("totalStarCount");
+    totalStarCount = localStorage.getItem(_global_variables_js__WEBPACK_IMPORTED_MODULE_0__.lang + "totalStarCount");
     return totalStarCount
         ? typeof totalStarCount == "string"
             ? parseInt(totalStarCount)
@@ -16415,6 +16416,7 @@ var audioUrl = {
         "./lang/" + _global_variables_js__WEBPACK_IMPORTED_MODULE_12__.lang + "/audios/great.wav",
     ],
     monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
+    monsterEat: "./assets/audios/Eat.mp3",
     monsterHappy: "./assets/audios/Cheering-02.mp3",
     monsterSad: "./assets/audios/Disapointed-05.mp3",
     buttonClick: "./assets/audios/ButtonClick.wav",
@@ -16520,7 +16522,8 @@ class LevelStartScene {
             var fntsticOrGrtIndex = self.getRandomInt(0, 1);
             if (status) {
                 self.monster.changeToEatAnimation();
-                self.audio.playSound(audioUrl.monsterHappy, _common_common_js__WEBPACK_IMPORTED_MODULE_7__.PhraseAudio);
+                self.audio.playSound(audioUrl.monsterEat, _common_common_js__WEBPACK_IMPORTED_MODULE_7__.PhraseAudio);
+                setTimeout(() => { self.audio.playSound(audioUrl.monsterHappy, _common_common_js__WEBPACK_IMPORTED_MODULE_7__.PhraseAudio); }, 300);
                 if (emptyTarget) {
                     if (navigator.onLine) {
                         self.puzzleEndFirebaseEvents("success", current_puzzle_index, picked_stones, self.levelData.puzzles[current_puzzle_index].targetStones, self.levelData.puzzles[current_puzzle_index].foilStones, self.puzzleStartTime);
@@ -16528,7 +16531,7 @@ class LevelStartScene {
                     setTimeout(() => {
                         self.audio.playSound(audioUrl.phraseAudios[fntsticOrGrtIndex], _common_common_js__WEBPACK_IMPORTED_MODULE_7__.FeedbackAudio);
                         self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
-                    }, 100);
+                    }, 1000);
                     self.promptText.draw((word_dropped_stones += picked_stone.length));
                     self.timerTicking.stopTimer();
                     // self.promptText.draw((word_dropped_stones += 1));

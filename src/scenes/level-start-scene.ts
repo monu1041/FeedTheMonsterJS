@@ -61,6 +61,7 @@ var audioUrl = {
     "./lang/" + lang + "/audios/great.wav",
   ],
   monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
+  monsterEat: "./assets/audios/Eat.mp3",
   monsterHappy: "./assets/audios/Cheering-02.mp3",
   monsterSad: "./assets/audios/Disapointed-05.mp3",
   buttonClick: "./assets/audios/ButtonClick.wav",
@@ -225,7 +226,8 @@ export class LevelStartScene {
       var fntsticOrGrtIndex = self.getRandomInt(0, 1);
       if (status) {
         self.monster.changeToEatAnimation();
-        self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);
+        self.audio.playSound(audioUrl.monsterEat, PhraseAudio);
+        setTimeout(()=>{ self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);},300)
         if (emptyTarget) {
           if (navigator.onLine) {
             self.puzzleEndFirebaseEvents(
@@ -243,7 +245,7 @@ export class LevelStartScene {
               FeedbackAudio
             );
             self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
-          }, 100);
+          }, 1000);
           self.promptText.draw((word_dropped_stones += picked_stone.length));
           self.timerTicking.stopTimer();
           // self.promptText.draw((word_dropped_stones += 1));

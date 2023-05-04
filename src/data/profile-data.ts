@@ -37,12 +37,12 @@ export function setDataToStorage(profileData) {
 export function setTotalStarCount(starCount) {
   let totalStarCount = getTotalStarCount();
   totalStarCount = totalStarCount + starCount;
-  localStorage.setItem("totalStarCount", totalStarCount.toString());
+  localStorage.setItem(lang+"totalStarCount", totalStarCount.toString());
 }
 
 export function getTotalStarCount() {
   let totalStarCount;
-  totalStarCount = localStorage.getItem("totalStarCount");
+  totalStarCount = localStorage.getItem(lang+"totalStarCount");
   return totalStarCount
     ? typeof totalStarCount == "string"
       ? parseInt(totalStarCount)
