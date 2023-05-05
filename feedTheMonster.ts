@@ -81,12 +81,10 @@ function registerWorkbox(): void {
   }
 }
 function handleServiceWorkerRegistration(registration): void {
-  if (registration.installing) {
-    registration.installing.postMessage({
-      type: "Registration",
-      value: lang,
-    });
-  }
+  registration.installing.postMessage({
+    type: "Registration",
+    value: lang,
+  });
 }
 function handleServiceWorkerMessage(event): void {
   if (event.data.msg == "Loading") {

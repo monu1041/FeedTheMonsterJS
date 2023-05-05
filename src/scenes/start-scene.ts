@@ -157,9 +157,7 @@ export class StartScene {
         self.canvas.height / 5
       );
     }
-    document.addEventListener("selectstart", function (e) {
-      e.preventDefault();
-    });
+
     document.getElementById(PlayButtonLayer).addEventListener(
       "click",
       async function (event) {
@@ -177,7 +175,7 @@ export class StartScene {
           });
 
           aboutCompanyElement.style.display = "none";
-          new Sound().playSound("./assets/audios/ButtonClick.wav", ButtonClick);
+          new Sound().playSound("./assets/audios/ButtonClick.wav",ButtonClick);
           self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
           new LevelSelectionScreen(self.canvas, data);
           self.canvasStack.deleteLayer(PlayButtonLayer);
