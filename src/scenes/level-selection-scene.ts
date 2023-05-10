@@ -375,7 +375,8 @@ export class LevelSelectionScreen {
       this.canvas.width,
       this.canvas.height,
       self.data.levels[level_number],
-      self.gameSceneCallBack
+      self.gameSceneCallBack,
+      self.data.FeedbackTexts
     );
   }
   drawStars() {
