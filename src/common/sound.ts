@@ -75,6 +75,7 @@ let audioUrls = [
   "./lang/" + lang + "/audios/great.wav",
   "./assets/audios/Monster Spits wrong stones-01.mp3",
   "./assets/audios/Disapointed-05.mp3",
+  "./assets/audios/Eat.mp3"
 ];
 
 function loadAudio(url) {
