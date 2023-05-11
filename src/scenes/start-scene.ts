@@ -138,7 +138,7 @@ export class StartScene {
     this.context.fillText(
       self.data.title,
       this.width * 0.5,
-      this.height / 2
+      this.height / 10
     );
     // loadingScreen(false);
     //  document.getElementById("loading-screen").style.display = "none";
