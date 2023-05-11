@@ -34,7 +34,10 @@ window.addEventListener("load", async function () {
   canvas.height = window.innerHeight;
   canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
   let data = await getData();
+  console.log(data);
+  console.log(data.title + "<-------");
   let d = new DataModal(
+    data.title,
     data.OtherAudios,
     data.Levels,
     data.FeedbackTexts,
