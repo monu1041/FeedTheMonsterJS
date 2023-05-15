@@ -104,17 +104,20 @@ export class LevelStartScene {
   public levelStartTime: number;
   public puzzleStartTime: number;
   public showTutorial: boolean;
+  public feedBackTexts: any;
 
   constructor({
     game,
     levelData,
     levelStartCallBack,
     monsterPhaseNumber,
+    feedBackTexts,
   }: {
     game: Game;
     levelData: { puzzles: any[] };
     levelStartCallBack: any;
     monsterPhaseNumber: any;
+    feedBackTexts: any
   }) {
     this.game = game;
     this.width = game.width;
@@ -145,6 +148,7 @@ export class LevelStartScene {
       current_puzzle_index
     );
     this.puzzleData = levelData.puzzles;
+    this.feedBackTexts = feedBackTexts;
   }
 
   levelEndCallBack(button_name?: string) {
@@ -193,6 +197,13 @@ export class LevelStartScene {
         break;
       }
     }
+  }
+
+  getRandomFeedBackText(randomIndex) {
+    const keys = Object.keys(this.feedBackTexts);
+    const selectedKey = keys[randomIndex];
+    return this.feedBackTexts[selectedKey];
+   
   }
   getRandomInt(min: number, max: number) {
     min = Math.ceil(min);
@@ -244,7 +255,7 @@ export class LevelStartScene {
               audioUrl.phraseAudios[fntsticOrGrtIndex],
               FeedbackAudio
             );
-            self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
+            self.promptText.showFantasticOrGreat(self.getRandomFeedBackText(fntsticOrGrtIndex));
           }, 1000);
           self.promptText.draw((word_dropped_stones += picked_stone.length));
           self.timerTicking.stopTimer();
