@@ -10,12 +10,14 @@ export class Game {
   public scene: LevelStartScene;
   public gameSceneCallBack: any;
   public monsterPhaseNumber: any;
+  public feedBackTexts: any;
 
   constructor(
     width: number,
     height: number,
     puzzleData: any,
-    gameSceneCallBack: any
+    gameSceneCallBack: any,
+    feedBackTexts: any
   ) {
     this.width = width;
     this.height = height;
@@ -27,6 +29,7 @@ export class Game {
       levelData: puzzleData,
       levelStartCallBack: this.levelStartCallBack,
       monsterPhaseNumber: this.monsterPhaseNumber,
+      feedBackTexts: feedBackTexts
     });
     this.gameSceneCallBack = gameSceneCallBack;
     this.render();

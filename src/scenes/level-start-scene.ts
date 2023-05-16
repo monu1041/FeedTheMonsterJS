@@ -104,17 +104,20 @@ export class LevelStartScene {
   public levelStartTime: number;
   public puzzleStartTime: number;
   public showTutorial: boolean;
+  public feedBackTexts: any;
 
   constructor({
     game,
     levelData,
     levelStartCallBack,
     monsterPhaseNumber,
+    feedBackTexts,
   }: {
     game: Game;
     levelData: { puzzles: any[] };
     levelStartCallBack: any;
     monsterPhaseNumber: any;
+    feedBackTexts: any
   }) {
     this.game = game;
     this.width = game.width;
@@ -145,6 +148,7 @@ export class LevelStartScene {
       current_puzzle_index
     );
     this.puzzleData = levelData.puzzles;
+    this.feedBackTexts = feedBackTexts;
   }
 
   levelEndCallBack(button_name?: string) {
@@ -193,6 +197,13 @@ export class LevelStartScene {
         break;
       }
     }
+  }
+
+  getRandomFeedBackText(randomIndex) {
+    const keys = Object.keys(this.feedBackTexts);
+    const selectedKey = keys[randomIndex];
+    return this.feedBackTexts[selectedKey];
+   
   }
   getRandomInt(min: number, max: number) {
     min = Math.ceil(min);
@@ -244,7 +255,7 @@ export class LevelStartScene {
               audioUrl.phraseAudios[fntsticOrGrtIndex],
               FeedbackAudio
             );
-            self.promptText.showFantasticOrGreat(fntsticOrGrtIndex);
+            self.promptText.showFantasticOrGreat(self.getRandomFeedBackText(fntsticOrGrtIndex));
           }, 1000);
           self.promptText.draw((word_dropped_stones += picked_stone.length));
           self.timerTicking.stopTimer();
@@ -277,10 +288,13 @@ export class LevelStartScene {
       }
       if (current_puzzle_index == self.puzzleData.length) {
         self.levelIndicators.setIndicators(current_puzzle_index);
+        self.stones.setTimeoutRunning(false);
+        self.stones.makeStoneArrayEmpty();
         for (let i = 0; i <= 3; i++) {
           setTimeout(() => {
             if (i == 3 && !isGamePause) {
               self.levelEnded();
+              self.stones.setTimeoutRunning(true);
             }
           }, i * 1300.66);
         }
@@ -288,6 +302,8 @@ export class LevelStartScene {
         if (emptyTarget) {
           self.levelIndicators.setIndicators(current_puzzle_index);
           for (let i = 0; i <= 3; i++) {
+            self.stones.setTimeoutRunning(false);
+            self.stones.makeStoneArrayEmpty();
             setTimeout(() => {
               if (i == 3 && !isGamePause) {
                 self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
@@ -297,6 +313,7 @@ export class LevelStartScene {
                 );
                 self.timerTicking.draw();
                 self.promptText.draw();
+                self.stones.setTimeoutRunning(true);
               }
             }, i * 1300.66);
           }
@@ -495,6 +512,9 @@ export class LevelStartScene {
       self.stones.isTimerEnded();
       word_dropped_stones = 0;
       current_puzzle_index += 1;
+      self.stones.makeStoneArrayEmpty();
+      self.stones.setTimeoutRunning(true);
+      // self.stones.clearCanvas();
       self.stones.canvas.scene.levelIndicators.setIndicators(
         current_puzzle_index
       );
@@ -518,13 +538,24 @@ export class LevelStartScene {
         // self.promptText.setCurrrentPromptText(
         //   self.puzzleData[current_puzzle_index].prompt.promptText
         // );
-        self.puzzleStartTime = new Date().getTime();
-        self.promptText.setCurrrentPuzzleData(
-          self.puzzleData[current_puzzle_index]
-        );
-        self.timerTicking.draw();
-        self.promptText.draw();
-        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+        self.stones.makeStoneArrayEmpty();
+        for (let i = 0; i <= 3; i++) {
+          setTimeout(() => {
+            if (i == 3 && !isGamePause) {
+              self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+              self.puzzleStartTime = new Date().getTime();
+              self.promptText.setCurrrentPuzzleData(
+                self.puzzleData[current_puzzle_index]
+              );
+              self.timerTicking.draw();
+              self.promptText.draw();
+              self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+              self.stones.setTimeoutRunning(true);
+            }
+          }, i * 1300.66);
+        }
+
+       
       }
 
       self.timerTicking ? (self.timerTicking.isTimerEnded = false) : null;
@@ -544,6 +575,7 @@ export class LevelStartScene {
     var context = this.context;
     var width = this.width;
     var height = this.height;
+    
     loadImages(images, function (image) {
       switch (availableBackgroundTypes[backgroundType]) {
         case "Winter":

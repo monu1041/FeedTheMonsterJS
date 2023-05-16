@@ -28,6 +28,9 @@ var offsetCoordinateValue = 32;
 const dragAudio = new Audio();
 dragAudio.src = "./assets/audios/onDrag.mp3";
 dragAudio.preload = "auto";
+let timeout;
+let timeout2;
+let timeoutRunning = true;
 export default class StonesLayer {
   canvas: { width?: number; height: number; scene?: any };
   levelStart: LevelStartScene;
@@ -68,13 +71,21 @@ export default class StonesLayer {
     this.showTutorial = (getDatafromStorage().length==undefined)?true:false;
     this.createCanvas();
     this.tutorial.updateTargetStonePositions(this.getTargetStonePosition(gs.stones));
+    timeoutRunning = true;
     this.tutorial.createCanvas();
+    
+    
+    
   }
 
   setNewPuzzle(currentPuzzle: any) {
     this.puzzleData = currentPuzzle;
     this.setCurrentPuzzle();
-    this.createStones(<any>this.stonepos);
+    timeout = setTimeout(() => {
+      this.createStones(<any>this.stonepos);
+      
+    }, 3000);
+    
   }
   stonepos(stonepos: any) {
     throw new Error("Method not implemented.");
@@ -166,6 +177,36 @@ export default class StonesLayer {
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
       if (
+        Math.sqrt(
+          (x -
+            self.canvas.scene.monster.x -
+            self.canvas.scene.monster.width / 4) *
+            (x -
+              self.canvas.scene.monster.x -
+              self.canvas.scene.monster.width / 4) +
+            (y -
+              self.canvas.scene.monster.y -
+              self.canvas.scene.monster.height / 2.7) *
+              (y -
+                self.canvas.scene.monster.y -
+                self.canvas.scene.monster.height / 2.7)
+        ) <= 100
+      )
+      {
+        if(timeoutRunning){
+          clearTimeout(timeout);
+          clearTimeout(timeout2);
+          self.createStones(<any>self.stonepos);
+          self.levelStart.timerTicking.resumeTimer();
+          timeoutRunning = false;
+            // timeoutRunning = false
+        }
+
+      }
+      
+
+     
+      if (
         Math.sqrt(x - this.width / 3) < 12 &&
         Math.sqrt(y - this.height / 5.5) < 10
       ) {
@@ -192,7 +233,7 @@ export default class StonesLayer {
         var rect = selfElelementId.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        self.levelStart.timerTicking.resumeTimer();
+        
         if (self.pausebutton.onClick(x, y)) {
           self.levelStart.timerTicking.pauseTimer();
           self.levelStart.levelEndCallBack();
@@ -236,12 +277,16 @@ export default class StonesLayer {
             pickedStone.y = -900;
             if (pickedStone.text == gs.puzzle.target[0]) {
               self.pickedStones.push(pickedStone.text);
+             
               gs.puzzle.target.shift();
               if (gs.puzzle.target.length == 0) {
                 gs.stones = [];
+               
                 self.callBack(undefined,true, true, pickedStone.text, self.pickedStones);
                 self.pickedStones = [];
+
               } else {
+                
                 self.callBack(undefined,true, false, pickedStone.text, self.pickedStones);
               }
             } else {
@@ -314,10 +359,20 @@ export default class StonesLayer {
       },
       false
     );
-
-    this.createStones(<any>this.stonepos);
+   
+    timeout2 = setTimeout(() => {
+      this.createStones(<any>this.stonepos);
+      timeoutRunning = false;
+    }, 3000);
+    
   }
 
+  setTimeoutRunning(value){
+      timeoutRunning = value;
+  }
+  makeStoneArrayEmpty(){
+    gs.stones.splice(0, gs.stones.length);
+  }
   getTargetStonePosition(stones){
     let targetPositions = []
     for(let i=0;i<gs.stones.length;i++){
@@ -347,6 +402,10 @@ export default class StonesLayer {
     }
   }
 
+  clearCanvas(){
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  }
+
   drawstone(
     s: { img: any; x: number; y: number; text: any },
     canvas: { height: number }
@@ -370,6 +429,7 @@ export default class StonesLayer {
   }
 
   createStones(stonepos: any[]) {
+
     var poss = stonepos[0];
     var i = 0; 
     gs.stones.splice(0, gs.stones.length);
