@@ -15482,7 +15482,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "TargetStone": () => (/* binding */ TargetStone)
 /* harmony export */ });
 class DataModal {
-    constructor(otherAudios, levels, feedbackTexts, rightToLeft, feedbackAudios) {
+    constructor(title, otherAudios, levels, feedbackTexts, rightToLeft, feedbackAudios) {
+        this.title = title;
         this.otherAudios = new OtherAudios(otherAudios);
         this.levels = this.getLevels(levels);
         this.FeedbackTexts = new FeedbackTexts(feedbackTexts);
@@ -16945,6 +16946,7 @@ class StartScene {
         this.createCanvas();
         this.createPlayButton();
         this.firebase_analytics = firebase_analytics;
+        console.log(this.data);
     }
     createCanvas() {
         toggleBtn.addEventListener("click", () => {
@@ -16972,7 +16974,10 @@ class StartScene {
         this.context.drawImage(fenchImg, -this.width * 0.4, this.height / 3, this.width, this.height / 3);
         this.context.drawImage(hillImg, -this.width * 0.25, this.height / 2, this.width * 1.5, this.height / 2);
         this.context.drawImage(grassImg, -this.width * 0.25, this.height / 2 + (this.height / 2) * 0.1, this.width * 1.5, this.height / 2);
-        this.context.drawImage(title, this.width * 0, this.height / 50, this.width, this.height / 6);
+        this.context.font = 'bold 40px Arial';
+        this.context.fillStyle = 'white';
+        this.context.textAlign = 'center';
+        this.context.fillText(self.data.title, this.width * 0.5, this.height / 10);
         // loadingScreen(false);
         //  document.getElementById("loading-screen").style.display = "none";
     }
@@ -17345,7 +17350,9 @@ window.addEventListener("load", function () {
         canvas.height = window.innerHeight;
         canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
         let data = yield (0,_src_data_api_data_js__WEBPACK_IMPORTED_MODULE_0__.getData)();
-        let d = new _src_data_data_modal_js__WEBPACK_IMPORTED_MODULE_1__.DataModal(data.OtherAudios, data.Levels, data.FeedbackTexts, data.RightToLeft, data.FeedbackAudios);
+        console.log(data);
+        console.log(data.title + "<-------");
+        let d = new _src_data_data_modal_js__WEBPACK_IMPORTED_MODULE_1__.DataModal(data.title, data.OtherAudios, data.Levels, data.FeedbackTexts, data.RightToLeft, data.FeedbackAudios);
         // if (window.Android) {
         //   window.Android.cachedStatus(
         //     is_cached.has(lang) ? is_cached.get(lang) : null
