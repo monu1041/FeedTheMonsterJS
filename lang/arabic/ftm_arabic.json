@@ -7030,7 +7030,10 @@
     "https://curiouscontent.org/ARABIC/sounds/feedbacks/amazing.wav"
   ],
   "version": 1.1,
+  "title": "Feed The Monster3",
   "variant": "a",
   "FeedbackTexts": ["Fantastic!", "Great!", "Amazing!"],
+  "aboutCompany": "<p>برنامج Feed The Monster يعلم طفلك أساسيات القراءة.<br/>جمع بيض الوحوش وإطعامهم الحروف لذلك هم<br />يمكن أن تنمو لتصبح أصدقاء جدد! <br />بدعم من Curious Learning.</p>",
+  "descriptionText": "<p>نشكرك على تجربة إصدار ويب Feed The Monster الخاص بنا!<br />للعب اللعبة بأكملها ، تفضل بزيارتنا على <a href='https://play.google.com/store/apps/details?id=com.eduapp4syria.feedthemonsterENGLISH'>Google Play Store.</a></p>",
   "RightToLeft": false
 }
