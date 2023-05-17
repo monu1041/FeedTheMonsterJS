@@ -166,16 +166,16 @@ export class LevelStartScene {
         }
       } else {
         isGamePause = false;
-        // if (noMoreTarget && button_name != "close_button") {
-        //   setTimeout(() => {
-        //     self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
-        //     self.promptText.setCurrrentPuzzleData(
-        //       self.puzzleData[current_puzzle_index]
-        //     );
-        //     self.timerTicking.draw();
-        //     self.promptText.draw();
-        //   }, 1000);
-        // }
+        if (noMoreTarget && button_name != "close_button") {
+          setTimeout(() => {
+            self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+            self.promptText.setCurrrentPuzzleData(
+              self.puzzleData[current_puzzle_index]
+            );
+            self.timerTicking.draw();
+            self.promptText.draw();
+          }, 1000);
+        }
       }
     }
     self.audio.playSound(audioUrl.buttonClick, ButtonClick);
