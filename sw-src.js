@@ -108,13 +108,45 @@ function getALLAudioUrls(cacheName, language) {
     })
   );
 }
-self.addEventListener("fetch", function (event) {
-  event.respondWith(
-    caches.match(event.request).then(function (response) {
-      if (response) {
-        return response;
-      }
-      return fetch(event.request);
-    })
-  );
+channel.addEventListener("message", function (value) {
+  self.addEventListener("fetch", function (event) {
+    if (
+      value.data.command === "Recache" &&
+      event.request.url.includes(".json")
+    ) {
+      fetch(event.request.url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((res) =>
+        res.json().then((data) => {
+          console.log("$111$$$$$", value.data.version);
+          if (data.version != value.data.version) {
+            console.log("VersionUpdated");
+
+            self.clients.matchAll().then((clients) => {
+              clients.forEach((client) => {
+                console.log("@@@@@13", client),
+                  client.postMessage({
+                    msg: "Recache",
+                    data: "versionUpdated",
+                  });
+              });
+            });
+          }
+          // return data;
+        })
+      );
+    }
+    // if()
+    event.respondWith(
+      caches.match(event.request).then(function (response) {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      })
+    );
+  });
 });
