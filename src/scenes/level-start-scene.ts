@@ -105,6 +105,7 @@ export class LevelStartScene {
   public puzzleStartTime: number;
   public showTutorial: boolean;
   public feedBackTexts: any;
+  public isPuzzleCompleted: boolean;
 
   constructor({
     game,
@@ -149,6 +150,7 @@ export class LevelStartScene {
     );
     this.puzzleData = levelData.puzzles;
     this.feedBackTexts = feedBackTexts;
+    this.isPuzzleCompleted = false;
   }
 
   levelEndCallBack(button_name?: string) {
@@ -166,7 +168,9 @@ export class LevelStartScene {
         }
       } else {
         isGamePause = false;
-        if (noMoreTarget && button_name != "close_button") {
+        
+        if (self.isPuzzleCompleted && button_name == "cancel_button") {
+          self.timerTicking.stopTimer();
           setTimeout(() => {
             self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
             self.promptText.setCurrrentPuzzleData(
@@ -174,8 +178,13 @@ export class LevelStartScene {
             );
             self.timerTicking.draw();
             self.promptText.draw();
+            self.isPuzzleCompleted = false;
           }, 1000);
         }
+        else if(button_name == "cancel_button"){
+          self.timerTicking.resumeTimer();
+        }
+        
       }
     }
     self.audio.playSound(audioUrl.buttonClick, ButtonClick);
@@ -236,6 +245,7 @@ export class LevelStartScene {
       noMoreTarget = emptyTarget;
       var fntsticOrGrtIndex = self.getRandomInt(0, 1);
       if (status) {
+        self.isPuzzleCompleted = true;
         self.monster.changeToEatAnimation();
         self.audio.playSound(audioUrl.monsterEat, PhraseAudio);
         setTimeout(()=>{ self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);},300)
@@ -267,6 +277,7 @@ export class LevelStartScene {
           self.promptText.draw((word_dropped_stones += picked_stone.length));
         }
       } else {
+        self.isPuzzleCompleted = true;
         self.timerTicking.stopTimer();
         self.monster.changeToSpitAnimation();
         self.audio.playSound(audioUrl.monsterSad, PhraseAudio);
