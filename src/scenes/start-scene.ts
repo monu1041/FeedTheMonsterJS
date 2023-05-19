@@ -75,6 +75,7 @@ export class StartScene {
     this.createCanvas();
     this.createPlayButton();
     this.firebase_analytics = firebase_analytics;
+    console.log(this.data);
   }
   createCanvas() {
     toggleBtn.addEventListener("click", () => {
@@ -131,12 +132,13 @@ export class StartScene {
       this.height / 2
     );
 
-    this.context.drawImage(
-      title,
-      this.width * 0,
-      this.height / 50,
-      this.width,
-      this.height / 6
+    this.context.font = 'bold 40px Arial';
+    this.context.fillStyle = 'white';
+    this.context.textAlign = 'center';
+    this.context.fillText(
+      self.data.title,
+      this.width * 0.5,
+      this.height / 10
     );
     // loadingScreen(false);
     //  document.getElementById("loading-screen").style.display = "none";

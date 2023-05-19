@@ -67,7 +67,7 @@ export class PromptText {
   }
 
 
-  showFantasticOrGreat(imageIndex) {
+  showFantasticOrGreat(feedBackText) {
     var self = this;
 
     this.context.clearRect(
@@ -76,12 +76,20 @@ export class PromptText {
       this.game.width * 0.5,
       this.height * 0.25
     );
-    this.context.drawImage(
-      self.fntstOrGrtImgArr[imageIndex],
-      this.game.width - this.game.width * 0.75,
-      this.height * 0.2,
-      this.game.width * 0.5,
-      this.height * 0.1
+    // this.context.drawImage(
+    //   self.fntstOrGrtImgArr[imageIndex],
+    //   this.game.width - this.game.width * 0.75,
+    //   this.height * 0.2,
+    //   this.game.width * 0.5,
+    //   this.height * 0.1
+    // );
+    this.context.font = 'bold 24px Arial';
+    this.context.fillStyle = 'white';
+    this.context.textAlign = 'center';
+    this.context.fillText(
+      feedBackText,
+      this.game.width / 2,
+      this.height * 0.25
     );
   }
 
