@@ -14673,7 +14673,7 @@ class PausePopUp {
             const y = event.clientY - rect.top;
             if (self.cancelButton.onClick(x, y)) {
                 self.levelStart.timerTicking.resumeTimer();
-                self.levelStart.levelEndCallBack();
+                self.levelStart.levelEndCallBack('cancel_button');
                 self.deleteCanvas(self);
             }
             if (self.retryButton.onClick(x, y)) {
@@ -16543,6 +16543,7 @@ class LevelStartScene {
         this.stones = new _components_stones_layer_js__WEBPACK_IMPORTED_MODULE_3__["default"](game, levelData.puzzles[current_puzzle_index], this.pauseButton, this.redrawOfStones, this, current_puzzle_index);
         this.puzzleData = levelData.puzzles;
         this.feedBackTexts = feedBackTexts;
+        this.isPuzzleCompleted = false;
     }
     levelEndCallBack(button_name) {
         if (!isGamePause) {
@@ -16561,16 +16562,19 @@ class LevelStartScene {
             }
             else {
                 isGamePause = false;
-                // if (noMoreTarget && button_name != "close_button") {
-                //   setTimeout(() => {
-                //     self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
-                //     self.promptText.setCurrrentPuzzleData(
-                //       self.puzzleData[current_puzzle_index]
-                //     );
-                //     self.timerTicking.draw();
-                //     self.promptText.draw();
-                //   }, 1000);
-                // }
+                if (self.isPuzzleCompleted && button_name == "cancel_button") {
+                    self.timerTicking.stopTimer();
+                    setTimeout(() => {
+                        self.stones.setNewPuzzle(self.puzzleData[current_puzzle_index]);
+                        self.promptText.setCurrrentPuzzleData(self.puzzleData[current_puzzle_index]);
+                        self.timerTicking.draw();
+                        self.promptText.draw();
+                        self.isPuzzleCompleted = false;
+                    }, 1000);
+                }
+                else if (button_name == "cancel_button") {
+                    self.timerTicking.resumeTimer();
+                }
             }
         }
         self.audio.playSound(audioUrl.buttonClick, _common_common_js__WEBPACK_IMPORTED_MODULE_7__.ButtonClick);
@@ -16623,6 +16627,7 @@ class LevelStartScene {
             noMoreTarget = emptyTarget;
             var fntsticOrGrtIndex = self.getRandomInt(0, 1);
             if (status) {
+                self.isPuzzleCompleted = true;
                 self.monster.changeToEatAnimation();
                 self.audio.playSound(audioUrl.monsterEat, _common_common_js__WEBPACK_IMPORTED_MODULE_7__.PhraseAudio);
                 setTimeout(() => {
@@ -16648,6 +16653,7 @@ class LevelStartScene {
                 }
             }
             else {
+                self.isPuzzleCompleted = true;
                 self.timerTicking.stopTimer();
                 self.monster.changeToSpitAnimation();
                 self.audio.playSound(audioUrl.monsterSad, _common_common_js__WEBPACK_IMPORTED_MODULE_7__.PhraseAudio);
