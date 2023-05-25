@@ -6,7 +6,7 @@ workbox.precaching.precacheAndRoute(self.__WB_MANIFEST, {
   exclude: [/^lang\//],
 });
 var number = 0;
-
+var version = 1.1;
 // self.addEventListener('activate', function(e) {
 //     console.log("activated");
 //
@@ -121,13 +121,12 @@ channel.addEventListener("message", function (value) {
         },
       }).then((res) =>
         res.json().then((data) => {
-          console.log("$111$$$$$", value.data.version);
-          if (data.version != value.data.version) {
-            console.log("VersionUpdated");
-
+          if (
+            data.version != value.data.version &&
+            value.data.version != null
+          ) {
             self.clients.matchAll().then((clients) => {
               clients.forEach((client) => {
-                console.log("@@@@@13", client),
                   client.postMessage({
                     msg: "Recache",
                     data: "versionUpdated",

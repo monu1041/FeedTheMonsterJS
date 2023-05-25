@@ -138,10 +138,9 @@ function handleVersionUpdate(data) {
   }
 }
 function handleLoadingMessage(data): void {
-  console.log("******", data.data);
   document.getElementById("loading_number").innerHTML =
     " " + " downloading... " + data.data + "%";
-  if (data.data == 100) {
+  if (data.data % 100 == 0) {
     is_cached.set(lang, "true");
     localStorage.setItem(
       IsCached,

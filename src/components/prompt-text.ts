@@ -22,6 +22,7 @@ export class PromptText {
   public canavsElement: any;
   public context: any;
   public prompt_image: any;
+  public targetStones: any;
 
   constructor(game, levelStart, currentPuzzleData, levelData) {
     this.game = game;
@@ -33,10 +34,10 @@ export class PromptText {
     self = this;
     this.currentPromptText = currentPuzzleData.prompt.promptText;
     this.currentPuzzleData = currentPuzzleData;
+    this.targetStones = this.currentPuzzleData.targetStones;
     this.fntstOrGrtImgArr = [];
     this.createCanvas();
     this.loadFantasticAndGreatImage();
-
   }
 
   loadFantasticAndGreatImage() {
@@ -64,8 +65,8 @@ export class PromptText {
   setCurrrentPuzzleData(data) {
     this.currentPuzzleData = data;
     this.currentPromptText = data.prompt.promptText;
+    this.targetStones = this.currentPuzzleData.targetStones;
   }
-
 
   showFantasticOrGreat(feedBackText) {
     var self = this;
@@ -83,9 +84,9 @@ export class PromptText {
     //   this.game.width * 0.5,
     //   this.height * 0.1
     // );
-    this.context.font = 'bold 24px Arial';
-    this.context.fillStyle = 'white';
-    this.context.textAlign = 'center';
+    this.context.font = "bold 24px Arial";
+    this.context.fillStyle = "white";
+    this.context.textAlign = "center";
     this.context.fillText(
       feedBackText,
       this.game.width / 2,
@@ -96,18 +97,46 @@ export class PromptText {
   deleteCanvas() {
     this.canvasStack.deleteLayer(this.id);
   }
-  draw(droppedStones = 0) {
-    this.context.clearRect(0, 0, this.width, this.height);
-    this.context.drawImage(
-      this.prompt_image,
-      this.game.width / 2 - (this.game.width * 0.5) / 2,
-      this.height * 0.15,
-      this.game.width * 0.5,
-      this.height * 0.25
-    );
-    this.context.fillStyle = "black";
-    this.context.font = 30 + "px Arial";
-    this.context.textAlign = "center";
+  drawArabic(droppedStones = 0) {
+    const promptTextLetters = this.currentPromptText.split("");
+    var x =
+      this.width / 2 - this.context.measureText(this.currentPromptText).width;
+    const y = this.height * 0.26;
+    var fontSize = 20;
+
+    if (this.levelData.levelMeta.levelType == "LetterInWord") {
+      var letterInWord = this.currentPromptText.replace(
+        new RegExp(this.currentPuzzleData.targetStones[0], "g"),
+        ""
+      );
+      x = x + this.context.measureText(letterInWord).width + 5;
+      this.context.fillStyle = "black";
+      this.context.fillText(letterInWord, x, y);
+      this.context.fillStyle = "red";
+      this.context.fillText(
+        this.targetStones[0],
+        x + this.context.measureText(letterInWord).width - 20,
+        y
+      );
+    } else if (this.levelData.levelMeta.levelType == "Word") {
+      for (let i = this.targetStones.length - 1; i >= 0; i--) {
+        x = x + this.context.measureText(this.targetStones[i]).width + 5;
+        // this.context.textAlign = "center";
+        if (droppedStones > i || droppedStones == undefined) {
+          this.context.fillStyle = "black";
+          this.context.fillText(this.targetStones[i], x, y);
+        } else {
+          this.context.fillStyle = "red";
+          this.context.fillText(this.targetStones[i], x, y);
+        }
+      }
+    } else {
+      x = x + this.context.measureText(this.currentPromptText).width + 5;
+      this.context.fillStyle = "black";
+      this.context.fillText(this.currentPromptText, x, y);
+    }
+  }
+  drawOthers(droppedStones = 0) {
     const promptTextLetters = this.currentPromptText.split("");
     const x = this.width / 2;
     const y = this.height * 0.26;
@@ -164,6 +193,22 @@ export class PromptText {
         }
       }
     }
+  }
+  draw(droppedStones = 0) {
+    this.context.clearRect(0, 0, this.width, this.height);
+    this.context.drawImage(
+      this.prompt_image,
+      this.game.width / 2 - (this.game.width * 0.5) / 2,
+      this.height * 0.15,
+      this.game.width * 0.5,
+      this.height * 0.25
+    );
+    this.context.fillStyle = "black";
+    this.context.font = 30 + "px Arial";
+    this.context.textAlign = "center";
+    lang == "arabic"
+      ? this.drawArabic(droppedStones)
+      : this.drawOthers(droppedStones);
     // this.context.fillText(
     //     this.currentPromptText,
     //   this.width / 2.1,
@@ -181,5 +226,4 @@ export class PromptText {
   update() {
     this.createBackground();
   }
- 
 }
