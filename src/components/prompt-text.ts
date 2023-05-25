@@ -23,14 +23,16 @@ export class PromptText {
   public context: any;
   public prompt_image: any;
   public targetStones: any;
+  public rightToLeft:boolean;
 
-  constructor(game, levelStart, currentPuzzleData, levelData) {
+  constructor(game, levelStart, currentPuzzleData, levelData,rightToLeft) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
     this.canvasStack = new CanvasStack("canvas");
     this.levelStart = levelStart;
     this.levelData = levelData;
+    this.rightToLeft =rightToLeft;
     self = this;
     this.currentPromptText = currentPuzzleData.prompt.promptText;
     this.currentPuzzleData = currentPuzzleData;
@@ -52,6 +54,7 @@ export class PromptText {
   }
 
   createCanvas() {
+    console.log("LevelData", this.rightToLeft);
     this.id = this.canvasStack.createLayer(
       this.height,
       this.width,
@@ -206,7 +209,7 @@ export class PromptText {
     this.context.fillStyle = "black";
     this.context.font = 30 + "px Arial";
     this.context.textAlign = "center";
-    lang == "arabic"
+    this.rightToLeft
       ? this.drawArabic(droppedStones)
       : this.drawOthers(droppedStones);
     // this.context.fillText(
