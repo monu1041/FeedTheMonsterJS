@@ -1,5 +1,5 @@
 {
-  "title": "Feed The Monster",
+  "title": "Feed The Monster7",
   "OtherAudios": {
     "Select your player": "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_other_Select-your-player.wav",
     "Watch me grow": "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_other_watch-me-grow.wav",
@@ -24676,6 +24676,7 @@
     "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_feedbacks_great.wav",
     "https://curiousreader.org/wp-content/uploads/USENGLISH_sounds_feedbacks_amazing.wav"
   ],
+  "version": 1.1,
   "aboutCompany": "<p>Feed The Monster teaches your child the fundamentals of reading.<br/>Collect monster eggs and feed them letters so they<br />can grow into new friends! <br />Supported by Curious Learning.</p>",
   "descriptionText": "<p>Thanks for trying our Feed The Monster web version!<br />To play the whole game, visit us on the <a href='https://play.google.com/store/apps/details?id=com.eduapp4syria.feedthemonsterENGLISH'>Google Play Store.</a></p>",
   "RightToLeft": false

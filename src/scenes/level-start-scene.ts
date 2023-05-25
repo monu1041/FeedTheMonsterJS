@@ -106,26 +106,28 @@ export class LevelStartScene {
   public showTutorial: boolean;
   public feedBackTexts: any;
   public isPuzzleCompleted: boolean;
-
+  public rightToLeft: boolean;
   constructor({
     game,
     levelData,
     levelStartCallBack,
     monsterPhaseNumber,
     feedBackTexts,
+    rightToLeft,
   }: {
     game: Game;
     levelData: { puzzles: any[] };
     levelStartCallBack: any;
     monsterPhaseNumber: any;
-    feedBackTexts: any
+    feedBackTexts: any;
+    rightToLeft: boolean;
   }) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
     self = this;
     this.monster = new Monster(game);
-
+    this.rightToLeft = rightToLeft;
     this.audio = new Sound();
     this.canvasStack = new CanvasStack("canvas");
     this.monsterPhaseNumber = monsterPhaseNumber || 1;
@@ -136,7 +138,8 @@ export class LevelStartScene {
       game,
       this,
       levelData.puzzles[current_puzzle_index],
-      levelData
+      levelData,
+      rightToLeft
     );
     this.createCanvas();
 
@@ -168,7 +171,7 @@ export class LevelStartScene {
         }
       } else {
         isGamePause = false;
-        
+
         if (self.isPuzzleCompleted && button_name == "cancel_button") {
           self.timerTicking.stopTimer();
           setTimeout(() => {
@@ -180,11 +183,9 @@ export class LevelStartScene {
             self.promptText.draw();
             self.isPuzzleCompleted = false;
           }, 1000);
-        }
-        else if(button_name == "cancel_button"){
+        } else if (button_name == "cancel_button") {
           self.timerTicking.resumeTimer();
         }
-        
       }
     }
     self.audio.playSound(audioUrl.buttonClick, ButtonClick);
@@ -212,7 +213,6 @@ export class LevelStartScene {
     const keys = Object.keys(this.feedBackTexts);
     const selectedKey = keys[randomIndex];
     return this.feedBackTexts[selectedKey];
-   
   }
   getRandomInt(min: number, max: number) {
     min = Math.ceil(min);
@@ -248,7 +248,9 @@ export class LevelStartScene {
         self.isPuzzleCompleted = true;
         self.monster.changeToEatAnimation();
         self.audio.playSound(audioUrl.monsterEat, PhraseAudio);
-        setTimeout(()=>{ self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);},300)
+        setTimeout(() => {
+          self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);
+        }, 300);
         if (emptyTarget) {
           if (navigator.onLine) {
             self.puzzleEndFirebaseEvents(
@@ -265,16 +267,22 @@ export class LevelStartScene {
               audioUrl.phraseAudios[fntsticOrGrtIndex],
               FeedbackAudio
             );
-            self.promptText.showFantasticOrGreat(self.getRandomFeedBackText(fntsticOrGrtIndex));
+            self.promptText.showFantasticOrGreat(
+              self.getRandomFeedBackText(fntsticOrGrtIndex)
+            );
           }, 1000);
-          self.promptText.draw((word_dropped_stones += picked_stone.length));
+          self.promptText.draw(
+            (word_dropped_stones += self.rightToLeft ? 1 : picked_stone.length)
+          );
           self.timerTicking.stopTimer();
           // self.promptText.draw((word_dropped_stones += 1));
           score += 100;
           word_dropped_stones = 0;
           current_puzzle_index += 1;
         } else {
-          self.promptText.draw((word_dropped_stones += picked_stone.length));
+          self.promptText.draw(
+            (word_dropped_stones += self.rightToLeft ? 1 : picked_stone.length)
+          );
         }
       } else {
         self.isPuzzleCompleted = true;
@@ -565,8 +573,6 @@ export class LevelStartScene {
             }
           }, i * 1300.66);
         }
-
-       
       }
 
       self.timerTicking ? (self.timerTicking.isTimerEnded = false) : null;
@@ -586,7 +592,7 @@ export class LevelStartScene {
     var context = this.context;
     var width = this.width;
     var height = this.height;
-    
+
     loadImages(images, function (image) {
       switch (availableBackgroundTypes[backgroundType]) {
         case "Winter":

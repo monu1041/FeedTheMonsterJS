@@ -16,6 +16,7 @@ import { Debugger, lang } from "./global-variables.js";
 import { FirebaseIntegration } from "./src/firebase/firebase_integration.js";
 declare const window: any;
 declare const app: any;
+let jsonData;
 
 declare global {
   var aboutCompany: string;
@@ -33,16 +34,16 @@ window.addEventListener("load", async function () {
   const canvas: any = <HTMLElement>document.getElementById("canvas");
   canvas.height = window.innerHeight;
   canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
-  let data = await getData();
-  console.log(data);
-  console.log(data.title + "<-------");
+  jsonData = await getData();
+  console.log(jsonData);
+  console.log(jsonData.title + "<-------");
   let d = new DataModal(
-    data.title,
-    data.OtherAudios,
-    data.Levels,
-    data.FeedbackTexts,
-    data.RightToLeft,
-    data.FeedbackAudios
+    jsonData.title,
+    jsonData.OtherAudios,
+    jsonData.Levels,
+    jsonData.FeedbackTexts,
+    jsonData.RightToLeft,
+    jsonData.FeedbackAudios
   );
 
   // if (window.Android) {
@@ -50,8 +51,8 @@ window.addEventListener("load", async function () {
   //     is_cached.has(lang) ? is_cached.get(lang) : null
   //   );
   // }
-  globalThis.aboutCompany = data.aboutCompany;
-  globalThis.descriptionText = data.descriptionText;
+  globalThis.aboutCompany = jsonData.aboutCompany;
+  globalThis.descriptionText = jsonData.descriptionText;
 
   window.addEventListener("resize", async () => {
     if (is_cached.has(lang)) {
@@ -112,6 +113,10 @@ function handleServiceWorkerRegistration(registration): void {
   }
 }
 function handleServiceWorkerMessage(event): void {
+  if (event.data.msg == "Recache") {
+    console.log("*******!!*");
+    handleVersionUpdate(event.data);
+  }
   if (event.data.msg == "Loading") {
     handleLoadingMessage(event.data);
   }
@@ -119,15 +124,29 @@ function handleServiceWorkerMessage(event): void {
     handleUpdateFoundMessage();
   }
 }
+function handleVersionUpdate(data) {
+  if (data.data == "versionUpdated") {
+    localStorage.removeItem("version" + lang);
+    if (is_cached.has(lang)) {
+      is_cached.delete(lang);
+    }
+    localStorage.setItem(
+      IsCached,
+      JSON.stringify(Array.from(is_cached.entries()))
+    );
+    window.location.reload();
+  }
+}
 function handleLoadingMessage(data): void {
   document.getElementById("loading_number").innerHTML =
     " " + " downloading... " + data.data + "%";
-  if (data.data == 100) {
+  if (data.data % 100 == 0) {
     is_cached.set(lang, "true");
     localStorage.setItem(
       IsCached,
       JSON.stringify(Array.from(is_cached.entries()))
     );
+    localStorage.setItem("version" + lang, jsonData.version);
     window.location.reload();
   }
 }
@@ -142,6 +161,6 @@ function handleUpdateFoundMessage(): void {
 }
 function passingDataToContainer() {
   if (window.Android) {
-    window.Android.cachedStatus(is_cached.get(lang)=='true'?true:false);
+    window.Android.cachedStatus(is_cached.get(lang) == "true" ? true : false);
   }
 }

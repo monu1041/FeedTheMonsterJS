@@ -6,7 +6,7 @@ workbox.precaching.precacheAndRoute(self.__WB_MANIFEST, {
   exclude: [/^lang\//],
 });
 var number = 0;
-
+var version = 1.1;
 // self.addEventListener('activate', function(e) {
 //     console.log("activated");
 //
@@ -108,13 +108,44 @@ function getALLAudioUrls(cacheName, language) {
     })
   );
 }
-self.addEventListener("fetch", function (event) {
-  event.respondWith(
-    caches.match(event.request).then(function (response) {
-      if (response) {
-        return response;
-      }
-      return fetch(event.request);
-    })
-  );
+channel.addEventListener("message", function (value) {
+  self.addEventListener("fetch", function (event) {
+    if (
+      value.data.command === "Recache" &&
+      event.request.url.includes(".json")
+    ) {
+      fetch(event.request.url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((res) =>
+        res.json().then((data) => {
+          if (
+            data.version != value.data.version &&
+            value.data.version != null
+          ) {
+            self.clients.matchAll().then((clients) => {
+              clients.forEach((client) => {
+                  client.postMessage({
+                    msg: "Recache",
+                    data: "versionUpdated",
+                  });
+              });
+            });
+          }
+          // return data;
+        })
+      );
+    }
+    // if()
+    event.respondWith(
+      caches.match(event.request).then(function (response) {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      })
+    );
+  });
 });
