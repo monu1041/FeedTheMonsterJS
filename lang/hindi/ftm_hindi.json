@@ -11708,12 +11708,12 @@
     "Watch me grow": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/watch-me-grow.wav"
   },
   "FeedbackAudios": [
-    "https://feedthemonster.curiouscontent.org/lang/hindi/audios/fantastic1.wav",
+    "https://feedthemonster.curiouscontent.org/lang/hindi/audios/fantastic.WAV",
     "https://feedthemonster.curiouscontent.org/lang/hindi/audios/great.wav",
     "https://feedthemonster.curiouscontent.org/lang/hindi/audios/amazing.wav"
   ],
   "version": 2.1,
   "aboutCompany": "<p>Feed The Monster आपके बच्चे को पढ़ाई के मूल तत्वों को सिखाता है। <br/>मॉन्स्टर अंडे इकट्ठा करें और उन्हें अक्षर खिलाएं ताकि वे नए मित्र बन सकें! <br />Curious Learning द्वारा समर्थित। </p>",
   "descriptionText": "<p>हमारे Feed The Monster वेब संस्करण का प्रयास करने के लिए धन्यवाद!<br />पूरा गेम खेलने के लिए, हमें देखें। <a href='https://play.google.com/store/apps/details?id=com.eduapp4syria.feedthemonsterHindi'>Google Play Store.</a></p>",
-  "FeedbackTexts": ["ज़बरदस्त!", "महान!", "अद्भुत!"]
+  "FeedbackTexts": ["बढ़िया काम!", "शाबाश!", "अद्भुत!"]
 }
