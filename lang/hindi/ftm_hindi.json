@@ -11,7 +11,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ग.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ग.mp3",
             "PromptText": "ग"
           },
           "foilstones": [
@@ -31,7 +31,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ख.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ख.mp3",
             "PromptText": "ख"
           },
           "foilstones": [
@@ -51,7 +51,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ञ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ञ.mp3",
             "PromptText": "ञ"
           },
           "foilstones": [
@@ -71,7 +71,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ज.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ज.mp3",
             "PromptText": "ज"
           },
           "foilstones": [
@@ -91,7 +91,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ट.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ट.mp3",
             "PromptText": "ट"
           },
           "foilstones": [
@@ -123,7 +123,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घ.mp3",
             "PromptText": "घ"
           },
           "foilstones": [
@@ -146,7 +146,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/च.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/च.mp3",
             "PromptText": "च"
           },
           "foilstones": [
@@ -169,7 +169,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/झ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/झ.mp3",
             "PromptText": "झ"
           },
           "foilstones": [
@@ -192,7 +192,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ङ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ङ.mp3",
             "PromptText": "ङ"
           },
           "foilstones": [
@@ -215,7 +215,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/छ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/छ.mp3",
             "PromptText": "छ"
           },
           "foilstones": [
@@ -250,7 +250,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/च.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/च.mp3",
             "PromptText": "च"
           },
           "foilstones": [
@@ -270,7 +270,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ट.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ट.mp3",
             "PromptText": "ट"
           },
           "foilstones": [
@@ -290,7 +290,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ङ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ङ.mp3",
             "PromptText": "ङ"
           },
           "foilstones": [
@@ -310,7 +310,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ग.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ग.mp3",
             "PromptText": "ग"
           },
           "foilstones": [
@@ -330,7 +330,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घ.mp3",
             "PromptText": "घ"
           },
           "foilstones": [
@@ -362,7 +362,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ठ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ठ.mp3",
             "PromptText": "ठ"
           },
           "foilstones": [
@@ -382,7 +382,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/द.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/द.mp3",
             "PromptText": "द"
           },
           "foilstones": [
@@ -402,7 +402,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त.mp3",
             "PromptText": "त"
           },
           "foilstones": [
@@ -422,7 +422,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/फ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/फ.mp3",
             "PromptText": "फ"
           },
           "foilstones": [
@@ -442,7 +442,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/प.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/प.mp3",
             "PromptText": "प"
           },
           "foilstones": [
@@ -474,7 +474,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/न.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/न.mp3",
             "PromptText": "न"
           },
           "foilstones": [
@@ -497,7 +497,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/प.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/प.mp3",
             "PromptText": "प"
           },
           "foilstones": [
@@ -520,7 +520,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ध.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ध.mp3",
             "PromptText": "ध"
           },
           "foilstones": [
@@ -543,7 +543,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त.mp3",
             "PromptText": "त"
           },
           "foilstones": [
@@ -566,7 +566,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ड.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ड.mp3",
             "PromptText": "ड"
           },
           "foilstones": [
@@ -601,7 +601,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ठ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ठ.mp3",
             "PromptText": "ठ"
           },
           "foilstones": [
@@ -624,7 +624,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त.mp3",
             "PromptText": "त"
           },
           "foilstones": [
@@ -647,7 +647,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ढ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ढ.mp3",
             "PromptText": "ढ"
           },
           "foilstones": [
@@ -670,7 +670,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ब.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ब.mp3",
             "PromptText": "ब"
           },
           "foilstones": [
@@ -693,7 +693,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/द.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/द.mp3",
             "PromptText": "द"
           },
           "foilstones": [
@@ -728,7 +728,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/भ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/भ.mp3",
             "PromptText": "भ"
           },
           "foilstones": [
@@ -751,7 +751,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ष.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ष.mp3",
             "PromptText": "ष"
           },
           "foilstones": [
@@ -774,7 +774,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/व.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/व.mp3",
             "PromptText": "व"
           },
           "foilstones": [
@@ -797,7 +797,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/य.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/य.mp3",
             "PromptText": "य"
           },
           "foilstones": [
@@ -820,7 +820,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ह.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ह.mp3",
             "PromptText": "ह"
           },
           "foilstones": [
@@ -855,7 +855,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ह.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ह.mp3",
             "PromptText": "ह"
           },
           "foilstones": [
@@ -878,7 +878,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ज्ञ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ज्ञ.mp3",
             "PromptText": "ज्ञ"
           },
           "foilstones": [
@@ -901,7 +901,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ल.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ल.mp3",
             "PromptText": "ल"
           },
           "foilstones": [
@@ -924,7 +924,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/भ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/भ.mp3",
             "PromptText": "भ"
           },
           "foilstones": [
@@ -947,7 +947,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/श.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/श.mp3",
             "PromptText": "श"
           },
           "foilstones": [
@@ -982,7 +982,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/य.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/य.mp3",
             "PromptText": "य"
           },
           "foilstones": [
@@ -1005,7 +1005,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ष.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ष.mp3",
             "PromptText": "ष"
           },
           "foilstones": [
@@ -1028,7 +1028,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/भ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/भ.mp3",
             "PromptText": "भ"
           },
           "foilstones": [
@@ -1051,7 +1051,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ह.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ह.mp3",
             "PromptText": "ह"
           },
           "foilstones": [
@@ -1074,7 +1074,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/म.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/म.mp3",
             "PromptText": "म"
           },
           "foilstones": [
@@ -1109,7 +1109,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/श.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/श.mp3",
             "PromptText": "श"
           },
           "foilstones": [
@@ -1132,7 +1132,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/स.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/स.mp3",
             "PromptText": "स"
           },
           "foilstones": [
@@ -1155,7 +1155,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्र.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्र.mp3",
             "PromptText": "त्र"
           },
           "foilstones": [
@@ -1178,7 +1178,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्ष.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्ष.mp3",
             "PromptText": "क्ष"
           },
           "foilstones": [
@@ -1201,7 +1201,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/व.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/व.mp3",
             "PromptText": "व"
           },
           "foilstones": [
@@ -1236,7 +1236,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ओ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ओ.mp3",
             "PromptText": "ओ"
           },
           "foilstones": [
@@ -1259,7 +1259,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/इ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/इ.mp3",
             "PromptText": "इ"
           },
           "foilstones": [
@@ -1282,7 +1282,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/अं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/अं.mp3",
             "PromptText": "अं"
           },
           "foilstones": [
@@ -1305,7 +1305,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ई.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ई.mp3",
             "PromptText": "ई"
           },
           "foilstones": [
@@ -1328,7 +1328,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/उ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/उ.mp3",
             "PromptText": "उ"
           },
           "foilstones": [
@@ -1363,7 +1363,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ऋ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ऋ.mp3",
             "PromptText": "ऋ"
           },
           "foilstones": [
@@ -1386,7 +1386,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ऊ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ऊ.mp3",
             "PromptText": "ऊ"
           },
           "foilstones": [
@@ -1409,7 +1409,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/अ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/अ.mp3",
             "PromptText": "अ"
           },
           "foilstones": [
@@ -1432,7 +1432,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ऐ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ऐ.mp3",
             "PromptText": "ऐ"
           },
           "foilstones": [
@@ -1455,7 +1455,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/अः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/अः.mp3",
             "PromptText": "अः"
           },
           "foilstones": [
@@ -1490,7 +1490,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/1.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/1.mp3",
             "PromptText": "1"
           },
           "foilstones": [
@@ -1513,7 +1513,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/आ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/आ.mp3",
             "PromptText": "आ"
           },
           "foilstones": [
@@ -1536,7 +1536,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/औ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/औ.mp3",
             "PromptText": "औ"
           },
           "foilstones": [
@@ -1559,7 +1559,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/उ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/उ.mp3",
             "PromptText": "उ"
           },
           "foilstones": [
@@ -1582,7 +1582,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/औ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/औ.mp3",
             "PromptText": "औ"
           },
           "foilstones": [
@@ -1617,7 +1617,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ऋ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ऋ.mp3",
             "PromptText": "ऋ"
           },
           "foilstones": [
@@ -1640,7 +1640,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ऐ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ऐ.mp3",
             "PromptText": "ऐ"
           },
           "foilstones": [
@@ -1663,7 +1663,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/1.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/1.mp3",
             "PromptText": "1"
           },
           "foilstones": [
@@ -1686,7 +1686,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/औ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/औ.mp3",
             "PromptText": "औ"
           },
           "foilstones": [
@@ -1709,7 +1709,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ऊ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ऊ.mp3",
             "PromptText": "ऊ"
           },
           "foilstones": [
@@ -1744,7 +1744,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/खु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/खु.mp3",
             "PromptText": "खु"
           },
           "foilstones": [
@@ -1764,7 +1764,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/गी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/गी.mp3",
             "PromptText": "गी"
           },
           "foilstones": [
@@ -1784,7 +1784,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घि.mp3",
             "PromptText": "घि"
           },
           "foilstones": [
@@ -1804,7 +1804,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/कु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/कु.mp3",
             "PromptText": "कु"
           },
           "foilstones": [
@@ -1824,7 +1824,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घु.mp3",
             "PromptText": "घु"
           },
           "foilstones": [
@@ -1856,7 +1856,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/खि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/खि.mp3",
             "PromptText": "खि"
           },
           "foilstones": [
@@ -1879,7 +1879,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घी.mp3",
             "PromptText": "घी"
           },
           "foilstones": [
@@ -1902,7 +1902,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/खा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/खा.mp3",
             "PromptText": "खा"
           },
           "foilstones": [
@@ -1925,7 +1925,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घा.mp3",
             "PromptText": "घा"
           },
           "foilstones": [
@@ -1948,7 +1948,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/गि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/गि.mp3",
             "PromptText": "गि"
           },
           "foilstones": [
@@ -1983,7 +1983,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/खी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/खी.mp3",
             "PromptText": "खी"
           },
           "foilstones": [
@@ -2006,7 +2006,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/गु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/गु.mp3",
             "PromptText": "गु"
           },
           "foilstones": [
@@ -2032,7 +2032,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/का.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/का.mp3",
             "PromptText": "का"
           },
           "foilstones": [
@@ -2055,7 +2055,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/कि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/कि.mp3",
             "PromptText": "कि"
           },
           "foilstones": [
@@ -2081,7 +2081,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/की.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/की.mp3",
             "PromptText": "की"
           },
           "foilstones": [
@@ -2119,7 +2119,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/झि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/झि.mp3",
             "PromptText": "झि"
           },
           "foilstones": [
@@ -2145,7 +2145,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/छी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/छी.mp3",
             "PromptText": "छी"
           },
           "foilstones": [
@@ -2171,7 +2171,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/टि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/टि.mp3",
             "PromptText": "टि"
           },
           "foilstones": [
@@ -2197,7 +2197,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ञु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ञु.mp3",
             "PromptText": "ञु"
           },
           "foilstones": [
@@ -2223,7 +2223,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ङि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ङि.mp3",
             "PromptText": "ङि"
           },
           "foilstones": [
@@ -2261,7 +2261,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ङा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ङा.mp3",
             "PromptText": "ङा"
           },
           "foilstones": [
@@ -2287,7 +2287,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/छु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/छु.mp3",
             "PromptText": "छु"
           },
           "foilstones": [
@@ -2313,7 +2313,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ञा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ञा.mp3",
             "PromptText": "ञा"
           },
           "foilstones": [
@@ -2339,7 +2339,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ची.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ची.mp3",
             "PromptText": "ची"
           },
           "foilstones": [
@@ -2365,7 +2365,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/चु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/चु.mp3",
             "PromptText": "चु"
           },
           "foilstones": [
@@ -2403,7 +2403,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/जा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/जा.mp3",
             "PromptText": "जा"
           },
           "foilstones": [
@@ -2429,7 +2429,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/झु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/झु.mp3",
             "PromptText": "झु"
           },
           "foilstones": [
@@ -2455,7 +2455,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/टु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/टु.mp3",
             "PromptText": "टु"
           },
           "foilstones": [
@@ -2481,7 +2481,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/जु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/जु.mp3",
             "PromptText": "जु"
           },
           "foilstones": [
@@ -2507,7 +2507,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/झा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/झा.mp3",
             "PromptText": "झा"
           },
           "foilstones": [
@@ -2545,7 +2545,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/छा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/छा.mp3",
             "PromptText": "छा"
           },
           "foilstones": [
@@ -2571,7 +2571,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/चा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/चा.mp3",
             "PromptText": "चा"
           },
           "foilstones": [
@@ -2597,7 +2597,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/झी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/झी.mp3",
             "PromptText": "झी"
           },
           "foilstones": [
@@ -2623,7 +2623,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ञि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ञि.mp3",
             "PromptText": "ञि"
           },
           "foilstones": [
@@ -2649,7 +2649,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/जी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/जी.mp3",
             "PromptText": "जी"
           },
           "foilstones": [
@@ -2687,7 +2687,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/छि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/छि.mp3",
             "PromptText": "छि"
           },
           "foilstones": [
@@ -2710,7 +2710,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/टी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/टी.mp3",
             "PromptText": "टी"
           },
           "foilstones": [
@@ -2733,7 +2733,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ङी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ङी.mp3",
             "PromptText": "ङी"
           },
           "foilstones": [
@@ -2756,7 +2756,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/चि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/चि.mp3",
             "PromptText": "चि"
           },
           "foilstones": [
@@ -2779,7 +2779,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/टा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/टा.mp3",
             "PromptText": "टा"
           },
           "foilstones": [
@@ -2814,7 +2814,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ढु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ढु.mp3",
             "PromptText": "ढु"
           },
           "foilstones": [
@@ -2837,7 +2837,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/थि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/थि.mp3",
             "PromptText": "थि"
           },
           "foilstones": [
@@ -2860,7 +2860,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/डु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/डु.mp3",
             "PromptText": "डु"
           },
           "foilstones": [
@@ -2883,7 +2883,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/थी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/थी.mp3",
             "PromptText": "थी"
           },
           "foilstones": [
@@ -2906,7 +2906,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/धा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/धा.mp3",
             "PromptText": "धा"
           },
           "foilstones": [
@@ -2941,7 +2941,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ठु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ठु.mp3",
             "PromptText": "ठु"
           },
           "foilstones": [
@@ -2964,7 +2964,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/था.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/था.mp3",
             "PromptText": "था"
           },
           "foilstones": [
@@ -2987,7 +2987,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ठि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ठि.mp3",
             "PromptText": "ठि"
           },
           "foilstones": [
@@ -3010,7 +3010,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/बा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/बा.mp3",
             "PromptText": "बा"
           },
           "foilstones": [
@@ -3033,7 +3033,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/फा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/फा.mp3",
             "PromptText": "फा"
           },
           "foilstones": [
@@ -3068,7 +3068,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ठा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ठा.mp3",
             "PromptText": "ठा"
           },
           "foilstones": [
@@ -3091,7 +3091,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/नु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/नु.mp3",
             "PromptText": "नु"
           },
           "foilstones": [
@@ -3114,7 +3114,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/फि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/फि.mp3",
             "PromptText": "फि"
           },
           "foilstones": [
@@ -3137,7 +3137,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/तु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/तु.mp3",
             "PromptText": "तु"
           },
           "foilstones": [
@@ -3160,7 +3160,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/णु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/णु.mp3",
             "PromptText": "णु"
           },
           "foilstones": [
@@ -3195,7 +3195,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/धु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/धु.mp3",
             "PromptText": "धु"
           },
           "foilstones": [
@@ -3218,7 +3218,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ता.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ता.mp3",
             "PromptText": "ता"
           },
           "foilstones": [
@@ -3241,7 +3241,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/डी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/डी.mp3",
             "PromptText": "डी"
           },
           "foilstones": [
@@ -3264,7 +3264,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/डा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/डा.mp3",
             "PromptText": "डा"
           },
           "foilstones": [
@@ -3287,7 +3287,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/दि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/दि.mp3",
             "PromptText": "दि"
           },
           "foilstones": [
@@ -3322,7 +3322,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ती.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ती.mp3",
             "PromptText": "ती"
           },
           "foilstones": [
@@ -3345,7 +3345,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/पा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/पा.mp3",
             "PromptText": "पा"
           },
           "foilstones": [
@@ -3368,7 +3368,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/पी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/पी.mp3",
             "PromptText": "पी"
           },
           "foilstones": [
@@ -3391,7 +3391,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ढि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ढि.mp3",
             "PromptText": "ढि"
           },
           "foilstones": [
@@ -3414,7 +3414,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ठी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ठी.mp3",
             "PromptText": "ठी"
           },
           "foilstones": [
@@ -3449,7 +3449,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/रि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/रि.mp3",
             "PromptText": "रि"
           },
           "foilstones": [
@@ -3472,7 +3472,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/सा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/सा.mp3",
             "PromptText": "सा"
           },
           "foilstones": [
@@ -3495,7 +3495,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ला.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ला.mp3",
             "PromptText": "ला"
           },
           "foilstones": [
@@ -3518,7 +3518,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/भा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/भा.mp3",
             "PromptText": "भा"
           },
           "foilstones": [
@@ -3541,7 +3541,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/मा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/मा.mp3",
             "PromptText": "मा"
           },
           "foilstones": [
@@ -3576,7 +3576,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/या.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/या.mp3",
             "PromptText": "या"
           },
           "foilstones": [
@@ -3608,7 +3608,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/मु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/मु.mp3",
             "PromptText": "मु"
           },
           "foilstones": [
@@ -3634,7 +3634,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/सि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/सि.mp3",
             "PromptText": "सि"
           },
           "foilstones": [
@@ -3666,7 +3666,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/शी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/शी.mp3",
             "PromptText": "शी"
           },
           "foilstones": [
@@ -3692,7 +3692,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/यि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/यि.mp3",
             "PromptText": "यि"
           },
           "foilstones": [
@@ -3736,7 +3736,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/वी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/वी.mp3",
             "PromptText": "वी"
           },
           "foilstones": [
@@ -3768,7 +3768,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ली.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ली.mp3",
             "PromptText": "ली"
           },
           "foilstones": [
@@ -3800,7 +3800,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/शु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/शु.mp3",
             "PromptText": "शु"
           },
           "foilstones": [
@@ -3826,7 +3826,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/भी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/भी.mp3",
             "PromptText": "भी"
           },
           "foilstones": [
@@ -3852,7 +3852,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/भि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/भि.mp3",
             "PromptText": "भि"
           },
           "foilstones": [
@@ -3896,7 +3896,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/वु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/वु.mp3",
             "PromptText": "वु"
           },
           "foilstones": [
@@ -3928,7 +3928,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/षु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/षु.mp3",
             "PromptText": "षु"
           },
           "foilstones": [
@@ -3960,7 +3960,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/षि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/षि.mp3",
             "PromptText": "षि"
           },
           "foilstones": [
@@ -3986,7 +3986,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/मी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/मी.mp3",
             "PromptText": "मी"
           },
           "foilstones": [
@@ -4012,7 +4012,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/लु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/लु.mp3",
             "PromptText": "लु"
           },
           "foilstones": [
@@ -4056,7 +4056,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/मि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/मि.mp3",
             "PromptText": "मि"
           },
           "foilstones": [
@@ -4082,7 +4082,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/यु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/यु.mp3",
             "PromptText": "यु"
           },
           "foilstones": [
@@ -4114,7 +4114,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/रु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/रु.mp3",
             "PromptText": "रु"
           },
           "foilstones": [
@@ -4146,7 +4146,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/वा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/वा.mp3",
             "PromptText": "वा"
           },
           "foilstones": [
@@ -4172,7 +4172,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/भु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/भु.mp3",
             "PromptText": "भु"
           },
           "foilstones": [
@@ -4216,7 +4216,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षि.mp3",
             "PromptText": "क्षि"
           },
           "foilstones": [
@@ -4248,7 +4248,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/हा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/हा.mp3",
             "PromptText": "हा"
           },
           "foilstones": [
@@ -4280,7 +4280,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ही.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ही.mp3",
             "PromptText": "ही"
           },
           "foilstones": [
@@ -4306,7 +4306,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/सी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/सी.mp3",
             "PromptText": "सी"
           },
           "foilstones": [
@@ -4338,7 +4338,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्रा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्रा.mp3",
             "PromptText": "त्रा"
           },
           "foilstones": [
@@ -4376,7 +4376,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षु.mp3",
             "PromptText": "क्षु"
           },
           "foilstones": [
@@ -4408,7 +4408,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षा.mp3",
             "PromptText": "क्षा"
           },
           "foilstones": [
@@ -4440,7 +4440,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षी.mp3",
             "PromptText": "क्षी"
           },
           "foilstones": [
@@ -4466,7 +4466,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/सु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/सु.mp3",
             "PromptText": "सु"
           },
           "foilstones": [
@@ -4498,7 +4498,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्री.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्री.mp3",
             "PromptText": "त्री"
           },
           "foilstones": [
@@ -4536,7 +4536,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ज्ञी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ज्ञी.mp3",
             "PromptText": "ज्ञी"
           },
           "foilstones": [
@@ -4568,7 +4568,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/हु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/हु.mp3",
             "PromptText": "हु"
           },
           "foilstones": [
@@ -4600,7 +4600,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/हि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/हि.mp3",
             "PromptText": "हि"
           },
           "foilstones": [
@@ -4626,7 +4626,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ज्ञा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ज्ञा.mp3",
             "PromptText": "ज्ञा"
           },
           "foilstones": [
@@ -4658,7 +4658,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ज्ञि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ज्ञि.mp3",
             "PromptText": "ज्ञि"
           },
           "foilstones": [
@@ -4696,7 +4696,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्रु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्रु.mp3",
             "PromptText": "त्रु"
           },
           "foilstones": [
@@ -4728,7 +4728,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्रि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्रि.mp3",
             "PromptText": "त्रि"
           },
           "foilstones": [
@@ -4760,7 +4760,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ज्ञु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ज्ञु.mp3",
             "PromptText": "ज्ञु"
           },
           "foilstones": [
@@ -4792,7 +4792,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षु.mp3",
             "PromptText": "क्षु"
           },
           "foilstones": [
@@ -4821,7 +4821,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ही.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ही.mp3",
             "PromptText": "ही"
           },
           "foilstones": [
@@ -4865,7 +4865,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/छु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/छु.mp3",
             "PromptText": "छु"
           },
           "foilstones": [
@@ -4897,7 +4897,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/टु.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/टु.mp3",
             "PromptText": "टु"
           },
           "foilstones": [
@@ -4929,7 +4929,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ञी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ञी.mp3",
             "PromptText": "ञी"
           },
           "foilstones": [
@@ -4961,7 +4961,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/झी.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/झी.mp3",
             "PromptText": "झी"
           },
           "foilstones": [
@@ -4993,7 +4993,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/चि.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/चि.mp3",
             "PromptText": "चि"
           },
           "foilstones": [
@@ -5034,7 +5034,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्री.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्री.mp3",
             "PromptText": "त्री"
           },
           "foilstones": [
@@ -5066,7 +5066,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षा.mp3",
             "PromptText": "क्षा"
           },
           "foilstones": [
@@ -5098,7 +5098,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्रा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्रा.mp3",
             "PromptText": "त्रा"
           },
           "foilstones": [
@@ -5130,7 +5130,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्री.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्री.mp3",
             "PromptText": "त्री"
           },
           "foilstones": [
@@ -5159,7 +5159,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षा.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षा.mp3",
             "PromptText": "क्षा"
           },
           "foilstones": [
@@ -5203,7 +5203,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/टे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/टे.mp3",
             "PromptText": "टे"
           },
           "foilstones": [
@@ -5235,7 +5235,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/जृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/जृ.mp3",
             "PromptText": "जृ"
           },
           "foilstones": [
@@ -5267,7 +5267,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ङे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ङे.mp3",
             "PromptText": "ङे"
           },
           "foilstones": [
@@ -5299,7 +5299,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घे.mp3",
             "PromptText": "घे"
           },
           "foilstones": [
@@ -5328,7 +5328,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/चू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/चू.mp3",
             "PromptText": "चू"
           },
           "foilstones": [
@@ -5372,7 +5372,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/चै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/चै.mp3",
             "PromptText": "चै"
           },
           "foilstones": [
@@ -5404,7 +5404,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/कू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/कू.mp3",
             "PromptText": "कू"
           },
           "foilstones": [
@@ -5436,7 +5436,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/झृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/झृ.mp3",
             "PromptText": "झृ"
           },
           "foilstones": [
@@ -5468,7 +5468,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/टै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/टै.mp3",
             "PromptText": "टै"
           },
           "foilstones": [
@@ -5500,7 +5500,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/चृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/चृ.mp3",
             "PromptText": "चृ"
           },
           "foilstones": [
@@ -5541,7 +5541,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/खृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/खृ.mp3",
             "PromptText": "खृ"
           },
           "foilstones": [
@@ -5573,7 +5573,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/झे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/झे.mp3",
             "PromptText": "झे"
           },
           "foilstones": [
@@ -5605,7 +5605,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/गू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/गू.mp3",
             "PromptText": "गू"
           },
           "foilstones": [
@@ -5637,7 +5637,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/गृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/गृ.mp3",
             "PromptText": "गृ"
           },
           "foilstones": [
@@ -5669,7 +5669,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घै.mp3",
             "PromptText": "घै"
           },
           "foilstones": [
@@ -5710,7 +5710,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/टृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/टृ.mp3",
             "PromptText": "टृ"
           },
           "foilstones": [
@@ -5742,7 +5742,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/जे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/जे.mp3",
             "PromptText": "जे"
           },
           "foilstones": [
@@ -5774,7 +5774,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/गै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/गै.mp3",
             "PromptText": "गै"
           },
           "foilstones": [
@@ -5806,7 +5806,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घृ.mp3",
             "PromptText": "घृ"
           },
           "foilstones": [
@@ -5838,7 +5838,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ञै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ञै.mp3",
             "PromptText": "ञै"
           },
           "foilstones": [
@@ -5879,7 +5879,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ठू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ठू.mp3",
             "PromptText": "ठू"
           },
           "foilstones": [
@@ -5911,7 +5911,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/धृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/धृ.mp3",
             "PromptText": "धृ"
           },
           "foilstones": [
@@ -5943,7 +5943,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/फै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/फै.mp3",
             "PromptText": "फै"
           },
           "foilstones": [
@@ -5975,7 +5975,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/धे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/धे.mp3",
             "PromptText": "धे"
           },
           "foilstones": [
@@ -6004,7 +6004,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/पृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/पृ.mp3",
             "PromptText": "पृ"
           },
           "foilstones": [
@@ -6048,7 +6048,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/डौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/डौ.mp3",
             "PromptText": "डौ"
           },
           "foilstones": [
@@ -6080,7 +6080,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/बे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/बे.mp3",
             "PromptText": "बे"
           },
           "foilstones": [
@@ -6112,7 +6112,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/फू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/फू.mp3",
             "PromptText": "फू"
           },
           "foilstones": [
@@ -6144,7 +6144,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ढे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ढे.mp3",
             "PromptText": "ढे"
           },
           "foilstones": [
@@ -6173,7 +6173,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/थे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/थे.mp3",
             "PromptText": "थे"
           },
           "foilstones": [
@@ -6217,7 +6217,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/णृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/णृ.mp3",
             "PromptText": "णृ"
           },
           "foilstones": [
@@ -6249,7 +6249,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/दै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/दै.mp3",
             "PromptText": "दै"
           },
           "foilstones": [
@@ -6281,7 +6281,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ठृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ठृ.mp3",
             "PromptText": "ठृ"
           },
           "foilstones": [
@@ -6310,7 +6310,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/दृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/दृ.mp3",
             "PromptText": "दृ"
           },
           "foilstones": [
@@ -6342,7 +6342,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ढू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ढू.mp3",
             "PromptText": "ढू"
           },
           "foilstones": [
@@ -6386,7 +6386,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/तै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/तै.mp3",
             "PromptText": "तै"
           },
           "foilstones": [
@@ -6418,7 +6418,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/डृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/डृ.mp3",
             "PromptText": "डृ"
           },
           "foilstones": [
@@ -6450,7 +6450,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/फृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/फृ.mp3",
             "PromptText": "फृ"
           },
           "foilstones": [
@@ -6482,7 +6482,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/बृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/बृ.mp3",
             "PromptText": "बृ"
           },
           "foilstones": [
@@ -6511,7 +6511,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ते.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ते.mp3",
             "PromptText": "ते"
           },
           "foilstones": [
@@ -6555,7 +6555,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/णै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/णै.mp3",
             "PromptText": "णै"
           },
           "foilstones": [
@@ -6587,7 +6587,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/नू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/नू.mp3",
             "PromptText": "नू"
           },
           "foilstones": [
@@ -6619,7 +6619,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/दू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/दू.mp3",
             "PromptText": "दू"
           },
           "foilstones": [
@@ -6651,7 +6651,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/थू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/थू.mp3",
             "PromptText": "थू"
           },
           "foilstones": [
@@ -6680,7 +6680,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/डे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/डे.mp3",
             "PromptText": "डे"
           },
           "foilstones": [
@@ -6724,7 +6724,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/रृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/रृ.mp3",
             "PromptText": "रृ"
           },
           "foilstones": [
@@ -6747,7 +6747,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/भृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/भृ.mp3",
             "PromptText": "भृ"
           },
           "foilstones": [
@@ -6770,7 +6770,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/भू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/भू.mp3",
             "PromptText": "भू"
           },
           "foilstones": [
@@ -6793,7 +6793,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/वू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/वू.mp3",
             "PromptText": "वू"
           },
           "foilstones": [
@@ -6816,7 +6816,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/यृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/यृ.mp3",
             "PromptText": "यृ"
           },
           "foilstones": [
@@ -6851,7 +6851,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ले.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ले.mp3",
             "PromptText": "ले"
           },
           "foilstones": [
@@ -6874,7 +6874,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/यै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/यै.mp3",
             "PromptText": "यै"
           },
           "foilstones": [
@@ -6897,7 +6897,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/रे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/रे.mp3",
             "PromptText": "रे"
           },
           "foilstones": [
@@ -6920,7 +6920,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/शू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/शू.mp3",
             "PromptText": "शू"
           },
           "foilstones": [
@@ -6943,7 +6943,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/वृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/वृ.mp3",
             "PromptText": "वृ"
           },
           "foilstones": [
@@ -6978,7 +6978,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/हू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/हू.mp3",
             "PromptText": "हू"
           },
           "foilstones": [
@@ -7010,7 +7010,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ज्ञृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ज्ञृ.mp3",
             "PromptText": "ज्ञृ"
           },
           "foilstones": [
@@ -7042,7 +7042,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/शै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/शै.mp3",
             "PromptText": "शै"
           },
           "foilstones": [
@@ -7071,7 +7071,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्रृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्रृ.mp3",
             "PromptText": "त्रृ"
           },
           "foilstones": [
@@ -7103,7 +7103,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षे.mp3",
             "PromptText": "क्षे"
           },
           "foilstones": [
@@ -7147,7 +7147,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/सू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/सू.mp3",
             "PromptText": "सू"
           },
           "foilstones": [
@@ -7179,7 +7179,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/षृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/षृ.mp3",
             "PromptText": "षृ"
           },
           "foilstones": [
@@ -7211,7 +7211,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/है.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/है.mp3",
             "PromptText": "है"
           },
           "foilstones": [
@@ -7243,7 +7243,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षू.mp3",
             "PromptText": "क्षू"
           },
           "foilstones": [
@@ -7272,7 +7272,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ज्ञू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ज्ञू.mp3",
             "PromptText": "ज्ञू"
           },
           "foilstones": [
@@ -7316,7 +7316,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/सै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/सै.mp3",
             "PromptText": "सै"
           },
           "foilstones": [
@@ -7348,7 +7348,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्रे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्रे.mp3",
             "PromptText": "त्रे"
           },
           "foilstones": [
@@ -7380,7 +7380,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्रै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्रै.mp3",
             "PromptText": "त्रै"
           },
           "foilstones": [
@@ -7409,7 +7409,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/सृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/सृ.mp3",
             "PromptText": "सृ"
           },
           "foilstones": [
@@ -7441,7 +7441,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/षे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/षे.mp3",
             "PromptText": "षे"
           },
           "foilstones": [
@@ -7485,7 +7485,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/षै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/षै.mp3",
             "PromptText": "षै"
           },
           "foilstones": [
@@ -7517,7 +7517,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/षू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/षू.mp3",
             "PromptText": "षू"
           },
           "foilstones": [
@@ -7549,7 +7549,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/हृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/हृ.mp3",
             "PromptText": "हृ"
           },
           "foilstones": [
@@ -7581,7 +7581,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/हे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/हे.mp3",
             "PromptText": "हे"
           },
           "foilstones": [
@@ -7610,7 +7610,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्रू.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्रू.mp3",
             "PromptText": "त्रू"
           },
           "foilstones": [
@@ -7654,7 +7654,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षै.mp3",
             "PromptText": "क्षै"
           },
           "foilstones": [
@@ -7686,7 +7686,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/शे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/शे.mp3",
             "PromptText": "शे"
           },
           "foilstones": [
@@ -7718,7 +7718,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/से.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/से.mp3",
             "PromptText": "से"
           },
           "foilstones": [
@@ -7750,7 +7750,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षृ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षृ.mp3",
             "PromptText": "क्षृ"
           },
           "foilstones": [
@@ -7779,7 +7779,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/हे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/हे.mp3",
             "PromptText": "हे"
           },
           "foilstones": [
@@ -7823,7 +7823,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/काे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/काे.mp3",
             "PromptText": "काे"
           },
           "foilstones": [
@@ -7855,7 +7855,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/गौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/गौ.mp3",
             "PromptText": "गौ"
           },
           "foilstones": [
@@ -7887,7 +7887,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/खै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/खै.mp3",
             "PromptText": "खै"
           },
           "foilstones": [
@@ -7919,7 +7919,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/खः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/खः.mp3",
             "PromptText": "खः"
           },
           "foilstones": [
@@ -7948,7 +7948,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ङः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ङः.mp3",
             "PromptText": "ङः"
           },
           "foilstones": [
@@ -7992,7 +7992,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ङाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ङाे.mp3",
             "PromptText": "ङाे"
           },
           "foilstones": [
@@ -8024,7 +8024,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घाे.mp3",
             "PromptText": "घाे"
           },
           "foilstones": [
@@ -8056,7 +8056,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/खं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/खं.mp3",
             "PromptText": "खं"
           },
           "foilstones": [
@@ -8088,7 +8088,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घः.mp3",
             "PromptText": "घः"
           },
           "foilstones": [
@@ -8117,7 +8117,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/कं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/कं.mp3",
             "PromptText": "कं"
           },
           "foilstones": [
@@ -8161,7 +8161,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/कः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/कः.mp3",
             "PromptText": "कः"
           },
           "foilstones": [
@@ -8193,7 +8193,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/गं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/गं.mp3",
             "PromptText": "गं"
           },
           "foilstones": [
@@ -8225,7 +8225,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/कौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/कौ.mp3",
             "PromptText": "कौ"
           },
           "foilstones": [
@@ -8257,7 +8257,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घं.mp3",
             "PromptText": "घं"
           },
           "foilstones": [
@@ -8286,7 +8286,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/खाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/खाे.mp3",
             "PromptText": "खाे"
           },
           "foilstones": [
@@ -8330,7 +8330,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ङ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ङ.mp3",
             "PromptText": "ङ"
           },
           "foilstones": [
@@ -8362,7 +8362,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घौ.mp3",
             "PromptText": "घौ"
           },
           "foilstones": [
@@ -8394,7 +8394,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ङौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ङौ.mp3",
             "PromptText": "ङौ"
           },
           "foilstones": [
@@ -8426,7 +8426,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/गः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/गः.mp3",
             "PromptText": "गः"
           },
           "foilstones": [
@@ -8455,7 +8455,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/गाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/गाे.mp3",
             "PromptText": "गाे"
           },
           "foilstones": [
@@ -8499,7 +8499,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/खै.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/खै.mp3",
             "PromptText": "खै"
           },
           "foilstones": [
@@ -8531,7 +8531,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/गौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/गौ.mp3",
             "PromptText": "गौ"
           },
           "foilstones": [
@@ -8563,7 +8563,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/कौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/कौ.mp3",
             "PromptText": "कौ"
           },
           "foilstones": [
@@ -8592,7 +8592,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/घं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/घं.mp3",
             "PromptText": "घं"
           },
           "foilstones": [
@@ -8624,7 +8624,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/कः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/कः.mp3",
             "PromptText": "कः"
           },
           "foilstones": [
@@ -8668,7 +8668,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/छौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/छौ.mp3",
             "PromptText": "छौ"
           },
           "foilstones": [
@@ -8700,7 +8700,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/चौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/चौ.mp3",
             "PromptText": "चौ"
           },
           "foilstones": [
@@ -8732,7 +8732,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/छं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/छं.mp3",
             "PromptText": "छं"
           },
           "foilstones": [
@@ -8761,7 +8761,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/चं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/चं.mp3",
             "PromptText": "चं"
           },
           "foilstones": [
@@ -8793,7 +8793,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/जाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/जाे.mp3",
             "PromptText": "जाे"
           },
           "foilstones": [
@@ -8837,7 +8837,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ञाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ञाे.mp3",
             "PromptText": "ञाे"
           },
           "foilstones": [
@@ -8869,7 +8869,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ञः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ञः.mp3",
             "PromptText": "ञः"
           },
           "foilstones": [
@@ -8901,7 +8901,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/टं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/टं.mp3",
             "PromptText": "टं"
           },
           "foilstones": [
@@ -8930,7 +8930,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ञौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ञौ.mp3",
             "PromptText": "ञौ"
           },
           "foilstones": [
@@ -8962,7 +8962,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/जौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/जौ.mp3",
             "PromptText": "जौ"
           },
           "foilstones": [
@@ -9006,7 +9006,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/टः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/टः.mp3",
             "PromptText": "टः"
           },
           "foilstones": [
@@ -9038,7 +9038,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/जः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/जः.mp3",
             "PromptText": "जः"
           },
           "foilstones": [
@@ -9070,7 +9070,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/टाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/टाे.mp3",
             "PromptText": "टाे"
           },
           "foilstones": [
@@ -9099,7 +9099,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/झः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/झः.mp3",
             "PromptText": "झः"
           },
           "foilstones": [
@@ -9131,7 +9131,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/चाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/चाे.mp3",
             "PromptText": "चाे"
           },
           "foilstones": [
@@ -9175,7 +9175,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/झं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/झं.mp3",
             "PromptText": "झं"
           },
           "foilstones": [
@@ -9207,7 +9207,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/झाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/झाे.mp3",
             "PromptText": "झाे"
           },
           "foilstones": [
@@ -9239,7 +9239,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/झौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/झौ.mp3",
             "PromptText": "झौ"
           },
           "foilstones": [
@@ -9268,7 +9268,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/छाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/छाे.mp3",
             "PromptText": "छाे"
           },
           "foilstones": [
@@ -9300,7 +9300,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/जं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/जं.mp3",
             "PromptText": "जं"
           },
           "foilstones": [
@@ -9344,7 +9344,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/छः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/छः.mp3",
             "PromptText": "छः"
           },
           "foilstones": [
@@ -9376,7 +9376,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/टौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/टौ.mp3",
             "PromptText": "टौ"
           },
           "foilstones": [
@@ -9408,7 +9408,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ञं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ञं.mp3",
             "PromptText": "ञं"
           },
           "foilstones": [
@@ -9437,7 +9437,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/चः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/चः.mp3",
             "PromptText": "चः"
           },
           "foilstones": [
@@ -9469,7 +9469,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/छाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/छाे.mp3",
             "PromptText": "छाे"
           },
           "foilstones": [
@@ -9513,7 +9513,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/दौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/दौ.mp3",
             "PromptText": "दौ"
           },
           "foilstones": [
@@ -9545,7 +9545,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ढं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ढं.mp3",
             "PromptText": "ढं"
           },
           "foilstones": [
@@ -9577,7 +9577,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/थः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/थः.mp3",
             "PromptText": "थः"
           },
           "foilstones": [
@@ -9606,7 +9606,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ताे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ताे.mp3",
             "PromptText": "ताे"
           },
           "foilstones": [
@@ -9638,7 +9638,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/डौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/डौ.mp3",
             "PromptText": "डौ"
           },
           "foilstones": [
@@ -9682,7 +9682,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/णं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/णं.mp3",
             "PromptText": "णं"
           },
           "foilstones": [
@@ -9714,7 +9714,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/पौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/पौ.mp3",
             "PromptText": "पौ"
           },
           "foilstones": [
@@ -9746,7 +9746,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/बौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/बौ.mp3",
             "PromptText": "बौ"
           },
           "foilstones": [
@@ -9778,7 +9778,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ठाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ठाे.mp3",
             "PromptText": "ठाे"
           },
           "foilstones": [
@@ -9807,7 +9807,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/दाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/दाे.mp3",
             "PromptText": "दाे"
           },
           "foilstones": [
@@ -9851,7 +9851,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/नः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/नः.mp3",
             "PromptText": "नः"
           },
           "foilstones": [
@@ -9883,7 +9883,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/बः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/बः.mp3",
             "PromptText": "बः"
           },
           "foilstones": [
@@ -9915,7 +9915,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/डं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/डं.mp3",
             "PromptText": "डं"
           },
           "foilstones": [
@@ -9944,7 +9944,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ढः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ढः.mp3",
             "PromptText": "ढः"
           },
           "foilstones": [
@@ -9976,7 +9976,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/फाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/फाे.mp3",
             "PromptText": "फाे"
           },
           "foilstones": [
@@ -10020,7 +10020,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/तः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/तः.mp3",
             "PromptText": "तः"
           },
           "foilstones": [
@@ -10052,7 +10052,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/नौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/नौ.mp3",
             "PromptText": "नौ"
           },
           "foilstones": [
@@ -10084,7 +10084,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ठः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ठः.mp3",
             "PromptText": "ठः"
           },
           "foilstones": [
@@ -10116,7 +10116,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/णौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/णौ.mp3",
             "PromptText": "णौ"
           },
           "foilstones": [
@@ -10145,7 +10145,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ठौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ठौ.mp3",
             "PromptText": "ठौ"
           },
           "foilstones": [
@@ -10189,7 +10189,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/नाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/नाे.mp3",
             "PromptText": "नाे"
           },
           "foilstones": [
@@ -10221,7 +10221,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/पः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/पः.mp3",
             "PromptText": "पः"
           },
           "foilstones": [
@@ -10253,7 +10253,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/बाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/बाे.mp3",
             "PromptText": "बाे"
           },
           "foilstones": [
@@ -10282,7 +10282,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/दं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/दं.mp3",
             "PromptText": "दं"
           },
           "foilstones": [
@@ -10314,7 +10314,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/धाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/धाे.mp3",
             "PromptText": "धाे"
           },
           "foilstones": [
@@ -10358,7 +10358,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/लाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/लाे.mp3",
             "PromptText": "लाे"
           },
           "foilstones": [
@@ -10390,7 +10390,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/याे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/याे.mp3",
             "PromptText": "याे"
           },
           "foilstones": [
@@ -10422,7 +10422,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/वः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/वः.mp3",
             "PromptText": "वः"
           },
           "foilstones": [
@@ -10454,7 +10454,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/यौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/यौ.mp3",
             "PromptText": "यौ"
           },
           "foilstones": [
@@ -10486,7 +10486,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/लः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/लः.mp3",
             "PromptText": "लः"
           },
           "foilstones": [
@@ -10527,7 +10527,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/मं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/मं.mp3",
             "PromptText": "मं"
           },
           "foilstones": [
@@ -10559,7 +10559,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/यं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/यं.mp3",
             "PromptText": "यं"
           },
           "foilstones": [
@@ -10591,7 +10591,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/मः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/मः.mp3",
             "PromptText": "मः"
           },
           "foilstones": [
@@ -10620,7 +10620,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/रं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/रं.mp3",
             "PromptText": "रं"
           },
           "foilstones": [
@@ -10652,7 +10652,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/रौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/रौ.mp3",
             "PromptText": "रौ"
           },
           "foilstones": [
@@ -10696,7 +10696,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/माे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/माे.mp3",
             "PromptText": "माे"
           },
           "foilstones": [
@@ -10728,7 +10728,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/वौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/वौ.mp3",
             "PromptText": "वौ"
           },
           "foilstones": [
@@ -10760,7 +10760,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/लौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/लौ.mp3",
             "PromptText": "लौ"
           },
           "foilstones": [
@@ -10792,7 +10792,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/भः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/भः.mp3",
             "PromptText": "भः"
           },
           "foilstones": [
@@ -10821,7 +10821,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/वाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/वाे.mp3",
             "PromptText": "वाे"
           },
           "foilstones": [
@@ -10865,7 +10865,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/षौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/षौ.mp3",
             "PromptText": "षौ"
           },
           "foilstones": [
@@ -10897,7 +10897,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/षं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/षं.mp3",
             "PromptText": "षं"
           },
           "foilstones": [
@@ -10929,7 +10929,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/शः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/शः.mp3",
             "PromptText": "शः"
           },
           "foilstones": [
@@ -10961,7 +10961,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/सः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/सः.mp3",
             "PromptText": "सः"
           },
           "foilstones": [
@@ -10990,7 +10990,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/षः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/षः.mp3",
             "PromptText": "षः"
           },
           "foilstones": [
@@ -11034,7 +11034,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षं.mp3",
             "PromptText": "क्षं"
           },
           "foilstones": [
@@ -11066,7 +11066,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्रं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्रं.mp3",
             "PromptText": "त्रं"
           },
           "foilstones": [
@@ -11098,7 +11098,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षाे.mp3",
             "PromptText": "क्षाे"
           },
           "foilstones": [
@@ -11127,7 +11127,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/शाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/शाे.mp3",
             "PromptText": "शाे"
           },
           "foilstones": [
@@ -11159,7 +11159,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/शं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/शं.mp3",
             "PromptText": "शं"
           },
           "foilstones": [
@@ -11203,7 +11203,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षे.mp3",
             "PromptText": "क्षे"
           },
           "foilstones": [
@@ -11235,7 +11235,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्राे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्राे.mp3",
             "PromptText": "त्राे"
           },
           "foilstones": [
@@ -11267,7 +11267,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/हौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/हौ.mp3",
             "PromptText": "हौ"
           },
           "foilstones": [
@@ -11299,7 +11299,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/क्षः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/क्षः.mp3",
             "PromptText": "क्षः"
           },
           "foilstones": [
@@ -11328,7 +11328,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/सं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/सं.mp3",
             "PromptText": "सं"
           },
           "foilstones": [
@@ -11372,7 +11372,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/हं.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/हं.mp3",
             "PromptText": "हं"
           },
           "foilstones": [
@@ -11404,7 +11404,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/हाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/हाे.mp3",
             "PromptText": "हाे"
           },
           "foilstones": [
@@ -11436,7 +11436,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्रः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्रः.mp3",
             "PromptText": "त्रः"
           },
           "foilstones": [
@@ -11468,7 +11468,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ज्ञः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ज्ञः.mp3",
             "PromptText": "ज्ञः"
           },
           "foilstones": [
@@ -11500,7 +11500,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ज्ञाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ज्ञाे.mp3",
             "PromptText": "ज्ञाे"
           },
           "foilstones": [
@@ -11541,7 +11541,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/सौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/सौ.mp3",
             "PromptText": "सौ"
           },
           "foilstones": [
@@ -11573,7 +11573,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/हः.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/हः.mp3",
             "PromptText": "हः"
           },
           "foilstones": [
@@ -11605,7 +11605,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/त्रौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/त्रौ.mp3",
             "PromptText": "त्रौ"
           },
           "foilstones": [
@@ -11634,7 +11634,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ज्ञौ.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ज्ञौ.mp3",
             "PromptText": "ज्ञौ"
           },
           "foilstones": [
@@ -11666,7 +11666,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/षाे.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/षाे.mp3",
             "PromptText": "षाे"
           },
           "foilstones": [
@@ -11703,14 +11703,14 @@
     }
   ],
   "OtherAudios": {
-    "Are you sure": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/are-you-sure.mp3",
-    "Select your player": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/Select-your-player.mp3",
-    "Watch me grow": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/watch-me-grow.mp3"
+    "Are you sure": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/are-you-sure.mp3",
+    "Select your player": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/Select-your-player.mp3",
+    "Watch me grow": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/watch-me-grow.mp3"
   },
   "FeedbackAudios": [
-    "https://feedthemonster.curiouscontent.org/lang/hindi/audios/fantastic.mp3",
-    "https://feedthemonster.curiouscontent.org/lang/hindi/audios/great.mp3",
-    "https://feedthemonster.curiouscontent.org/lang/hindi/audios/amazing.mp3"
+    "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/fantastic.mp3",
+    "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/great.mp3",
+    "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/amazing.mp3"
   ],
   "version": 2.1,
   "aboutCompany": "<p>Feed The Monster आपके बच्चे को पढ़ाई के मूल तत्वों को सिखाता है। <br/>मॉन्स्टर अंडे इकट्ठा करें और उन्हें अक्षर खिलाएं ताकि वे नए मित्र बन सकें! <br />Curious Learning द्वारा समर्थित। </p>",
