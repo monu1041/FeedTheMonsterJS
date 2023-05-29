@@ -1125,7 +1125,7 @@
           "SegmentNumber": 0,
           "prompt": {
             "PromptText": "ni",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_ni.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/ni.mp3"
           },
           "foilstones": [
             {
@@ -1154,7 +1154,7 @@
           "SegmentNumber": 1,
           "prompt": {
             "PromptText": "mal",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_mal.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/mal.mp3"
           },
           "foilstones": [
             {
@@ -1180,7 +1180,7 @@
           "SegmentNumber": 2,
           "prompt": {
             "PromptText": "ma",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_ma.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/ma.mp3"
           },
           "foilstones": [
             {
@@ -1206,7 +1206,7 @@
           "SegmentNumber": 3,
           "prompt": {
             "PromptText": "la",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_la.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/la.mp3"
           },
           "foilstones": [
             {
@@ -1232,7 +1232,7 @@
           "SegmentNumber": 4,
           "prompt": {
             "PromptText": "sa",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_sa.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/sa.mp3"
           },
           "foilstones": [
             {
@@ -1273,7 +1273,7 @@
           "SegmentNumber": 0,
           "prompt": {
             "PromptText": "ma",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_ma.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/ma.mp3"
           },
           "foilstones": [
             {
@@ -1299,7 +1299,7 @@
           "SegmentNumber": 1,
           "prompt": {
             "PromptText": "sac",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_sac.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/sac.mp3"
           },
           "foilstones": [
             {
@@ -1328,7 +1328,7 @@
           "SegmentNumber": 2,
           "prompt": {
             "PromptText": "an",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_an.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/an.mp3"
           },
           "foilstones": [
             {
@@ -1351,7 +1351,7 @@
           "SegmentNumber": 3,
           "prompt": {
             "PromptText": "no",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_no.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/no.mp3"
           },
           "foilstones": [
             {
@@ -1380,7 +1380,7 @@
           "SegmentNumber": 4,
           "prompt": {
             "PromptText": "mal",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_mal.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/mal.mp3"
           },
           "foilstones": [
             {
@@ -3082,7 +3082,7 @@
           "SegmentNumber": 0,
           "prompt": {
             "PromptText": "mi",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_mi.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/mi.mp3"
           },
           "foilstones": [
             {
@@ -3108,7 +3108,7 @@
           "SegmentNumber": 1,
           "prompt": {
             "PromptText": "il",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_il.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/il.mp3"
           },
           "foilstones": [
             {
@@ -3134,7 +3134,7 @@
           "SegmentNumber": 2,
           "prompt": {
             "PromptText": "ni",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_ni.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/ni.mp3"
           },
           "foilstones": [
             {
@@ -3163,7 +3163,7 @@
           "SegmentNumber": 3,
           "prompt": {
             "PromptText": "fil",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_fil.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/fil.mp3"
           },
           "foilstones": [
             {
@@ -3192,7 +3192,7 @@
           "SegmentNumber": 4,
           "prompt": {
             "PromptText": "fil",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_fil.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/fil.mp3"
           },
           "foilstones": [
             {
@@ -3236,7 +3236,7 @@
           "SegmentNumber": 0,
           "prompt": {
             "PromptText": "dix",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_dix.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/dix.mp3"
           },
           "foilstones": [
             {
@@ -3265,7 +3265,7 @@
           "SegmentNumber": 1,
           "prompt": {
             "PromptText": "mi",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_mi.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/mi.mp3"
           },
           "foilstones": [
             {
@@ -3294,7 +3294,7 @@
           "SegmentNumber": 2,
           "prompt": {
             "PromptText": "mi",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_mi.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/mi.mp3"
           },
           "foilstones": [
             {
@@ -3320,7 +3320,7 @@
           "SegmentNumber": 3,
           "prompt": {
             "PromptText": "mi",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_mi.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/mi.mp3"
           },
           "foilstones": [
             {
@@ -3349,7 +3349,7 @@
           "SegmentNumber": 4,
           "prompt": {
             "PromptText": "ni",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_ni.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/ni.mp3"
           },
           "foilstones": [
             {
@@ -5192,7 +5192,7 @@
           "SegmentNumber": 0,
           "prompt": {
             "PromptText": "sur",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_sur.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/sur.mp3"
           },
           "foilstones": [
             {
@@ -5221,7 +5221,7 @@
           "SegmentNumber": 1,
           "prompt": {
             "PromptText": "du",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_du.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/du.mp3"
           },
           "foilstones": [
             {
@@ -5253,7 +5253,7 @@
           "SegmentNumber": 2,
           "prompt": {
             "PromptText": "mur",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_mur.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/mur.mp3"
           },
           "foilstones": [
             {
@@ -5282,7 +5282,7 @@
           "SegmentNumber": 3,
           "prompt": {
             "PromptText": "bu",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_bu.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/bu.mp3"
           },
           "foilstones": [
             {
@@ -5311,7 +5311,7 @@
           "SegmentNumber": 4,
           "prompt": {
             "PromptText": "lu",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_lu.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/lu.mp3"
           },
           "foilstones": [
             {
@@ -5352,7 +5352,7 @@
           "SegmentNumber": 0,
           "prompt": {
             "PromptText": "du",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_du.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/du.mp3"
           },
           "foilstones": [
             {
@@ -5381,7 +5381,7 @@
           "SegmentNumber": 1,
           "prompt": {
             "PromptText": "bu",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_bu.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/bu.mp3"
           },
           "foilstones": [
             {
@@ -5413,7 +5413,7 @@
           "SegmentNumber": 2,
           "prompt": {
             "PromptText": "lu",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_lu.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/lu.mp3"
           },
           "foilstones": [
             {
@@ -5445,7 +5445,7 @@
           "SegmentNumber": 3,
           "prompt": {
             "PromptText": "sur",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_sur.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/sur.mp3"
           },
           "foilstones": [
             {
@@ -5477,7 +5477,7 @@
           "SegmentNumber": 4,
           "prompt": {
             "PromptText": "mur",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_mur.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/mur.mp3"
           },
           "foilstones": [
             {
@@ -7380,7 +7380,7 @@
           "SegmentNumber": 0,
           "prompt": {
             "PromptText": "vol",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_vol.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/vol.mp3"
           },
           "foilstones": [
             {
@@ -7412,7 +7412,7 @@
           "SegmentNumber": 1,
           "prompt": {
             "PromptText": "coq",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_coq.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/coq.mp3"
           },
           "foilstones": [
             {
@@ -7450,7 +7450,7 @@
           "SegmentNumber": 2,
           "prompt": {
             "PromptText": "cor",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_cor.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/cor.mp3"
           },
           "foilstones": [
             {
@@ -7485,7 +7485,7 @@
           "SegmentNumber": 3,
           "prompt": {
             "PromptText": "cor",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_cor.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/cor.mp3"
           },
           "foilstones": [
             {
@@ -7520,7 +7520,7 @@
           "SegmentNumber": 4,
           "prompt": {
             "PromptText": "dot",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_dot.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/dot.mp3"
           },
           "foilstones": [
             {
@@ -7567,7 +7567,7 @@
           "SegmentNumber": 0,
           "prompt": {
             "PromptText": "os",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_os.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/os.mp3"
           },
           "foilstones": [
             {
@@ -7605,7 +7605,7 @@
           "SegmentNumber": 1,
           "prompt": {
             "PromptText": "cor",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_cor.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/cor.mp3"
           },
           "foilstones": [
             {
@@ -7640,7 +7640,7 @@
           "SegmentNumber": 2,
           "prompt": {
             "PromptText": "vol",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_vol.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/vol.mp3"
           },
           "foilstones": [
             {
@@ -7672,7 +7672,7 @@
           "SegmentNumber": 3,
           "prompt": {
             "PromptText": "os",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_os.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/os.mp3"
           },
           "foilstones": [
             {
@@ -7710,7 +7710,7 @@
           "SegmentNumber": 4,
           "prompt": {
             "PromptText": "vol",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_vol.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/vol.mp3"
           },
           "foilstones": [
             {
@@ -9634,7 +9634,7 @@
           "SegmentNumber": 0,
           "prompt": {
             "PromptText": "écu",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_écu.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/écu.mp3"
           },
           "foilstones": [
             {
@@ -9669,7 +9669,7 @@
           "SegmentNumber": 1,
           "prompt": {
             "PromptText": "né",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_né.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/né.mp3"
           },
           "foilstones": [
             {
@@ -9704,7 +9704,7 @@
           "SegmentNumber": 2,
           "prompt": {
             "PromptText": "été",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_été.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/été.mp3"
           },
           "foilstones": [
             {
@@ -9742,7 +9742,7 @@
           "SegmentNumber": 3,
           "prompt": {
             "PromptText": "blé",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_blé.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/blé.mp3"
           },
           "foilstones": [
             {
@@ -9777,7 +9777,7 @@
           "SegmentNumber": 4,
           "prompt": {
             "PromptText": "écu",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_écu.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/écu.mp3"
           },
           "foilstones": [
             {
@@ -9824,7 +9824,7 @@
           "SegmentNumber": 0,
           "prompt": {
             "PromptText": "né",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_né.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/né.mp3"
           },
           "foilstones": [
             {
@@ -9859,7 +9859,7 @@
           "SegmentNumber": 1,
           "prompt": {
             "PromptText": "né",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_né.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/né.mp3"
           },
           "foilstones": [
             {
@@ -9897,7 +9897,7 @@
           "SegmentNumber": 2,
           "prompt": {
             "PromptText": "mél",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_mél.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/mél.mp3"
           },
           "foilstones": [
             {
@@ -9935,7 +9935,7 @@
           "SegmentNumber": 3,
           "prompt": {
             "PromptText": "été",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_été.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/été.mp3"
           },
           "foilstones": [
             {
@@ -9973,7 +9973,7 @@
           "SegmentNumber": 4,
           "prompt": {
             "PromptText": "blé",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_blé.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/blé.mp3"
           },
           "foilstones": [
             {
@@ -11915,7 +11915,7 @@
           "SegmentNumber": 0,
           "prompt": {
             "PromptText": "om",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_om.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/om.mp3"
           },
           "foilstones": [
             {
@@ -11950,7 +11950,7 @@
           "SegmentNumber": 1,
           "prompt": {
             "PromptText": "un",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_un.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/un.mp3"
           },
           "foilstones": [
             {
@@ -11985,7 +11985,7 @@
           "SegmentNumber": 2,
           "prompt": {
             "PromptText": "um",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_um.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/um.mp3"
           },
           "foilstones": [
             {
@@ -12020,7 +12020,7 @@
           "SegmentNumber": 3,
           "prompt": {
             "PromptText": "an",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_an.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/an.mp3"
           },
           "foilstones": [
             {
@@ -12055,7 +12055,7 @@
           "SegmentNumber": 4,
           "prompt": {
             "PromptText": "um",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_um.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/um.mp3"
           },
           "foilstones": [
             {
@@ -12102,7 +12102,7 @@
           "SegmentNumber": 0,
           "prompt": {
             "PromptText": "un",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_un.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/un.mp3"
           },
           "foilstones": [
             {
@@ -12137,7 +12137,7 @@
           "SegmentNumber": 1,
           "prompt": {
             "PromptText": "an",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_an.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/an.mp3"
           },
           "foilstones": [
             {
@@ -12172,7 +12172,7 @@
           "SegmentNumber": 2,
           "prompt": {
             "PromptText": "on",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_on.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/on.mp3"
           },
           "foilstones": [
             {
@@ -12207,7 +12207,7 @@
           "SegmentNumber": 3,
           "prompt": {
             "PromptText": "om",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_om.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/om.mp3"
           },
           "foilstones": [
             {
@@ -12242,7 +12242,7 @@
           "SegmentNumber": 4,
           "prompt": {
             "PromptText": "am",
-            "PromptAudio": "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_words_am.mp3"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/french/audios/am.mp3"
           },
           "foilstones": [
             {
