@@ -70,12 +70,12 @@ let audioUrls = [
   "./assets/audios/timeout.mp3",
   "./assets/audios/LevelWinFanfare.mp3",
   "./assets/audios/LevelLoseFanfare.mp3",
-  "./assets/audios/ButtonClick.wav",
-  "./lang/" + lang + "/audios/fantastic.WAV",
-  "./lang/" + lang + "/audios/great.wav",
+  "./assets/audios/ButtonClick.mp3",
+  "./lang/" + lang + "/audios/fantastic.mp3",
+  "./lang/" + lang + "/audios/great.mp3",
   "./assets/audios/Monster Spits wrong stones-01.mp3",
   "./assets/audios/Disapointed-05.mp3",
-  "./assets/audios/Eat.mp3"
+  "./assets/audios/Eat.mp3",
 ];
 
 function loadAudio(url) {
