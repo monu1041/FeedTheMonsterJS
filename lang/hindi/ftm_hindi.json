@@ -1490,8 +1490,8 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/1.mp3",
-            "PromptText": "1"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ई.mp3",
+            "PromptText": "ई"
           },
           "foilstones": [
             {
@@ -1663,8 +1663,8 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/1.mp3",
-            "PromptText": "1"
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ई.mp3",
+            "PromptText": "ई"
           },
           "foilstones": [
             {
