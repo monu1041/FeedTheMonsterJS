@@ -56,15 +56,15 @@ var images = {
 
 var audioUrl = {
   phraseAudios: [
-    "./lang/" + lang + "/audios/fantastic.WAV",
+    "./lang/" + lang + "/audios/fantastic.mp3",
     // "./assets/audios/good job.WAV",
-    "./lang/" + lang + "/audios/great.wav",
+    "./lang/" + lang + "/audios/great.mp3",
   ],
   monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
   monsterEat: "./assets/audios/Eat.mp3",
   monsterHappy: "./assets/audios/Cheering-02.mp3",
   monsterSad: "./assets/audios/Disapointed-05.mp3",
-  buttonClick: "./assets/audios/ButtonClick.wav",
+  buttonClick: "./assets/audios/ButtonClick.mp3",
 };
 var self: any;
 var word_dropped_stones = 0;

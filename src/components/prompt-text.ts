@@ -23,16 +23,16 @@ export class PromptText {
   public context: any;
   public prompt_image: any;
   public targetStones: any;
-  public rightToLeft:boolean;
+  public rightToLeft: boolean;
 
-  constructor(game, levelStart, currentPuzzleData, levelData,rightToLeft) {
+  constructor(game, levelStart, currentPuzzleData, levelData, rightToLeft) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
     this.canvasStack = new CanvasStack("canvas");
     this.levelStart = levelStart;
     this.levelData = levelData;
-    this.rightToLeft =rightToLeft;
+    this.rightToLeft = rightToLeft;
     self = this;
     this.currentPromptText = currentPuzzleData.prompt.promptText;
     this.currentPuzzleData = currentPuzzleData;
@@ -101,27 +101,28 @@ export class PromptText {
     this.canvasStack.deleteLayer(this.id);
   }
   drawArabic(droppedStones = 0) {
-    const promptTextLetters = this.currentPromptText.split("");
-    var x =
-      this.width / 2 - this.context.measureText(this.currentPromptText).width;
+    console.log("Prompt", this.currentPromptText);
+    var x = this.width / 2;
     const y = this.height * 0.26;
-    var fontSize = 20;
-
     if (this.levelData.levelMeta.levelType == "LetterInWord") {
       var letterInWord = this.currentPromptText.replace(
         new RegExp(this.currentPuzzleData.targetStones[0], "g"),
         ""
       );
-      x = x + this.context.measureText(letterInWord).width + 5;
-      this.context.fillStyle = "black";
-      this.context.fillText(letterInWord, x, y);
       this.context.fillStyle = "red";
       this.context.fillText(
         this.targetStones[0],
-        x + this.context.measureText(letterInWord).width - 20,
+        x + this.context.measureText(letterInWord).width / 2,
+        y
+      );
+      this.context.fillStyle = "black";
+      this.context.fillText(
+        letterInWord,
+        x - this.context.measureText(this.targetStones[0]).width / 2,
         y
       );
     } else if (this.levelData.levelMeta.levelType == "Word") {
+      x = x - this.context.measureText(this.currentPromptText).width * 0.8;
       for (let i = this.targetStones.length - 1; i >= 0; i--) {
         x = x + this.context.measureText(this.targetStones[i]).width + 5;
         // this.context.textAlign = "center";
@@ -134,7 +135,6 @@ export class PromptText {
         }
       }
     } else {
-      x = x + this.context.measureText(this.currentPromptText).width + 5;
       this.context.fillStyle = "black";
       this.context.fillText(this.currentPromptText, x, y);
     }

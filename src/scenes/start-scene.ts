@@ -132,14 +132,10 @@ export class StartScene {
       this.height / 2
     );
 
-    this.context.font = 'bold 40px Arial';
-    this.context.fillStyle = 'white';
-    this.context.textAlign = 'center';
-    this.context.fillText(
-      self.data.title,
-      this.width * 0.5,
-      this.height / 10
-    );
+    this.context.font = "bold 40px Arial";
+    this.context.fillStyle = "white";
+    this.context.textAlign = "center";
+    this.context.fillText(self.data.title, this.width * 0.5, this.height / 10);
     // loadingScreen(false);
     //  document.getElementById("loading-screen").style.display = "none";
   }
@@ -193,7 +189,7 @@ export class StartScene {
           });
           toggleBtn.style.display = "none";
           aboutCompanyElement.style.display = "none";
-          new Sound().playSound("./assets/audios/ButtonClick.wav", ButtonClick);
+          new Sound().playSound("./assets/audios/ButtonClick.mp3", ButtonClick);
           self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
           new LevelSelectionScreen(self.canvas, data);
           self.canvasStack.deleteLayer(PlayButtonLayer);

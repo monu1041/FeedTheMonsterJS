@@ -14088,12 +14088,12 @@ let audioUrls = [
     "./assets/audios/timeout.mp3",
     "./assets/audios/LevelWinFanfare.mp3",
     "./assets/audios/LevelLoseFanfare.mp3",
-    "./assets/audios/ButtonClick.wav",
-    "./lang/" + _global_variables_js__WEBPACK_IMPORTED_MODULE_0__.lang + "/audios/fantastic.WAV",
-    "./lang/" + _global_variables_js__WEBPACK_IMPORTED_MODULE_0__.lang + "/audios/great.wav",
+    "./assets/audios/ButtonClick.mp3",
+    "./lang/" + _global_variables_js__WEBPACK_IMPORTED_MODULE_0__.lang + "/audios/fantastic.mp3",
+    "./lang/" + _global_variables_js__WEBPACK_IMPORTED_MODULE_0__.lang + "/audios/great.mp3",
     "./assets/audios/Monster Spits wrong stones-01.mp3",
     "./assets/audios/Disapointed-05.mp3",
-    "./assets/audios/Eat.mp3"
+    "./assets/audios/Eat.mp3",
 ];
 function loadAudio(url) {
     return new Promise((resolve, reject) => {
@@ -14770,19 +14770,18 @@ class PromptText {
         this.canvasStack.deleteLayer(this.id);
     }
     drawArabic(droppedStones = 0) {
-        const promptTextLetters = this.currentPromptText.split("");
-        var x = this.width / 2 - this.context.measureText(this.currentPromptText).width;
+        console.log("Prompt", this.currentPromptText);
+        var x = this.width / 2;
         const y = this.height * 0.26;
-        var fontSize = 20;
         if (this.levelData.levelMeta.levelType == "LetterInWord") {
             var letterInWord = this.currentPromptText.replace(new RegExp(this.currentPuzzleData.targetStones[0], "g"), "");
-            x = x + this.context.measureText(letterInWord).width + 5;
-            this.context.fillStyle = "black";
-            this.context.fillText(letterInWord, x, y);
             this.context.fillStyle = "red";
-            this.context.fillText(this.targetStones[0], x + this.context.measureText(letterInWord).width - 20, y);
+            this.context.fillText(this.targetStones[0], x + this.context.measureText(letterInWord).width / 2, y);
+            this.context.fillStyle = "black";
+            this.context.fillText(letterInWord, x - this.context.measureText(this.targetStones[0]).width / 2, y);
         }
         else if (this.levelData.levelMeta.levelType == "Word") {
+            x = x - this.context.measureText(this.currentPromptText).width * 0.8;
             for (let i = this.targetStones.length - 1; i >= 0; i--) {
                 x = x + this.context.measureText(this.targetStones[i]).width + 5;
                 // this.context.textAlign = "center";
@@ -14797,7 +14796,6 @@ class PromptText {
             }
         }
         else {
-            x = x + this.context.measureText(this.currentPromptText).width + 5;
             this.context.fillStyle = "black";
             this.context.fillText(this.currentPromptText, x, y);
         }
@@ -16319,13 +16317,13 @@ class LevelSelectionScreen {
                     (y - s.y - self.canvas.height / 20) *
                         (y - s.y - self.canvas.height / 20)) < 45) {
                     if (_global_variables_js__WEBPACK_IMPORTED_MODULE_6__.Debugger.DebugMode) {
-                        self.sound.playSound("./assets/audios/ButtonClick.wav", _common_common_js__WEBPACK_IMPORTED_MODULE_3__.ButtonClick);
+                        self.sound.playSound("./assets/audios/ButtonClick.mp3", _common_common_js__WEBPACK_IMPORTED_MODULE_3__.ButtonClick);
                         self.sound.pauseSound();
                         levelNumber = s.index + level - 1;
                         self.startGame(levelNumber);
                     }
                     else if (s.index + level - 1 <= unlockLevelIndex + 1) {
-                        self.sound.playSound("./assets/audios/ButtonClick.wav", _common_common_js__WEBPACK_IMPORTED_MODULE_3__.ButtonClick);
+                        self.sound.playSound("./assets/audios/ButtonClick.mp3", _common_common_js__WEBPACK_IMPORTED_MODULE_3__.ButtonClick);
                         self.sound.pauseSound();
                         levelNumber = s.index + level - 1;
                         self.startGame(levelNumber);
@@ -16383,7 +16381,7 @@ class LevelSelectionScreen {
         }
     }
     startGame(level_number) {
-        console.log('LevelDatas', self.data);
+        console.log("LevelDatas", self.data);
         this.sound.pauseSound();
         new _game_js__WEBPACK_IMPORTED_MODULE_2__.Game(this.canvas.width, this.canvas.height, self.data.levels[level_number], self.gameSceneCallBack, self.data.FeedbackTexts, self.data.rightToLeft);
     }
@@ -16511,15 +16509,15 @@ var images = {
 };
 var audioUrl = {
     phraseAudios: [
-        "./lang/" + _global_variables_js__WEBPACK_IMPORTED_MODULE_12__.lang + "/audios/fantastic.WAV",
+        "./lang/" + _global_variables_js__WEBPACK_IMPORTED_MODULE_12__.lang + "/audios/fantastic.mp3",
         // "./assets/audios/good job.WAV",
-        "./lang/" + _global_variables_js__WEBPACK_IMPORTED_MODULE_12__.lang + "/audios/great.wav",
+        "./lang/" + _global_variables_js__WEBPACK_IMPORTED_MODULE_12__.lang + "/audios/great.mp3",
     ],
     monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
     monsterEat: "./assets/audios/Eat.mp3",
     monsterHappy: "./assets/audios/Cheering-02.mp3",
     monsterSad: "./assets/audios/Disapointed-05.mp3",
-    buttonClick: "./assets/audios/ButtonClick.wav",
+    buttonClick: "./assets/audios/ButtonClick.mp3",
 };
 var self;
 var word_dropped_stones = 0;
@@ -17031,9 +17029,9 @@ class StartScene {
         this.context.drawImage(fenchImg, -this.width * 0.4, this.height / 3, this.width, this.height / 3);
         this.context.drawImage(hillImg, -this.width * 0.25, this.height / 2, this.width * 1.5, this.height / 2);
         this.context.drawImage(grassImg, -this.width * 0.25, this.height / 2 + (this.height / 2) * 0.1, this.width * 1.5, this.height / 2);
-        this.context.font = 'bold 40px Arial';
-        this.context.fillStyle = 'white';
-        this.context.textAlign = 'center';
+        this.context.font = "bold 40px Arial";
+        this.context.fillStyle = "white";
+        this.context.textAlign = "center";
         this.context.fillText(self.data.title, this.width * 0.5, this.height / 10);
         // loadingScreen(false);
         //  document.getElementById("loading-screen").style.display = "none";
@@ -17069,7 +17067,7 @@ class StartScene {
                     });
                     toggleBtn.style.display = "none";
                     aboutCompanyElement.style.display = "none";
-                    new _common_sound_js__WEBPACK_IMPORTED_MODULE_1__["default"]().playSound("./assets/audios/ButtonClick.wav", _common_common_js__WEBPACK_IMPORTED_MODULE_0__.ButtonClick);
+                    new _common_sound_js__WEBPACK_IMPORTED_MODULE_1__["default"]().playSound("./assets/audios/ButtonClick.mp3", _common_common_js__WEBPACK_IMPORTED_MODULE_0__.ButtonClick);
                     self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
                     new _level_selection_scene_js__WEBPACK_IMPORTED_MODULE_6__.LevelSelectionScreen(self.canvas, data);
                     self.canvasStack.deleteLayer(_common_common_js__WEBPACK_IMPORTED_MODULE_0__.PlayButtonLayer);
