@@ -113,7 +113,7 @@ export class TimerTicking {
           self.isTimerStarted = true;
         }
       }
-    }, 5000);
+    }, 3000);
   }
   stopTimer() {
     this.isTimerStarted = false;
