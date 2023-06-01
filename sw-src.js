@@ -7,6 +7,8 @@ workbox.precaching.precacheAndRoute(self.__WB_MANIFEST, {
 });
 var number = 0;
 var version = 1.1;
+var fetchResult = 0;
+var clientId = "CacheData1";
 // self.addEventListener('activate', function(e) {
 //     console.log("activated");
 //
@@ -21,6 +23,12 @@ self.addEventListener("install", async function (e) {
       } // The value passed from the main JavaScript file
     }
   });
+  // self.addEventListener('connect', (event) => {
+  //   const client = event.source;
+  //   clientId = client.id;
+  //   // Store the clientId for later use
+  //   // ...
+  // });
   self.skipWaiting();
 });
 const channel = new BroadcastChannel("my-channel");
@@ -34,7 +42,6 @@ channel.addEventListener("message", async function (event) {
     await getCacheName(event.data.data);
   }
 });
-
 self.registration.addEventListener("updatefound", function (e) {
   caches.keys().then((cacheNames) => {
     cacheNames.forEach((cacheName) => {
@@ -49,20 +56,27 @@ self.registration.addEventListener("updatefound", function (e) {
     });
   });
 });
-function cacheAudiosFiles(file, cacheName, length) {
-  caches.open(cacheName).then(function (cache) {
-    cache.add(file).finally(() => {
-      number = number + 1;
-      self.clients.matchAll().then((clients) => {
-        clients.forEach((client) =>
-          client.postMessage({
-            msg: "Loading",
-            data: Math.round((number / (length * 5)) * 100),
-          })
-        );
+
+
+async function cacheAudiosFiles(file, cacheName, length) {
+
+  const cache = await caches.open(cacheName);
+  await cache.add(file).finally(function(){
+    number = number + 1;
+    if (number <= length * 5) {
+      channel.postMessage({
+        msg: "Loading",
+        data: Math.round((number / (length * 5)) * 100),
       });
-    });
+    } else {
+      channel.postMessage({
+        msg: "Loading",
+        data: 100,
+      });
+    }
   });
+
+ 
 }
 function cacheLangAssets(file, cacheName) {
   caches.open(cacheName).then((cache) => {
@@ -76,7 +90,6 @@ function getCacheName(language) {
     });
   });
 }
-
 function getALLAudioUrls(cacheName, language) {
   [
     "./lang/" + language + "/audios/fantastic.WAV",
@@ -88,22 +101,23 @@ function getALLAudioUrls(cacheName, language) {
   ].forEach((res) => {
     cacheLangAssets(res, workbox.core.cacheNames.precache + language);
   });
-
   fetch("./lang/" + language + "/ftm_" + language + ".json", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   }).then((res) =>
-    res.json().then((data) => {
+    res.json().then(async (data) => {
       for (var i = 0; i < data.Levels.length; i++) {
-        data.Levels[i].Puzzles.forEach((element) => {
-          cacheAudiosFiles(
-            element.prompt.PromptAudio,
-            workbox.core.cacheNames.precache + language,
-            data.Levels.length
-          );
-        });
+        await Promise.all(
+          data.Levels[i].Puzzles.map(async (element) => {
+            await cacheAudiosFiles(
+              element.prompt.PromptAudio,
+              workbox.core.cacheNames.precache + language,
+              data.Levels.length
+            );
+          })
+        );
       }
     })
   );

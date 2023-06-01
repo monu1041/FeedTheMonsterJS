@@ -23,6 +23,7 @@ declare global {
   var descriptionText: string;
 }
 const channel = new BroadcastChannel("my-channel");
+let loadingElement = document.getElementById("loading_number");
 let is_cached = localStorage.getItem(IsCached)
   ? new Map(JSON.parse(localStorage.getItem(IsCached)))
   : new Map();
@@ -53,7 +54,7 @@ window.addEventListener("load", async function () {
   // }
   globalThis.aboutCompany = jsonData.aboutCompany;
   globalThis.descriptionText = jsonData.descriptionText;
-
+ 
   window.addEventListener("resize", async () => {
     if (is_cached.has(lang)) {
       Debugger.DevelopmentLink
@@ -95,13 +96,20 @@ function registerWorkbox(): void {
   if ("serviceWorker" in navigator) {
     let wb = new Workbox("./sw.js", {});
     wb.register().then(handleServiceWorkerRegistration);
-    if (!is_cached.has(lang)) {
+    if (!is_cached.has(lang) && wb.active) {
       channel.postMessage({ command: "Cache", data: lang });
     }
-    navigator.serviceWorker.addEventListener(
-      "message",
-      handleServiceWorkerMessage
-    );
+    if(!is_cached.has(lang))
+    {
+      channel.addEventListener(
+        "message",
+        handleServiceWorkerMessage
+      );
+    }
+    else{
+      channel.removeEventListener('message',()=>{});
+    }
+    
   }
 }
 function handleServiceWorkerRegistration(registration): void {
@@ -138,9 +146,10 @@ function handleVersionUpdate(data) {
   }
 }
 function handleLoadingMessage(data): void {
-  document.getElementById("loading_number").innerHTML =
+  loadingElement.innerHTML =
     " " + " downloading... " + data.data + "%";
   if (data.data % 100 == 0) {
+    // loadingElement.innerHTML = '100';
     is_cached.set(lang, "true");
     localStorage.setItem(
       IsCached,
