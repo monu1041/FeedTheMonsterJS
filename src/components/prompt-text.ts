@@ -16,8 +16,8 @@ export class PromptText {
   public currentPromptText: any;
   public currentPuzzleData: any;
   public fntstOrGrtImgArr: any;
-  public fantastic_image: any;
-  public great_image: any;
+  // public fantastic_image: any;
+  // public great_image: any;
   public id: any;
   public canavsElement: any;
   public context: any;
@@ -44,13 +44,13 @@ export class PromptText {
 
   loadFantasticAndGreatImage() {
     var self = this;
-    this.fantastic_image = new Image();
-    this.fantastic_image.src = "./lang/" + lang + "/images/fantastic_01.png";
+    // this.fantastic_image = new Image();
+    // this.fantastic_image.src = "./lang/" + lang + "/images/fantastic_01.png";
 
-    this.fntstOrGrtImgArr.push(this.fantastic_image);
-    this.great_image = new Image();
-    this.great_image.src = "./lang/" + lang + "/images/great_01.png";
-    this.fntstOrGrtImgArr.push(this.great_image);
+    // this.fntstOrGrtImgArr.push(this.fantastic_image);
+    // this.great_image = new Image();
+    // this.great_image.src = "./lang/" + lang + "/images/great_01.png";
+    // this.fntstOrGrtImgArr.push(this.great_image);
   }
 
   createCanvas() {
