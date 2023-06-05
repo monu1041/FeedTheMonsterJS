@@ -34,9 +34,9 @@ var profileMonster = new Image();
 profileMonster.src = "./assets/images/idle4.png";
 var self: any;
 let pwa_install_status: any;
-const aboutCompanyElement = <HTMLElement>(
-  document.getElementById("about-company")
-);
+// const aboutCompanyElement = <HTMLElement>(
+//   document.getElementById("about-company")
+// );
 const toggleBtn = document.getElementById("toggle-btn") as HTMLElement;
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
@@ -94,8 +94,8 @@ export class StartScene {
       this.width,
       StartSceneLayer
     );
-    aboutCompanyElement.style.display = "block";
-    aboutCompanyElement.innerHTML = globalThis.aboutCompany;
+    // aboutCompanyElement.style.display = "block";
+    // aboutCompanyElement.innerHTML = globalThis.aboutCompany;
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 2;
@@ -188,7 +188,7 @@ export class StartScene {
             event: "click",
           });
           toggleBtn.style.display = "none";
-          aboutCompanyElement.style.display = "none";
+          // aboutCompanyElement.style.display = "none";
           new Sound().playSound("./assets/audios/ButtonClick.mp3", ButtonClick);
           self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
           new LevelSelectionScreen(self.canvas, data);
