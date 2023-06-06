@@ -19,7 +19,7 @@ declare const app: any;
 let jsonData;
 
 declare global {
-  var aboutCompany: string;
+  // var aboutCompany: string;
   var descriptionText: string;
 }
 const channel = new BroadcastChannel("my-channel");
@@ -51,7 +51,7 @@ window.addEventListener("load", async function () {
   //     is_cached.has(lang) ? is_cached.get(lang) : null
   //   );
   // }
-  globalThis.aboutCompany = jsonData.aboutCompany;
+  // globalThis.aboutCompany = jsonData.aboutCompany;
   globalThis.descriptionText = jsonData.descriptionText;
 
   window.addEventListener("resize", async () => {
