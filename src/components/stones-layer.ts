@@ -410,8 +410,16 @@ export default class StonesLayer {
     s: { img: any; x: number; y: number; text: any },
     canvas: { height: number }
   ) {
-    var imageSize = canvas.height / 13;
-    var textFontSize = canvas.height / 20;
+    var imageSize;
+    var textFontSize;
+    if (this.context.measureText(s.text).width*1.4 > canvas.height / 13) {
+      imageSize = this.context.measureText(s.text).width * 1.1;
+      textFontSize = canvas.height / 25;
+    } else {
+      imageSize = canvas.height / 13;
+      textFontSize = canvas.height / 20;
+    }
+
     var imageCenterOffsetX = imageSize / 2.3;
     var imageCenterOffsetY = imageSize / 1.5;
 
@@ -422,12 +430,12 @@ export default class StonesLayer {
       imageSize,
       imageSize
     );
+
     this.context.fillStyle = "white";
     this.context.font = textFontSize + "px Arial";
     this.context.textAlign = "center";
     this.context.fillText(s.text, s.x, s.y);
   }
-
   createStones(stonepos: any[]) {
 
     var poss = stonepos[0];
