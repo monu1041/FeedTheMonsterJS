@@ -36,7 +36,7 @@ img {
   transform: translate(-50%, 0%);
   z-index: 100;
 }
-#about-company {
+/* #about-company {
   position: absolute;
   display: none;
   left: 50%;
@@ -44,10 +44,10 @@ img {
   width: 100%;
   max-width: 420px;
   height: 30%;
-  background-color: rgba(0, 0, 0, 0.5);
+  /* background-color: rgba(0, 0, 0, 0.5); */
   transform: translate(-50%, 0%);
   z-index: 100;
-}
+} */
 
 #about-company p {
   margin-top: 10%;
