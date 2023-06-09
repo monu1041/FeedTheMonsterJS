@@ -89,10 +89,10 @@ export class PromptText {
     // );
     this.context.font = "bold 24px Arial";
     this.context.fillStyle = "white";
-    this.context.textAlign = "center";
+    // this.context.textAlign = "center";
     this.context.fillText(
       feedBackText,
-      this.game.width / 2,
+      this.game.width / 2 - this.context.measureText(feedBackText).width/2,
       this.height * 0.25
     );
   }
@@ -144,6 +144,8 @@ export class PromptText {
     const x = this.width / 2;
     const y = this.height * 0.26;
     var fontSize = 20;
+    const startPrompttextX = this.width / 2 - this.context.measureText(this.currentPromptText).width / 2;
+    let currentWordWidth = 0;
     var letterHighlight: Array<string> =
       this.currentPuzzleData.targetStones[0].split("");
     for (let i = 0; i < promptTextLetters.length; i++) {
@@ -155,17 +157,20 @@ export class PromptText {
             this.context.fillStyle = "red";
             this.context.fillText(
               promptTextLetters[i],
-              fontSize * i + x - promptTextLetters.length * 6,
+              // fontSize * i + x - promptTextLetters.length * 6,
+              startPrompttextX + currentWordWidth,
               y
             );
           } else {
             this.context.fillStyle = "black";
             this.context.fillText(
               promptTextLetters[i],
-              fontSize * i + x - promptTextLetters.length * 6,
+              // fontSize * i + x - promptTextLetters.length * 6,
+              startPrompttextX + currentWordWidth,
               y
             );
           }
+          // currentWordWidth = this.context.measureText(this.currentPromptText.substring(0, i + 1)).width;
           break;
         }
         case "Word": {
@@ -173,14 +178,16 @@ export class PromptText {
             this.context.fillStyle = "black";
             this.context.fillText(
               promptTextLetters[i],
-              fontSize * i + x - promptTextLetters.length * 6,
+              // fontSize * i + x - promptTextLetters.length * 6,
+              startPrompttextX + currentWordWidth,
               y
             );
           } else {
             this.context.fillStyle = "red";
             this.context.fillText(
               promptTextLetters[i],
-              fontSize * i + x - promptTextLetters.length * 6,
+              // fontSize * i + x - promptTextLetters.length * 6,
+              startPrompttextX + currentWordWidth,
               y
             );
           }
@@ -195,6 +202,8 @@ export class PromptText {
           );
         }
       }
+      console.log(" itsDone? ");
+      currentWordWidth = this.context.measureText(this.currentPromptText.substring(0, i + 1)).width;
     }
   }
   draw(droppedStones = 0) {
@@ -208,7 +217,7 @@ export class PromptText {
     );
     this.context.fillStyle = "black";
     this.context.font = 30 + "px Arial";
-    this.context.textAlign = "center";
+    // this.context.textAlign = "center";
     this.rightToLeft
       ? this.drawArabic(droppedStones)
       : this.drawOthers(droppedStones);
