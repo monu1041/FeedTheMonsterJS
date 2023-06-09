@@ -1,5 +1,5 @@
 {
-  "title": "Feed The Monster7",
+  "title": "Feed The Monster",
   "OtherAudios": {
     "Select your player": "https://feedthemonsterdev.curiouscontent.org/lang/english/audios/Select-your-player.mp3",
     "Watch me grow": "https://feedthemonsterdev.curiouscontent.org/lang/english/audios/watch-me-grow.mp3",
@@ -24677,7 +24677,7 @@
     "https://feedthemonsterdev.curiouscontent.org/lang/english/audios/amazing.mp3"
   ],
   "version": 1.1,
-  "aboutCompany": "<p>Feed The Monster teaches your child the fundamentals of reading.<br/>Collect monster eggs and feed them letters so they<br />can grow into new friends! <br />Supported by Curious Learning.</p>",
+  "aboutCompany": "",
   "descriptionText": "<p>Thanks for trying our Feed The Monster web version!<br />To play the whole game, visit us on the <a href='https://play.google.com/store/apps/details?id=com.eduapp4syria.feedthemonsterENGLISH'>Google Play Store.</a></p>",
   "RightToLeft": false
 }
