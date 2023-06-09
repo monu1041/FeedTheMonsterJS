@@ -1262,7 +1262,7 @@
               "StoneText": "r"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "c"
             },
             {
               "StoneText": "r"
@@ -1344,7 +1344,7 @@
               "StoneText": "m"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "r"
             },
             {
               "StoneText": "a"
@@ -1411,7 +1411,7 @@
               "StoneText": "p"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "c"
             },
             {
               "StoneText": "a"
@@ -1443,7 +1443,7 @@
               "StoneText": "a"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "r"
             }
           ]
         }
@@ -2135,7 +2135,7 @@
               "StoneText": "d"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "p"
             }
           ]
         },
@@ -3360,7 +3360,7 @@
               "StoneText": "n"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "p"
             },
             {
               "StoneText": "t"
@@ -3445,7 +3445,7 @@
               "StoneText": "n"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "c"
             }
           ]
         },
@@ -3506,7 +3506,7 @@
               "StoneText": "a"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "v"
             }
           ]
         },
@@ -3550,7 +3550,7 @@
               "StoneText": "i"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "a"
             },
             {
               "StoneText": "j"
@@ -5510,7 +5510,7 @@
               "StoneText": "e"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "c"
             }
           ]
         },
@@ -5615,7 +5615,7 @@
               "StoneText": "i"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "q"
             }
           ]
         },
@@ -5714,7 +5714,7 @@
               "StoneText": "u"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "t"
             },
             {
               "StoneText": "e"
@@ -7667,7 +7667,7 @@
               "StoneText": "i"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "r"
             }
           ]
         },
@@ -7772,7 +7772,7 @@
               "StoneText": "o"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "q"
             }
           ]
         }
@@ -7819,7 +7819,7 @@
               "StoneText": "o"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "t"
             }
           ]
         },
@@ -7927,7 +7927,7 @@
               "StoneText": "é"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "p"
             }
           ]
         },
