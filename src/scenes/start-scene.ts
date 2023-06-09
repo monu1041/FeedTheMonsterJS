@@ -28,15 +28,15 @@ var grassImg = new Image();
 grassImg.src = "./assets/images/FG_a_v01.png";
 var fenchImg = new Image();
 fenchImg.src = "./assets/images/fence_v01.png";
-var title = new Image();
-title.src = "./lang/" + lang + "/images/title.png";
+// var title = new Image();
+// title.src = "./lang/" + lang + "/images/title.png";
 var profileMonster = new Image();
 profileMonster.src = "./assets/images/idle4.png";
 var self: any;
 let pwa_install_status: any;
-const aboutCompanyElement = <HTMLElement>(
-  document.getElementById("about-company")
-);
+// const aboutCompanyElement = <HTMLElement>(
+//   document.getElementById("about-company")
+// );
 const toggleBtn = document.getElementById("toggle-btn") as HTMLElement;
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
@@ -94,8 +94,8 @@ export class StartScene {
       this.width,
       StartSceneLayer
     );
-    aboutCompanyElement.style.display = "block";
-    aboutCompanyElement.innerHTML = globalThis.aboutCompany;
+    // aboutCompanyElement.style.display = "block";
+    // aboutCompanyElement.innerHTML = globalThis.aboutCompany;
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext("2d");
     this.canavsElement.style.zIndex = 2;
@@ -132,14 +132,10 @@ export class StartScene {
       this.height / 2
     );
 
-    this.context.font = 'bold 40px Arial';
-    this.context.fillStyle = 'white';
-    this.context.textAlign = 'center';
-    this.context.fillText(
-      self.data.title,
-      this.width * 0.5,
-      this.height / 10
-    );
+    this.context.font = "bold 40px Arial";
+    this.context.fillStyle = "white";
+    this.context.textAlign = "center";
+    this.context.fillText(self.data.title, this.width * 0.5, this.height / 10);
     // loadingScreen(false);
     //  document.getElementById("loading-screen").style.display = "none";
   }
@@ -192,8 +188,8 @@ export class StartScene {
             event: "click",
           });
           toggleBtn.style.display = "none";
-          aboutCompanyElement.style.display = "none";
-          new Sound().playSound("./assets/audios/ButtonClick.wav", ButtonClick);
+          // aboutCompanyElement.style.display = "none";
+          new Sound().playSound("./assets/audios/ButtonClick.mp3", ButtonClick);
           self.context.clearRect(0, 0, self.canvas.width, self.canvas.height);
           new LevelSelectionScreen(self.canvas, data);
           self.canvasStack.deleteLayer(PlayButtonLayer);

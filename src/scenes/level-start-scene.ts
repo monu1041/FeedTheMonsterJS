@@ -38,8 +38,8 @@ var images = {
   rotating_clock: "./assets/images/timer.png",
   fenchImg: "./assets/images/fence_v01.png",
   promptImg: "./assets/images/promptTextBg.png",
-  fantastic: "./lang/" + lang + "/images/fantastic_01.png",
-  great: "./lang/" + lang + "/images/great_01.png",
+  // fantastic: "./lang/" + lang + "/images/fantastic_01.png",
+  // great: "./lang/" + lang + "/images/great_01.png",
   autumnBgImg: "./assets/images/Autumn_bg_v01.jpg",
   autumnHillImg: "./assets/images/Autumn_hill_v01.png",
   autumnSignImg: "./assets/images/Autumn_sign_v01.png",
@@ -56,15 +56,15 @@ var images = {
 
 var audioUrl = {
   phraseAudios: [
-    "./lang/" + lang + "/audios/fantastic.WAV",
+    "./lang/" + lang + "/audios/fantastic.mp3",
     // "./assets/audios/good job.WAV",
-    "./lang/" + lang + "/audios/great.wav",
+    "./lang/" + lang + "/audios/great.mp3",
   ],
   monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
   monsterEat: "./assets/audios/Eat.mp3",
   monsterHappy: "./assets/audios/Cheering-02.mp3",
   monsterSad: "./assets/audios/Disapointed-05.mp3",
-  buttonClick: "./assets/audios/ButtonClick.wav",
+  buttonClick: "./assets/audios/ButtonClick.mp3",
 };
 var self: any;
 var word_dropped_stones = 0;
@@ -106,26 +106,28 @@ export class LevelStartScene {
   public showTutorial: boolean;
   public feedBackTexts: any;
   public isPuzzleCompleted: boolean;
-
+  public rightToLeft: boolean;
   constructor({
     game,
     levelData,
     levelStartCallBack,
     monsterPhaseNumber,
     feedBackTexts,
+    rightToLeft,
   }: {
     game: Game;
     levelData: { puzzles: any[] };
     levelStartCallBack: any;
     monsterPhaseNumber: any;
-    feedBackTexts: any
+    feedBackTexts: any;
+    rightToLeft: boolean;
   }) {
     this.game = game;
     this.width = game.width;
     this.height = game.height;
     self = this;
     this.monster = new Monster(game);
-
+    this.rightToLeft = rightToLeft;
     this.audio = new Sound();
     this.canvasStack = new CanvasStack("canvas");
     this.monsterPhaseNumber = monsterPhaseNumber || 1;
@@ -136,7 +138,8 @@ export class LevelStartScene {
       game,
       this,
       levelData.puzzles[current_puzzle_index],
-      levelData
+      levelData,
+      rightToLeft
     );
     this.createCanvas();
 
@@ -168,7 +171,7 @@ export class LevelStartScene {
         }
       } else {
         isGamePause = false;
-        
+
         if (self.isPuzzleCompleted && button_name == "cancel_button") {
           self.timerTicking.stopTimer();
           setTimeout(() => {
@@ -180,11 +183,9 @@ export class LevelStartScene {
             self.promptText.draw();
             self.isPuzzleCompleted = false;
           }, 1000);
-        }
-        else if(button_name == "cancel_button"){
+        } else if (button_name == "cancel_button") {
           self.timerTicking.resumeTimer();
         }
-        
       }
     }
     self.audio.playSound(audioUrl.buttonClick, ButtonClick);
@@ -212,7 +213,6 @@ export class LevelStartScene {
     const keys = Object.keys(this.feedBackTexts);
     const selectedKey = keys[randomIndex];
     return this.feedBackTexts[selectedKey];
-   
   }
   getRandomInt(min: number, max: number) {
     min = Math.ceil(min);
@@ -248,7 +248,9 @@ export class LevelStartScene {
         self.isPuzzleCompleted = true;
         self.monster.changeToEatAnimation();
         self.audio.playSound(audioUrl.monsterEat, PhraseAudio);
-        setTimeout(()=>{ self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);},300)
+        setTimeout(() => {
+          self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);
+        }, 300);
         if (emptyTarget) {
           if (navigator.onLine) {
             self.puzzleEndFirebaseEvents(
@@ -265,16 +267,22 @@ export class LevelStartScene {
               audioUrl.phraseAudios[fntsticOrGrtIndex],
               FeedbackAudio
             );
-            self.promptText.showFantasticOrGreat(self.getRandomFeedBackText(fntsticOrGrtIndex));
+            self.promptText.showFantasticOrGreat(
+              self.getRandomFeedBackText(fntsticOrGrtIndex)
+            );
           }, 1000);
-          self.promptText.draw((word_dropped_stones += picked_stone.length));
+          self.promptText.draw(
+            (word_dropped_stones += self.rightToLeft ? 1 : picked_stone.length)
+          );
           self.timerTicking.stopTimer();
           // self.promptText.draw((word_dropped_stones += 1));
           score += 100;
           word_dropped_stones = 0;
           current_puzzle_index += 1;
         } else {
-          self.promptText.draw((word_dropped_stones += picked_stone.length));
+          self.promptText.draw(
+            (word_dropped_stones += self.rightToLeft ? 1 : picked_stone.length)
+          );
         }
       } else {
         self.isPuzzleCompleted = true;
@@ -565,8 +573,6 @@ export class LevelStartScene {
             }
           }, i * 1300.66);
         }
-
-       
       }
 
       self.timerTicking ? (self.timerTicking.isTimerEnded = false) : null;
@@ -586,7 +592,7 @@ export class LevelStartScene {
     var context = this.context;
     var width = this.width;
     var height = this.height;
-    
+
     loadImages(images, function (image) {
       switch (availableBackgroundTypes[backgroundType]) {
         case "Winter":
