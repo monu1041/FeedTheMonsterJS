@@ -12,20 +12,17 @@
         {
           "targetstones": [
             {
-              "StoneText": "e"
+              "StoneText": "a"
             }
           ],
           "SegmentNumber": 0,
           "prompt": {
-            "PromptText": "e",
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/english/audios/e.mp3"
+            "PromptText": "a",
+            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/english/audios/a.mp3"
           },
           "foilstones": [
             {
               "StoneText": "a"
-            },
-            {
-              "StoneText": "e"
             },
             {
               "StoneText": "c"
