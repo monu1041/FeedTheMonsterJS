@@ -92,7 +92,7 @@ export class PromptText {
     // this.context.textAlign = "center";
     this.context.fillText(
       feedBackText,
-      this.game.width / 2 - this.context.measureText(feedBackText).width/2,
+      this.game.width / 2 - this.context.measureText(feedBackText).width / 2,
       this.height * 0.25
     );
   }
@@ -197,12 +197,12 @@ export class PromptText {
           this.context.fillStyle = "black";
           this.context.fillText(
             promptTextLetters[i],
-            fontSize * i + x - promptTextLetters.length * 6,
+            startPrompttextX + currentWordWidth,
+            // fontSize * i + x - promptTextLetters.length * 6,
             y
           );
         }
       }
-      console.log(" itsDone? ");
       currentWordWidth = this.context.measureText(this.currentPromptText.substring(0, i + 1)).width;
     }
   }
