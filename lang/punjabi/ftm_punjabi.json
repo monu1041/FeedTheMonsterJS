@@ -1334,7 +1334,7 @@
               "StoneText": "ਰ"
             },
             {
-              "StoneText": "ਪ"
+              "StoneText": "ਬ"
             }
           ]
         }
@@ -1407,7 +1407,7 @@
               "StoneText": "ਕ"
             },
             {
-              "StoneText": "ਤ"
+              "StoneText": "ਬ"
             }
           ]
         },
@@ -1465,7 +1465,7 @@
               "StoneText": "ਰ"
             },
             {
-              "StoneText": "ਰ"
+              "StoneText": "ਬ"
             }
           ]
         },
@@ -1497,7 +1497,7 @@
               "StoneText": "ਲ"
             },
             {
-              "StoneText": "ੱ"
+              "StoneText": "ਬ"
             }
           ]
         }
@@ -2210,7 +2210,7 @@
               "StoneText": "ਗ"
             },
             {
-              "StoneText": "ਜ"
+              "StoneText": "ਬ"
             }
           ]
         },
@@ -3492,7 +3492,7 @@
               "StoneText": "ਬ"
             },
             {
-              "StoneText": "ਬ"
+              "StoneText": "ਖ"
             }
           ]
         }
@@ -3571,7 +3571,7 @@
               "StoneText": "ਬ"
             },
             {
-              "StoneText": "ੇ"
+              "StoneText": "ਖ"
             }
           ]
         },
@@ -3638,7 +3638,7 @@
               "StoneText": "ਬ"
             },
             {
-              "StoneText": "ੇ"
+              "StoneText": "ਖ"
             }
           ]
         },
@@ -3673,7 +3673,7 @@
               "StoneText": "ਬ"
             },
             {
-              "StoneText": "ਢ"
+              "StoneText": "ਖ"
             }
           ]
         }
@@ -5888,7 +5888,7 @@
               "StoneText": "ੱ"
             },
             {
-              "StoneText": "ਢ"
+              "StoneText": "ਖ"
             },
             {
               "StoneText": "ਡ"
@@ -6005,7 +6005,7 @@
               "StoneText": "ਣ"
             },
             {
-              "StoneText": "ਚ"
+              "StoneText": "ਖ"
             }
           ]
         },
@@ -6110,7 +6110,7 @@
               "StoneText": "ਣ"
             },
             {
-              "StoneText": "ਾ"
+              "StoneText": "ੱ"
             }
           ]
         }
@@ -8249,7 +8249,7 @@
               "StoneText": "ਕ"
             },
             {
-              "StoneText": "ਕ"
+              "StoneText": "ਪ"
             }
           ]
         },
@@ -8372,7 +8372,7 @@
               "StoneText": "ਾ"
             },
             {
-              "StoneText": "ਚ"
+              "StoneText": "ਪ"
             }
           ]
         }
@@ -8428,7 +8428,7 @@
               "StoneText": "ਾ"
             },
             {
-              "StoneText": "ਚ"
+              "StoneText": "ਪ"
             }
           ]
         },
@@ -8545,7 +8545,7 @@
               "StoneText": "ਾ"
             },
             {
-              "StoneText": "ਾ"
+              "StoneText": "ਪ"
             }
           ]
         },
@@ -13798,7 +13798,7 @@
     "https://feedthemonsterdev.curiouscontent.org/lang/punjabi/audios/great.mp3",
     "https://feedthemonsterdev.curiouscontent.org/lang/punjabi/audios/amazing.mp3"
   ],
-  "version": 1.1,
+  "version": 1.2,
   "variant": "a",
   "FeedbackTexts": ["ਸ਼ਾਨਦਾਰ!", "ਬਹੁਤ ਵਧੀਆ!", "ਵਾਹ!"],
   "aboutCompany": "<p>Feed The Monster ਤੁਸੀਂ ਆਪਣੇ ਬੱਚੇ ਨੂੰ ਪੜਾਈ ਦੇ ਮੂਲ ਤੱਤਾਂ ਸਿੱਖਦੇ ਹੋ। <br/>ਮੌਨਸਟਰ ਅੰਡੇ ਇਕੱਠੇ ਕਰੋ ਅਤੇ ਉਨ੍ਹਾਂ ਨੂੰ ਅੱਖਰ ਖਿਲਾਓ ਤਾਂ ਉਹ ਨਵੇਂ ਮਿੱਤਰ ਬਣ ਸਕਣ! <br />Curious Learning ਦੁਆਰਾ ਸਹਿਯੋਗ ਦਿੱਤਾ ਗਿਆ। </p>",
