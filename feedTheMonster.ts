@@ -19,7 +19,6 @@ declare const app: any;
 let jsonData;
 
 declare global {
-  var aboutCompany: string;
   var descriptionText: string;
 }
 const channel = new BroadcastChannel("my-channel");
@@ -111,7 +110,6 @@ function handleServiceWorkerRegistration(registration): void {
   }
 }
 function handleServiceWorkerMessage(event): void {
-
   if (event.data.msg == "Loading") {
     handleLoadingMessage(event.data);
   }
@@ -135,19 +133,18 @@ function handleLoadingMessage(data): void {
 }
 function handleUpdateFoundMessage(): void {
   let text = "Update Found\nPress ok to update.";
-  console.log('Called the Update method');
+  console.log("Called the Update method");
   if (confirm(text) == true) {
     // localStorage.removeItem(IsCached);
     // setTimeout(()=>{
-      window.location.reload();
+    window.location.reload();
     // },3000)
-   
   } else {
     text = "You canceled!";
   }
 }
 function passingDataToContainer() {
   if (window.Android) {
-    window.Android.cachedStatus(is_cached.get(lang)=='true'?true:false);
+    window.Android.cachedStatus(is_cached.get(lang) == "true" ? true : false);
   }
 }

@@ -1223,7 +1223,7 @@
               "StoneText": "حَـ"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "مَـ"
             }
           ]
         }
@@ -1296,7 +1296,7 @@
               "StoneText": "دَ"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "مَـ"
             }
           ]
         },
@@ -1357,7 +1357,7 @@
               "StoneText": "ـمَ"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "مَـ"
             }
           ]
         },
@@ -1389,7 +1389,7 @@
               "StoneText": "ـدَ"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "رَ"
             }
           ]
         }
@@ -2069,7 +2069,7 @@
               "StoneText": "تا"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "فا"
             }
           ]
         },
@@ -3252,7 +3252,7 @@
               "StoneText": "ـرَ"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "فا"
             }
           ]
         }
@@ -3331,7 +3331,7 @@
               "StoneText": "ت"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "فا"
             }
           ]
         },
@@ -3398,7 +3398,7 @@
               "StoneText": "ما"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "حَـ"
             }
           ]
         },
@@ -3433,7 +3433,7 @@
               "StoneText": "سَ"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "سَـ"
             }
           ]
         }
@@ -5378,7 +5378,7 @@
               "StoneText": "شات"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "سَـ"
             }
           ]
         },
@@ -5483,7 +5483,7 @@
               "StoneText": "جا"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "سَـ"
             }
           ]
         },
@@ -5579,7 +5579,7 @@
               "StoneText": "ج"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "سَـ"
             }
           ]
         }
@@ -7514,7 +7514,7 @@
               "StoneText": "ـخو"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "سَـ"
             }
           ]
         },
@@ -7619,7 +7619,7 @@
               "StoneText": "صُـ"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "سَـ"
             }
           ]
         }
@@ -7669,7 +7669,7 @@
               "StoneText": "قَـ"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "سَـ"
             }
           ]
         },
@@ -7777,7 +7777,7 @@
               "StoneText": "طا"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "سَـ"
             }
           ]
         },
@@ -12607,7 +12607,7 @@
     "https://feedthemonsterdev.curiouscontent.org/lang/arabic/audios/great.mp3",
     "https://feedthemonsterdev.curiouscontent.org/lang/arabic/audios/amazing.mp3"
   ],
-  "version": 1.1,
+  "version": 1.2,
   "title": "أطعم الوحش",
   "variant": "a",
   "FeedbackTexts": ["رائع!", "عظيم!", "مدهش!"],
