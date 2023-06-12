@@ -1262,7 +1262,7 @@
               "StoneText": "r"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             },
             {
               "StoneText": "r"
@@ -1344,7 +1344,7 @@
               "StoneText": "m"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             },
             {
               "StoneText": "a"
@@ -1411,7 +1411,7 @@
               "StoneText": "p"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             },
             {
               "StoneText": "a"
@@ -1443,7 +1443,7 @@
               "StoneText": "a"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             }
           ]
         }
@@ -2135,7 +2135,7 @@
               "StoneText": "d"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             }
           ]
         },
@@ -3360,7 +3360,7 @@
               "StoneText": "n"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             },
             {
               "StoneText": "t"
@@ -3445,7 +3445,7 @@
               "StoneText": "n"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             }
           ]
         },
@@ -3506,7 +3506,7 @@
               "StoneText": "a"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             }
           ]
         },
@@ -3550,7 +3550,7 @@
               "StoneText": "i"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             },
             {
               "StoneText": "j"
@@ -5510,7 +5510,7 @@
               "StoneText": "e"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             }
           ]
         },
@@ -5615,7 +5615,7 @@
               "StoneText": "i"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             }
           ]
         },
@@ -5714,7 +5714,7 @@
               "StoneText": "u"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             },
             {
               "StoneText": "e"
@@ -7667,7 +7667,7 @@
               "StoneText": "i"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             }
           ]
         },
@@ -7772,7 +7772,7 @@
               "StoneText": "o"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             }
           ]
         }
@@ -7819,7 +7819,7 @@
               "StoneText": "o"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "a"
             }
           ]
         },
@@ -7927,7 +7927,7 @@
               "StoneText": "é"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             }
           ]
         },
@@ -12808,7 +12808,7 @@
     "https://feedthemonsterdev.curiouscontent.org/lang/brazilianportuguese/audios/great.mp3",
     "https://feedthemonsterdev.curiouscontent.org/lang/brazilianportuguese/audios/amazing.mp3"
   ],
-  "version": 1.1,
+  "version": 1.2,
   "variant": "a",
   "FeedbackTexts": ["Fantástico!", "Uau!", "Incrível!"],
   "RightToLeft": false,

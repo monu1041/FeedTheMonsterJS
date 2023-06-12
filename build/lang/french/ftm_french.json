@@ -1245,7 +1245,7 @@
               "StoneText": "a"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "c"
             }
           ]
         }
@@ -1312,7 +1312,7 @@
               "StoneText": "c"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "n"
             }
           ]
         },
@@ -1358,7 +1358,7 @@
               "StoneText": "n"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             },
             {
               "StoneText": "o"
@@ -2022,7 +2022,7 @@
               "StoneText": "s"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "n"
             },
             {
               "StoneText": "l"
@@ -2170,7 +2170,7 @@
               "StoneText": "s"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "c"
             },
             {
               "StoneText": "x"
@@ -3205,7 +3205,7 @@
               "StoneText": "l"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             }
           ]
         }
@@ -3272,7 +3272,7 @@
               "StoneText": "a"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             },
             {
               "StoneText": "m"
@@ -3327,7 +3327,7 @@
               "StoneText": "n"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             },
             {
               "StoneText": "m"
@@ -3356,7 +3356,7 @@
               "StoneText": "m"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             },
             {
               "StoneText": "i"
@@ -3798,7 +3798,7 @@
           },
           "foilstones": [
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "c"
             },
             {
               "StoneText": "t"
@@ -5295,7 +5295,7 @@
               "StoneText": "u"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             }
           ]
         },
@@ -5397,7 +5397,7 @@
               "StoneText": "u"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "s"
             }
           ]
         },
@@ -5493,7 +5493,7 @@
               "StoneText": "r"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "n"
             }
           ]
         }
@@ -7431,7 +7431,7 @@
               "StoneText": "q"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "n"
             }
           ]
         },
@@ -7539,7 +7539,7 @@
               "StoneText": "t"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "n"
             }
           ]
         }
@@ -7586,7 +7586,7 @@
               "StoneText": "s"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "n"
             }
           ]
         },
@@ -7691,7 +7691,7 @@
               "StoneText": "s"
             },
             {
-              "StoneText": "MagnetLetter"
+              "StoneText": "n"
             }
           ]
         },
@@ -12468,7 +12468,7 @@
     "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_feedbacks_great.mp3",
     "https://curiousreader.org/wp-content/uploads/FRENCH_sounds_feedbacks_amazing.mp3"
   ],
-  "version": 1.1,
+  "version": 1.2,
   "aboutCompany": "<p>Feed The Monster enseigne à votre enfant les bases de la lecture.<br/>Collectionnez des œufs de monstres et donnez-leur des lettres pour qu'ils<br />deviennent de nouveaux amis ! <br />Soutenu par Curious Learning.</p>",
   "descriptionText": "<p>Merci d'avoir essayé notre version Web de Feed The Monster !<br />Pour jouer à l'intégralité du jeu, rendez-nous visite sur <a href='https://play.google.com/store/apps/details?id=com.eduapp4syria.feedthemonsterFrench&pli=1'>Google Play Store.</a></p>",
   "RightToLeft": false
