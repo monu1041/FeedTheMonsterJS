@@ -11,7 +11,7 @@
             }
           ],
           "prompt": {
-            "PromptAudio": "https://feedthemonster.curiouscontent.org/lang/hindi/audios/ग.mp3",
+            "PromptAudio": "https://feedthemonsterdev.curiouscontent.org/lang/hindi/audios/ग.mp3",
             "PromptText": "ग"
           },
           "foilstones": [
