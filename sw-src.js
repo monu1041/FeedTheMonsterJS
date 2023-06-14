@@ -13,10 +13,10 @@ var version = 1.1;
 //
 // });
 self.addEventListener("install", async function (e) {
-  console.log('install event');
+  console.log("install event");
   self.addEventListener("message", async (event) => {
-    console.log('message event inside install event');
-    console.log('Type->',event.data.type);
+    console.log("message event inside install event");
+    console.log("Type->", event.data.type);
     if (event.data.type === "Registration") {
       if (!!!caches.keys().length) {
         number = 0;
@@ -32,7 +32,7 @@ self.addEventListener("activate", function (event) {
   event.waitUntil(self.clients.claim());
 });
 channel.addEventListener("message", async function (event) {
-  console.log('message event');
+  console.log("message event");
   if (event.data.command === "Cache") {
     number = 0;
     await getCacheName(event.data.data);
@@ -40,7 +40,7 @@ channel.addEventListener("message", async function (event) {
 });
 
 self.registration.addEventListener("updatefound", function (e) {
-  console.log('Update event');
+  console.log("Update event");
   caches.keys().then((cacheNames) => {
     cacheNames.forEach((cacheName) => {
       if (cacheName == workbox.core.cacheNames.precache) {
@@ -56,27 +56,37 @@ self.registration.addEventListener("updatefound", function (e) {
 });
 function cacheAudiosFiles(file, cacheName, length) {
   caches.open(cacheName).then(function (cache) {
-    cache.add(file).finally(() => {
-      number = number + 1;
-      self.clients.matchAll().then((clients) => {
-        clients.forEach((client) =>
-         {
-          if(((number / (length * 5)) * 100)<101){
-            client.postMessage({
-              msg: "Loading",
-              data: Math.round((number / (length * 5)) * 100),
-            })
-          }
-          else{
-            client.postMessage({
-              msg: "Loading",
-              data: Math.round(100),
-            })
-          }
-         }
-        );
+    cache
+      .add(
+        self.location.href.includes("https://feedthemonsterdev.curiouscontent.org")
+          ? file.slice(
+              0,
+              file.indexOf("/feedthemonster") + "/feedthemonster".length
+            ) +
+              "dev" +
+              file.slice(
+                file.indexOf("/feedthemonster") + "/feedthemonster".length
+              )
+          : file
+      )
+      .finally(() => {
+        number = number + 1;
+        self.clients.matchAll().then((clients) => {
+          clients.forEach((client) => {
+            if ((number / (length * 5)) * 100 < 101) {
+              client.postMessage({
+                msg: "Loading",
+                data: Math.round((number / (length * 5)) * 100),
+              });
+            } else {
+              client.postMessage({
+                msg: "Loading",
+                data: Math.round(100),
+              });
+            }
+          });
+        });
       });
-    });
   });
 }
 function cacheLangAssets(file, cacheName) {
@@ -93,8 +103,7 @@ function getCacheName(language) {
 }
 
 function getALLAudioUrls(cacheName, language) {
-  
-cacheCommonAssets(language);
+  cacheCommonAssets(language);
   fetch("./lang/" + language + "/ftm_" + language + ".json", {
     method: "GET",
     headers: {
@@ -115,18 +124,17 @@ cacheCommonAssets(language);
   );
 }
 
-function cacheCommonAssets(language){
+function cacheCommonAssets(language) {
   [
     "./lang/" + language + "/audios/fantastic.WAV",
     "./lang/" + language + "/audios/great.wav",
     "./lang/" + language + "/images/fantastic_01.png",
     "./lang/" + language + "/images/great_01.png",
-    "./lang/" + language + "/images/title.png"
+    "./lang/" + language + "/images/title.png",
   ].forEach((res) => {
     cacheLangAssets(res, workbox.core.cacheNames.precache + language);
   });
-};
-
+}
 
 self.addEventListener("fetch", function (event) {
   event.respondWith(

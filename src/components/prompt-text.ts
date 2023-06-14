@@ -104,6 +104,7 @@ export class PromptText {
     console.log("Prompt", this.currentPromptText);
     var x = this.width / 2;
     const y = this.height * 0.26;
+    this.context.textAlign = "center";
     if (this.levelData.levelMeta.levelType == "LetterInWord") {
       var letterInWord = this.currentPromptText.replace(
         new RegExp(this.currentPuzzleData.targetStones[0], "g"),
@@ -144,7 +145,9 @@ export class PromptText {
     const x = this.width / 2;
     const y = this.height * 0.26;
     var fontSize = 20;
-    const startPrompttextX = this.width / 2 - this.context.measureText(this.currentPromptText).width / 2;
+    const startPrompttextX =
+      this.width / 2 -
+      this.context.measureText(this.currentPromptText).width / 2;
     let currentWordWidth = 0;
     var letterHighlight: Array<string> =
       this.currentPuzzleData.targetStones[0].split("");
@@ -203,7 +206,9 @@ export class PromptText {
           );
         }
       }
-      currentWordWidth = this.context.measureText(this.currentPromptText.substring(0, i + 1)).width;
+      currentWordWidth = this.context.measureText(
+        this.currentPromptText.substring(0, i + 1)
+      ).width;
     }
   }
   draw(droppedStones = 0) {
