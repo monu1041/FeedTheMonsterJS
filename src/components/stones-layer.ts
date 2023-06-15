@@ -1,9 +1,4 @@
-import {
-  MonsterAudio,
-  PromptAudio,
-  StoneLayer,
-  UrlSubstring,
-} from "../common/common.js";
+import { MonsterAudio, PromptAudio, StoneLayer } from "../common/common.js";
 import Sound from "../common/sound.js";
 import { StoneConfig } from "../common/stones-config.js";
 import { LevelStartScene } from "../scenes/level-start-scene.js";
@@ -12,7 +7,6 @@ import PauseButton from "./buttons/pause_button.js";
 import PausePopUp from "./pause-popup.js";
 import { Tutorial } from "../components/tutorial.js";
 import { getDatafromStorage } from "../data/profile-data.js";
-import { Debugger } from "../../global-variables.js";
 
 var gs: any = {
   mode: "gameplay",
@@ -31,6 +25,7 @@ var pickedStone: {
   origy: number;
 } | null;
 var offsetCoordinateValue = 32;
+var self;
 const dragAudio = new Audio();
 dragAudio.src = "./assets/audios/onDrag.mp3";
 dragAudio.preload = "auto";
@@ -95,18 +90,7 @@ export default class StonesLayer {
   }
   setCurrentPuzzle() {
     this.levelStart.audio.playSound(
-      Debugger.DevelopmentLink
-        ? this.puzzleData.prompt.promptAudio.slice(
-            0,
-            this.puzzleData.prompt.promptAudio.indexOf(UrlSubstring) +
-              UrlSubstring.length
-          ) +
-            "dev" +
-            this.puzzleData.prompt.promptAudio.slice(
-              this.puzzleData.prompt.promptAudio.indexOf(UrlSubstring) +
-                UrlSubstring.length
-            )
-        : this.puzzleData.prompt.promptAudio,
+      this.puzzleData.prompt.promptAudio,
       PromptAudio
     );
     gs.puzzle.stones = [];
@@ -135,8 +119,11 @@ export default class StonesLayer {
     });
     return foilStones.sort(() => Math.random() - 0.5);
   }
+  pausePopUpCallBack() {
+    self.clearCanvas()
+  }
   createCanvas() {
-    var self = this;
+    self = this;
     this.id = this.canvasStack.createLayer(this.height, this.width, StoneLayer);
     const selfElelementId = document.getElementById(
       this.id
@@ -221,18 +208,7 @@ export default class StonesLayer {
         Math.sqrt(y - this.height / 5.5) < 10
       ) {
         self.levelStart.audio.playSound(
-          Debugger.DevelopmentLink
-            ? self.puzzleData.prompt.promptAudio.slice(
-                0,
-                self.puzzleData.prompt.promptAudio.indexOf(UrlSubstring) +
-                  UrlSubstring.length
-              ) +
-                "dev" +
-                self.puzzleData.prompt.promptAudio.slice(
-                  self.puzzleData.prompt.promptAudio.indexOf(UrlSubstring) +
-                    UrlSubstring.length
-                )
-            : self.puzzleData.prompt.promptAudio,
+          self.puzzleData.prompt.promptAudio,
           PromptAudio
         );
       }
@@ -258,7 +234,11 @@ export default class StonesLayer {
         if (self.pausebutton.onClick(x, y)) {
           self.levelStart.timerTicking.pauseTimer();
           self.levelStart.levelEndCallBack();
-          new PausePopUp(document.getElementById(self.id), self.levelStart);
+          new PausePopUp(
+            document.getElementById(self.id),
+            self.levelStart,
+            //self.pausePopUpCallBack
+          );
         }
         for (let s of gs.stones) {
           if (Math.sqrt((x - s.x) * (x - s.x) + (y - s.y) * (y - s.y)) <= 40) {
@@ -271,6 +251,7 @@ export default class StonesLayer {
       },
       false
     );
+
     selfElelementId.addEventListener(
       "mouseup",
       function (event) {
@@ -431,20 +412,27 @@ export default class StonesLayer {
   }
 
   draw() {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    // this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     for (let s of gs.stones) {
       this.drawstone(s, this.canvas);
     }
   }
 
   clearCanvas() {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+   // this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   }
 
-  drawstone(
-    s: { img: any; x: number; y: number; text: any },
-    canvas: { height: number }
-  ) {
+  drawstone(s: StoneConfig, canvas: { height: number }) {
+    s.dx = s.targetX - s.x;
+    s.dy = s.targetY - s.y;
+
+    // Calculate the movement step based on the distance
+    s.stepX = s.dx / 60; // Adjust the divisor to control the speed
+    s.stepY = s.dy / 60;
+
+    // Update the position of the image
+    s.x += s.stepX;
+    s.y += s.stepY;
     var imageSize;
     var textFontSize;
     if (this.context.measureText(s.text).width * 1.4 > canvas.height / 13) {

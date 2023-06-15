@@ -58,15 +58,22 @@ export const NativePlayButton = "native_playbutton_clicked";
 export const PreviousPlayedLevel = "storePreviousPlayedLevel";
 export const StoreMonsterPhaseNumber = "storeMonsterPhaseNumber";
 export const IsCached = "is_cached";
+export const GameSceneBg = "gameSceneBgCanvas";
 export const MonsterAudio = "monster_audio";
 export const FeedbackAudio = "feedback_audio";
 export const IntroMusic = "intro_music";
 export const PromptAudio = "prompt_audio";
+export const GameSceneLayer = "gameSceneCanvas";
 export const ButtonClick = "button_click";
 export const TimeOver = "time_over";
 export const StoneMusic = "stone_music";
 export const PhraseAudio = "phrase_audio";
 export const LevelEndAudio = "level_end_audio";
-export const UrlSubstring = "/feedthemonster"
-export const DevelopmentServer =
-  "https://feedthemonsterdev.curiouscontent.org/";
+export const UrlSubstring = "/feedthemonster";
+export const DevelopmentServer = "http://127.0.0.1:5500/build/index.html";
+
+export const GameFields = {
+  TimerOut: false,
+  TimeOver: false,
+  isGamePaused: false,
+};

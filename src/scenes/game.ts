@@ -1,5 +1,6 @@
 import { Debugger, lang } from "../../global-variables.js";
 import { StoreMonsterPhaseNumber } from "../common/common.js";
+import { DecisionPage } from "../components/new_schema/decision_page.js";
 import { LevelStartScene } from "./level-start-scene.js";
 
 var animationFrame: number;
@@ -11,7 +12,7 @@ export class Game {
   public gameSceneCallBack: any;
   public monsterPhaseNumber: any;
   public feedBackTexts: any;
-  public rightToLeft:boolean
+  public rightToLeft: boolean;
 
   constructor(
     width: number,
@@ -19,20 +20,28 @@ export class Game {
     puzzleData: any,
     gameSceneCallBack: any,
     feedBackTexts: any,
-    rightToLeft:boolean
+    rightToLeft: boolean
   ) {
     this.width = width;
     this.height = height;
     this.monsterPhaseNumber = Debugger.DebugMode
-      ? localStorage.getItem(StoreMonsterPhaseNumber + lang+"Debug") || 1
+      ? localStorage.getItem(StoreMonsterPhaseNumber + lang + "Debug") || 1
       : localStorage.getItem(StoreMonsterPhaseNumber + lang) || 1;
-    this.scene = new LevelStartScene({
+    // this.scene = new LevelStartScene({
+    //   game: this,
+    //   levelData: puzzleData,
+    //   levelStartCallBack: this.levelStartCallBack,
+    //   monsterPhaseNumber: this.monsterPhaseNumber,
+    //   feedBackTexts: feedBackTexts,
+    //   rightToLeft: rightToLeft,
+    // });
+    new DecisionPage({
       game: this,
       levelData: puzzleData,
       levelStartCallBack: this.levelStartCallBack,
       monsterPhaseNumber: this.monsterPhaseNumber,
       feedBackTexts: feedBackTexts,
-      rightToLeft:rightToLeft
+      rightToLeft: rightToLeft,
     });
     this.gameSceneCallBack = gameSceneCallBack;
     this.render();
@@ -64,8 +73,9 @@ export class Game {
 
   render() {
     cancelAnimationFrame(animationFrame);
-    this.scene.createBackgroud();
+   // this.scene.createBackgroud();
   }
+
   animation() {
     self.update();
     animationFrame = requestAnimationFrame(self.animation);
