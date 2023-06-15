@@ -94,9 +94,7 @@ export class GameScene {
     let deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
     self.timerTicking.timerStart();
-    self.promptButton = 
     self.monster.update(deltaTime);
-    // self.monster.update(deltaTime);
     !GameFields.isGamePaused ? self.stonePage.update(deltaTime) : null;
     // self.animationWorker.postMessage({
     //   message: "handleParticlesUpdate",

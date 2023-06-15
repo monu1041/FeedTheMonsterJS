@@ -43,6 +43,7 @@ export default class StonePage {
   }
   createStones() {
     var i = 0;
+
     for (var i = 0; i < this.currentPuzzleData.foilStones.length; i++) {
       this.foilStones.push(
         new StoneConfig(
@@ -73,6 +74,7 @@ export default class StonePage {
       },
       false
     );
+    // this.monster.changeToIdleAnimation
     this.stoneHtmlElement.addEventListener(
       "mousemove",
       function (event) {
@@ -80,6 +82,7 @@ export default class StonePage {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (self.pickedStone) {
+          self.monster.changeToDragAnimation();
           self.pickedStone.x = x;
           self.pickedStone.y = y;
         }
@@ -92,6 +95,20 @@ export default class StonePage {
         var rect = self.stoneHtmlElement.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
+        if (
+          Math.sqrt(
+            (x - self.monster.x - self.canvas.width / 4) *
+              (x - self.monster.x - self.canvas.width / 4) +
+              (y - self.monster.y - self.canvas.height / 2.7) *
+                (y - self.monster.y - self.canvas.height / 2.7)
+          ) <= 60
+        ) {
+          self.checkDraggedOption();
+        } else {
+          self.monster.changeToIdleAnimation();
+        }
+
+        self.pickedStone = null;
       },
       false
     );
@@ -134,6 +151,29 @@ export default class StonePage {
       },
       false
     );
+  }
+  checkDraggedOption() {
+    if (
+      this.targetStones.length > 0 &&
+      this.targetStones[0] == this.pickedStone.text
+    ) {
+      this.targetStones.shift();
+      self.pickedStone.x = 2000;
+      self.pickedStone.y = 2000;
+      self.foilStones = self.foilStones.filter(
+        (element) => element !== self.pickedStone
+      );
+      this.monster.changeToEatAnimation();
+      console.log("Righ");
+    } else {
+      this.foilStones.forEach((stone) => {
+        stone.x = 2000;
+        stone.y = 2000;
+      });
+      this.foilStones = [];
+      this.monster.changeToSpitAnimation();
+    }
+    console.log("TArgetStones", this.foilStones);
   }
   initializeStonePos() {
     var offsetCoordinateValue = 32;
@@ -180,12 +220,16 @@ export default class StonePage {
   drawstone(stoneConfig: StoneConfig) {
     const duration = 200; // Animation duration in milliseconds
     const updateInterval = 10;
-    stoneConfig.stepX =
-      (stoneConfig.targetX - stoneConfig.x) / (duration / updateInterval);
-    stoneConfig.stepY =
-      (stoneConfig.targetY - stoneConfig.y) / (duration / updateInterval);
-    stoneConfig.x += stoneConfig.stepX;
-    stoneConfig.y += stoneConfig.stepY;
+
+    if (!this.pickedStone) {
+      stoneConfig.stepX =
+        (stoneConfig.targetX - stoneConfig.x) / (duration / updateInterval);
+      stoneConfig.stepY =
+        (stoneConfig.targetY - stoneConfig.y) / (duration / updateInterval);
+      stoneConfig.x += stoneConfig.stepX;
+      stoneConfig.y += stoneConfig.stepY;
+    }
+
     var imageSize;
     var textFontSize;
     if (

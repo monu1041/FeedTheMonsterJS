@@ -1,3 +1,17 @@
+import { Debugger, lang } from "../../../../global-variables.js";
+import { StoreMonsterPhaseNumber } from "../../../common/common.js";
+
+var monsterPhaseNumber = Debugger.DebugMode
+  ? localStorage.getItem(StoreMonsterPhaseNumber + lang + "Debug") || 1
+  : localStorage.getItem(StoreMonsterPhaseNumber + lang) || 1;
+var eatImg = new Image();
+eatImg.src = "./assets/images/eat1" + monsterPhaseNumber + ".png";
+var idleImg = new Image();
+idleImg.src = "./assets/images/idle1" + monsterPhaseNumber + ".png";
+var spitImg = new Image();
+spitImg.src = "./assets/images/spit1" + monsterPhaseNumber + ".png";
+var dragImg = new Image();
+dragImg.src = "./assets/images/drag1" + monsterPhaseNumber + ".png";
 export default class Monster {
   public canvas: { width: any; height?: number };
   public frameX: number;
@@ -62,5 +76,26 @@ export default class Monster {
       this.canvas.width / 2,
       this.canvas.height / 1.5
     );
+  }
+  changeToDragAnimation() {
+    this.image = dragImg;
+  }
+
+  changeToEatAnimation() {
+    this.image = eatImg;
+    setTimeout(() => {
+      this.changeToIdleAnimation();
+    }, 2000);
+  }
+
+  changeToIdleAnimation() {
+    this.image = idleImg;
+  }
+
+  changeToSpitAnimation() {
+    this.image = spitImg;
+    setTimeout(() => {
+      this.changeToIdleAnimation();
+    }, 2000);
   }
 }
