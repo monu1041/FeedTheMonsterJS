@@ -69,4 +69,4 @@ export const PhraseAudio = "phrase_audio";
 export const LevelEndAudio = "level_end_audio";
 export const UrlSubstring = "/feedthemonster"
 export const DevelopmentServer =
-  "https://feedthemonsterdev.curiouscontent.org/";
+  "https://feedthemonsterdev.curiouscontent.org";
