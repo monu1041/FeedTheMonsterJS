@@ -52,7 +52,7 @@ self.registration.addEventListener("updatefound", function (e) {
 });
 async function cacheAudiosFiles(file, cacheName, length) {
   ///awt
-  caches.open(cacheName).then(function (cache) {
+  await caches.open(cacheName).then(function (cache) {
     cache
       .add(
         self.location.href.includes("https://feedthemonsterdev.curiouscontent.org")
@@ -93,7 +93,7 @@ function cacheLangAssets(file, cacheName) {
 }
 async function getCacheName(language) {
   ///awt
- caches.keys().then((cacheNames) => {
+ await caches.keys().then((cacheNames) => {
     cacheNames.forEach(async (cacheName) => {
       await getALLAudioUrls(cacheName, language);
     });
