@@ -279,7 +279,7 @@ export class LevelSelectionScreen {
           ) {
             if (Debugger.DebugMode) {
               self.sound.playSound(
-                "./assets/audios/ButtonClick.wav",
+                "./assets/audios/ButtonClick.mp3",
                 ButtonClick
               );
               self.sound.pauseSound();
@@ -287,7 +287,7 @@ export class LevelSelectionScreen {
               self.startGame(levelNumber);
             } else if (s.index + level - 1 <= unlockLevelIndex + 1) {
               self.sound.playSound(
-                "./assets/audios/ButtonClick.wav",
+                "./assets/audios/ButtonClick.mp3",
                 ButtonClick
               );
               self.sound.pauseSound();
@@ -370,13 +370,15 @@ export class LevelSelectionScreen {
     }
   }
   startGame(level_number: string | number) {
+    console.log("LevelDatas", self.data);
     this.sound.pauseSound();
     new Game(
       this.canvas.width,
       this.canvas.height,
       self.data.levels[level_number],
       self.gameSceneCallBack,
-      self.data.FeedbackTexts
+      self.data.FeedbackTexts,
+      self.data.rightToLeft
     );
   }
   drawStars() {

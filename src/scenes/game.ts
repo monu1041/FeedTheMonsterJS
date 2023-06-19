@@ -11,13 +11,15 @@ export class Game {
   public gameSceneCallBack: any;
   public monsterPhaseNumber: any;
   public feedBackTexts: any;
+  public rightToLeft:boolean
 
   constructor(
     width: number,
     height: number,
     puzzleData: any,
     gameSceneCallBack: any,
-    feedBackTexts: any
+    feedBackTexts: any,
+    rightToLeft:boolean
   ) {
     this.width = width;
     this.height = height;
@@ -29,7 +31,8 @@ export class Game {
       levelData: puzzleData,
       levelStartCallBack: this.levelStartCallBack,
       monsterPhaseNumber: this.monsterPhaseNumber,
-      feedBackTexts: feedBackTexts
+      feedBackTexts: feedBackTexts,
+      rightToLeft:rightToLeft
     });
     this.gameSceneCallBack = gameSceneCallBack;
     this.render();

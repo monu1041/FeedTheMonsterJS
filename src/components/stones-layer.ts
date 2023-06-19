@@ -363,7 +363,7 @@ export default class StonesLayer {
     timeout2 = setTimeout(() => {
       this.createStones(<any>this.stonepos);
       timeoutRunning = false;
-    }, 3000);
+    }, 3400);
     
   }
 
