@@ -16,8 +16,8 @@ export class PromptText {
   public currentPromptText: any;
   public currentPuzzleData: any;
   public fntstOrGrtImgArr: any;
-  public fantastic_image: any;
-  public great_image: any;
+  // public fantastic_image: any;
+  // public great_image: any;
   public id: any;
   public canavsElement: any;
   public context: any;
@@ -44,13 +44,13 @@ export class PromptText {
 
   loadFantasticAndGreatImage() {
     var self = this;
-    this.fantastic_image = new Image();
-    this.fantastic_image.src = "./lang/" + lang + "/images/fantastic_01.png";
+    // this.fantastic_image = new Image();
+    // this.fantastic_image.src = "./lang/" + lang + "/images/fantastic_01.png";
 
-    this.fntstOrGrtImgArr.push(this.fantastic_image);
-    this.great_image = new Image();
-    this.great_image.src = "./lang/" + lang + "/images/great_01.png";
-    this.fntstOrGrtImgArr.push(this.great_image);
+    // this.fntstOrGrtImgArr.push(this.fantastic_image);
+    // this.great_image = new Image();
+    // this.great_image.src = "./lang/" + lang + "/images/great_01.png";
+    // this.fntstOrGrtImgArr.push(this.great_image);
   }
 
   createCanvas() {
@@ -89,10 +89,10 @@ export class PromptText {
     // );
     this.context.font = "bold 24px Arial";
     this.context.fillStyle = "white";
-    this.context.textAlign = "center";
+    // this.context.textAlign = "center";
     this.context.fillText(
       feedBackText,
-      this.game.width / 2,
+      this.game.width / 2 - this.context.measureText(feedBackText).width / 2,
       this.height * 0.25
     );
   }
@@ -104,6 +104,7 @@ export class PromptText {
     console.log("Prompt", this.currentPromptText);
     var x = this.width / 2;
     const y = this.height * 0.26;
+    this.context.textAlign = "center";
     if (this.levelData.levelMeta.levelType == "LetterInWord") {
       var letterInWord = this.currentPromptText.replace(
         new RegExp(this.currentPuzzleData.targetStones[0], "g"),
@@ -144,6 +145,10 @@ export class PromptText {
     const x = this.width / 2;
     const y = this.height * 0.26;
     var fontSize = 20;
+    const startPrompttextX =
+      this.width / 2 -
+      this.context.measureText(this.currentPromptText).width / 2;
+    let currentWordWidth = 0;
     var letterHighlight: Array<string> =
       this.currentPuzzleData.targetStones[0].split("");
     for (let i = 0; i < promptTextLetters.length; i++) {
@@ -155,17 +160,20 @@ export class PromptText {
             this.context.fillStyle = "red";
             this.context.fillText(
               promptTextLetters[i],
-              fontSize * i + x - promptTextLetters.length * 6,
+              // fontSize * i + x - promptTextLetters.length * 6,
+              startPrompttextX + currentWordWidth,
               y
             );
           } else {
             this.context.fillStyle = "black";
             this.context.fillText(
               promptTextLetters[i],
-              fontSize * i + x - promptTextLetters.length * 6,
+              // fontSize * i + x - promptTextLetters.length * 6,
+              startPrompttextX + currentWordWidth,
               y
             );
           }
+          // currentWordWidth = this.context.measureText(this.currentPromptText.substring(0, i + 1)).width;
           break;
         }
         case "Word": {
@@ -173,14 +181,16 @@ export class PromptText {
             this.context.fillStyle = "black";
             this.context.fillText(
               promptTextLetters[i],
-              fontSize * i + x - promptTextLetters.length * 6,
+              // fontSize * i + x - promptTextLetters.length * 6,
+              startPrompttextX + currentWordWidth,
               y
             );
           } else {
             this.context.fillStyle = "red";
             this.context.fillText(
               promptTextLetters[i],
-              fontSize * i + x - promptTextLetters.length * 6,
+              // fontSize * i + x - promptTextLetters.length * 6,
+              startPrompttextX + currentWordWidth,
               y
             );
           }
@@ -190,11 +200,15 @@ export class PromptText {
           this.context.fillStyle = "black";
           this.context.fillText(
             promptTextLetters[i],
-            fontSize * i + x - promptTextLetters.length * 6,
+            startPrompttextX + currentWordWidth,
+            // fontSize * i + x - promptTextLetters.length * 6,
             y
           );
         }
       }
+      currentWordWidth = this.context.measureText(
+        this.currentPromptText.substring(0, i + 1)
+      ).width;
     }
   }
   draw(droppedStones = 0) {
@@ -208,7 +222,7 @@ export class PromptText {
     );
     this.context.fillStyle = "black";
     this.context.font = 30 + "px Arial";
-    this.context.textAlign = "center";
+    // this.context.textAlign = "center";
     this.rightToLeft
       ? this.drawArabic(droppedStones)
       : this.drawOthers(droppedStones);
