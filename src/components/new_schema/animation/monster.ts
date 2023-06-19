@@ -1,17 +1,5 @@
 import { Debugger, lang } from "../../../../global-variables.js";
-import { StoreMonsterPhaseNumber } from "../../../common/common.js";
-
-var monsterPhaseNumber = Debugger.DebugMode
-  ? localStorage.getItem(StoreMonsterPhaseNumber + lang + "Debug") || 1
-  : localStorage.getItem(StoreMonsterPhaseNumber + lang) || 1;
-var eatImg = new Image();
-eatImg.src = "./assets/images/eat1" + monsterPhaseNumber + ".png";
-var idleImg = new Image();
-idleImg.src = "./assets/images/idle1" + monsterPhaseNumber + ".png";
-var spitImg = new Image();
-spitImg.src = "./assets/images/spit1" + monsterPhaseNumber + ".png";
-var dragImg = new Image();
-dragImg.src = "./assets/images/drag1" + monsterPhaseNumber + ".png";
+import { GameFields, StoreMonsterPhaseNumber } from "../../../common/common.js";
 export default class Monster {
   public canvas: { width: any; height?: number };
   public frameX: number;
@@ -25,10 +13,17 @@ export default class Monster {
   public frameTimer = 0;
   public monster_image: any;
   public image: HTMLImageElement;
+  public eatImg: HTMLImageElement;
+  public idleImg: HTMLImageElement;
+  public spitImg: HTMLImageElement;
+  public dragImg: HTMLImageElement;
+  public stoneCanavsElement: any;
+  public monsterPhaseNumber: any;
 
   constructor(
     canvas: { width: number; height?: number },
-    context: CanvasRenderingContext2D
+    context: CanvasRenderingContext2D,
+    stoneCanavsElement
   ) {
     this.context = context;
     this.x = canvas.width / 2 - canvas.width * 0.243;
@@ -36,18 +31,32 @@ export default class Monster {
     this.canvas = canvas;
     this.frameX = 0;
     this.frameY = 0;
-    this.image = document.getElementById("monster") as HTMLImageElement;
+    this.stoneCanavsElement = stoneCanavsElement
+
+    this.monsterPhaseNumber = Debugger.DebugMode
+      ? localStorage.getItem(StoreMonsterPhaseNumber + lang + "Debug") || 1
+      : localStorage.getItem(StoreMonsterPhaseNumber + lang) || 1;
+
+    this.eatImg = new Image();
+    this.eatImg.src = "./assets/images/eat1" + this.monsterPhaseNumber + ".png";
+    this.idleImg = new Image();
+    this.idleImg.src =
+      "./assets/images/idle1" + this.monsterPhaseNumber + ".png";
+    this.spitImg = new Image();
+    this.spitImg.src =
+      "./assets/images/spit1" + this.monsterPhaseNumber + ".png";
+    this.dragImg = new Image();
+    this.dragImg.src =
+      "./assets/images/drag1" + this.monsterPhaseNumber + ".png";
+    this.image = this.idleImg;
     this.draw();
-
-    // this.monsterWorker = new Worker("./workers/monster_worker.js");
-
-    // this.monsterWorker.addEventListener("message", (event) => {
-    //   const imageData = event.data;
-    //   this.frameX = imageData.frameX;
-    //   this.draw(this.context);
-    // });
   }
-
+  changeImage(src) {
+    this.image.src = src;
+  }
+  changeZindex(index) {
+    this.stoneCanavsElement.style.zIndex = index;
+  }
   update(deltaTime) {
     if (this.frameTimer > this.frameInterval) {
       this.frameTimer = 0;
@@ -78,23 +87,27 @@ export default class Monster {
     );
   }
   changeToDragAnimation() {
-    this.image = dragImg;
+    this.image = this.dragImg;
   }
-
+  // changeZindex(index) {
+  //   this.c.style.zIndex = index;
+  // }
   changeToEatAnimation() {
-    this.image = eatImg;
+    this.image = this.eatImg;
     setTimeout(() => {
+      GameFields.isTimerPaused ? (GameFields.puzzleCompleted = true) : null;
       this.changeToIdleAnimation();
     }, 2000);
   }
 
   changeToIdleAnimation() {
-    this.image = idleImg;
+    this.image = this.idleImg;
   }
 
   changeToSpitAnimation() {
-    this.image = spitImg;
+    this.image = this.spitImg;
     setTimeout(() => {
+      GameFields.isTimerPaused ? (GameFields.puzzleCompleted = true) : null;
       this.changeToIdleAnimation();
     }, 2000);
   }

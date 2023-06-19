@@ -1,4 +1,5 @@
 import {
+  GameFields,
   GameSceneBg,
   GameSceneLayer,
   loadImages,
@@ -32,7 +33,7 @@ var images = {
   winterFenceImg: "./assets/images/Winter_fence_v01.png",
   winterPillerImg: "./assets/images/Winter_sign_v01.png",
 };
- var self;
+var self;
 export class DecisionPage {
   public levelData: any;
   public width: number;
@@ -41,7 +42,7 @@ export class DecisionPage {
   public canavsElement: any;
   public canvasStack: any;
   public id: string;
-  public game:Game
+  public game: Game;
   constructor({
     game,
     levelData,
@@ -57,8 +58,8 @@ export class DecisionPage {
     feedBackTexts: any;
     rightToLeft: boolean;
   }) {
-    self = this
-    this.game = game
+    self = this;
+    this.game = game;
     this.levelData = levelData;
     this.width = this.game.width;
     this.height = this.game.height;
@@ -74,10 +75,10 @@ export class DecisionPage {
     ) as CanvasRenderingContext2D;
     this.canavsElement.style.zIndex = 3;
     this.createBackgroud();
-    new GameScene(game,1, this.puzzleCallBack,self.levelData);
+    new GameScene(game, 0, this.puzzleCallBack, this.levelData);
   }
   puzzleCallBack(value) {
-    new GameScene(self.game,value, self.puzzleCallBack,self.levelData);
+    new GameScene(self.game, value, self.puzzleCallBack, self.levelData);
   }
   createBackgroud() {
     var self = this;

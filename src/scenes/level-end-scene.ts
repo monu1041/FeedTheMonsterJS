@@ -28,7 +28,6 @@ export class LevelEndScene {
   public canvasStack: any;
   public monster: Monster;
   public levelData: any;
-  public isGamePause: boolean;
   public starCount: number;
   public levelEndCallBack: any;
   public id: string;
@@ -49,7 +48,6 @@ export class LevelEndScene {
     monster,
     levelEndCallBack,
     levelData,
-    isGamePause,
     monsterPhaseNumber,
     levelStartTime
   ) {
@@ -57,7 +55,6 @@ export class LevelEndScene {
     this.canvasStack = new CanvasStack("canvas");
     this.monster = monster;
     this.levelData = levelData;
-    this.isGamePause = isGamePause;
     this.monsterPhaseNumber = monsterPhaseNumber || 1;
     this.levelStartTime = levelStartTime;
     this.levelEndTime = new Date();
@@ -89,30 +86,30 @@ export class LevelEndScene {
   }
   createCanvas() {
     if (this.starCount <= 1) {
-      this.canvas.scene.audio.playSound(audioUrl.levelLose, LevelEndAudio);
+      //    this.canvas.scene.audio.playSound(audioUrl.levelLose, LevelEndAudio);
       this.monster.changeImage(
         "./assets/images/sad1" + this.monsterPhaseNumber + ".png"
       );
     } else {
-      this.canvas.scene.audio.playSound(
-        "./assets/audios/intro.mp3",
-        IntroMusic
-      );
+      // this.canvas.scene.audio.playSound(
+      //   "./assets/audios/intro.mp3",
+      //   IntroMusic
+      // );
       this.monster.changeImage(
         "./assets/images/happy1" + this.monsterPhaseNumber + ".png"
       );
-      this.canvas.scene.audio.playSound(audioUrl.levelWin, LevelEndAudio);
+      //  this.canvas.scene.audio.playSound(audioUrl.levelWin, LevelEndAudio);
     }
     document.addEventListener(
       "visibilitychange",
       function () {
         if (document.visibilityState === "visible") {
-          self.canvas.scene.audio.playSound(
-            "./assets/audios/intro.mp3",
-            IntroMusic
-          );
+          // self.canvas.scene.audio.playSound(
+          //   "./assets/audios/intro.mp3",
+          //   IntroMusic
+          // );
         } else {
-          self.canvas.scene.audio.pauseSound();
+          //  self.canvas.scene.audio.pauseSound();
         }
       },
       false

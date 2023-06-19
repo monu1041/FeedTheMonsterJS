@@ -59,7 +59,7 @@ export default class TimerTicking {
       GameFields.TimeOver = true;
       // TimeOver
     }
-    if (!GameFields.isGamePaused) {
+    if (!GameFields.isTimerPaused && GameFields.drawStones) {
       this.timer = this.timer + 0.7;
       this.context.clearRect(
         this.posX + this.canvas.width - this.timer,

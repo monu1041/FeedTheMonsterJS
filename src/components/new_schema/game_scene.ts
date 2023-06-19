@@ -8,7 +8,9 @@ import PausePopUp from "../pause-popup.js";
 import { LevelIndicators } from "../level-indicators.js";
 import StonePage from "./stone_page.js";
 import Monster from "./animation/monster.js";
-var lastTime = 0;
+import { LevelEndScene } from "../../scenes/level-end-scene.js";
+let previousTimestamp = performance.now();
+let deltaTime = 0;
 var self;
 export class GameScene {
   public levelData: any;
@@ -63,6 +65,7 @@ export class GameScene {
     this.stoneCanavsElement.style.zIndex = 4;
     this.drawGameScreen();
     this.animate(0);
+    this.requestAnimation = setInterval(self.animate, 16);
     this.eventListners();
   }
   drawGameScreen() {
@@ -73,37 +76,41 @@ export class GameScene {
       this.levelData,
       true
     );
-    this.monster = new Monster(this.game, this.stoneContext);
+    this.monster = new Monster(
+      this.game,
+      this.stoneContext,
+      this.stoneCanavsElement
+    );
+    this.levelIndicators = new LevelIndicators(
+      this.context,
+      this.canavsElement,
+      this.puzzleNumber
+    );
     this.stonePage = new StonePage(
       this.stoneContext,
       this.game,
       this.stoneCanavsElement,
-      this.levelData.puzzles[this.puzzleNumber],
+      this.puzzleNumber,
       this.levelData,
-      this.monster
+      this.monster,
+      this.levelIndicators,
+      this.puzzleDecision
     );
     this.timerTicking = new TimerTicking(this.context, this.game);
     this.pauseButton = new PauseButton(this.context, this.canavsElement);
-    this.levelIndicators = new LevelIndicators(
-      this.context,
-      this.canavsElement,
-      0
-    );
   }
   animate(timeStamp) {
-    let deltaTime = timeStamp - lastTime;
-    lastTime = timeStamp;
+    const currentTimestamp = performance.now();
+    deltaTime = currentTimestamp - previousTimestamp;
+
     self.timerTicking.timerStart();
     self.monster.update(deltaTime);
     !GameFields.isGamePaused ? self.stonePage.update(deltaTime) : null;
-    // self.animationWorker.postMessage({
-    //   message: "handleParticlesUpdate",
-    //   data: self.timerTicking,
-    // });
-    self.requestAnimation = requestAnimationFrame(self.animate);
+
+    previousTimestamp = currentTimestamp;
   }
   showPopUp() {
-    new PausePopUp(this, self.levelStart);
+    new PausePopUp(this, self.puzzleDecision);
   }
   pausePopUpCallBack() {}
   eventListners() {
@@ -112,20 +119,44 @@ export class GameScene {
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
       if (self.promptButton.onClick(x, y)) {
+        GameFields.drawStones = true;
         //  self.timerTicking.resetTimer();
       }
       if (self.pauseButton.onClick(x, y)) {
-        GameFields.isGamePaused = true;
+        GameFields.isTimerPaused = true;
         self.showPopUp();
       }
-      self.levelIndicators.setIndicators(2);
     });
   }
-  nextPuzzle() {
+  puzzleDecision(button_type?) {
+    self.resetGameFields();
     var number = self.puzzleNumber + 1;
-    cancelAnimationFrame(self.requestAnimation);
-    self.canvasStack.deleteLayer(self.id);
-    self.canvasStack.deleteLayer(self.stoneLayerId);
-    self.puzzleCallBack(number);
+    if (button_type == "retry_button") {
+      number = 0;
+    }
+    if (self.levelData.puzzles.length === number) {
+      new LevelEndScene(
+        self.game,
+        GameFields.gameScore,
+        self.monster,
+        self.levelEndCallBack,
+        self.levelData,
+        self.monster.monsterPhaseNumber,
+        new Date()
+      );
+    } else {
+      clearInterval(self.requestAnimation);
+      self.canvasStack.deleteLayer(self.id);
+      self.canvasStack.deleteLayer(self.stoneLayerId);
+      self.puzzleCallBack(number);
+    }
+  }
+  levelEndCallBack() {}
+  resetGameFields() {
+    for (let key in GameFields) {
+      if (GameFields.hasOwnProperty(key)) {
+        if (key != "gameScore") GameFields[key] = false;
+      }
+    }
   }
 }

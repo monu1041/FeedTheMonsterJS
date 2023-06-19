@@ -1,4 +1,6 @@
+import { GameFields } from "../../common/common.js";
 import { StoneConfig } from "../../common/stones-config.js";
+import { LevelIndicators } from "../level-indicators.js";
 import Monster from "./animation/monster.js";
 var self;
 export default class StonePage {
@@ -6,40 +8,62 @@ export default class StonePage {
   public canvas: { width: any; height?: number };
   public currentPuzzleData: any;
   public targetStones: any;
-  public levelData: any;
   public stonePos: Array<any>;
   public pickedStone: StoneConfig;
   public stoneHtmlElement: any;
   public foilStones: Array<StoneConfig> = new Array<StoneConfig>();
   public monster: Monster;
+  public answer: string = "";
+  public callbackFuntion: any;
+  public levelIndicators: LevelIndicators;
+  public puzzleNumber: number;
+  public levelData: any;
   constructor(
     context: CanvasRenderingContext2D,
     canvas: { width: number; height?: number },
     stoneHtmlElement,
-    currentPuzzleData,
+    puzzleNumber,
     levelData,
-    monster
+    monster,
+    levelIndicators,
+    callbackFuntion
   ) {
     self = this;
     this.context = context;
     this.canvas = canvas;
     this.stoneHtmlElement = stoneHtmlElement;
-    this.currentPuzzleData = currentPuzzleData;
-    this.targetStones = this.currentPuzzleData.targetStones;
-    this.monster = monster;
+    this.puzzleNumber = puzzleNumber;
     this.levelData = levelData;
+    this.currentPuzzleData = this.levelData.puzzles[this.puzzleNumber];
+    this.targetStones = [...this.currentPuzzleData.targetStones];
+    this.monster = monster;
+    this.levelIndicators = levelIndicators;
+    this.callbackFuntion = callbackFuntion;
     this.initializeStonePos();
     this.createStones();
     this.draw(0);
     this.eventListners();
   }
   draw(deltaTime) {
-    // this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    // this.monster.update(deltaTime);
-    for (let fs of this.foilStones) {
-      this.drawstone(fs);
+    if (this.targetStones.length == 0) {
+      this.levelIndicators.setIndicators(this.puzzleNumber + 1);
+      if (
+        this.answer === this.currentPuzzleData.prompt.promptText &&
+        GameFields.puzzleCompleted
+      ) {
+        GameFields.gameScore = GameFields.gameScore + 100;
+      }
+      if (GameFields.puzzleCompleted) this.callbackFuntion();
     }
-    // console.log("Stones Data", this.currentPuzzleData.foilStones);
+
+    if (GameFields.TimeOver) {
+      this.callbackFuntion();
+    }
+    if (GameFields.drawStones) {
+      for (let fs of this.foilStones) {
+        this.drawstone(fs);
+      }
+    }
   }
   createStones() {
     var i = 0;
@@ -157,6 +181,7 @@ export default class StonePage {
       this.targetStones.length > 0 &&
       this.targetStones[0] == this.pickedStone.text
     ) {
+      this.answer = this.answer + this.pickedStone.text;
       this.targetStones.shift();
       self.pickedStone.x = 2000;
       self.pickedStone.y = 2000;
@@ -164,16 +189,21 @@ export default class StonePage {
         (element) => element !== self.pickedStone
       );
       this.monster.changeToEatAnimation();
-      console.log("Righ");
     } else {
-      this.foilStones.forEach((stone) => {
-        stone.x = 2000;
-        stone.y = 2000;
-      });
-      this.foilStones = [];
-      this.monster.changeToSpitAnimation();
+      if (this.pickedStone) {
+        this.targetStones = [];
+        this.foilStones.forEach((stone) => {
+          stone.x = 2000;
+          stone.y = 2000;
+        });
+        this.foilStones = [];
+        this.monster.changeToSpitAnimation();
+      }
     }
-    console.log("TArgetStones", this.foilStones);
+    if (this.targetStones.length == 0) {
+      GameFields.isTimerPaused = true;
+    }
+    // console.log("TArgetStones", this.targetStones.length);
   }
   initializeStonePos() {
     var offsetCoordinateValue = 32;

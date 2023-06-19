@@ -44,7 +44,6 @@ export default class PromptText {
     };
   }
   drawArabic(droppedStones = 0) {
-    console.log("Prompt", this.currentPromptText);
     var x = this.canvas.width / 2;
     const y = this.canvas.height * 0.26;
     if (this.levelData.levelMeta.levelType == "LetterInWord") {
@@ -152,7 +151,7 @@ export default class PromptText {
       ).width;
     }
   }
-  clearPromt(){
+  clearPromt() {
     this.context.clearRect(
       this.posX,
       this.posY,

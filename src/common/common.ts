@@ -76,4 +76,8 @@ export const GameFields = {
   TimerOut: false,
   TimeOver: false,
   isGamePaused: false,
+  puzzleCompleted: false,
+  isTimerPaused: false,
+  drawStones: false,
+  gameScore: 0,
 };

@@ -1,4 +1,4 @@
-import { PausePopupLayer } from "../common/common.js";
+import { GameFields, PausePopupLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import CancelButton from "./buttons/cancel_button.js";
 import CloseButton from "./buttons/close_button.js";
@@ -8,7 +8,7 @@ import { Game } from "../scenes/game.js";
 
 export default class PausePopUp {
   public canvas: Game;
-  public levelStart: LevelStartScene;
+  public puzzleDecision: any;
   public context: CanvasRenderingContext2D;
   public cancelButton: CancelButton;
   public retryButton: RetryButton;
@@ -16,10 +16,11 @@ export default class PausePopUp {
 
   public canvasStack: any;
   public id: any;
+  puzzleChange;
 
-  constructor(canvas, levelStart) {
+  constructor(canvas, puzzleDecision) {
     this.canvas = canvas;
-    this.levelStart = levelStart;
+    this.puzzleDecision = puzzleDecision;
     this.canvasStack = new CanvasStack("canvas");
     this.createCanvas();
   }
@@ -69,16 +70,18 @@ export default class PausePopUp {
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
       if (self.cancelButton.onClick(x, y)) {
-        self.levelStart.timerTicking.resumeTimer();
-        self.levelStart.levelEndCallBack('cancel_button');
+        GameFields.isTimerPaused = false;
+        //  self.levelStart.timerTicking.resumeTimer();
+        // self.levelStart.levelEndCallBack('cancel_button');
         self.deleteCanvas(self);
       }
       if (self.retryButton.onClick(x, y)) {
-        self.levelStart.levelEndCallBack("retry_button");
+        self.puzzleDecision("retry_button");
+        //self.levelStart.levelEndCallBack("retry_button");
         self.deleteCanvas(self);
       }
       if (self.closeButton.onClick(x, y)) {
-        self.levelStart.levelEndCallBack("close_button");
+        self.puzzleDecision("close_button");
         self.deleteCanvas(self);
       }
     });
