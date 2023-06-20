@@ -1,3 +1,5 @@
+import { GameFields } from "../../common/common.js";
+
 export default class PromptText {
   public posX: number;
   public posY: number;
@@ -27,6 +29,7 @@ export default class PromptText {
   }
   draw() {
     var self = this;
+    self.clearPrompt();
     var prompt_button_image = new Image();
     prompt_button_image.src = "./assets/images/promptTextBg.png";
 
@@ -43,7 +46,7 @@ export default class PromptText {
       self.drawOthers(0);
     };
   }
-  drawArabic(droppedStones = 0) {
+  drawArabic() {
     var x = this.canvas.width / 2;
     const y = this.canvas.height * 0.26;
     if (this.levelData.levelMeta.levelType == "LetterInWord") {
@@ -68,7 +71,10 @@ export default class PromptText {
       for (let i = this.targetStones.length - 1; i >= 0; i--) {
         x = x + this.context.measureText(this.targetStones[i]).width + 5;
         // this.context.textAlign = "center";
-        if (droppedStones > i || droppedStones == undefined) {
+        if (
+          GameFields.droppedStones > i ||
+          GameFields.droppedStones == undefined
+        ) {
           this.context.fillStyle = "black";
           this.context.fillText(this.targetStones[i], x, y);
         } else {
@@ -81,7 +87,7 @@ export default class PromptText {
       this.context.fillText(this.currentPromptText, x, y);
     }
   }
-  drawOthers(droppedStones = 0) {
+  drawOthers(droppedStones) {
     const promptTextLetters = this.currentPromptText.split("");
     const x = this.canvas.width / 2;
     const y = this.canvas.height * 0.26;
@@ -118,7 +124,10 @@ export default class PromptText {
           break;
         }
         case "Word": {
-          if (droppedStones > i || droppedStones == undefined) {
+          if (
+            GameFields.droppedStones > i ||
+            GameFields.droppedStones == undefined
+          ) {
             this.context.fillStyle = "black";
             this.context.fillText(
               promptTextLetters[i],
@@ -151,7 +160,7 @@ export default class PromptText {
       ).width;
     }
   }
-  clearPromt() {
+  clearPrompt() {
     this.context.clearRect(
       this.posX,
       this.posY,

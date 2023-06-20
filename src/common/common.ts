@@ -80,4 +80,5 @@ export const GameFields = {
   isTimerPaused: false,
   drawStones: false,
   gameScore: 0,
+  droppedStones: 0,
 };

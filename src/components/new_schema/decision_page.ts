@@ -77,8 +77,12 @@ export class DecisionPage {
     this.createBackgroud();
     new GameScene(game, 0, this.puzzleCallBack, this.levelData);
   }
-  puzzleCallBack(value) {
-    new GameScene(self.game, value, self.puzzleCallBack, self.levelData);
+  puzzleCallBack(value: number, button_type?: string) {
+    if (button_type == "close_button") {
+      self.canvasStack.deleteLayer(self.id);
+    } else {
+      new GameScene(self.game, value, self.puzzleCallBack, self.levelData);
+    }
   }
   createBackgroud() {
     var self = this;

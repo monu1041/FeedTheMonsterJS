@@ -2,6 +2,7 @@ import { GameFields } from "../../common/common.js";
 import { StoneConfig } from "../../common/stones-config.js";
 import { LevelIndicators } from "../level-indicators.js";
 import Monster from "./animation/monster.js";
+import PromptText from "./prompt_text.js";
 var self;
 export default class StonePage {
   public context: CanvasRenderingContext2D;
@@ -18,6 +19,7 @@ export default class StonePage {
   public levelIndicators: LevelIndicators;
   public puzzleNumber: number;
   public levelData: any;
+  public promptButton: PromptText;
   constructor(
     context: CanvasRenderingContext2D,
     canvas: { width: number; height?: number },
@@ -26,6 +28,7 @@ export default class StonePage {
     levelData,
     monster,
     levelIndicators,
+    promptButton,
     callbackFuntion
   ) {
     self = this;
@@ -40,6 +43,8 @@ export default class StonePage {
     this.levelIndicators = levelIndicators;
     this.callbackFuntion = callbackFuntion;
     this.initializeStonePos();
+    this.promptButton = promptButton;
+
     this.createStones();
     this.draw(0);
     this.eventListners();
@@ -183,6 +188,8 @@ export default class StonePage {
     ) {
       this.answer = this.answer + this.pickedStone.text;
       this.targetStones.shift();
+      GameFields.droppedStones = GameFields.droppedStones + 1;
+      this.promptButton.draw();
       self.pickedStone.x = 2000;
       self.pickedStone.y = 2000;
       self.foilStones = self.foilStones.filter(
@@ -244,8 +251,8 @@ export default class StonePage {
         this.canvas.width / 6 - offsetCoordinateValue,
         this.canvas.height / 1.15 - offsetCoordinateValue,
       ],
-      ,
     ];
+    this.stonePos = this.stonePos.sort(() => Math.random() - 0.5);
   }
   drawstone(stoneConfig: StoneConfig) {
     const duration = 200; // Animation duration in milliseconds

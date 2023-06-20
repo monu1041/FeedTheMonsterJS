@@ -71,7 +71,7 @@ export class LevelEndScene {
         : 0;
     this.createCanvas();
     if (navigator.onLine) {
-      this.levelEndFirebaseEvents();
+      // this.levelEndFirebaseEvents();
     }
     this.levelEndCallBack = levelEndCallBack;
     setTotalStarCount(this.starCount);
@@ -188,15 +188,17 @@ export class LevelEndScene {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (self.nextButton && self.nextButton.onClick(x, y)) {
-          self.canvas.scene.audio.pauseSound();
+          //  self.canvas.scene.audio.pauseSound();
           self.levelEndCallBack("next_button");
         }
         if (self.retryButton.onClick(x, y)) {
-          self.canvas.scene.audio.pauseSound();
+          self.deleteCanvas(self);
+          //  self.canvas.scene.audio.pauseSound();
           self.levelEndCallBack("retry_button");
         }
         if (self.closeButton.onClick(x, y)) {
-          self.canvas.scene.audio.pauseSound();
+          self.deleteCanvas(self);
+          // self.canvas.scene.audio.pauseSound();
           self.levelEndCallBack("close_button");
         }
       }
@@ -249,7 +251,6 @@ export class LevelEndScene {
     self.canvasStack.deleteLayer(this.bottonLayer);
   }
   levelEndFirebaseEvents() {
-    console.log("User_id", pseudoId);
     FirebaseIntegration.customEvents("level_completed", {
       cr_user_id: pseudoId,
       success_or_failure: this.starCount >= 3 ? "success" : "failure",

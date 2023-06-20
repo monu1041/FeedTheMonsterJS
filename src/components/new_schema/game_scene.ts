@@ -94,6 +94,7 @@ export class GameScene {
       this.levelData,
       this.monster,
       this.levelIndicators,
+      this.promptButton,
       this.puzzleDecision
     );
     this.timerTicking = new TimerTicking(this.context, this.game);
@@ -130,11 +131,11 @@ export class GameScene {
   }
   puzzleDecision(button_type?) {
     self.resetGameFields();
-    var number = self.puzzleNumber + 1;
-    if (button_type == "retry_button") {
-      number = 0;
+    var puzzleNumber = self.puzzleNumber + 1;
+    if (button_type != undefined) {
+      puzzleNumber = 0;
     }
-    if (self.levelData.puzzles.length === number) {
+    if (self.levelData.puzzles.length === puzzleNumber) {
       new LevelEndScene(
         self.game,
         GameFields.gameScore,
@@ -148,14 +149,20 @@ export class GameScene {
       clearInterval(self.requestAnimation);
       self.canvasStack.deleteLayer(self.id);
       self.canvasStack.deleteLayer(self.stoneLayerId);
-      self.puzzleCallBack(number);
+      self.puzzleCallBack(puzzleNumber, button_type);
     }
   }
-  levelEndCallBack() {}
+  levelEndCallBack(button_type) {
+    self.puzzleDecision(button_type);
+  }
   resetGameFields() {
     for (let key in GameFields) {
       if (GameFields.hasOwnProperty(key)) {
-        if (key != "gameScore") GameFields[key] = false;
+        if (key != "gameScore" || "droppedStones") {
+          GameFields[key] = false;
+        } else {
+          GameFields[key] = 0;
+        }
       }
     }
   }

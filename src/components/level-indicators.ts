@@ -40,8 +40,8 @@ export class LevelIndicators {
             (self.canvas.height * 0.09) / 3
           );
         }
+        self.update(self);
       };
-      self.update(self);
     };
   }
   update(self) {
