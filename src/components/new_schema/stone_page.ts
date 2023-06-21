@@ -2,6 +2,7 @@ import { GameFields } from "../../common/common.js";
 import { StoneConfig } from "../../common/stones-config.js";
 import { LevelIndicators } from "../level-indicators.js";
 import Monster from "./animation/monster.js";
+import { Effects } from "./animation/text_effects.js";
 import PromptText from "./prompt_text.js";
 var self;
 export default class StonePage {
@@ -21,6 +22,7 @@ export default class StonePage {
   public levelData: any;
   public promptButton: PromptText;
   public correctAnswer: string;
+  public feedbackEffects: Effects;
   constructor(
     context: CanvasRenderingContext2D,
     canvas: { width: number; height?: number },
@@ -30,6 +32,7 @@ export default class StonePage {
     monster,
     levelIndicators,
     promptButton,
+    feedbackEffects,
     callbackFuntion
   ) {
     self = this;
@@ -45,6 +48,7 @@ export default class StonePage {
     this.callbackFuntion = callbackFuntion;
     this.correctAnswer = this.targetStones.join("");
     this.initializeStonePos();
+    this.feedbackEffects = feedbackEffects;
     this.promptButton = promptButton;
 
     this.createStones();
@@ -200,6 +204,7 @@ export default class StonePage {
       this.targetStones[0] == this.pickedStone.text
     ) {
       this.answer = this.answer + this.pickedStone.text;
+      //  this.feedbackEffects.wrapText("fantastic");
       this.targetStones.shift();
       GameFields.droppedStones = GameFields.droppedStones + 1;
       this.promptButton.draw();

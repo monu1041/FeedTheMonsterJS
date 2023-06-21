@@ -9,6 +9,7 @@ import { LevelIndicators } from "../level-indicators.js";
 import StonePage from "./stone_page.js";
 import Monster from "./animation/monster.js";
 import { LevelEndScene } from "../../scenes/level-end-scene.js";
+import { Effects } from "./animation/text_effects.js";
 let previousTimestamp = performance.now();
 let deltaTime = 0;
 var self;
@@ -27,6 +28,8 @@ export class GameScene {
   public puzzleNumber;
   public game: Game;
   public promptButton: PromptText;
+
+  public feedbackEffects: Effects;
   public timerTicking: TimerTicking;
   public pauseButton: PauseButton;
   public animationWorker: Worker;
@@ -53,6 +56,7 @@ export class GameScene {
       "2d"
     ) as CanvasRenderingContext2D;
     this.canavsElement.style.zIndex = 4;
+
     this.stoneLayerId = this.canvasStack.createLayer(
       this.height,
       this.width,
@@ -76,6 +80,11 @@ export class GameScene {
       this.levelData,
       true
     );
+    this.feedbackEffects = new Effects(
+      this.context,
+      this.game.width,
+      this.game.height
+    );
     this.monster = new Monster(
       this.game,
       this.stoneContext,
@@ -95,6 +104,7 @@ export class GameScene {
       this.monster,
       this.levelIndicators,
       this.promptButton,
+      this.feedbackEffects,
       this.puzzleDecision
     );
     this.timerTicking = new TimerTicking(this.context, this.game);
@@ -104,6 +114,7 @@ export class GameScene {
     const currentTimestamp = performance.now();
     deltaTime = currentTimestamp - previousTimestamp;
     self.timerTicking.timerStart();
+    self.feedbackEffects.render();
     self.monster.update(deltaTime);
     !GameFields.isGamePaused ? self.stonePage.update(deltaTime) : null;
 
@@ -134,7 +145,7 @@ export class GameScene {
       puzzleNumber = 0;
     }
     if (1 === puzzleNumber) {
-      GameFields.gameScore =500
+      GameFields.gameScore = 500;
       new LevelEndScene(
         self.game,
         GameFields.gameScore,
