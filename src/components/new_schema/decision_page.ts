@@ -43,6 +43,7 @@ export class DecisionPage {
   public canvasStack: any;
   public id: string;
   public game: Game;
+  public levelStartCallBack: any;
   constructor({
     game,
     levelData,
@@ -64,6 +65,7 @@ export class DecisionPage {
     this.width = this.game.width;
     this.height = this.game.height;
     this.canvasStack = new CanvasStack("canvas");
+    this.levelStartCallBack = levelStartCallBack;
     this.id = this.canvasStack.createLayer(
       this.height,
       this.width,
@@ -79,6 +81,10 @@ export class DecisionPage {
   }
   puzzleCallBack(value: number, button_type?: string) {
     if (button_type == "close_button") {
+      self.levelStartCallBack(button_type);
+      self.canvasStack.deleteLayer(self.id);
+    } else if (button_type == "next_button") {
+      self.levelStartCallBack(button_type);
       self.canvasStack.deleteLayer(self.id);
     } else {
       new GameScene(self.game, value, self.puzzleCallBack, self.levelData);

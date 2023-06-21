@@ -370,7 +370,6 @@ export class LevelSelectionScreen {
     }
   }
   startGame(level_number: string | number) {
-    console.log("LevelDatas", self.data);
     this.sound.pauseSound();
     new Game(
       this.canvas.width,

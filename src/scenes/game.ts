@@ -49,8 +49,8 @@ export class Game {
     this.animation();
   }
   levelStartCallBack(button_name) {
-    cancelAnimationFrame(animationFrame);
-    animationFrame = null;
+    // cancelAnimationFrame(animationFrame);
+    // animationFrame = null;
     switch (button_name) {
       case "close_button": {
         self.gameSceneCallBack(button_name);
@@ -73,11 +73,11 @@ export class Game {
 
   render() {
     cancelAnimationFrame(animationFrame);
-   // this.scene.createBackgroud();
+    // this.scene.createBackgroud();
   }
 
   animation() {
     self.update();
-    animationFrame = requestAnimationFrame(self.animation);
+    //  animationFrame = requestAnimationFrame(self.animation);
   }
 }

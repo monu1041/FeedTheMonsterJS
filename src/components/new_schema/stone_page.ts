@@ -20,6 +20,7 @@ export default class StonePage {
   public puzzleNumber: number;
   public levelData: any;
   public promptButton: PromptText;
+  public correctAnswer: string;
   constructor(
     context: CanvasRenderingContext2D,
     canvas: { width: number; height?: number },
@@ -42,6 +43,7 @@ export default class StonePage {
     this.monster = monster;
     this.levelIndicators = levelIndicators;
     this.callbackFuntion = callbackFuntion;
+    this.correctAnswer = this.targetStones.join("");
     this.initializeStonePos();
     this.promptButton = promptButton;
 
@@ -52,10 +54,8 @@ export default class StonePage {
   draw(deltaTime) {
     if (this.targetStones.length == 0) {
       this.levelIndicators.setIndicators(this.puzzleNumber + 1);
-      if (
-        this.answer === this.currentPuzzleData.prompt.promptText &&
-        GameFields.puzzleCompleted
-      ) {
+      if (this.answer === this.correctAnswer && GameFields.puzzleCompleted) {
+        console.log(GameFields.gameScore);
         GameFields.gameScore = GameFields.gameScore + 100;
       }
       if (GameFields.puzzleCompleted) this.callbackFuntion();
@@ -84,10 +84,24 @@ export default class StonePage {
     }
   }
   eventListners() {
+    var rect = self.stoneHtmlElement.getBoundingClientRect();
+    this.stoneHtmlElement.addEventListener("click", function (event) {
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      if (
+        Math.sqrt(
+          (x - self.monster.x - self.canvas.width / 4) *
+            (x - self.monster.x - self.canvas.width / 4) +
+            (y - self.monster.y - self.canvas.height / 2.7) *
+              (y - self.monster.y - self.canvas.height / 2.7)
+        ) <= 60
+      ) {
+        GameFields.drawStones = true;
+      }
+    });
     this.stoneHtmlElement.addEventListener(
       "mousedown",
       function (event) {
-        var rect = self.stoneHtmlElement.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         for (let sc of self.foilStones) {
@@ -107,7 +121,6 @@ export default class StonePage {
     this.stoneHtmlElement.addEventListener(
       "mousemove",
       function (event) {
-        var rect = self.stoneHtmlElement.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (self.pickedStone) {
@@ -121,7 +134,6 @@ export default class StonePage {
     this.stoneHtmlElement.addEventListener(
       "mouseup",
       function (event) {
-        var rect = self.stoneHtmlElement.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (
@@ -184,6 +196,7 @@ export default class StonePage {
   checkDraggedOption() {
     if (
       this.targetStones.length > 0 &&
+      this.pickedStone &&
       this.targetStones[0] == this.pickedStone.text
     ) {
       this.answer = this.answer + this.pickedStone.text;

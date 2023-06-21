@@ -103,7 +103,6 @@ export class GameScene {
   animate(timeStamp) {
     const currentTimestamp = performance.now();
     deltaTime = currentTimestamp - previousTimestamp;
-
     self.timerTicking.timerStart();
     self.monster.update(deltaTime);
     !GameFields.isGamePaused ? self.stonePage.update(deltaTime) : null;
@@ -120,7 +119,6 @@ export class GameScene {
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
       if (self.promptButton.onClick(x, y)) {
-        GameFields.drawStones = true;
         //  self.timerTicking.resetTimer();
       }
       if (self.pauseButton.onClick(x, y)) {
@@ -135,7 +133,8 @@ export class GameScene {
     if (button_type != undefined) {
       puzzleNumber = 0;
     }
-    if (self.levelData.puzzles.length === puzzleNumber) {
+    if (1 === puzzleNumber) {
+      GameFields.gameScore =500
       new LevelEndScene(
         self.game,
         GameFields.gameScore,
@@ -158,11 +157,10 @@ export class GameScene {
   resetGameFields() {
     for (let key in GameFields) {
       if (GameFields.hasOwnProperty(key)) {
-        if (key != "gameScore" || "droppedStones") {
+        if (key !== "gameScore" && "droppedStones") {
           GameFields[key] = false;
-        } else {
-          GameFields[key] = 0;
         }
+        if (key === "droppedStones") GameFields[key] = 0;
       }
     }
   }

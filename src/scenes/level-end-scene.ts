@@ -188,6 +188,7 @@ export class LevelEndScene {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (self.nextButton && self.nextButton.onClick(x, y)) {
+          self.deleteCanvas(self);
           //  self.canvas.scene.audio.pauseSound();
           self.levelEndCallBack("next_button");
         }
