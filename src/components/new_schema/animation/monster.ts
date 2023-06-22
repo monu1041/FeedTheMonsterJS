@@ -95,9 +95,8 @@ export default class Monster {
   changeToEatAnimation() {
     this.image = this.eatImg;
     setTimeout(() => {
-      GameFields.isTimerPaused ? (GameFields.puzzleCompleted = true) : null;
       this.changeToIdleAnimation();
-    }, 3000);
+    }, 2000);
   }
 
   changeToIdleAnimation() {
@@ -109,6 +108,6 @@ export default class Monster {
     setTimeout(() => {
       GameFields.isTimerPaused ? (GameFields.puzzleCompleted = true) : null;
       this.changeToIdleAnimation();
-    }, 3000);
+    }, 2000);
   }
 }

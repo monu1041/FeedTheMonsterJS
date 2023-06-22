@@ -1,4 +1,5 @@
 import {
+  ButtonClick,
   GameFields,
   GameSceneLayer,
   PromptAudio,
@@ -134,7 +135,7 @@ export class GameScene {
     previousTimestamp = currentTimestamp;
   }
   showPopUp() {
-    new PausePopUp(this, self.puzzleDecision);
+    new PausePopUp(this, self.puzzleDecision,this.audio);
   }
   pausePopUpCallBack() {}
   eventListners() {
@@ -151,6 +152,10 @@ export class GameScene {
       }
       if (self.pauseButton.onClick(x, y)) {
         GameFields.isTimerPaused = true;
+        self.audio.playSound(
+          "./assets/audios/ButtonClick.mp3",
+          ButtonClick
+        );
         self.showPopUp();
       }
     });

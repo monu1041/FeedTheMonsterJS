@@ -108,6 +108,9 @@ export default class StonePage {
     }
   }
   eventListners() {
+    delay(4000).then(() => {
+      GameFields.drawStones = true;
+    });
     var rect = self.stoneHtmlElement.getBoundingClientRect();
     this.stoneHtmlElement.addEventListener("click", function (event) {
       const x = event.clientX - rect.left;
@@ -230,7 +233,7 @@ export default class StonePage {
       this.targetStones[0] == this.pickedStone.text
     ) {
       this.answer = this.answer + this.pickedStone.text;
-      this.feedbackEffects.wrapText("fantastic");
+
       this.targetStones.shift();
       GameFields.droppedStones = GameFields.droppedStones + 1;
       this.promptButton.draw();
@@ -239,14 +242,22 @@ export default class StonePage {
       self.foilStones = self.foilStones.filter(
         (element) => element !== self.pickedStone
       );
+      if (this.answer == this.correctAnswer) {
+        this.feedbackEffects.wrapText("fantastic");
+        delay(1000).then(() => {
+          self.audio.playSound(
+            audioUrl.phraseAudios[self.getRandomInt(0, 1)],
+            FeedbackAudio
+          );
+          delay(2000).then(() => {
+            GameFields.isTimerPaused
+              ? (GameFields.puzzleCompleted = true)
+              : null;
+          });
+        });
+      }
       self.audio.playSound(audioUrl.monsterEat, PhraseAudio);
       self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);
-      delay(1000).then(() => {
-        self.audio.playSound(
-          audioUrl.phraseAudios[self.getRandomInt(0, 1)],
-          FeedbackAudio
-        );
-      });
       this.monster.changeToEatAnimation();
     } else {
       if (this.pickedStone) {
@@ -257,6 +268,10 @@ export default class StonePage {
         });
         this.foilStones = [];
         self.audio.playSound(audioUrl.monsterSad, PhraseAudio);
+        delay(500).then(() => {
+          self.audio.playSound(audioUrl.monsterSplit, PhraseAudio);
+        });
+
         this.monster.changeToSpitAnimation();
       }
     }

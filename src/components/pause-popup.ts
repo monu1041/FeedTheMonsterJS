@@ -1,10 +1,11 @@
-import { GameFields, PausePopupLayer } from "../common/common.js";
+import { ButtonClick, GameFields, PausePopupLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 import CancelButton from "./buttons/cancel_button.js";
 import CloseButton from "./buttons/close_button.js";
 import RetryButton from "./buttons/retry_button.js";
 import { LevelStartScene } from "../scenes/level-start-scene.js";
 import { Game } from "../scenes/game.js";
+import Sound from "../common/sound.js";
 
 export default class PausePopUp {
   public canvas: Game;
@@ -16,12 +17,14 @@ export default class PausePopUp {
 
   public canvasStack: any;
   public id: any;
+  public audio: Sound;
   puzzleChange;
 
-  constructor(canvas, puzzleDecision) {
+  constructor(canvas, puzzleDecision, audio) {
     this.canvas = canvas;
     this.puzzleDecision = puzzleDecision;
     this.canvasStack = new CanvasStack("canvas");
+    this.audio = audio;
     this.createCanvas();
   }
 
@@ -70,17 +73,20 @@ export default class PausePopUp {
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
       if (self.cancelButton.onClick(x, y)) {
+        self.audio.playSound("./assets/audios/ButtonClick.mp3", ButtonClick);
         GameFields.isTimerPaused = false;
         //  self.levelStart.timerTicking.resumeTimer();
         // self.levelStart.levelEndCallBack('cancel_button');
         self.deleteCanvas(self);
       }
       if (self.retryButton.onClick(x, y)) {
+        self.audio.playSound("./assets/audios/ButtonClick.mp3", ButtonClick);
         self.puzzleDecision("retry_button");
         //self.levelStart.levelEndCallBack("retry_button");
         self.deleteCanvas(self);
       }
       if (self.closeButton.onClick(x, y)) {
+        self.audio.playSound("./assets/audios/ButtonClick.mp3", ButtonClick);
         self.puzzleDecision("close_button");
         self.deleteCanvas(self);
       }

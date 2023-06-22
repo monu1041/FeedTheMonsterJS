@@ -1,5 +1,6 @@
 import { lang, pseudoId } from "../../global-variables.js";
 import {
+  ButtonClick,
   IntroMusic,
   LevelEndAudio,
   LevelEndButtonsLayer,
@@ -185,16 +186,28 @@ export class LevelEndScene {
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
         if (self.nextButton && self.nextButton.onClick(x, y)) {
+          self.audio.playSound(
+            "./assets/audios/ButtonClick.mp3",
+            ButtonClick
+          );
           self.deleteCanvas(self);
           self.audio.pauseSound();
           self.levelEndCallBack("next_button");
         }
         if (self.retryButton.onClick(x, y)) {
+          self.audio.playSound(
+            "./assets/audios/ButtonClick.mp3",
+            ButtonClick
+          );
           self.deleteCanvas(self);
           self.audio.pauseSound();
           self.levelEndCallBack("retry_button");
         }
         if (self.closeButton.onClick(x, y)) {
+          self.audio.playSound(
+            "./assets/audios/ButtonClick.mp3",
+            ButtonClick
+          );
           self.deleteCanvas(self);
           self.audio.pauseSound();
           self.levelEndCallBack("close_button");
