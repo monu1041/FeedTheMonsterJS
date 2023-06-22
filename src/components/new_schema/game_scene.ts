@@ -45,7 +45,7 @@ export class GameScene {
   public stonePage: StonePage;
   public monster: Monster;
   public requestAnimation: any;
-  constructor(game, puzzleNumber, puzzleCallBack, levelData,audio) {
+  constructor(game, puzzleNumber, puzzleCallBack, levelData, audio) {
     self = this;
     this.game = game;
     this.levelData = levelData;
@@ -121,13 +121,13 @@ export class GameScene {
       this.audio,
       this.puzzleDecision
     );
-    this.timerTicking = new TimerTicking(this.context, this.game,this.audio);
+    this.timerTicking = new TimerTicking(this.context, this.game, this.audio);
     this.pauseButton = new PauseButton(this.context, this.canavsElement);
   }
   animate(timeStamp) {
     const currentTimestamp = performance.now();
     deltaTime = currentTimestamp - previousTimestamp;
-    self.timerTicking.timerStart();
+    self.timerTicking ? self.timerTicking.timerStart() : null;
     self.feedbackEffects.render();
     self.monster.update(deltaTime);
     !GameFields.isGamePaused ? self.stonePage.update(deltaTime) : null;
@@ -135,7 +135,7 @@ export class GameScene {
     previousTimestamp = currentTimestamp;
   }
   showPopUp() {
-    new PausePopUp(this, self.puzzleDecision,this.audio);
+    new PausePopUp(this, self.puzzleDecision, this.audio);
   }
   pausePopUpCallBack() {}
   eventListners() {
@@ -152,10 +152,7 @@ export class GameScene {
       }
       if (self.pauseButton.onClick(x, y)) {
         GameFields.isTimerPaused = true;
-        self.audio.playSound(
-          "./assets/audios/ButtonClick.mp3",
-          ButtonClick
-        );
+        self.audio.playSound("./assets/audios/ButtonClick.mp3", ButtonClick);
         self.showPopUp();
       }
     });
@@ -167,6 +164,7 @@ export class GameScene {
       puzzleNumber = 0;
     }
     if (self.levelData.puzzles.length === puzzleNumber) {
+      self.timerTicking = null;
       new LevelEndScene(
         self.game,
         GameFields.gameScore,
