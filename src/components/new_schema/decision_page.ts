@@ -1,4 +1,5 @@
 import {
+  ButtonClick,
   GameFields,
   GameSceneBg,
   GameSceneLayer,
@@ -9,6 +10,7 @@ import StonesLayer from "../stones-layer.js";
 import { CanvasStack } from "../../utility/canvas-stack.js";
 import { Game } from "../../scenes/game.js";
 import { GameScene } from "./game_scene.js";
+import Sound from "../../common/sound.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",
@@ -35,7 +37,7 @@ var images = {
 };
 var self;
 export class DecisionPage {
-  public levelData: any;
+  public allLevelData: any;
   public width: number;
   public height: number;
   public context: CanvasRenderingContext2D;
@@ -44,16 +46,17 @@ export class DecisionPage {
   public id: string;
   public game: Game;
   public levelStartCallBack: any;
+  public audio: Sound;
   constructor({
     game,
-    levelData,
+    allLevelsData,
     levelStartCallBack,
     monsterPhaseNumber,
     feedBackTexts,
     rightToLeft,
   }: {
     game: Game;
-    levelData: { puzzles: any[] };
+    allLevelsData: any;
     levelStartCallBack: any;
     monsterPhaseNumber: any;
     feedBackTexts: any;
@@ -61,7 +64,8 @@ export class DecisionPage {
   }) {
     self = this;
     this.game = game;
-    this.levelData = levelData;
+    this.audio = new Sound();
+    this.allLevelData = allLevelsData;
     this.width = this.game.width;
     this.height = this.game.height;
     this.canvasStack = new CanvasStack("canvas");
@@ -77,26 +81,44 @@ export class DecisionPage {
     ) as CanvasRenderingContext2D;
     this.canavsElement.style.zIndex = 3;
     this.createBackgroud();
-    new GameScene(game, 0, this.puzzleCallBack, this.levelData);
+    new GameScene(
+      game,
+      0,
+      this.puzzleCallBack,
+      this.allLevelData[GameFields.selectedLevel],
+      this.audio
+    );
   }
   puzzleCallBack(value: number, button_type?: string) {
     if (button_type == "close_button") {
       self.levelStartCallBack(button_type);
       self.canvasStack.deleteLayer(self.id);
     } else if (button_type == "next_button") {
-      self.levelStartCallBack(button_type);
-      self.canvasStack.deleteLayer(self.id);
+      GameFields.selectedLevel = GameFields.selectedLevel + 1;
+      new GameScene(
+        self.game,
+        value,
+        self.puzzleCallBack,
+        self.allLevelData[GameFields.selectedLevel],
+        self.audio
+      );
     } else {
-      new GameScene(self.game, value, self.puzzleCallBack, self.levelData);
+      new GameScene(
+        self.game,
+        value,
+        self.puzzleCallBack,
+        self.allLevelData[GameFields.selectedLevel],
+        self.audio
+      );
     }
   }
   createBackgroud() {
     var self = this;
     const availableBackgroundTypes = ["Summer", "Autumn", "Winter"];
     var backgroundType =
-      Math.floor(self.levelData.levelNumber / 10) %
+      Math.floor(self.allLevelData[GameFields.selectedLevel].levelNumber / 10) %
       availableBackgroundTypes.length;
-    if (self.levelData.levelNumber >= 30) {
+    if (self.allLevelData.levelNumber >= 30) {
       backgroundType = backgroundType % 3;
     }
     loadingScreen(true);

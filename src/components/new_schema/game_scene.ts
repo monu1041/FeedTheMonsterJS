@@ -1,4 +1,9 @@
-import { GameFields, GameSceneLayer, StoneLayer } from "../../common/common.js";
+import {
+  GameFields,
+  GameSceneLayer,
+  PromptAudio,
+  StoneLayer,
+} from "../../common/common.js";
 import PromptText from "./prompt_text.js";
 import { CanvasStack } from "../../utility/canvas-stack.js";
 import { Game } from "../../scenes/game.js";
@@ -10,6 +15,7 @@ import StonePage from "./stone_page.js";
 import Monster from "./animation/monster.js";
 import { LevelEndScene } from "../../scenes/level-end-scene.js";
 import { Effects } from "./animation/text_effects.js";
+import Sound from "../../common/sound.js";
 let previousTimestamp = performance.now();
 let deltaTime = 0;
 var self;
@@ -27,6 +33,7 @@ export class GameScene {
   public puzzleCallBack;
   public puzzleNumber;
   public game: Game;
+  public audio: Sound;
   public promptButton: PromptText;
 
   public feedbackEffects: Effects;
@@ -37,7 +44,7 @@ export class GameScene {
   public stonePage: StonePage;
   public monster: Monster;
   public requestAnimation: any;
-  constructor(game, puzzleNumber, puzzleCallBack, levelData) {
+  constructor(game, puzzleNumber, puzzleCallBack, levelData,audio) {
     self = this;
     this.game = game;
     this.levelData = levelData;
@@ -45,6 +52,7 @@ export class GameScene {
     this.puzzleCallBack = puzzleCallBack;
     this.width = game.width;
     this.height = game.height;
+    this.audio = audio;
     this.canvasStack = new CanvasStack("canvas");
     this.id = this.canvasStack.createLayer(
       this.height,
@@ -73,6 +81,10 @@ export class GameScene {
     this.eventListners();
   }
   drawGameScreen() {
+    this.audio.playSound(
+      this.levelData.puzzles[this.puzzleNumber].prompt.promptAudio,
+      PromptAudio
+    );
     this.promptButton = new PromptText(
       this.context,
       this.game,
@@ -105,9 +117,10 @@ export class GameScene {
       this.levelIndicators,
       this.promptButton,
       this.feedbackEffects,
+      this.audio,
       this.puzzleDecision
     );
-    this.timerTicking = new TimerTicking(this.context, this.game);
+    this.timerTicking = new TimerTicking(this.context, this.game,this.audio);
     this.pauseButton = new PauseButton(this.context, this.canavsElement);
   }
   animate(timeStamp) {
@@ -130,6 +143,10 @@ export class GameScene {
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
       if (self.promptButton.onClick(x, y)) {
+        self.audio.playSound(
+          self.levelData.puzzles[self.puzzleNumber].prompt.promptAudio,
+          PromptAudio
+        );
         //  self.timerTicking.resetTimer();
       }
       if (self.pauseButton.onClick(x, y)) {
@@ -144,8 +161,7 @@ export class GameScene {
     if (button_type != undefined) {
       puzzleNumber = 0;
     }
-    if (1 === puzzleNumber) {
-      GameFields.gameScore = 500;
+    if (self.levelData.puzzles.length === puzzleNumber) {
       new LevelEndScene(
         self.game,
         GameFields.gameScore,
@@ -153,6 +169,7 @@ export class GameScene {
         self.levelEndCallBack,
         self.levelData,
         self.monster.monsterPhaseNumber,
+        self.audio,
         new Date()
       );
     } else {
@@ -168,7 +185,9 @@ export class GameScene {
   resetGameFields() {
     for (let key in GameFields) {
       if (GameFields.hasOwnProperty(key)) {
-        if (key !== "gameScore" && "droppedStones") {
+        if (
+          ["gameScore", "droppedStones", "selectedLevel"].indexOf(key) == -1
+        ) {
           GameFields[key] = false;
         }
         if (key === "droppedStones") GameFields[key] = 0;

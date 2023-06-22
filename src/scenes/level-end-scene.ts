@@ -41,6 +41,7 @@ export class LevelEndScene {
   public levelStartTime: number;
   public levelEndTime: Date;
   public score: number;
+  public audio: Sound;
 
   constructor(
     canvas,
@@ -49,6 +50,7 @@ export class LevelEndScene {
     levelEndCallBack,
     levelData,
     monsterPhaseNumber,
+    audio,
     levelStartTime
   ) {
     this.canvas = canvas;
@@ -59,6 +61,7 @@ export class LevelEndScene {
     this.levelStartTime = levelStartTime;
     this.levelEndTime = new Date();
     this.score = score;
+    this.audio = audio;
     this.starCount =
       score == 200
         ? 1
@@ -86,30 +89,24 @@ export class LevelEndScene {
   }
   createCanvas() {
     if (this.starCount <= 1) {
-      //    this.canvas.scene.audio.playSound(audioUrl.levelLose, LevelEndAudio);
+      this.audio.playSound(audioUrl.levelLose, LevelEndAudio);
       this.monster.changeImage(
         "./assets/images/sad1" + this.monsterPhaseNumber + ".png"
       );
     } else {
-      // this.canvas.scene.audio.playSound(
-      //   "./assets/audios/intro.mp3",
-      //   IntroMusic
-      // );
+      this.audio.playSound("./assets/audios/intro.mp3", IntroMusic);
       this.monster.changeImage(
         "./assets/images/happy1" + this.monsterPhaseNumber + ".png"
       );
-      //  this.canvas.scene.audio.playSound(audioUrl.levelWin, LevelEndAudio);
+      this.audio.playSound(audioUrl.levelWin, LevelEndAudio);
     }
     document.addEventListener(
       "visibilitychange",
       function () {
         if (document.visibilityState === "visible") {
-          // self.canvas.scene.audio.playSound(
-          //   "./assets/audios/intro.mp3",
-          //   IntroMusic
-          // );
+          self.audio.playSound("./assets/audios/intro.mp3", IntroMusic);
         } else {
-          //  self.canvas.scene.audio.pauseSound();
+          self.audio.pauseSound();
         }
       },
       false
@@ -189,17 +186,17 @@ export class LevelEndScene {
         const y = event.clientY - rect.top;
         if (self.nextButton && self.nextButton.onClick(x, y)) {
           self.deleteCanvas(self);
-          //  self.canvas.scene.audio.pauseSound();
+          self.audio.pauseSound();
           self.levelEndCallBack("next_button");
         }
         if (self.retryButton.onClick(x, y)) {
           self.deleteCanvas(self);
-          //  self.canvas.scene.audio.pauseSound();
+          self.audio.pauseSound();
           self.levelEndCallBack("retry_button");
         }
         if (self.closeButton.onClick(x, y)) {
           self.deleteCanvas(self);
-          // self.canvas.scene.audio.pauseSound();
+          self.audio.pauseSound();
           self.levelEndCallBack("close_button");
         }
       }

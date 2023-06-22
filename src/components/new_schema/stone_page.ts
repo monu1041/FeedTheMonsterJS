@@ -1,10 +1,29 @@
-import { GameFields } from "../../common/common.js";
+import { lang } from "../../../global-variables.js";
+import {
+  FeedbackAudio,
+  GameFields,
+  PhraseAudio,
+  delay,
+} from "../../common/common.js";
+import Sound from "../../common/sound.js";
 import { StoneConfig } from "../../common/stones-config.js";
 import { LevelIndicators } from "../level-indicators.js";
 import Monster from "./animation/monster.js";
 import { Effects } from "./animation/text_effects.js";
 import PromptText from "./prompt_text.js";
 var self;
+var audioUrl = {
+  phraseAudios: [
+    "./lang/" + lang + "/audios/fantastic.mp3",
+    // "./assets/audios/good job.WAV",
+    "./lang/" + lang + "/audios/great.mp3",
+  ],
+  monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
+  monsterEat: "./assets/audios/Eat.mp3",
+  monsterHappy: "./assets/audios/Cheering-02.mp3",
+  monsterSad: "./assets/audios/Disapointed-05.mp3",
+  ondragStart: "./assets/audios/onDrag.mp3",
+};
 export default class StonePage {
   public context: CanvasRenderingContext2D;
   public canvas: { width: any; height?: number };
@@ -23,6 +42,7 @@ export default class StonePage {
   public promptButton: PromptText;
   public correctAnswer: string;
   public feedbackEffects: Effects;
+  public audio: Sound;
   constructor(
     context: CanvasRenderingContext2D,
     canvas: { width: number; height?: number },
@@ -33,6 +53,7 @@ export default class StonePage {
     levelIndicators,
     promptButton,
     feedbackEffects,
+    audio,
     callbackFuntion
   ) {
     self = this;
@@ -50,7 +71,7 @@ export default class StonePage {
     this.initializeStonePos();
     this.feedbackEffects = feedbackEffects;
     this.promptButton = promptButton;
-
+    this.audio = audio;
     this.createStones();
     this.draw(0);
     this.eventListners();
@@ -59,7 +80,6 @@ export default class StonePage {
     if (this.targetStones.length == 0) {
       this.levelIndicators.setIndicators(this.puzzleNumber + 1);
       if (this.answer === this.correctAnswer && GameFields.puzzleCompleted) {
-        console.log(GameFields.gameScore);
         GameFields.gameScore = GameFields.gameScore + 100;
       }
       if (GameFields.puzzleCompleted) this.callbackFuntion();
@@ -112,6 +132,7 @@ export default class StonePage {
           if (
             Math.sqrt((x - sc.x) * (x - sc.x) + (y - sc.y) * (y - sc.y)) <= 40
           ) {
+            self.audio.playSound(audioUrl.ondragStart, PhraseAudio);
             // dragAudio.currentTime = 0;
             // dragAudio.play();
             self.pickedStone = sc;
@@ -197,6 +218,11 @@ export default class StonePage {
       false
     );
   }
+  getRandomInt(min: number, max: number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
   checkDraggedOption() {
     if (
       this.targetStones.length > 0 &&
@@ -204,7 +230,7 @@ export default class StonePage {
       this.targetStones[0] == this.pickedStone.text
     ) {
       this.answer = this.answer + this.pickedStone.text;
-      //  this.feedbackEffects.wrapText("fantastic");
+      this.feedbackEffects.wrapText("fantastic");
       this.targetStones.shift();
       GameFields.droppedStones = GameFields.droppedStones + 1;
       this.promptButton.draw();
@@ -213,6 +239,14 @@ export default class StonePage {
       self.foilStones = self.foilStones.filter(
         (element) => element !== self.pickedStone
       );
+      self.audio.playSound(audioUrl.monsterEat, PhraseAudio);
+      self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);
+      delay(1000).then(() => {
+        self.audio.playSound(
+          audioUrl.phraseAudios[self.getRandomInt(0, 1)],
+          FeedbackAudio
+        );
+      });
       this.monster.changeToEatAnimation();
     } else {
       if (this.pickedStone) {
@@ -222,6 +256,7 @@ export default class StonePage {
           stone.y = 2000;
         });
         this.foilStones = [];
+        self.audio.playSound(audioUrl.monsterSad, PhraseAudio);
         this.monster.changeToSpitAnimation();
       }
     }

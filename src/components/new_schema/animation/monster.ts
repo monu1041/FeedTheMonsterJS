@@ -31,7 +31,7 @@ export default class Monster {
     this.canvas = canvas;
     this.frameX = 0;
     this.frameY = 0;
-    this.stoneCanavsElement = stoneCanavsElement
+    this.stoneCanavsElement = stoneCanavsElement;
 
     this.monsterPhaseNumber = Debugger.DebugMode
       ? localStorage.getItem(StoreMonsterPhaseNumber + lang + "Debug") || 1
@@ -97,7 +97,7 @@ export default class Monster {
     setTimeout(() => {
       GameFields.isTimerPaused ? (GameFields.puzzleCompleted = true) : null;
       this.changeToIdleAnimation();
-    }, 2000);
+    }, 3000);
   }
 
   changeToIdleAnimation() {
@@ -109,6 +109,6 @@ export default class Monster {
     setTimeout(() => {
       GameFields.isTimerPaused ? (GameFields.puzzleCompleted = true) : null;
       this.changeToIdleAnimation();
-    }, 2000);
+    }, 3000);
   }
 }

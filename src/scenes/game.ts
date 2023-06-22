@@ -13,11 +13,12 @@ export class Game {
   public monsterPhaseNumber: any;
   public feedBackTexts: any;
   public rightToLeft: boolean;
+  public leveData: any;
 
   constructor(
     width: number,
     height: number,
-    puzzleData: any,
+    AllLevelsData: any,
     gameSceneCallBack: any,
     feedBackTexts: any,
     rightToLeft: boolean
@@ -27,6 +28,7 @@ export class Game {
     this.monsterPhaseNumber = Debugger.DebugMode
       ? localStorage.getItem(StoreMonsterPhaseNumber + lang + "Debug") || 1
       : localStorage.getItem(StoreMonsterPhaseNumber + lang) || 1;
+    this.leveData = AllLevelsData;
     // this.scene = new LevelStartScene({
     //   game: this,
     //   levelData: puzzleData,
@@ -37,7 +39,7 @@ export class Game {
     // });
     new DecisionPage({
       game: this,
-      levelData: puzzleData,
+      allLevelsData: AllLevelsData,
       levelStartCallBack: this.levelStartCallBack,
       monsterPhaseNumber: this.monsterPhaseNumber,
       feedBackTexts: feedBackTexts,

@@ -1,5 +1,6 @@
-import { GameFields } from "../../common/common.js";
-import { Game } from "../../scenes/game";
+import { GameFields, TimeOver } from "../../common/common.js";
+import Sound from "../../common/sound.js";
+import { Game } from "../../scenes/game.js";
 
 export default class TimerTicking {
   public posX: number;
@@ -7,13 +8,15 @@ export default class TimerTicking {
   public context: CanvasRenderingContext2D;
   public canvas: Game;
   public timer;
+  public audio: Sound;
 
-  constructor(context: CanvasRenderingContext2D, canvas: Game) {
+  constructor(context: CanvasRenderingContext2D, canvas: Game, audio: Sound) {
     this.posX = canvas.width * 0.12;
     this.posY = canvas.height * 0.099;
     this.context = context;
     this.canvas = canvas;
     this.timer = 0;
+    this.audio = audio;
     this.draw();
   }
 
@@ -50,6 +53,7 @@ export default class TimerTicking {
       !GameFields.TimerOut
     ) {
       GameFields.TimerOut = true;
+      this.audio.playSound("./assets/audios/timeout.mp3", TimeOver);
       // TimeOut
     }
     if (

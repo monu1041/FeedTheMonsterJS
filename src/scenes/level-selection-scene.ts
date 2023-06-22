@@ -4,6 +4,7 @@ import { LevelConfig } from "../common/level-config.js";
 import { Game } from "./game.js";
 import {
   ButtonClick,
+  GameFields,
   IntroMusic,
   LevelSelectionLayer,
   PreviousPlayedLevel,
@@ -370,11 +371,12 @@ export class LevelSelectionScreen {
     }
   }
   startGame(level_number: string | number) {
+    GameFields.selectedLevel = level_number;
     this.sound.pauseSound();
     new Game(
       this.canvas.width,
       this.canvas.height,
-      self.data.levels[level_number],
+      self.data.levels,
       self.gameSceneCallBack,
       self.data.FeedbackTexts,
       self.data.rightToLeft
