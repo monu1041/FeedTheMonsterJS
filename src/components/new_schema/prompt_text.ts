@@ -22,6 +22,7 @@ export default class PromptText {
     this.posY = canvas.height * 0.15;
     this.context = context;
     this.canvas = canvas;
+    this.rightToLeft = rightToLeft;
     this.currentPromptText = currentPuzzleData.prompt.promptText;
     this.currentPuzzleData = currentPuzzleData;
     this.targetStones = this.currentPuzzleData.targetStones;
@@ -44,7 +45,9 @@ export default class PromptText {
       );
       self.context.fillStyle = "black";
       self.context.font = 30 + "px Arial";
-      self.drawOthers(0);
+      self.rightToLeft
+      ? self.drawArabic(0)
+      : self.drawOthers(0);
     };
   }
   showFantasticOrGreat(feedBackText) {
@@ -59,7 +62,7 @@ export default class PromptText {
     );
   }
 
-  drawArabic() {
+  drawArabic(droppedStones) {
     var x = this.canvas.width / 2;
     const y = this.canvas.height * 0.26;
     if (this.levelData.levelMeta.levelType == "LetterInWord") {

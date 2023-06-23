@@ -45,7 +45,8 @@ export class GameScene {
   public stonePage: StonePage;
   public monster: Monster;
   public requestAnimation: any;
-  constructor(game, puzzleNumber, puzzleCallBack, levelData, audio) {
+  public rightToLeft:boolean;
+  constructor(game, puzzleNumber, puzzleCallBack, levelData, audio ,rightToLeft) {
     self = this;
     this.game = game;
     this.levelData = levelData;
@@ -54,6 +55,7 @@ export class GameScene {
     this.width = game.width;
     this.height = game.height;
     this.audio = audio;
+    this.rightToLeft = rightToLeft;
     this.canvasStack = new CanvasStack("canvas");
     this.id = this.canvasStack.createLayer(
       this.height,
@@ -91,7 +93,7 @@ export class GameScene {
       this.game,
       this.levelData.puzzles[this.puzzleNumber],
       this.levelData,
-      true
+      this.rightToLeft
     );
     this.feedbackEffects = new Effects(
       this.context,

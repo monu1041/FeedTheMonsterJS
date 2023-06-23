@@ -1,4 +1,4 @@
-import { TutorialLayer } from "../common/common.js";
+import { GameFields, TutorialLayer } from "../common/common.js";
 import { CanvasStack } from "../utility/canvas-stack.js";
 var self;
 var tutorialImg = new Image();
@@ -71,7 +71,7 @@ export class Tutorial {
         this.x = this.startx;
         this.y = this.starty;
       }, 500);
-      return;
+      GameFields.tutorialStatus = true
     }
 
     this.x = this.dx >= 0 ? this.x + this.absdx : this.x - this.absdx;

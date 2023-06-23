@@ -79,12 +79,10 @@ export default class StonePage {
     this.eventListners();
   }
   draw(deltaTime) {
-    // GameFields.setTimeOuts.timerShowTutorial = setTimeout(() => {
-    //   if (this.showTutorial && GameFields.showTutorial) {
-    //     this.tutorial.draw();
-    //     clearTimeout(GameFields.setTimeOuts.timerShowTutorial);
-    //   }
-    // }, 2000);
+      if (this.showTutorial && GameFields.showTutorial && !GameFields.tutorialStatus) {
+        this.tutorial.draw();
+        clearTimeout(GameFields.setTimeOuts.timerShowTutorial);
+      }
     if (this.targetStones.length == 0) {
       this.levelIndicators.setIndicators(this.puzzleNumber + 1);
       if (this.answer === this.correctAnswer && GameFields.puzzleCompleted) {
@@ -97,13 +95,14 @@ export default class StonePage {
       this.callbackFuntion();
     }
     if (GameFields.drawStones) {
-      // delay(2000).then(()=>{
-      //   console.log('************')
-      // })
-      !GameFields.showTutorial ? (GameFields.showTutorial = true) : null;
-
       for (let fs of this.foilStones) {
         this.drawstone(fs);
+      }
+      if (!GameFields.showTutorial) {
+        GameFields.setTimeOuts.timerShowTutorial = setTimeout(() => {
+          GameFields.showTutorial = true;
+          clearTimeout(GameFields.setTimeOuts.timerShowTutorial);
+        }, 2000);
       }
     }
   }
@@ -129,7 +128,7 @@ export default class StonePage {
   }
   eventListners() {
     GameFields.setTimeOuts.timerDrawStones = setTimeout(() => {
-      GameFields.drawStones = true;
+     GameFields.drawStones = true;
     }, 4000);
     var rect = self.stoneHtmlElement.getBoundingClientRect();
     this.stoneHtmlElement.addEventListener("click", function (event) {
