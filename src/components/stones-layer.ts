@@ -492,7 +492,7 @@ export default class StonesLayer {
     this.draw();
   }
 
-  update() {
+  update(deltaTime) {
     this.draw();
   }
 }
