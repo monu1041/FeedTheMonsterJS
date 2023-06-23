@@ -88,5 +88,6 @@ export const GameFields = {
     timerMonsterSplit: null,
     timerFeedback: null,
     timerPuzzleCmptd: null,
+    timerShowTutorial: null,
   },
 };

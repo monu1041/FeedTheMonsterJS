@@ -54,7 +54,7 @@ export class PromptText {
   }
 
   createCanvas() {
-    console.log("LevelData", this.rightToLeft);
+  
     this.id = this.canvasStack.createLayer(
       this.height,
       this.width,

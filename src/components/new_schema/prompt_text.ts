@@ -10,6 +10,7 @@ export default class PromptText {
   public targetStones: any;
   public levelData: any;
   public rightToLeft: any;
+  public promptImage: HTMLImageElement;
   constructor(
     context: CanvasRenderingContext2D,
     canvas: { width: number; height?: number },
@@ -25,17 +26,17 @@ export default class PromptText {
     this.currentPuzzleData = currentPuzzleData;
     this.targetStones = this.currentPuzzleData.targetStones;
     this.levelData = levelData;
+    this.promptImage = new Image();
+    this.promptImage.src = " ./assets/images/promptTextBg.png";
     this.draw();
   }
   draw() {
     var self = this;
     self.clearPrompt();
-    var prompt_button_image = new Image();
-    prompt_button_image.src = "./assets/images/promptTextBg.png";
 
-    prompt_button_image.onload = function (e) {
+    this.promptImage.onload = function (e) {
       self.context.drawImage(
-        prompt_button_image,
+        self.promptImage,
         self.posX,
         self.posY,
         self.canvas.width * 0.5,
@@ -46,6 +47,18 @@ export default class PromptText {
       self.drawOthers(0);
     };
   }
+  showFantasticOrGreat(feedBackText) {
+    this.clearPrompt();
+    this.context.font = "bold 24px Arial";
+    this.context.fillStyle = "white";
+    // this.context.textAlign = "center";
+    this.context.fillText(
+      feedBackText,
+      this.canvas.width / 2 - this.context.measureText(feedBackText).width / 2,
+      this.canvas.height * 0.25
+    );
+  }
+
   drawArabic() {
     var x = this.canvas.width / 2;
     const y = this.canvas.height * 0.26;

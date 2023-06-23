@@ -11,9 +11,9 @@ import PromptText from "./prompt_text.js";
 var self;
 var audioUrl = {
   phraseAudios: [
-    "./lang/" + lang + "/audios/fantastic.mp3",
+    ["Fantastic", "./lang/" + lang + "/audios/fantastic.mp3"],
     // "./assets/audios/good job.WAV",
-    "./lang/" + lang + "/audios/great.mp3",
+    ["Great", "./lang/" + lang + "/audios/great.mp3"],
   ],
   monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
   monsterEat: "./assets/audios/Eat.mp3",
@@ -79,7 +79,12 @@ export default class StonePage {
     this.eventListners();
   }
   draw(deltaTime) {
-    //if (this.showTutorial && GameFields.showTutorial) this.tutorial.draw();
+    // GameFields.setTimeOuts.timerShowTutorial = setTimeout(() => {
+    //   if (this.showTutorial && GameFields.showTutorial) {
+    //     this.tutorial.draw();
+    //     clearTimeout(GameFields.setTimeOuts.timerShowTutorial);
+    //   }
+    // }, 2000);
     if (this.targetStones.length == 0) {
       this.levelIndicators.setIndicators(this.puzzleNumber + 1);
       if (this.answer === this.correctAnswer && GameFields.puzzleCompleted) {
@@ -257,12 +262,11 @@ export default class StonePage {
         (element) => element !== self.pickedStone
       );
       if (this.answer == this.correctAnswer) {
-        this.feedbackEffects.wrapText("fantastic");
+        var phraseValues = audioUrl.phraseAudios[self.getRandomInt(0, 1)];
+        this.promptButton.showFantasticOrGreat(phraseValues[0]);
+        //   this.feedbackEffects.wrapText("fantastic");
         GameFields.setTimeOuts.timerFeedback = setTimeout(() => {
-          self.audio.playSound(
-            audioUrl.phraseAudios[self.getRandomInt(0, 1)],
-            FeedbackAudio
-          );
+          self.audio.playSound(phraseValues[1], FeedbackAudio);
           GameFields.setTimeOuts.timerPuzzleCmptd = setTimeout(() => {
             GameFields.isTimerPaused
               ? (GameFields.puzzleCompleted = true)
