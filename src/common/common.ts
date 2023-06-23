@@ -37,6 +37,7 @@ export function loadingScreen(loading: boolean) {
     });
   }
 }
+
 export const MonsterLayer = "monsterCanvas";
 export const TutorialLayer = "tutorialCanvas";
 export const PausePopupLayer = "pausepopupCanvas";
@@ -71,9 +72,6 @@ export const PhraseAudio = "phrase_audio";
 export const LevelEndAudio = "level_end_audio";
 export const UrlSubstring = "/feedthemonster";
 export const DevelopmentServer = "http://127.0.0.1:5500/build/index.html";
-
-export const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 export const GameFields = {
   TimerOut: false,
   TimeOver: false,
@@ -83,5 +81,12 @@ export const GameFields = {
   drawStones: false,
   gameScore: 0,
   droppedStones: 0,
+  showTutorial: false,
   selectedLevel: null,
+  setTimeOuts: {
+    timerDrawStones: null,
+    timerMonsterSplit: null,
+    timerFeedback: null,
+    timerPuzzleCmptd: null,
+  },
 };

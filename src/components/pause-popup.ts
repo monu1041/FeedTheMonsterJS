@@ -82,12 +82,14 @@ export default class PausePopUp {
       if (self.retryButton.onClick(x, y)) {
         self.audio.playSound("./assets/audios/ButtonClick.mp3", ButtonClick);
         self.puzzleDecision("retry_button");
+        GameFields.gameScore = 0;
         //self.levelStart.levelEndCallBack("retry_button");
         self.deleteCanvas(self);
       }
       if (self.closeButton.onClick(x, y)) {
         self.audio.playSound("./assets/audios/ButtonClick.mp3", ButtonClick);
         self.puzzleDecision("close_button");
+        GameFields.gameScore = 0;
         self.deleteCanvas(self);
       }
     });

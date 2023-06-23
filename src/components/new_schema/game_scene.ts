@@ -175,6 +175,7 @@ export class GameScene {
         self.audio,
         new Date()
       );
+      GameFields.gameScore = 0
     } else {
       clearInterval(self.requestAnimation);
       self.canvasStack.deleteLayer(self.id);
@@ -189,12 +190,20 @@ export class GameScene {
     for (let key in GameFields) {
       if (GameFields.hasOwnProperty(key)) {
         if (
-          ["gameScore", "droppedStones", "selectedLevel"].indexOf(key) == -1
+          [
+            "gameScore",
+            "droppedStones",
+            "selectedLevel",
+            "setTimeOuts",
+          ].indexOf(key) == -1
         ) {
           GameFields[key] = false;
         }
         if (key === "droppedStones") GameFields[key] = 0;
       }
+    }
+    for (let key in GameFields.setTimeOuts) {
+      clearTimeout(GameFields.setTimeOuts[key]);
     }
   }
 }

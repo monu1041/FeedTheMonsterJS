@@ -1,13 +1,10 @@
 import { lang } from "../../../global-variables.js";
-import {
-  FeedbackAudio,
-  GameFields,
-  PhraseAudio,
-  delay,
-} from "../../common/common.js";
+import { FeedbackAudio, GameFields, PhraseAudio } from "../../common/common.js";
 import Sound from "../../common/sound.js";
 import { StoneConfig } from "../../common/stones-config.js";
+import { getDatafromStorage } from "../../data/profile-data.js";
 import { LevelIndicators } from "../level-indicators.js";
+import { Tutorial } from "../tutorial.js";
 import Monster from "./animation/monster.js";
 import { Effects } from "./animation/text_effects.js";
 import PromptText from "./prompt_text.js";
@@ -42,7 +39,11 @@ export default class StonePage {
   public promptButton: PromptText;
   public correctAnswer: string;
   public feedbackEffects: Effects;
+  public tutorialPosition: Array<any>;
   public audio: Sound;
+  public tutorial: Tutorial;
+  public showTutorial: boolean =
+    getDatafromStorage().length == undefined ? true : false;
   constructor(
     context: CanvasRenderingContext2D,
     canvas: { width: number; height?: number },
@@ -72,11 +73,13 @@ export default class StonePage {
     this.feedbackEffects = feedbackEffects;
     this.promptButton = promptButton;
     this.audio = audio;
+    this.tutorial = new Tutorial(context, canvas);
     this.createStones();
     this.draw(0);
     this.eventListners();
   }
   draw(deltaTime) {
+    //if (this.showTutorial && GameFields.showTutorial) this.tutorial.draw();
     if (this.targetStones.length == 0) {
       this.levelIndicators.setIndicators(this.puzzleNumber + 1);
       if (this.answer === this.correctAnswer && GameFields.puzzleCompleted) {
@@ -89,6 +92,11 @@ export default class StonePage {
       this.callbackFuntion();
     }
     if (GameFields.drawStones) {
+      // delay(2000).then(()=>{
+      //   console.log('************')
+      // })
+      !GameFields.showTutorial ? (GameFields.showTutorial = true) : null;
+
       for (let fs of this.foilStones) {
         this.drawstone(fs);
       }
@@ -96,7 +104,6 @@ export default class StonePage {
   }
   createStones() {
     var i = 0;
-
     for (var i = 0; i < this.currentPuzzleData.foilStones.length; i++) {
       this.foilStones.push(
         new StoneConfig(
@@ -106,11 +113,19 @@ export default class StonePage {
         )
       );
     }
+    this.foilStones.forEach((stone) => {
+      if (stone.text == this.targetStones[0]) {
+        console.log(stone);
+        this.tutorialPosition = [stone.targetX, stone.targetY];
+        this.tutorial.updateTargetStonePositions(this.tutorialPosition);
+        this.tutorial.animateImage();
+      }
+    });
   }
   eventListners() {
-    delay(4000).then(() => {
+    GameFields.setTimeOuts.timerDrawStones = setTimeout(() => {
       GameFields.drawStones = true;
-    });
+    }, 4000);
     var rect = self.stoneHtmlElement.getBoundingClientRect();
     this.stoneHtmlElement.addEventListener("click", function (event) {
       const x = event.clientX - rect.left;
@@ -145,7 +160,6 @@ export default class StonePage {
       },
       false
     );
-    // this.monster.changeToIdleAnimation
     this.stoneHtmlElement.addEventListener(
       "mousemove",
       function (event) {
@@ -244,17 +258,17 @@ export default class StonePage {
       );
       if (this.answer == this.correctAnswer) {
         this.feedbackEffects.wrapText("fantastic");
-        delay(1000).then(() => {
+        GameFields.setTimeOuts.timerFeedback = setTimeout(() => {
           self.audio.playSound(
             audioUrl.phraseAudios[self.getRandomInt(0, 1)],
             FeedbackAudio
           );
-          delay(2000).then(() => {
+          GameFields.setTimeOuts.timerPuzzleCmptd = setTimeout(() => {
             GameFields.isTimerPaused
               ? (GameFields.puzzleCompleted = true)
               : null;
-          });
-        });
+          }, 2000);
+        }, 1000);
       }
       self.audio.playSound(audioUrl.monsterEat, PhraseAudio);
       self.audio.playSound(audioUrl.monsterHappy, PhraseAudio);
@@ -268,10 +282,9 @@ export default class StonePage {
         });
         this.foilStones = [];
         self.audio.playSound(audioUrl.monsterSad, PhraseAudio);
-        delay(500).then(() => {
+        GameFields.setTimeOuts.timerMonsterSplit = setTimeout(() => {
           self.audio.playSound(audioUrl.monsterSplit, PhraseAudio);
         });
-
         this.monster.changeToSpitAnimation();
       }
     }
