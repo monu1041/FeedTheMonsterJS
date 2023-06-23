@@ -5,6 +5,7 @@ import { LevelStartScene } from "./level-start-scene.js";
 
 var animationFrame: number;
 var self: any;
+let lastTime: number = 0;
 export class Game {
   public width: number;
   public height: number;
@@ -48,7 +49,7 @@ export class Game {
     this.gameSceneCallBack = gameSceneCallBack;
     this.render();
     self = this;
-    this.animation();
+    this.animation(0);
   }
   levelStartCallBack(button_name) {
     // cancelAnimationFrame(animationFrame);
@@ -68,9 +69,9 @@ export class Game {
       }
     }
   }
-  update() {
+  update(deltaTime: number) {
     self.scene ? (self.scene.stones ? self.scene.stones.update() : null) : null;
-    self.scene ? self.scene.update() : null;
+    self.scene ? self.scene.update(deltaTime) : null;
   }
 
   render() {
@@ -78,8 +79,10 @@ export class Game {
     // this.scene.createBackgroud();
   }
 
-  animation() {
-    self.update();
+  animation(currentTime: number) {
+    let deltaTime: number = currentTime - lastTime;
+    lastTime = currentTime;
+    self.update(deltaTime);
     //  animationFrame = requestAnimationFrame(self.animation);
   }
 }

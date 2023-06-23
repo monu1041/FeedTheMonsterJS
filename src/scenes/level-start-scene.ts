@@ -522,8 +522,8 @@ export class LevelStartScene {
     this.levelIndicators.draw();
     this.promptText.createBackground();
   }
-  update() {
-    self.timerTicking ? self.timerTicking.update() : null;
+  update(deltaTime: number) {
+    self.timerTicking ? self.timerTicking.update(deltaTime) : null;
   }
 
   changePuzzle() {
