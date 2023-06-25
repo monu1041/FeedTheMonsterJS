@@ -1,4 +1,6 @@
 import { GameFields } from "../../common/common.js";
+var promptImage = new Image();
+promptImage.src = " ./assets/images/promptTextBg.png";
 
 export default class PromptText {
   public posX: number;
@@ -27,28 +29,22 @@ export default class PromptText {
     this.currentPuzzleData = currentPuzzleData;
     this.targetStones = this.currentPuzzleData.targetStones;
     this.levelData = levelData;
-    this.promptImage = new Image();
-    this.promptImage.src = " ./assets/images/promptTextBg.png";
     this.draw();
   }
   draw() {
     var self = this;
     self.clearPrompt();
+    self.context.drawImage(
+      promptImage,
+      self.posX,
+      self.posY,
+      self.canvas.width * 0.5,
+      self.canvas.height * 0.25
 
-    this.promptImage.onload = function (e) {
-      self.context.drawImage(
-        self.promptImage,
-        self.posX,
-        self.posY,
-        self.canvas.width * 0.5,
-        self.canvas.height * 0.25
-      );
-      self.context.fillStyle = "black";
-      self.context.font = 30 + "px Arial";
-      self.rightToLeft
-      ? self.drawArabic(0)
-      : self.drawOthers(0);
-    };
+    );
+    self.context.fillStyle = "black";
+    self.context.font = 30 + "px Arial";
+    self.rightToLeft ? self.drawArabic(0) : self.drawOthers(0);
   }
   showFantasticOrGreat(feedBackText) {
     this.clearPrompt();
@@ -63,6 +59,7 @@ export default class PromptText {
   }
 
   drawArabic(droppedStones) {
+    this.context.textAlign = "center";
     var x = this.canvas.width / 2;
     const y = this.canvas.height * 0.26;
     if (this.levelData.levelMeta.levelType == "LetterInWord") {
@@ -86,7 +83,6 @@ export default class PromptText {
       x = x - this.context.measureText(this.currentPromptText).width * 0.8;
       for (let i = this.targetStones.length - 1; i >= 0; i--) {
         x = x + this.context.measureText(this.targetStones[i]).width + 5;
-        // this.context.textAlign = "center";
         if (
           GameFields.droppedStones > i ||
           GameFields.droppedStones == undefined
