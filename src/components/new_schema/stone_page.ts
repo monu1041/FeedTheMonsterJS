@@ -79,10 +79,14 @@ export default class StonePage {
     this.eventListners();
   }
   draw(deltaTime) {
-      if (this.showTutorial && GameFields.showTutorial && !GameFields.tutorialStatus) {
-        this.tutorial.draw();
-        clearTimeout(GameFields.setTimeOuts.timerShowTutorial);
-      }
+    if (
+      this.showTutorial &&
+      GameFields.showTutorial &&
+      !GameFields.tutorialStatus
+    ) {
+      this.tutorial.draw();
+      clearTimeout(GameFields.setTimeOuts.timerShowTutorial);
+    }
     if (this.targetStones.length == 0) {
       this.levelIndicators.setIndicators(this.puzzleNumber + 1);
       if (this.answer === this.correctAnswer && GameFields.puzzleCompleted) {
@@ -128,7 +132,7 @@ export default class StonePage {
   }
   eventListners() {
     GameFields.setTimeOuts.timerDrawStones = setTimeout(() => {
-     GameFields.drawStones = true;
+      GameFields.drawStones = true;
     }, 4000);
     var rect = self.stoneHtmlElement.getBoundingClientRect();
     this.stoneHtmlElement.addEventListener("click", function (event) {

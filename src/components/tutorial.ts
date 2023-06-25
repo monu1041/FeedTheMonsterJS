@@ -25,7 +25,7 @@ export class Tutorial {
   absdx: number;
   absdy: number;
 
-  constructor(context, game,) {
+  constructor(context, game) {
     this.game = game;
     self = this;
     this.width = this.game.width;
@@ -42,7 +42,7 @@ export class Tutorial {
     startY = targetStonePosition[1] - 50;
     this.startx = targetStonePosition[0] - 22;
     this.starty = targetStonePosition[1] - 50;
-    this.animateImage()
+    this.animateImage();
   }
 
   isMobile() {
@@ -71,7 +71,7 @@ export class Tutorial {
         this.x = this.startx;
         this.y = this.starty;
       }, 500);
-      GameFields.tutorialStatus = true
+      GameFields.tutorialStatus = true;
     }
 
     this.x = this.dx >= 0 ? this.x + this.absdx : this.x - this.absdx;

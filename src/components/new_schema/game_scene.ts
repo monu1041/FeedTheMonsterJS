@@ -45,8 +45,15 @@ export class GameScene {
   public stonePage: StonePage;
   public monster: Monster;
   public requestAnimation: any;
-  public rightToLeft:boolean;
-  constructor(game, puzzleNumber, puzzleCallBack, levelData, audio ,rightToLeft) {
+  public rightToLeft: boolean;
+  constructor(
+    game,
+    puzzleNumber,
+    puzzleCallBack,
+    levelData,
+    audio,
+    rightToLeft
+  ) {
     self = this;
     this.game = game;
     this.levelData = levelData;
@@ -129,7 +136,7 @@ export class GameScene {
   animate(timeStamp) {
     const currentTimestamp = performance.now();
     deltaTime = currentTimestamp - previousTimestamp;
-    self.timerTicking ? self.timerTicking.timerStart() : null;
+    self.timerTicking ? self.timerTicking.timerStart(deltaTime) : null;
     self.feedbackEffects.render();
     self.monster.update(deltaTime);
     !GameFields.isGamePaused ? self.stonePage.update(deltaTime) : null;
@@ -177,7 +184,7 @@ export class GameScene {
         self.audio,
         new Date()
       );
-      GameFields.gameScore = 0
+      GameFields.gameScore = 0;
     } else {
       clearInterval(self.requestAnimation);
       self.canvasStack.deleteLayer(self.id);

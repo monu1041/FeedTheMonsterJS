@@ -47,7 +47,7 @@ export default class TimerTicking {
     this.timer = 0;
     this.draw();
   }
-  timerStart() {
+  timerStart(deltaTime: number) {
     if (
       this.posX + this.canvas.width - this.timer <= this.posX + 50 &&
       !GameFields.TimerOut
@@ -64,7 +64,7 @@ export default class TimerTicking {
       // TimeOver
     }
     if (!GameFields.isTimerPaused && GameFields.drawStones) {
-      this.timer = this.timer + 0.7;
+      this.timer = this.timer + 0.04 * deltaTime;
       this.context.clearRect(
         this.posX + this.canvas.width - this.timer,
         this.posY,
