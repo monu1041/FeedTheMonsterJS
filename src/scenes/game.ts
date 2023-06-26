@@ -4,6 +4,7 @@ import { LevelStartScene } from "./level-start-scene.js";
 
 var animationFrame: number;
 var self: any;
+let lastTime = 0;
 export class Game {
   public width: number;
   public height: number;
@@ -11,7 +12,7 @@ export class Game {
   public gameSceneCallBack: any;
   public monsterPhaseNumber: any;
   public feedBackTexts: any;
-  public rightToLeft:boolean
+  public rightToLeft: boolean;
 
   constructor(
     width: number,
@@ -19,12 +20,12 @@ export class Game {
     puzzleData: any,
     gameSceneCallBack: any,
     feedBackTexts: any,
-    rightToLeft:boolean
+    rightToLeft: boolean
   ) {
     this.width = width;
     this.height = height;
     this.monsterPhaseNumber = Debugger.DebugMode
-      ? localStorage.getItem(StoreMonsterPhaseNumber + lang+"Debug") || 1
+      ? localStorage.getItem(StoreMonsterPhaseNumber + lang + "Debug") || 1
       : localStorage.getItem(StoreMonsterPhaseNumber + lang) || 1;
     this.scene = new LevelStartScene({
       game: this,
@@ -32,12 +33,12 @@ export class Game {
       levelStartCallBack: this.levelStartCallBack,
       monsterPhaseNumber: this.monsterPhaseNumber,
       feedBackTexts: feedBackTexts,
-      rightToLeft:rightToLeft
+      rightToLeft: rightToLeft,
     });
     this.gameSceneCallBack = gameSceneCallBack;
     this.render();
     self = this;
-    this.animation();
+    this.animation(0);
   }
   levelStartCallBack(button_name) {
     cancelAnimationFrame(animationFrame);
@@ -57,17 +58,23 @@ export class Game {
       }
     }
   }
-  update() {
-    self.scene ? (self.scene.stones ? self.scene.stones.update() : null) : null;
-    self.scene ? self.scene.update() : null;
+  update(deltaTime: number) {
+    self.scene
+      ? self.scene.stones
+        ? self.scene.stones.update(deltaTime)
+        : null
+      : null;
+    self.scene ? self.scene.update(deltaTime) : null;
   }
 
   render() {
     cancelAnimationFrame(animationFrame);
     this.scene.createBackgroud();
   }
-  animation() {
-    self.update();
+  animation(timestamp_1) {
+    const deltaTime = timestamp_1 - lastTime;
+    lastTime = timestamp_1;
+    self.update(deltaTime);
     animationFrame = requestAnimationFrame(self.animation);
   }
 }
