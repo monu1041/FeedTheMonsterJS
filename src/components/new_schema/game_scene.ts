@@ -55,7 +55,8 @@ export class GameScene {
     puzzleCallBack,
     levelData,
     audio,
-    rightToLeft
+    rightToLeft,
+    levelStartTime,
   ) {
     self = this;
     this.game = game;

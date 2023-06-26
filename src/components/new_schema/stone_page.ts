@@ -42,7 +42,7 @@ export default class StonePage {
   public feedbackEffects: TextEffects;
   public tutorialPosition: Array<any>;
   public audio: Sound;
-  public puzzleStartTime:Date;
+  public puzzleStartTime: Date;
   public tutorial: Tutorial;
   public showTutorial: boolean =
     getDatafromStorage().length == undefined ? true : false;
@@ -82,7 +82,7 @@ export default class StonePage {
     this.createStones();
     this.draw(0);
     this.eventListners();
-    this.puzzleStartTime = new Date()
+    this.puzzleStartTime = new Date();
     // this.stoneHtmlElement.style.pointerEvents = 'none'
   }
   draw(deltaTime) {
@@ -149,7 +149,7 @@ export default class StonePage {
   }
   eventListners() {
     GameFields.setTimeOuts.timerDrawStones = setTimeout(() => {
-      GameFields.drawStones = true;
+      !GameFields.isTimerPaused ? (GameFields.drawStones = true) : null;
     }, 4000);
     var rect = self.stoneHtmlElement.getBoundingClientRect();
     this.stoneHtmlElement.addEventListener("click", function (event) {
@@ -286,6 +286,11 @@ export default class StonePage {
         this.promptButton.showFantasticOrGreat(phraseValues[0]);
         this.feedbackTextCanvasElement.style.zIndex = "8";
         this.feedbackEffects.wrapText(phraseValues[0]);
+        this.foilStones.forEach((stone) => {
+          stone.x = 2000;
+          stone.y = 200;
+        });
+        this.foilStones = [];
         GameFields.setTimeOuts.timerFeedback = setTimeout(() => {
           self.audio.playSound(phraseValues[1], FeedbackAudio);
           GameFields.setTimeOuts.timerPuzzleCmptd = setTimeout(() => {
@@ -300,7 +305,7 @@ export default class StonePage {
       this.monster.changeToEatAnimation();
     } else {
       if (this.pickedStone) {
-        this.answer = this.answer+this.pickedStone.text;
+        this.answer = this.answer + this.pickedStone.text;
         this.targetStones = [];
         this.foilStones.forEach((stone) => {
           stone.x = 2000;
@@ -416,13 +421,13 @@ export default class StonePage {
     response_time
   ) {
     console.log("User_id", pseudoId);
-    console.log("Success",success_or_failure)
-    console.log('Puzzle_number',puzzle_number)
-    console.log("itemSelected",item_selected)
-    console.log('Target',target)
-    console.log("Foils",foils)
+    console.log("Success", success_or_failure);
+    console.log("Puzzle_number", puzzle_number);
+    console.log("itemSelected", item_selected);
+    console.log("Target", target);
+    console.log("Foils", foils);
     var puzzleEndTime = new Date();
-    console.log("Response",(puzzleEndTime.getTime() - response_time) / 1000)
+    console.log("Response", (puzzleEndTime.getTime() - response_time) / 1000);
     // FirebaseIntegration.customEvents("puzzle_completed", {
     //   cr_user_id: pseudoId,
     //   success_or_failure: success_or_failure,
