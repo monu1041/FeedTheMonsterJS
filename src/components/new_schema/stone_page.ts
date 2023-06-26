@@ -44,6 +44,7 @@ export default class StonePage {
   public tutorial: Tutorial;
   public showTutorial: boolean =
     getDatafromStorage().length == undefined ? true : false;
+  feedbackTextCanvasElement: any;
   constructor(
     context: CanvasRenderingContext2D,
     canvas: { width: number; height?: number },
@@ -55,6 +56,7 @@ export default class StonePage {
     promptButton,
     feedbackEffects,
     audio,
+    feedbackTextCanvasElement,
     callbackFuntion
   ) {
     self = this;
@@ -71,6 +73,7 @@ export default class StonePage {
     this.correctAnswer = this.targetStones.join("");
     this.initializeStonePos();
     this.feedbackEffects = feedbackEffects;
+    this.feedbackTextCanvasElement = feedbackTextCanvasElement;
     this.promptButton = promptButton;
     this.audio = audio;
     this.tutorial = new Tutorial(context, canvas);
@@ -262,8 +265,9 @@ export default class StonePage {
       );
       if (this.answer == this.correctAnswer) {
         var phraseValues = audioUrl.phraseAudios[self.getRandomInt(0, 1)];
-        this.promptButton.showFantasticOrGreat(phraseValues[0]);
-        //   this.feedbackEffects.wrapText("fantastic");
+        // this.promptButton.showFantasticOrGreat(phraseValues[0]);
+        this.feedbackTextCanvasElement.style.zIndex = "8";
+        this.feedbackEffects.wrapText("fantastic");
         GameFields.setTimeOuts.timerFeedback = setTimeout(() => {
           self.audio.playSound(phraseValues[1], FeedbackAudio);
           GameFields.setTimeOuts.timerPuzzleCmptd = setTimeout(() => {
