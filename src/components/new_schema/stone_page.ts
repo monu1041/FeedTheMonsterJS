@@ -6,7 +6,7 @@ import { getDatafromStorage } from "../../data/profile-data.js";
 import { LevelIndicators } from "../level-indicators.js";
 import { Tutorial } from "../tutorial.js";
 import Monster from "./animation/monster.js";
-import { Effects } from "./animation/text_effects.js";
+import { TextEffects } from "./animation/text_effects.js";
 import PromptText from "./prompt_text.js";
 var self;
 var audioUrl = {
@@ -38,7 +38,7 @@ export default class StonePage {
   public levelData: any;
   public promptButton: PromptText;
   public correctAnswer: string;
-  public feedbackEffects: Effects;
+  public feedbackEffects: TextEffects;
   public tutorialPosition: Array<any>;
   public audio: Sound;
   public tutorial: Tutorial;
@@ -265,9 +265,9 @@ export default class StonePage {
       );
       if (this.answer == this.correctAnswer) {
         var phraseValues = audioUrl.phraseAudios[self.getRandomInt(0, 1)];
-        // this.promptButton.showFantasticOrGreat(phraseValues[0]);
+        this.promptButton.showFantasticOrGreat(phraseValues[0]);
         this.feedbackTextCanvasElement.style.zIndex = "8";
-        this.feedbackEffects.wrapText("fantastic");
+        this.feedbackEffects.wrapText(phraseValues[0]);
         GameFields.setTimeOuts.timerFeedback = setTimeout(() => {
           self.audio.playSound(phraseValues[1], FeedbackAudio);
           GameFields.setTimeOuts.timerPuzzleCmptd = setTimeout(() => {
