@@ -48,6 +48,7 @@ export class DecisionPage {
   public levelStartCallBack: any;
   public audio: Sound;
   public rightToLeft:boolean;
+  public levelStartTime:Date;
   constructor({
     game,
     allLevelsData,
@@ -72,6 +73,7 @@ export class DecisionPage {
     this.canvasStack = new CanvasStack("canvas");
     this.levelStartCallBack = levelStartCallBack;
     this.rightToLeft = rightToLeft;
+    this.levelStartTime = new Date();
     this.id = this.canvasStack.createLayer(
       this.height,
       this.width,

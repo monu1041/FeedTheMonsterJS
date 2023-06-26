@@ -90,8 +90,7 @@ export class GameScene {
     ) as CanvasRenderingContext2D;
     this.stoneCanavsElement.style.zIndex = 4;
     this.drawGameScreen();
-    this.animate(0);
-    this.requestAnimation = setInterval(self.animate, 16);
+    this.requestAnimation = requestAnimationFrame(this.animate)
     this.eventListners();
   }
   drawGameScreen() {
@@ -142,11 +141,12 @@ export class GameScene {
     const currentTimestamp = performance.now();
     deltaTime = currentTimestamp - previousTimestamp;
     self.timerTicking ? self.timerTicking.timerStart() : null;
-    self.textEffect.render();
+     self.textEffect.render();
     self.monster.update(deltaTime);
     !GameFields.isGamePaused ? self.stonePage.update(deltaTime) : null;
 
     previousTimestamp = currentTimestamp;
+   self.requestAnimation = requestAnimationFrame(self.animate)
   }
   showPopUp() {
     new PausePopUp(this, self.puzzleDecision, this.audio);
@@ -191,7 +191,8 @@ export class GameScene {
       );
       GameFields.gameScore = 0;
     } else {
-      clearInterval(self.requestAnimation);
+      cancelAnimationFrame(self.requestAnimation);
+      self.requestAnimation = 0
       self.canvasStack.deleteLayer(self.id);
       self.canvasStack.deleteLayer(self.stoneLayerId);
       self.canvasStack.deleteLayer(self.feedbackTextId);
