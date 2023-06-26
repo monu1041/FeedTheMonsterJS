@@ -1,6 +1,6 @@
 import { TextParticle } from "./text_particles.js";
 
-export class Effects {
+export class TextEffects {
   public context: CanvasRenderingContext2D;
   public canvasWidth: number;
   public canvasHeight: number;
@@ -23,9 +23,9 @@ export class Effects {
     this.context = context;
     this.canvasWidth = canvasWidth;
     this.canvasHeight = canvasHeight;
-    this.textX = this.canvasWidth / 2;
+    this.textX = this.canvasWidth / 1.8;
     this.textY = this.canvasHeight / 2;
-    this.fontSize = 80;
+    this.fontSize = 65;
     this.lineHeight = this.fontSize * 0.8;
     this.maxTextWidth = this.canvasWidth * 2;
     this.particleDuration = 5000;
@@ -37,7 +37,7 @@ export class Effects {
       x: 0,
       y: 0,
     };
-    this.textWorker = new Worker("./text_worker.js");
+    this.textWorker = new Worker("./text-worker.js");
     this.textWorker.addEventListener(
       "message",
       this.handleTextWorkerMessage.bind(this)
@@ -76,7 +76,7 @@ export class Effects {
       lineArray[lineCounter] = line;
     }
     let textHeight = this.lineHeight * lineCounter;
-    this.textY = this.canvasHeight / 2 - textHeight / 2;
+    this.textY = this.canvasHeight / 2.8 - textHeight / 2;
     const initialX = 50;
     const spacing = 0.3;
     lineArray.forEach((text, index) => {
@@ -112,6 +112,7 @@ export class Effects {
     });
   }
   public render(): void {
+    this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
     if (this.startTime === null) {
       this.startTime = Date.now();
     }
@@ -119,7 +120,7 @@ export class Effects {
     const elapsedTime = currentTime - this.startTime;
     if (elapsedTime >= this.particleDuration) {
       this.startTime = null;
-      this.particles = [];
+      // this.particles = [];
     } else {
       this.particles.forEach((particle) => {
         particle.draw();

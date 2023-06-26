@@ -1,7 +1,7 @@
-import { Effects } from "./text_effects.js";
+import { TextEffects } from "./text_effects.js";
 
 export class TextParticle {
-  private effect: Effects;
+  private textEffect: TextEffects;
   private x: number;
   private y: number;
   private color: string;
@@ -10,20 +10,20 @@ export class TextParticle {
   private size: number;
   private ease: number;
 
-  constructor(effect: Effects, x: number, y: number, color: string) {
-    this.effect = effect;
-    this.x = Math.random() * this.effect.canvasWidth;
+  constructor(textEffect: TextEffects, x: number, y: number, color: string) {
+    this.textEffect = textEffect;
+    this.x = Math.random() * this.textEffect.canvasWidth;
     this.y = 0;
     this.color = color;
     this.originX = x;
     this.originY = y;
-    this.size = this.effect.gap;
-    this.ease = Math.random() * 0.1 + 0.005;
+    this.size = this.textEffect.gap;
+    this.ease = Math.random() * 0.1 + 0.025;
   }
 
   public draw(): void {
-    this.effect.context.fillStyle = this.color;
-    this.effect.context.fillRect(this.x, this.y, this.size, this.size);
+    this.textEffect.context.fillStyle = this.color;
+    this.textEffect.context.fillRect(this.x, this.y, this.size, this.size);
   }
 
   public update(): void {
