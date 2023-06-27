@@ -1,6 +1,7 @@
 import { Debugger, lang, pseudoId } from "../../global-variables.js";
 import {
   ButtonClick,
+  GameFields,
   IntroMusic,
   LevelEndAudio,
   LevelEndButtonsLayer,
@@ -77,7 +78,7 @@ export class LevelEndScene {
         : 0;
     this.createCanvas();
     if (navigator.onLine) {
-      // this.levelEndFirebaseEvents();
+       this.levelEndFirebaseEvents();
     }
     this.levelEndCallBack = levelEndCallBack;
     setTotalStarCount(this.starCount);
@@ -279,7 +280,7 @@ export class LevelEndScene {
       ftm_language: lang,
       profile_number: 0,
       version_number: document.getElementById("version-info-id").innerHTML,
-      duration: (this.levelEndTime.getTime() - this.levelStartTime) / 1000,
+      duration: (this.levelEndTime.getTime() -  GameFields.levelStartTime) / 1000,
     });
   }
 }

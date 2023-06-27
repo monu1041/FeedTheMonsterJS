@@ -100,14 +100,16 @@ export default class StonePage {
         GameFields.gameScore = GameFields.gameScore + 100;
       }
       if (GameFields.puzzleCompleted) {
-        this.puzzleEndFirebaseEvents(
-          this.answer == this.correctAnswer ? "success" : "failure",
-          this.puzzleNumber,
-          this.answer,
-          this.currentPuzzleData.targetStones,
-          this.currentPuzzleData.foilStones,
-          this.puzzleStartTime
-        );
+        if (navigator.onLine) {
+          this.puzzleEndFirebaseEvents(
+            this.answer == this.correctAnswer ? "success" : "failure",
+            this.puzzleNumber,
+            this.answer,
+            this.currentPuzzleData.targetStones,
+            this.currentPuzzleData.foilStones,
+            this.puzzleStartTime
+          );
+        }
         this.callbackFuntion();
       }
     }
@@ -420,26 +422,19 @@ export default class StonePage {
     foils,
     response_time
   ) {
-    console.log("User_id", pseudoId);
-    console.log("Success", success_or_failure);
-    console.log("Puzzle_number", puzzle_number);
-    console.log("itemSelected", item_selected);
-    console.log("Target", target);
-    console.log("Foils", foils);
     var puzzleEndTime = new Date();
-    console.log("Response", (puzzleEndTime.getTime() - response_time) / 1000);
-    // FirebaseIntegration.customEvents("puzzle_completed", {
-    //   cr_user_id: pseudoId,
-    //   success_or_failure: success_or_failure,
-    //   level_number: this.levelData.levelNumber,
-    //   puzzle_number: puzzle_number,
-    //   item_selected: item_selected,
-    //   target: target,
-    //   foils: foils,
-    //   profile_number: 0,
-    //   ftm_language: lang,
-    //   version_number: document.getElementById("version-info-id").innerHTML,
-    //   response_time: (puzzleEndTime.getTime() - response_time) / 1000,
-    // });
+    FirebaseIntegration.customEvents("puzzle_completed", {
+      cr_user_id: pseudoId,
+      success_or_failure: success_or_failure,
+      level_number: this.levelData.levelNumber,
+      puzzle_number: puzzle_number,
+      item_selected: item_selected,
+      target: target,
+      foils: foils,
+      profile_number: 0,
+      ftm_language: lang,
+      version_number: document.getElementById("version-info-id").innerHTML,
+      response_time: (puzzleEndTime.getTime() - response_time) / 1000,
+    });
   }
 }

@@ -56,7 +56,6 @@ export class GameScene {
     levelData,
     audio,
     rightToLeft,
-    levelStartTime,
   ) {
     self = this;
     this.game = game;
@@ -176,6 +175,7 @@ export class GameScene {
     self.resetGameFields();
     var puzzleNumber = self.puzzleNumber + 1;
     if (button_type != undefined) {
+      GameFields.levelStartTime = new Date()
       puzzleNumber = 0;
     }
     if (self.levelData.puzzles.length === puzzleNumber) {
@@ -212,6 +212,7 @@ export class GameScene {
             "droppedStones",
             "selectedLevel",
             "setTimeOuts",
+            "levelStartTime"
           ].indexOf(key) == -1
         ) {
           GameFields[key] = false;
