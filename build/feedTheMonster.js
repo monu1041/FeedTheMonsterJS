@@ -14802,7 +14802,7 @@ class TextEffects {
             lineArray[lineCounter] = line;
         }
         let textHeight = this.lineHeight * lineCounter;
-        this.textY = this.canvasHeight / 2.8 - textHeight / 2;
+        this.textY = this.canvasHeight / 6.2 - textHeight / 2;
         const initialX = 50;
         const spacing = 0.3;
         lineArray.forEach((text, index) => {
@@ -14875,7 +14875,7 @@ class TextParticle {
         this.originX = x;
         this.originY = y;
         this.size = this.textEffect.gap;
-        this.ease = Math.random() * 0.1 + 0.025;
+        this.ease = Math.random() * 0.1 + 0.055;
     }
     draw() {
         this.textEffect.context.fillStyle = this.color;
@@ -15165,9 +15165,10 @@ class GameScene {
         }
     }
     createFeedBackTextCanvas() {
-        this.feedbackTextId = this.canvasStack.createLayer(this.height, this.width, "feed-back-text");
+        this.feedbackTextId = this.canvasStack.createLayer(this.height * 0.8, this.width, "feed-back-text");
         this.feedbackTextCanavsElement = document.getElementById(this.feedbackTextId);
         this.feedbackTextContext = this.feedbackTextCanavsElement.getContext("2d");
+        this.feedbackTextCanavsElement.style.bottom = 0;
         this.feedbackTextCanavsElement.style.zIndex = "-10";
     }
 }

@@ -76,7 +76,7 @@ export class TextEffects {
       lineArray[lineCounter] = line;
     }
     let textHeight = this.lineHeight * lineCounter;
-    this.textY = this.canvasHeight / 2.8 - textHeight / 2;
+    this.textY = this.canvasHeight / 6.2 - textHeight / 2;
     const initialX = 50;
     const spacing = 0.3;
     lineArray.forEach((text, index) => {
