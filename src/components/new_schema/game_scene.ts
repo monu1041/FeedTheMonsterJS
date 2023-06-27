@@ -230,7 +230,7 @@ export class GameScene {
 
   createFeedBackTextCanvas() {
     this.feedbackTextId = this.canvasStack.createLayer(
-      this.height,
+      this.height * 0.8,
       this.width,
       "feed-back-text"
     );
@@ -238,6 +238,7 @@ export class GameScene {
       this.feedbackTextId
     );
     this.feedbackTextContext = this.feedbackTextCanavsElement.getContext("2d");
+    this.feedbackTextCanavsElement.style.bottom = 0;
     this.feedbackTextCanavsElement.style.zIndex = "-10";
   }
 }
