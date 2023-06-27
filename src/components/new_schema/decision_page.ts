@@ -79,6 +79,7 @@ export class DecisionPage {
       this.width,
       GameSceneBg
     );
+    GameFields.levelStartTime = new Date()
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext(
       "2d"
@@ -92,7 +93,6 @@ export class DecisionPage {
       this.allLevelData[GameFields.selectedLevel],
       this.audio,
       rightToLeft,
-      this.levelStartTime
     );
   }
   puzzleCallBack(value: number, button_type?: string) {
@@ -110,7 +110,6 @@ export class DecisionPage {
         self.allLevelData[GameFields.selectedLevel],
         self.audio,
         self.rightToLeft,
-        self.levelStartTime
       );
     } else {
       new GameScene(
@@ -120,7 +119,6 @@ export class DecisionPage {
         self.allLevelData[GameFields.selectedLevel],
         self.audio,
         self.rightToLeft,
-        self.levelStartTime
       );
     }
   }
