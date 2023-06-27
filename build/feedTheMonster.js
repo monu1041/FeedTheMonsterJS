@@ -14764,7 +14764,7 @@ class TextEffects {
         this.canvasHeight = canvasHeight;
         this.textX = this.canvasWidth / 1.8;
         this.textY = this.canvasHeight / 2;
-        this.fontSize = 80;
+        this.fontSize = 65;
         this.lineHeight = this.fontSize * 0.8;
         this.maxTextWidth = this.canvasWidth * 2;
         this.particleDuration = 5000;
