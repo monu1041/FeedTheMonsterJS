@@ -10,7 +10,7 @@ import {
   ProfileData,
   setDataToStorage,
 } from "./src/data/profile-data.js";
-import { IsCached, PWAInstallStatus } from "./src/common/common.js";
+import { GameFields, IsCached, PWAInstallStatus } from "./src/common/common.js";
 import { Workbox } from "workbox-window";
 import { Debugger, lang } from "./global-variables.js";
 import { FirebaseIntegration } from "./src/firebase/firebase_integration.js";
@@ -59,6 +59,17 @@ window.addEventListener("load", async function () {
       if (navigator.onLine) {
         FirebaseIntegration.initializeFirebase();
       }
+      try {
+        if (!GameFields.isTimerPaused) {
+          GameFields.isTimerPaused = true;
+        }
+        for (let key in GameFields.setTimeOuts) {
+          clearTimeout(GameFields.setTimeOuts[key]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+
       canvas.height = window.innerHeight;
       canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
       delete this.monster;

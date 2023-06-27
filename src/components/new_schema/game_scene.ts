@@ -18,7 +18,6 @@ import { LevelEndScene } from "../../scenes/level-end-scene.js";
 import { TextEffects } from "./animation/text_effects.js";
 import Sound from "../../common/sound.js";
 let previousTimestamp = performance.now();
-let deltaTime = 0;
 var self;
 export class GameScene {
   public levelData: any;
@@ -140,11 +139,15 @@ export class GameScene {
   }
   animate(timeStamp) {
     const currentTimestamp = performance.now();
-    deltaTime = currentTimestamp - previousTimestamp;
-    self.timerTicking ? self.timerTicking.timerStart() : null;
+    GameFields.deltaTime = currentTimestamp - previousTimestamp;
+    self.timerTicking
+      ? self.timerTicking.timerStart(GameFields.deltaTime)
+      : null;
     self.textEffect.render();
-    self.monster.update(deltaTime);
-    !GameFields.isGamePaused ? self.stonePage.update(deltaTime) : null;
+    self.monster.update(GameFields.deltaTime);
+    !GameFields.isGamePaused
+      ? self.stonePage.update(GameFields.deltaTime)
+      : null;
 
     previousTimestamp = currentTimestamp;
     self.requestAnimation = requestAnimationFrame(self.animate);
