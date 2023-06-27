@@ -25,7 +25,7 @@ export class TextEffects {
     this.canvasHeight = canvasHeight;
     this.textX = this.canvasWidth / 1.8;
     this.textY = this.canvasHeight / 2;
-    this.fontSize = 65;
+    this.fontSize = 80;
     this.lineHeight = this.fontSize * 0.8;
     this.maxTextWidth = this.canvasWidth * 2;
     this.particleDuration = 5000;
@@ -76,7 +76,7 @@ export class TextEffects {
       lineArray[lineCounter] = line;
     }
     let textHeight = this.lineHeight * lineCounter;
-    this.textY = this.canvasHeight / 2.8 - textHeight / 2;
+    this.textY = this.canvasHeight / 6.2 - textHeight / 2;
     const initialX = 50;
     const spacing = 0.3;
     lineArray.forEach((text, index) => {

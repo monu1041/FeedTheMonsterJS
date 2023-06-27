@@ -18,7 +18,7 @@ export class TextParticle {
     this.originX = x;
     this.originY = y;
     this.size = this.textEffect.gap;
-    this.ease = Math.random() * 0.1 + 0.025;
+    this.ease = Math.random() * 0.1 + 0.055;
   }
 
   public draw(): void {
