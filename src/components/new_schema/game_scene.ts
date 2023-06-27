@@ -15,7 +15,7 @@ import { LevelIndicators } from "../level-indicators.js";
 import StonePage from "./stone_page.js";
 import Monster from "./animation/monster.js";
 import { LevelEndScene } from "../../scenes/level-end-scene.js";
-import { Effects } from "./animation/text_effects.js";
+import { TextEffects } from "./animation/text_effects.js";
 import Sound from "../../common/sound.js";
 let previousTimestamp = performance.now();
 let deltaTime = 0;
@@ -37,7 +37,6 @@ export class GameScene {
   public audio: Sound;
   public promptButton: PromptText;
 
-  public feedbackEffects: Effects;
   public timerTicking: TimerTicking;
   public pauseButton: PauseButton;
   public animationWorker: Worker;
@@ -46,13 +45,18 @@ export class GameScene {
   public monster: Monster;
   public requestAnimation: any;
   public rightToLeft: boolean;
+  public feedbackTextId: any;
+  public feedbackTextCanavsElement: any;
+  public feedbackTextContext: any;
+  textEffect: any;
   constructor(
     game,
     puzzleNumber,
     puzzleCallBack,
     levelData,
     audio,
-    rightToLeft
+    rightToLeft,
+    levelStartTime
   ) {
     self = this;
     this.game = game;
@@ -69,6 +73,7 @@ export class GameScene {
       this.width,
       GameSceneLayer
     );
+    this.createFeedBackTextCanvas();
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext(
       "2d"
@@ -86,8 +91,7 @@ export class GameScene {
     ) as CanvasRenderingContext2D;
     this.stoneCanavsElement.style.zIndex = 4;
     this.drawGameScreen();
-    this.animate(0);
-    this.requestAnimation = setInterval(self.animate, 16);
+    this.requestAnimation = requestAnimationFrame(this.animate);
     this.eventListners();
   }
   drawGameScreen() {
@@ -102,10 +106,10 @@ export class GameScene {
       this.levelData,
       this.rightToLeft
     );
-    this.feedbackEffects = new Effects(
-      this.context,
-      this.game.width,
-      this.game.height
+    this.textEffect = new TextEffects(
+      this.feedbackTextContext,
+      this.width,
+      this.height
     );
     this.monster = new Monster(
       this.game,
@@ -126,8 +130,9 @@ export class GameScene {
       this.monster,
       this.levelIndicators,
       this.promptButton,
-      this.feedbackEffects,
+      this.textEffect,
       this.audio,
+      this.feedbackTextCanavsElement,
       this.puzzleDecision
     );
     this.timerTicking = new TimerTicking(this.context, this.game, this.audio);
@@ -136,12 +141,13 @@ export class GameScene {
   animate(timeStamp) {
     const currentTimestamp = performance.now();
     deltaTime = currentTimestamp - previousTimestamp;
-    self.timerTicking ? self.timerTicking.timerStart(deltaTime) : null;
-    self.feedbackEffects.render();
+    self.timerTicking ? self.timerTicking.timerStart() : null;
+    self.textEffect.render();
     self.monster.update(deltaTime);
     !GameFields.isGamePaused ? self.stonePage.update(deltaTime) : null;
 
     previousTimestamp = currentTimestamp;
+    self.requestAnimation = requestAnimationFrame(self.animate);
   }
   showPopUp() {
     new PausePopUp(this, self.puzzleDecision, this.audio);
@@ -186,9 +192,11 @@ export class GameScene {
       );
       GameFields.gameScore = 0;
     } else {
-      clearInterval(self.requestAnimation);
+      cancelAnimationFrame(self.requestAnimation);
+      self.requestAnimation = 0;
       self.canvasStack.deleteLayer(self.id);
       self.canvasStack.deleteLayer(self.stoneLayerId);
+      self.canvasStack.deleteLayer(self.feedbackTextId);
       self.puzzleCallBack(puzzleNumber, button_type);
     }
   }
@@ -214,5 +222,18 @@ export class GameScene {
     for (let key in GameFields.setTimeOuts) {
       clearTimeout(GameFields.setTimeOuts[key]);
     }
+  }
+
+  createFeedBackTextCanvas() {
+    this.feedbackTextId = this.canvasStack.createLayer(
+      this.height,
+      this.width,
+      "feed-back-text"
+    );
+    this.feedbackTextCanavsElement = document.getElementById(
+      this.feedbackTextId
+    );
+    this.feedbackTextContext = this.feedbackTextCanavsElement.getContext("2d");
+    this.feedbackTextCanavsElement.style.zIndex = "-10";
   }
 }

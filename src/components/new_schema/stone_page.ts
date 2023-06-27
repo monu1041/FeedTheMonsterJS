@@ -1,12 +1,13 @@
-import { lang } from "../../../global-variables.js";
+import { lang, pseudoId } from "../../../global-variables.js";
 import { FeedbackAudio, GameFields, PhraseAudio } from "../../common/common.js";
 import Sound from "../../common/sound.js";
 import { StoneConfig } from "../../common/stones-config.js";
 import { getDatafromStorage } from "../../data/profile-data.js";
+import { FirebaseIntegration } from "../../firebase/firebase_integration.js";
 import { LevelIndicators } from "../level-indicators.js";
 import { Tutorial } from "../tutorial.js";
 import Monster from "./animation/monster.js";
-import { Effects } from "./animation/text_effects.js";
+import { TextEffects } from "./animation/text_effects.js";
 import PromptText from "./prompt_text.js";
 var self;
 var audioUrl = {
@@ -38,12 +39,14 @@ export default class StonePage {
   public levelData: any;
   public promptButton: PromptText;
   public correctAnswer: string;
-  public feedbackEffects: Effects;
+  public feedbackEffects: TextEffects;
   public tutorialPosition: Array<any>;
   public audio: Sound;
+  public puzzleStartTime: Date;
   public tutorial: Tutorial;
   public showTutorial: boolean =
     getDatafromStorage().length == undefined ? true : false;
+  feedbackTextCanvasElement: any;
   constructor(
     context: CanvasRenderingContext2D,
     canvas: { width: number; height?: number },
@@ -55,6 +58,7 @@ export default class StonePage {
     promptButton,
     feedbackEffects,
     audio,
+    feedbackTextCanvasElement,
     callbackFuntion
   ) {
     self = this;
@@ -71,12 +75,15 @@ export default class StonePage {
     this.correctAnswer = this.targetStones.join("");
     this.initializeStonePos();
     this.feedbackEffects = feedbackEffects;
+    this.feedbackTextCanvasElement = feedbackTextCanvasElement;
     this.promptButton = promptButton;
     this.audio = audio;
     this.tutorial = new Tutorial(context, canvas);
     this.createStones();
     this.draw(0);
     this.eventListners();
+    this.puzzleStartTime = new Date();
+    // this.stoneHtmlElement.style.pointerEvents = 'none'
   }
   draw(deltaTime) {
     if (
@@ -92,7 +99,17 @@ export default class StonePage {
       if (this.answer === this.correctAnswer && GameFields.puzzleCompleted) {
         GameFields.gameScore = GameFields.gameScore + 100;
       }
-      if (GameFields.puzzleCompleted) this.callbackFuntion();
+      if (GameFields.puzzleCompleted) {
+        this.puzzleEndFirebaseEvents(
+          this.answer == this.correctAnswer ? "success" : "failure",
+          this.puzzleNumber,
+          this.answer,
+          this.currentPuzzleData.targetStones,
+          this.currentPuzzleData.foilStones,
+          this.puzzleStartTime
+        );
+        this.callbackFuntion();
+      }
     }
 
     if (GameFields.TimeOver) {
@@ -132,7 +149,7 @@ export default class StonePage {
   }
   eventListners() {
     GameFields.setTimeOuts.timerDrawStones = setTimeout(() => {
-      GameFields.drawStones = true;
+      !GameFields.isTimerPaused ? (GameFields.drawStones = true) : null;
     }, 4000);
     var rect = self.stoneHtmlElement.getBoundingClientRect();
     this.stoneHtmlElement.addEventListener("click", function (event) {
@@ -267,7 +284,13 @@ export default class StonePage {
       if (this.answer == this.correctAnswer) {
         var phraseValues = audioUrl.phraseAudios[self.getRandomInt(0, 1)];
         this.promptButton.showFantasticOrGreat(phraseValues[0]);
-        //   this.feedbackEffects.wrapText("fantastic");
+        this.feedbackTextCanvasElement.style.zIndex = "8";
+        this.feedbackEffects.wrapText(phraseValues[0]);
+        this.foilStones.forEach((stone) => {
+          stone.x = 2000;
+          stone.y = 200;
+        });
+        this.foilStones = [];
         GameFields.setTimeOuts.timerFeedback = setTimeout(() => {
           self.audio.playSound(phraseValues[1], FeedbackAudio);
           GameFields.setTimeOuts.timerPuzzleCmptd = setTimeout(() => {
@@ -282,6 +305,7 @@ export default class StonePage {
       this.monster.changeToEatAnimation();
     } else {
       if (this.pickedStone) {
+        this.answer = this.answer + this.pickedStone.text;
         this.targetStones = [];
         this.foilStones.forEach((stone) => {
           stone.x = 2000;
@@ -387,5 +411,35 @@ export default class StonePage {
   }
   update(deltaTime) {
     this.draw(deltaTime);
+  }
+  puzzleEndFirebaseEvents(
+    success_or_failure,
+    puzzle_number,
+    item_selected,
+    target,
+    foils,
+    response_time
+  ) {
+    console.log("User_id", pseudoId);
+    console.log("Success", success_or_failure);
+    console.log("Puzzle_number", puzzle_number);
+    console.log("itemSelected", item_selected);
+    console.log("Target", target);
+    console.log("Foils", foils);
+    var puzzleEndTime = new Date();
+    console.log("Response", (puzzleEndTime.getTime() - response_time) / 1000);
+    // FirebaseIntegration.customEvents("puzzle_completed", {
+    //   cr_user_id: pseudoId,
+    //   success_or_failure: success_or_failure,
+    //   level_number: this.levelData.levelNumber,
+    //   puzzle_number: puzzle_number,
+    //   item_selected: item_selected,
+    //   target: target,
+    //   foils: foils,
+    //   profile_number: 0,
+    //   ftm_language: lang,
+    //   version_number: document.getElementById("version-info-id").innerHTML,
+    //   response_time: (puzzleEndTime.getTime() - response_time) / 1000,
+    // });
   }
 }

@@ -48,14 +48,14 @@ export default class PromptText {
   }
   showFantasticOrGreat(feedBackText) {
     this.clearPrompt();
-    this.context.font = "bold 24px Arial";
-    this.context.fillStyle = "white";
-    // this.context.textAlign = "center";
-    this.context.fillText(
-      feedBackText,
-      this.canvas.width / 2 - this.context.measureText(feedBackText).width / 2,
-      this.canvas.height * 0.25
-    );
+    // this.context.font = "bold 24px Arial";
+    // this.context.fillStyle = "white";
+    // // this.context.textAlign = "center";
+    // this.context.fillText(
+    //   feedBackText,
+    //   this.canvas.width / 2 - this.context.measureText(feedBackText).width / 2,
+    //   this.canvas.height * 0.25
+    // );
   }
 
   drawArabic(droppedStones) {

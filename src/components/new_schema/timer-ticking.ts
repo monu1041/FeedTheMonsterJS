@@ -1,6 +1,8 @@
 import { GameFields, TimeOver } from "../../common/common.js";
 import Sound from "../../common/sound.js";
 import { Game } from "../../scenes/game.js";
+var time_ticking = new Image();
+time_ticking.src = "./assets/images/timer_full.png";
 
 export default class TimerTicking {
   public posX: number;
@@ -23,17 +25,13 @@ export default class TimerTicking {
   draw() {
     var self = this;
     this.clearTimer();
-    var time_ticking = new Image();
-    time_ticking.src = "./assets/images/timer_full.png";
-    time_ticking.onload = function (e) {
-      self.context.drawImage(
-        time_ticking,
-        self.posX,
-        self.posY,
-        self.canvas.width - 50,
-        self.canvas.height * 0.05
-      );
-    };
+    self.context.drawImage(
+      time_ticking,
+      self.posX,
+      self.posY,
+      self.canvas.width - 50,
+      self.canvas.height * 0.05
+    );
   }
   clearTimer() {
     this.context.clearRect(

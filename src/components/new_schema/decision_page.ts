@@ -48,6 +48,7 @@ export class DecisionPage {
   public levelStartCallBack: any;
   public audio: Sound;
   public rightToLeft:boolean;
+  public levelStartTime:Date;
   constructor({
     game,
     allLevelsData,
@@ -72,6 +73,7 @@ export class DecisionPage {
     this.canvasStack = new CanvasStack("canvas");
     this.levelStartCallBack = levelStartCallBack;
     this.rightToLeft = rightToLeft;
+    this.levelStartTime = new Date();
     this.id = this.canvasStack.createLayer(
       this.height,
       this.width,
@@ -89,7 +91,8 @@ export class DecisionPage {
       this.puzzleCallBack,
       this.allLevelData[GameFields.selectedLevel],
       this.audio,
-      rightToLeft
+      rightToLeft,
+      this.levelStartTime
     );
   }
   puzzleCallBack(value: number, button_type?: string) {
@@ -97,6 +100,8 @@ export class DecisionPage {
       self.levelStartCallBack(button_type);
       self.canvasStack.deleteLayer(self.id);
     } else if (button_type == "next_button") {
+      self.context.clearRect(0,0,self.width,self.height)
+      self.createBackgroud()
       GameFields.selectedLevel = GameFields.selectedLevel + 1;
       new GameScene(
         self.game,
@@ -104,7 +109,8 @@ export class DecisionPage {
         self.puzzleCallBack,
         self.allLevelData[GameFields.selectedLevel],
         self.audio,
-        self.rightToLeft
+        self.rightToLeft,
+        self.levelStartTime
       );
     } else {
       new GameScene(
@@ -113,7 +119,8 @@ export class DecisionPage {
         self.puzzleCallBack,
         self.allLevelData[GameFields.selectedLevel],
         self.audio,
-        self.rightToLeft
+        self.rightToLeft,
+        self.levelStartTime
       );
     }
   }

@@ -1,3 +1,5 @@
+var pause_button_image = new Image();
+pause_button_image.src = "./assets/images/pause_v01.png";
 export default class PauseButton {
   public posX: number;
   public posY: number;
@@ -16,17 +18,13 @@ export default class PauseButton {
   }
   draw() {
     var self = this;
-    var pause_button_image = new Image();
-    pause_button_image.src = "./assets/images/pause_v01.png";
-    pause_button_image.onload = function (e) {
-      self.context.drawImage(
-        pause_button_image,
-        self.posX,
-        self.posY,
-        self.canvas.height * 0.09,
-        self.canvas.height * 0.09
-      );
-    };
+    self.context.drawImage(
+      pause_button_image,
+      self.posX,
+      self.posY,
+      self.canvas.height * 0.09,
+      self.canvas.height * 0.09
+    );
   }
   onClick(xClick: number, yClick: number) {
     const distance = Math.sqrt(

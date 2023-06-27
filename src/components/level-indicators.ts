@@ -1,3 +1,9 @@
+var level_indicator = new Image();
+level_indicator.src = "./assets/images/levels_v01.png";
+var bar_empty = new Image();
+bar_empty.src =  "./assets/images/bar_empty_v01.png";
+var bar_full = new Image();
+bar_full.src = "./assets/images/bar_full_v01.png";
 export class LevelIndicators {
   public context: CanvasRenderingContext2D;
   public canvas: HTMLCanvasElement;
@@ -16,12 +22,6 @@ export class LevelIndicators {
   draw() {
     var self = this;
 
-    var level_indicator = new Image();
-    level_indicator.src = "./assets/images/levels_v01.png";
-    var bar_empty = new Image();
-    bar_empty.src = "./assets/images/bar_empty_v01.png";
-
-    level_indicator.onload = function (e) {
       self.context.drawImage(
         level_indicator,
         self.canvas.width * 0.15,
@@ -29,7 +29,6 @@ export class LevelIndicators {
         self.canvas.width * 0.35,
         self.canvas.height * 0.09
       );
-      bar_empty.onload = function (e) {
         for (var i = 0; i < 5; i++) {
           self.context.drawImage(
             bar_empty,
@@ -41,13 +40,8 @@ export class LevelIndicators {
           );
         }
         self.update(self);
-      };
-    };
   }
   update(self) {
-    var bar_full = new Image();
-    bar_full.src = "./assets/images/bar_full_v01.png";
-    bar_full.onload = function (e) {
       for (var i = 0; i < self.activeIndicators; i++) {
         self.context.drawImage(
           bar_full,
@@ -58,5 +52,4 @@ export class LevelIndicators {
         );
       }
     };
-  }
 }

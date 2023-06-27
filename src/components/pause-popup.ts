@@ -75,6 +75,7 @@ export default class PausePopUp {
       if (self.cancelButton.onClick(x, y)) {
         self.audio.playSound("./assets/audios/ButtonClick.mp3", ButtonClick);
         GameFields.isTimerPaused = false;
+        !GameFields.drawStones ? (GameFields.drawStones = true) : null;
         //  self.levelStart.timerTicking.resumeTimer();
         // self.levelStart.levelEndCallBack('cancel_button');
         self.deleteCanvas(self);
