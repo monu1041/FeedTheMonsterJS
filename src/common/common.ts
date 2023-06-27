@@ -85,6 +85,7 @@ export const GameFields = {
   selectedLevel: null,
   levelStartTime: null,
   tutorialStatus: false,
+  deltaTime: 0,
   setTimeOuts: {
     timerDrawStones: null,
     timerMonsterSplit: null,
