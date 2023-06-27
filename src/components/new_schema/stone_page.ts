@@ -10,6 +10,7 @@ import Monster from "./animation/monster.js";
 import { TextEffects } from "./animation/text_effects.js";
 import PromptText from "./prompt_text.js";
 var self;
+var frameCount: number = 0;
 var audioUrl = {
   phraseAudios: [
     ["Fantastic", "./lang/" + lang + "/audios/fantastic.mp3"],
@@ -83,7 +84,6 @@ export default class StonePage {
     this.draw(0);
     this.eventListners();
     this.puzzleStartTime = new Date();
-    // this.stoneHtmlElement.style.pointerEvents = 'none'
   }
   draw(deltaTime) {
     if (
@@ -94,12 +94,12 @@ export default class StonePage {
       this.tutorial.draw();
       clearTimeout(GameFields.setTimeOuts.timerShowTutorial);
     }
+    if (this.answer === this.correctAnswer && GameFields.isGamePaused) {
+      GameFields.puzzleCompleted = true;
+    }
     if (this.targetStones.length == 0) {
       this.levelIndicators.setIndicators(this.puzzleNumber + 1);
-      if (this.answer === this.correctAnswer && GameFields.puzzleCompleted) {
-        GameFields.gameScore = GameFields.gameScore + 100;
-      }
-      if (GameFields.puzzleCompleted) {
+      if (GameFields.puzzleCompleted && !GameFields.isGamePaused) {
         if (navigator.onLine) {
           this.puzzleEndFirebaseEvents(
             this.answer == this.correctAnswer ? "success" : "failure",
@@ -278,20 +278,15 @@ export default class StonePage {
       this.targetStones.shift();
       GameFields.droppedStones = GameFields.droppedStones + 1;
       this.promptButton.draw();
-      self.pickedStone.x = 2000;
-      self.pickedStone.y = 2000;
       self.foilStones = self.foilStones.filter(
         (element) => element !== self.pickedStone
       );
       if (this.answer == this.correctAnswer) {
+        GameFields.gameScore = GameFields.gameScore + 100;
         var phraseValues = audioUrl.phraseAudios[self.getRandomInt(0, 1)];
         this.promptButton.showFantasticOrGreat(phraseValues[0]);
         this.feedbackTextCanvasElement.style.zIndex = "8";
         this.feedbackEffects.wrapText(phraseValues[0]);
-        this.foilStones.forEach((stone) => {
-          stone.x = 2000;
-          stone.y = 200;
-        });
         this.foilStones = [];
         GameFields.setTimeOuts.timerFeedback = setTimeout(() => {
           self.audio.playSound(phraseValues[1], FeedbackAudio);
@@ -309,10 +304,6 @@ export default class StonePage {
       if (this.pickedStone) {
         this.answer = this.answer + this.pickedStone.text;
         this.targetStones = [];
-        this.foilStones.forEach((stone) => {
-          stone.x = 2000;
-          stone.y = 2000;
-        });
         this.foilStones = [];
         self.audio.playSound(audioUrl.monsterSad, PhraseAudio);
         GameFields.setTimeOuts.timerMonsterSplit = setTimeout(() => {

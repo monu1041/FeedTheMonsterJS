@@ -44,7 +44,6 @@ export class TextEffects {
     );
   }
   public wrapText(text: string): void {
-    console.log("##########");
     const gradient = this.context.createLinearGradient(
       0,
       0,
