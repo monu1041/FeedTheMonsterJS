@@ -126,9 +126,9 @@ export class DecisionPage {
     var self = this;
     const availableBackgroundTypes = ["Summer", "Autumn", "Winter"];
     var backgroundType =
-      Math.floor(GameFields.selectedLevel + 1 / 10) %
+      Math.floor(self.allLevelData[GameFields.selectedLevel].levelNumber / 10) %
       availableBackgroundTypes.length;
-    if (self.allLevelData.levelNumber >= 30) {
+    if (self.allLevelData[GameFields.selectedLevel].levelNumber >= 30) {
       backgroundType = backgroundType % 3;
     }
     loadingScreen(true);
