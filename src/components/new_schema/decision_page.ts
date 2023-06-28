@@ -47,8 +47,8 @@ export class DecisionPage {
   public game: Game;
   public levelStartCallBack: any;
   public audio: Sound;
-  public rightToLeft:boolean;
-  public levelStartTime:Date;
+  public rightToLeft: boolean;
+  public levelStartTime: Date;
   constructor({
     game,
     allLevelsData,
@@ -79,7 +79,7 @@ export class DecisionPage {
       this.width,
       GameSceneBg
     );
-    GameFields.levelStartTime = new Date()
+    GameFields.levelStartTime = new Date();
     this.canavsElement = document.getElementById(this.id);
     this.context = this.canavsElement.getContext(
       "2d"
@@ -92,7 +92,7 @@ export class DecisionPage {
       this.puzzleCallBack,
       this.allLevelData[GameFields.selectedLevel],
       this.audio,
-      rightToLeft,
+      rightToLeft
     );
   }
   puzzleCallBack(value: number, button_type?: string) {
@@ -100,16 +100,16 @@ export class DecisionPage {
       self.levelStartCallBack(button_type);
       self.canvasStack.deleteLayer(self.id);
     } else if (button_type == "next_button") {
-      self.context.clearRect(0,0,self.width,self.height)
-      self.createBackgroud()
       GameFields.selectedLevel = GameFields.selectedLevel + 1;
+      self.context.clearRect(0, 0, self.width, self.height);
+      self.createBackgroud();
       new GameScene(
         self.game,
         value,
         self.puzzleCallBack,
         self.allLevelData[GameFields.selectedLevel],
         self.audio,
-        self.rightToLeft,
+        self.rightToLeft
       );
     } else {
       new GameScene(
@@ -118,7 +118,7 @@ export class DecisionPage {
         self.puzzleCallBack,
         self.allLevelData[GameFields.selectedLevel],
         self.audio,
-        self.rightToLeft,
+        self.rightToLeft
       );
     }
   }
@@ -126,7 +126,7 @@ export class DecisionPage {
     var self = this;
     const availableBackgroundTypes = ["Summer", "Autumn", "Winter"];
     var backgroundType =
-      Math.floor(self.allLevelData[GameFields.selectedLevel].levelNumber / 10) %
+      Math.floor(GameFields.selectedLevel + 1 / 10) %
       availableBackgroundTypes.length;
     if (self.allLevelData.levelNumber >= 30) {
       backgroundType = backgroundType % 3;
