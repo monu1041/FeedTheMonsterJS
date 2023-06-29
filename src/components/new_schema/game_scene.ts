@@ -89,7 +89,7 @@ export class GameScene {
     ) as CanvasRenderingContext2D;
     this.stoneCanavsElement.style.zIndex = 4;
     this.drawGameScreen();
-    this.requestAnimation = requestAnimationFrame(this.animate);
+    this.requestAnimation = requestAnimationFrame(this.update);
     this.eventListners();
   }
   drawGameScreen() {
@@ -136,7 +136,7 @@ export class GameScene {
     this.timerTicking = new TimerTicking(this.context, this.game, this.audio);
     this.pauseButton = new PauseButton(this.context, this.canavsElement);
   }
-  animate(timeStamp) {
+  update(timeStamp) {
     const currentTimestamp = performance.now();
     GameFields.deltaTime = currentTimestamp - previousTimestamp;
     self.timerTicking
@@ -147,9 +147,6 @@ export class GameScene {
     !GameFields.isGamePaused
       ? self.stonePage.update(GameFields.deltaTime)
       : null;
-
-    previousTimestamp = currentTimestamp;
-    self.requestAnimation = requestAnimationFrame(self.animate);
   }
   showPopUp() {
     new PausePopUp(this, self.puzzleDecision, this.audio);
@@ -169,6 +166,7 @@ export class GameScene {
       }
       if (self.pauseButton.onClick(x, y)) {
         GameFields.isTimerPaused = true;
+        GameFields.isGamePaused = true;
         self.audio.playSound("./assets/audios/ButtonClick.mp3", ButtonClick);
         self.showPopUp();
       }
