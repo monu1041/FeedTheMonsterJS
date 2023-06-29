@@ -48,6 +48,7 @@ export class GameScene {
   public feedbackTextId: any;
   public feedbackTextCanavsElement: any;
   public feedbackTextContext: any;
+  public feedBackTexts:any;
   textEffect: any;
   constructor(
     game,
@@ -56,10 +57,12 @@ export class GameScene {
     levelData,
     audio,
     rightToLeft,
+    feedBackTexts
   ) {
     self = this;
     this.game = game;
     this.levelData = levelData;
+    this.feedBackTexts = feedBackTexts;
     this.puzzleNumber = puzzleNumber;
     this.puzzleCallBack = puzzleCallBack;
     this.width = game.width;
@@ -130,6 +133,7 @@ export class GameScene {
       this.levelIndicators,
       this.promptButton,
       this.textEffect,
+      this.feedBackTexts,
       this.audio,
       this.feedbackTextCanavsElement,
       this.puzzleDecision

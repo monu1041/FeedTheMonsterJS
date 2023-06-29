@@ -49,6 +49,7 @@ export class DecisionPage {
   public audio: Sound;
   public rightToLeft: boolean;
   public levelStartTime: Date;
+  public feedBackTexts: any;
   constructor({
     game,
     allLevelsData,
@@ -68,6 +69,7 @@ export class DecisionPage {
     this.game = game;
     this.audio = new Sound();
     this.allLevelData = allLevelsData;
+    this.feedBackTexts = feedBackTexts;
     this.width = this.game.width;
     this.height = this.game.height;
     this.canvasStack = new CanvasStack("canvas");
@@ -92,7 +94,8 @@ export class DecisionPage {
       this.puzzleCallBack,
       this.allLevelData[GameFields.selectedLevel],
       this.audio,
-      rightToLeft
+      rightToLeft,
+      feedBackTexts
     );
   }
   puzzleCallBack(value: number, button_type?: string) {
@@ -109,7 +112,8 @@ export class DecisionPage {
         self.puzzleCallBack,
         self.allLevelData[GameFields.selectedLevel],
         self.audio,
-        self.rightToLeft
+        self.rightToLeft,
+        self.feedBackTexts
       );
     } else {
       new GameScene(
@@ -118,7 +122,8 @@ export class DecisionPage {
         self.puzzleCallBack,
         self.allLevelData[GameFields.selectedLevel],
         self.audio,
-        self.rightToLeft
+        self.rightToLeft,
+        self.feedBackTexts
       );
     }
   }

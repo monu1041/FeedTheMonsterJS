@@ -13,9 +13,8 @@ var self;
 var frameCount: number = 0;
 var audioUrl = {
   phraseAudios: [
-    ["Fantastic", "./lang/" + lang + "/audios/fantastic.mp3"],
-    // "./assets/audios/good job.WAV",
-    ["Great", "./lang/" + lang + "/audios/great.mp3"],
+    "./lang/" + lang + "/audios/fantastic.mp3",
+    "./lang/" + lang + "/audios/great.mp3",
   ],
   monsterSplit: "./assets/audios/Monster Spits wrong stones-01.mp3",
   monsterEat: "./assets/audios/Eat.mp3",
@@ -48,6 +47,7 @@ export default class StonePage {
   public showTutorial: boolean =
     getDatafromStorage().length == undefined ? true : false;
   feedbackTextCanvasElement: any;
+  public feedBackTexts: any;
   constructor(
     context: CanvasRenderingContext2D,
     canvas: { width: number; height?: number },
@@ -58,6 +58,7 @@ export default class StonePage {
     levelIndicators,
     promptButton,
     feedbackEffects,
+    feedBackTexts,
     audio,
     feedbackTextCanvasElement,
     callbackFuntion
@@ -68,6 +69,7 @@ export default class StonePage {
     this.stoneHtmlElement = stoneHtmlElement;
     this.puzzleNumber = puzzleNumber;
     this.levelData = levelData;
+    this.feedBackTexts = feedBackTexts;
     this.currentPuzzleData = this.levelData.puzzles[this.puzzleNumber];
     this.targetStones = [...this.currentPuzzleData.targetStones];
     this.monster = monster;
@@ -283,13 +285,13 @@ export default class StonePage {
       );
       if (this.answer == this.correctAnswer) {
         GameFields.gameScore = GameFields.gameScore + 100;
-        var phraseValues = audioUrl.phraseAudios[self.getRandomInt(0, 1)];
-        this.promptButton.showFantasticOrGreat(phraseValues[0]);
+        var randomIndex = self.getRandomInt(0, 1);
+        this.promptButton.showFantasticOrGreat(Object.values(this.feedBackTexts)[randomIndex]);
         this.feedbackTextCanvasElement.style.zIndex = "8";
-        this.feedbackEffects.wrapText(phraseValues[0]);
+        this.feedbackEffects.wrapText(Object.values(this.feedBackTexts)[randomIndex]);
         this.foilStones = [];
         GameFields.setTimeOuts.timerFeedback = setTimeout(() => {
-          self.audio.playSound(phraseValues[1], FeedbackAudio);
+          self.audio.playSound(audioUrl.phraseAudios[randomIndex], FeedbackAudio);
           GameFields.setTimeOuts.timerPuzzleCmptd = setTimeout(() => {
             GameFields.isTimerPaused
               ? (GameFields.puzzleCompleted = true)

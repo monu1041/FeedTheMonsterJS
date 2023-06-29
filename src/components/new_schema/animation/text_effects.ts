@@ -43,7 +43,7 @@ export class TextEffects {
       this.handleTextWorkerMessage.bind(this)
     );
   }
-  public wrapText(text: string): void {
+  public wrapText(text: any): void {
     const gradient = this.context.createLinearGradient(
       0,
       0,
