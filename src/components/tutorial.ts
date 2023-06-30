@@ -61,19 +61,6 @@ export class Tutorial {
   }
 
   draw(deltaTime) {
-    if (
-      this.x <= this.endx + this.absdx &&
-      this.x >= this.endx - this.absdx &&
-      this.y <= this.endy + this.absdy &&
-      this.y >= this.endy - this.absdy
-    ) {
-      setTimeout(() => {
-        this.x = this.startx;
-        this.y = this.starty;
-      }, 500);
-      GameFields.tutorialStatus = true;
-    }
-
     this.x =
       this.dx >= 0
         ? this.x + this.absdx * deltaTime
@@ -82,6 +69,12 @@ export class Tutorial {
       this.dy >= 0
         ? this.y + this.absdy * deltaTime
         : this.y - this.absdy * deltaTime;
+    const disx = this.x - this.endx + this.absdx;
+    const disy = this.y - this.endy + this.absdy;
+    const distance = Math.sqrt(disx * disx + disy * disy);
+    if (distance < 10) {
+      GameFields.tutorialStatus = true;
+    }
     this.context.drawImage(tutorialImg, this.x, this.y);
   }
 }

@@ -46,9 +46,9 @@ export class Game {
       feedBackTexts: feedBackTexts,
       rightToLeft: rightToLeft,
     });
-    // this.gameSceneCallBack = gameSceneCallBack;
+     this.gameSceneCallBack = gameSceneCallBack;
     // this.render();
-    // self = this;
+     self = this;
     // this.animation();
   }
   levelStartCallBack(button_name) {
