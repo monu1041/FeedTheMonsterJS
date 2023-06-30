@@ -13,7 +13,7 @@ export default class TimerTicking {
   public audio: Sound;
 
   constructor(context: CanvasRenderingContext2D, canvas: Game, audio: Sound) {
-    this.posX = canvas.width * 0.12;
+    this.posX = canvas.width * 0.14;
     this.posY = canvas.height * 0.099;
     this.context = context;
     this.canvas = canvas;
@@ -45,7 +45,7 @@ export default class TimerTicking {
     this.timer = 0;
     this.draw();
   }
-  timerStart() {
+  timerStart(deltaTime) {
     if (
       this.posX + this.canvas.width - this.timer <= this.posX + 50 &&
       !GameFields.TimerOut
@@ -62,7 +62,7 @@ export default class TimerTicking {
       // TimeOver
     }
     if (!GameFields.isTimerPaused && GameFields.drawStones) {
-      this.timer = this.timer + 0.7;
+      this.timer = this.timer + 0.04 *deltaTime;
       this.context.clearRect(
         this.posX + this.canvas.width - this.timer,
         this.posY,

@@ -93,7 +93,7 @@ export default class StonePage {
       GameFields.showTutorial &&
       !GameFields.tutorialStatus
     ) {
-      this.tutorial.draw();
+      this.tutorial.draw(deltaTime);
       clearTimeout(GameFields.setTimeOuts.timerShowTutorial);
     }
     if (this.answer === this.correctAnswer && GameFields.isGamePaused) {
