@@ -5,6 +5,7 @@ import { LevelStartScene } from "./level-start-scene.js";
 
 var animationFrame: number;
 var self: any;
+let lastTime = 0;
 export class Game {
   public width: number;
   public height: number;
@@ -68,9 +69,13 @@ export class Game {
       }
     }
   }
-  update() {
-    self.scene ? (self.scene.stones ? self.scene.stones.update() : null) : null;
-    self.scene ? self.scene.update() : null;
+  update(deltaTime: number) {
+    self.scene
+      ? self.scene.stones
+        ? self.scene.stones.update(deltaTime)
+        : null
+      : null;
+    self.scene ? self.scene.update(deltaTime) : null;
   }
 
   render() {
