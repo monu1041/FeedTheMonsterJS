@@ -1,6 +1,6 @@
 import { Debugger, lang } from "../../global-variables.js";
 import { StoreMonsterPhaseNumber } from "../common/common.js";
-import { DecisionPage } from "../components/new_schema/decision_page.js";
+import { DecisionPage } from "./decision_page.js";
 import { LevelStartScene } from "./level-start-scene.js";
 
 var animationFrame: number;
@@ -46,10 +46,10 @@ export class Game {
       feedBackTexts: feedBackTexts,
       rightToLeft: rightToLeft,
     });
-    this.gameSceneCallBack = gameSceneCallBack;
-    this.render();
-    self = this;
-    this.animation();
+    // this.gameSceneCallBack = gameSceneCallBack;
+    // this.render();
+    // self = this;
+    // this.animation();
   }
   levelStartCallBack(button_name) {
     // cancelAnimationFrame(animationFrame);
@@ -69,22 +69,22 @@ export class Game {
       }
     }
   }
-  update(deltaTime: number) {
-    self.scene
-      ? self.scene.stones
-        ? self.scene.stones.update(deltaTime)
-        : null
-      : null;
-    self.scene ? self.scene.update(deltaTime) : null;
-  }
+  // update(deltaTime: number) {
+  //   self.scene
+  //     ? self.scene.stones
+  //       ? self.scene.stones.update(deltaTime)
+  //       : null
+  //     : null;
+  //   self.scene ? self.scene.update(deltaTime) : null;
+  // }
 
-  render() {
-    cancelAnimationFrame(animationFrame);
-    // this.scene.createBackgroud();
-  }
+  // render() {
+  //   cancelAnimationFrame(animationFrame);
+  //   // this.scene.createBackgroud();
+  // }
 
-  animation() {
-    self.update();
-    //  animationFrame = requestAnimationFrame(self.animation);
-  }
+  // animation() {
+  //   self.update();
+  //   //  animationFrame = requestAnimationFrame(self.animation);
+  // }
 }

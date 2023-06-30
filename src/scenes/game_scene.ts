@@ -4,19 +4,19 @@ import {
   GameSceneLayer,
   PromptAudio,
   StoneLayer,
-} from "../../common/common.js";
-import PromptText from "./prompt_text.js";
-import { CanvasStack } from "../../utility/canvas-stack.js";
-import { Game } from "../../scenes/game.js";
-import TimerTicking from "./timer-ticking.js";
-import PauseButton from "../buttons/pause_button.js";
-import PausePopUp from "../pause-popup.js";
-import { LevelIndicators } from "../level-indicators.js";
-import StonePage from "./stone_page.js";
-import Monster from "./animation/monster.js";
-import { LevelEndScene } from "../../scenes/level-end-scene.js";
-import { TextEffects } from "./animation/text_effects.js";
-import Sound from "../../common/sound.js";
+} from "../common/common.js";
+import PromptText from "../components/prompt_text.js";
+import { CanvasStack } from "../utility/canvas-stack.js";
+import { Game } from "./game.js";
+import TimerTicking from "../components/timer-ticking.js";
+import PauseButton from "../components/buttons/pause_button.js";
+import PausePopUp from "../components/pause-popup.js";
+import { LevelIndicators } from "../components/level-indicators.js";
+import StonePage from "../components/stone_page.js";
+import Monster from "../components/animation/monster.js";
+import { LevelEndScene } from "./level-end-scene.js";
+import { TextEffects } from "../components/animation/text_effects.js";
+import Sound from "../common/sound.js";
 let previousTimestamp = performance.now();
 let deltaTime = 0;
 let lastTime;

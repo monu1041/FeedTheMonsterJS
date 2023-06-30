@@ -1,5 +1,5 @@
-import { Debugger, lang } from "../../../../global-variables.js";
-import { GameFields, StoreMonsterPhaseNumber } from "../../../common/common.js";
+import { Debugger, lang } from "../../../global-variables.js";
+import { GameFields, StoreMonsterPhaseNumber } from "../../common/common.js";
 
 export default class Monster {
   public canvas: { width: any; height?: number };
