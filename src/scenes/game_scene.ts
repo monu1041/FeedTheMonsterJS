@@ -100,7 +100,6 @@ export class GameScene {
   }
 
   drawGameScreen() {
-    console.log("drawedqwrfgh");
     document.addEventListener(
       "visibilitychange",
       function () {
