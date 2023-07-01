@@ -1,4 +1,4 @@
-import { GameFields } from "../../common/common.js";
+import { GameFields } from "../common/common.js";
 var promptImage = new Image();
 promptImage.src = " ./assets/images/promptTextBg.png";
 

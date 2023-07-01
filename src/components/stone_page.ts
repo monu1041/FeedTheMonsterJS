@@ -1,11 +1,11 @@
-import { lang, pseudoId } from "../../../global-variables.js";
-import { FeedbackAudio, GameFields, PhraseAudio } from "../../common/common.js";
-import Sound from "../../common/sound.js";
-import { StoneConfig } from "../../common/stones-config.js";
-import { getDatafromStorage } from "../../data/profile-data.js";
-import { FirebaseIntegration } from "../../firebase/firebase_integration.js";
-import { LevelIndicators } from "../level-indicators.js";
-import { Tutorial } from "../tutorial.js";
+import { lang, pseudoId } from "../../global-variables.js";
+import { FeedbackAudio, GameFields, PhraseAudio } from "../common/common.js";
+import Sound from "../common/sound.js";
+import { StoneConfig } from "../common/stones-config.js";
+import { getDatafromStorage } from "../data/profile-data.js";
+import { FirebaseIntegration } from "../firebase/firebase_integration.js";
+import { LevelIndicators } from "./level-indicators.js";
+import { Tutorial } from "./tutorial.js";
 import Monster from "./animation/monster.js";
 import { TextEffects } from "./animation/text_effects.js";
 import PromptText from "./prompt_text.js";
@@ -93,7 +93,7 @@ export default class StonePage {
       GameFields.showTutorial &&
       !GameFields.tutorialStatus
     ) {
-      this.tutorial.draw();
+      this.tutorial.draw(deltaTime);
       clearTimeout(GameFields.setTimeOuts.timerShowTutorial);
     }
     if (this.answer === this.correctAnswer && GameFields.isGamePaused) {
@@ -123,12 +123,6 @@ export default class StonePage {
       for (let fs of this.foilStones) {
         this.drawstone(fs);
       }
-      if (!GameFields.showTutorial) {
-        GameFields.setTimeOuts.timerShowTutorial = setTimeout(() => {
-          GameFields.showTutorial = true;
-          clearTimeout(GameFields.setTimeOuts.timerShowTutorial);
-        }, 2000);
-      }
     }
   }
   createStones() {
@@ -144,16 +138,24 @@ export default class StonePage {
     }
     this.foilStones.forEach((stone) => {
       if (stone.text == this.targetStones[0]) {
-        console.log(stone);
         this.tutorialPosition = [stone.targetX, stone.targetY];
         this.tutorial.updateTargetStonePositions(this.tutorialPosition);
         this.tutorial.animateImage();
       }
     });
   }
+  displayTutorial(){
+    if (!GameFields.showTutorial) {
+      GameFields.setTimeOuts.timerShowTutorial = setTimeout(() => {
+        GameFields.showTutorial = true;
+        clearTimeout(GameFields.setTimeOuts.timerShowTutorial);
+      }, 2000);
+    }
+  }
   eventListners() {
     GameFields.setTimeOuts.timerDrawStones = setTimeout(() => {
       !GameFields.isTimerPaused ? (GameFields.drawStones = true) : null;
+      this.displayTutorial()
     }, 4000);
     var rect = self.stoneHtmlElement.getBoundingClientRect();
     this.stoneHtmlElement.addEventListener("click", function (event) {
@@ -168,6 +170,7 @@ export default class StonePage {
         ) <= 60
       ) {
         GameFields.drawStones = true;
+        self.displayTutorial()
       }
     });
     this.stoneHtmlElement.addEventListener(
@@ -270,6 +273,9 @@ export default class StonePage {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   checkDraggedOption() {
+    if(this.pickedStone){
+      GameFields.tutorialStatus = true
+    }
     if (
       this.targetStones.length > 0 &&
       this.pickedStone &&

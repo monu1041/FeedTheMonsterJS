@@ -4,21 +4,22 @@ import {
   GameSceneLayer,
   PromptAudio,
   StoneLayer,
-} from "../../common/common.js";
-import PromptText from "./prompt_text.js";
-import { CanvasStack } from "../../utility/canvas-stack.js";
-import { Game } from "../../scenes/game.js";
-import TimerTicking from "./timer-ticking.js";
-import PauseButton from "../buttons/pause_button.js";
-import PausePopUp from "../pause-popup.js";
-import { LevelIndicators } from "../level-indicators.js";
-import StonePage from "./stone_page.js";
-import Monster from "./animation/monster.js";
-import { LevelEndScene } from "../../scenes/level-end-scene.js";
-import { TextEffects } from "./animation/text_effects.js";
-import Sound from "../../common/sound.js";
+} from "../common/common.js";
+import PromptText from "../components/prompt_text.js";
+import { CanvasStack } from "../utility/canvas-stack.js";
+import { Game } from "./game.js";
+import TimerTicking from "../components/timer-ticking.js";
+import PauseButton from "../components/buttons/pause_button.js";
+import PausePopUp from "../components/pause-popup.js";
+import { LevelIndicators } from "../components/level-indicators.js";
+import StonePage from "../components/stone_page.js";
+import Monster from "../components/animation/monster.js";
+import { LevelEndScene } from "./level-end-scene.js";
+import { TextEffects } from "../components/animation/text_effects.js";
+import Sound from "../common/sound.js";
 let previousTimestamp = performance.now();
 let deltaTime = 0;
+let lastTime;
 var self;
 export class GameScene {
   public levelData: any;
@@ -48,7 +49,7 @@ export class GameScene {
   public feedbackTextId: any;
   public feedbackTextCanavsElement: any;
   public feedbackTextContext: any;
-  public feedBackTexts:any;
+  public feedBackTexts: any;
   textEffect: any;
   constructor(
     game,
@@ -93,7 +94,7 @@ export class GameScene {
     ) as CanvasRenderingContext2D;
     this.stoneCanavsElement.style.zIndex = 4;
     this.drawGameScreen();
-    this.requestAnimation = requestAnimationFrame(this.update)
+    this.update(0);
     this.eventListners();
   }
   drawGameScreen() {
@@ -141,16 +142,18 @@ export class GameScene {
     this.timerTicking = new TimerTicking(this.context, this.game, this.audio);
     this.pauseButton = new PauseButton(this.context, this.canavsElement);
   }
-  update(timeStamp) {
+  update(currentTime) {
+    let deltaTimer: number = currentTime - lastTime;
+    lastTime = currentTime;
     const currentTimestamp = performance.now();
     deltaTime = currentTimestamp - previousTimestamp;
-    self.timerTicking ? self.timerTicking.timerStart() : null;
-     self.textEffect.render();
+    self.timerTicking ? self.timerTicking.timerStart(deltaTimer) : null;
+    self.textEffect.render();
     self.monster.update(deltaTime);
-    self.stonePage.update(deltaTime)
+    self.stonePage.update(deltaTimer);
 
-    previousTimestamp = currentTimestamp;
-   self.requestAnimation = requestAnimationFrame(self.update)
+     previousTimestamp = currentTimestamp;
+    self.requestAnimation = requestAnimationFrame(self.update);
   }
   showPopUp() {
     new PausePopUp(this, self.puzzleDecision, this.audio);
@@ -180,7 +183,7 @@ export class GameScene {
     self.resetGameFields();
     var puzzleNumber = self.puzzleNumber + 1;
     if (button_type != undefined) {
-      GameFields.levelStartTime = new Date()
+      GameFields.levelStartTime = new Date();
       puzzleNumber = 0;
     }
     if (self.levelData.puzzles.length === puzzleNumber) {
@@ -198,7 +201,7 @@ export class GameScene {
       GameFields.gameScore = 0;
     } else {
       cancelAnimationFrame(self.requestAnimation);
-      self.requestAnimation = 0
+      self.requestAnimation = 0;
       self.canvasStack.deleteLayer(self.id);
       self.canvasStack.deleteLayer(self.stoneLayerId);
       self.canvasStack.deleteLayer(self.feedbackTextId);
@@ -217,7 +220,7 @@ export class GameScene {
             "droppedStones",
             "selectedLevel",
             "setTimeOuts",
-            "levelStartTime"
+            "levelStartTime",
           ].indexOf(key) == -1
         ) {
           GameFields[key] = false;

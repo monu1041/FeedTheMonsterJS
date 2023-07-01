@@ -5,12 +5,12 @@ import {
   GameSceneLayer,
   loadImages,
   loadingScreen,
-} from "../../common/common.js";
-import StonesLayer from "../stones-layer.js";
-import { CanvasStack } from "../../utility/canvas-stack.js";
-import { Game } from "../../scenes/game.js";
+} from "../common/common.js";
+import StonesLayer from "../components/stones-layer.js";
+import { CanvasStack } from "../utility/canvas-stack.js";
+import { Game } from "./game.js";
 import { GameScene } from "./game_scene.js";
-import Sound from "../../common/sound.js";
+import Sound from "../common/sound.js";
 var images = {
   bgImg: "./assets/images/bg_v01.jpg",
   hillImg: "./assets/images/hill_v01.png",

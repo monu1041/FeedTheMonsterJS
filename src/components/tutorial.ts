@@ -25,7 +25,7 @@ export class Tutorial {
   absdx: number;
   absdy: number;
 
-  constructor(context, game,) {
+  constructor(context, game) {
     this.game = game;
     self = this;
     this.width = this.game.width;
@@ -42,7 +42,7 @@ export class Tutorial {
     startY = targetStonePosition[1] - 50;
     this.startx = targetStonePosition[0] - 22;
     this.starty = targetStonePosition[1] - 50;
-    this.animateImage()
+    this.animateImage();
   }
 
   isMobile() {
@@ -54,28 +54,27 @@ export class Tutorial {
   animateImage() {
     this.x = startX;
     this.y = startY;
-    this.dx = (this.endx - this.startx) / 100;
-    this.dy = (this.endy - this.starty) / 100;
+    this.dx = (this.endx - this.startx) / 5000;
+    this.dy = (this.endy - this.starty) / 5000;
     this.absdx = this.isMobile() ? Math.abs(this.dx) * 3 : Math.abs(this.dx);
     this.absdy = this.isMobile() ? Math.abs(this.dy) * 3 : Math.abs(this.dy);
   }
 
-  draw() {
-    if (
-      this.x <= this.endx + this.absdx &&
-      this.x >= this.endx - this.absdx &&
-      this.y <= this.endy + this.absdy &&
-      this.y >= this.endy - this.absdy
-    ) {
-      setTimeout(() => {
-        this.x = this.startx;
-        this.y = this.starty;
-      }, 500);
-      GameFields.tutorialStatus = true
+  draw(deltaTime) {
+    this.x =
+      this.dx >= 0
+        ? this.x + this.absdx * deltaTime
+        : this.x - this.absdx * deltaTime;
+    this.y =
+      this.dy >= 0
+        ? this.y + this.absdy * deltaTime
+        : this.y - this.absdy * deltaTime;
+    const disx = this.x - this.endx + this.absdx;
+    const disy = this.y - this.endy + this.absdy;
+    const distance = Math.sqrt(disx * disx + disy * disy);
+    if (distance < 10) {
+      GameFields.tutorialStatus = true;
     }
-
-    this.x = this.dx >= 0 ? this.x + this.absdx : this.x - this.absdx;
-    this.y = this.dy >= 0 ? this.y + this.absdy : this.y - this.absdy;
     this.context.drawImage(tutorialImg, this.x, this.y);
   }
 }
