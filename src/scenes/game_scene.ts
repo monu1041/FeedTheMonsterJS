@@ -20,6 +20,7 @@ import Sound from "../common/sound.js";
 let previousTimestamp = performance.now();
 let deltaTime = 0;
 let lastTime;
+let isHidden = false;
 var self;
 export class GameScene {
   public levelData: any;
@@ -97,7 +98,22 @@ export class GameScene {
     this.update(0);
     this.eventListners();
   }
+
   drawGameScreen() {
+    document.addEventListener(
+      "visibilitychange",
+      function () {
+        if (document.visibilityState === "visible" && isHidden) {
+          isHidden = false;
+        } else if (document.visibilityState === "hidden" && !isHidden) {
+          isHidden = true;
+          GameFields.isTimerPaused = true;
+          GameFields.isGamePaused = true;
+          self.showPopUp();
+        }
+      },
+      false
+    );
     this.audio.playSound(
       this.levelData.puzzles[this.puzzleNumber].prompt.promptAudio,
       PromptAudio
@@ -152,7 +168,7 @@ export class GameScene {
     self.monster.update(deltaTime);
     self.stonePage.update(deltaTimer);
 
-     previousTimestamp = currentTimestamp;
+    previousTimestamp = currentTimestamp;
     self.requestAnimation = requestAnimationFrame(self.update);
   }
   showPopUp() {
