@@ -122,7 +122,7 @@ export class LevelEndScene {
     this.id = this.canvasStack.createLayer(
       this.canvas.height,
       this.canvas.width,
-      LevelEndLayer
+      "canvas"
     );
     this.context = (
       document.getElementById(this.id) as HTMLCanvasElement
@@ -131,7 +131,7 @@ export class LevelEndScene {
     this.bottonLayer = this.canvasStack.createLayer(
       this.canvas.height,
       this.canvas.width,
-      LevelEndButtonsLayer
+      "canvas"
     );
     this.bottonContext = (
       document.getElementById(this.bottonLayer) as HTMLCanvasElement

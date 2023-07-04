@@ -17,10 +17,12 @@
   },
   "homepage": "https://github.com/curiouslearning/FeedTheMonsterJS#readme",
   "dependencies": {
+    "ts-loader": "^9.4.1",
     "@capacitor/android": "^4.4.0",
     "@capacitor/core": "^4.4.0",
     "@sentry/browser": "^7.47.0",
     "@types/workbox-window": "^4.3.4",
+    "axios": "^1.4.0",
     "copy-webpack-plugin": "^11.0.0",
     "fluent-ffmpeg": "^2.1.2",
     "howler": "^2.2.3",

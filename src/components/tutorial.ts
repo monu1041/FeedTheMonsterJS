@@ -43,14 +43,14 @@ export class Tutorial {
     this.id = this.canvasStack.createLayer(
       this.height,
       this.width,
-      TutorialLayer
+      "canvas"
     );
     this.elementId = document.getElementById(
         this.id
       ) as HTMLCanvasElement;
     this.canavsElement = document.getElementById(this.id) as HTMLCanvasElement;
     this.context = this.canavsElement.getContext("2d");
-    this.canavsElement.style.zIndex = "6";
+    // this.canavsElement.style.zIndex = "6";
     this.canavsElement.style.bottom = "0";
    
     endX = this.width/2;
@@ -141,7 +141,7 @@ export class Tutorial {
   }
 
   draw(x: number, y: number) {
-     this.context.clearRect(0, 0, this.width, this.height); // Clear the canvas
+    //  this.context.clearRect(0, 0, this.width, this.height); // Clear the canvas
      this.context.drawImage(tutorialImg, x, y); 
   }
 }
