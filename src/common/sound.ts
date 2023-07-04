@@ -10,6 +10,7 @@ export default class Sound {
   public audioContext: AudioContext = new AudioContext();
 
   playSound(src, type?) {
+    // console.log(" soundplayinghere " , src);
     if (type != PromptAudio) {
       let source = audioContext.createBufferSource();
       source.buffer = audioBuffers[src];
@@ -96,7 +97,7 @@ function loadAudio(url) {
   });
 }
 
-let loadPromises = audioUrls.map((url) => loadAudio(url).catch((err) => {}));
+let loadPromises = audioUrls.map((url) => loadAudio(url).catch((err) => { }));
 Promise.all(loadPromises).then(() => {
   if (is_cached.has(lang)) {
     loadingScreen(false);

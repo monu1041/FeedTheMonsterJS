@@ -29,7 +29,7 @@ export default class PausePopUp {
     this.id = this.canvasStack.createLayer(
       this.canvas.height,
       this.canvas.width,
-      PausePopupLayer
+      "canvas"
     );
     const selfIdElement = document.getElementById(this.id) as HTMLCanvasElement;
     this.context = selfIdElement.getContext("2d");

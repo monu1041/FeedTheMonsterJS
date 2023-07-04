@@ -1,19 +1,19 @@
 import * as Sentry from "@sentry/browser";
 import { LevelSelectionScreen } from "./src/scenes/level-selection-scene.js";
-import { getData } from "./src/data/api-data.js";
-import { DataModal } from "./src/data/data-modal.js";
-import { StartScene } from "./src/scenes/start-scene.js";
-import { CanvasStack } from "./src/utility/canvas-stack.js";
-import { firebaseConfig } from "./src/firebase/firebase_config.js";
+import { getData } from "./src/data/api-data";
+import { DataModal } from "./src/data/data-modal";
+import { StartScene } from "./src/singlecanvas/scenes/start-scene";
+import { CanvasStack } from "./src/utility/canvas-stack";
+import { firebaseConfig } from "./src/firebase/firebase_config";
 import {
   getDatafromStorage,
   ProfileData,
   setDataToStorage,
-} from "./src/data/profile-data.js";
-import { IsCached, PWAInstallStatus } from "./src/common/common.js";
+} from "./src/data/profile-data";
+import { IsCached, PWAInstallStatus } from "./src/common/common";
 import { Workbox } from "workbox-window";
-import { Debugger, lang } from "./global-variables.js";
-import { FirebaseIntegration } from "./src/firebase/firebase_integration.js";
+import { Debugger, lang } from "./global-variables";
+import { FirebaseIntegration } from "./src/firebase/firebase_integration";
 declare const window: any;
 declare const app: any;
 let jsonData;
