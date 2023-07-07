@@ -14,6 +14,7 @@ import PlayButton from "../../singlecanvas/components/play-button";
 import { Monster } from "../components/monster";
 import { StartScene } from "../scenes/start-scene";
 import { DataModal } from "../../data/data-modal";
+import { TestGameplayScene } from "../scenes/test-gameplay-scene";
 import { LevelSelectionScreen } from "../scenes/level-selection-scene";
 import { Debugger, lang } from "../../../global-variables";
 import { GameplayScene } from "../scenes/gameplay-scene"
@@ -34,7 +35,8 @@ export class SceneHandler {
     public startScene: StartScene;
     public levelSelectionScene: any;
     public gameplayScene: any;
-    // public monster: Monster;
+    public monster: Monster;
+    public testGameplayScene: TestGameplayScene;
     // public pickedStone: StoneConfig;
     // public pwa_status: string;
     // public firebase_analytics: { logEvent: any };
@@ -59,20 +61,21 @@ export class SceneHandler {
         console.log(" itscallingsceneHandlerr11 ", data);
         this.canvas = canvas;
         this.data = data;
-        // this.width = canvas.width;
-        // this.height = canvas.height;
+        this.width = canvas.width;
+        this.height = canvas.height;
         this.canavsElement = document.getElementById("canvas") as HTMLCanvasElement;
         this.context = this.canavsElement.getContext("2d");
-        this.startScene = new StartScene(canvas, data, firebase_analytics, this.switchSceneToLevelSelection);
+        // this.startScene = new StartScene(canvas, data, firebase_analytics, this.switchSceneToLevelSelection);
+        this.testGameplayScene = new TestGameplayScene(canvas, data, firebase_analytics, this.switchSceneToLevelSelection);
         // this.gameplayScene = new GameplayScene(this.canvas, this.context, this.data.levels[0], 1, "text", false);
-        // this.monster = new Monster(this.canvas);
+        this.monster = new Monster(this.canvas);
         // this.pwa_status = localStorage.getItem(PWAInstallStatus);
         // this.handler = document.getElementById("canvas");
         // this.devToggle();
         // this.createPlayButton();
         // this.firebase_analytics = firebase_analytics;
         // console.log(this.data);
-        SceneHandler.SceneName = StartScene1;
+        SceneHandler.SceneName = GameScene1;
 
         this.animation(0);
 
@@ -98,9 +101,11 @@ export class SceneHandler {
         lastTime = timeStamp;
         // console.log(this.loadedImages, " <> ", this.imagesLoaded, " ffffggg ", StartScene.SceneName);
 
+        // console.log(" deltaTime: ", deltaTime);
         this.context.clearRect(0, 0, this.width, this.height);
         if (SceneHandler.SceneName == StartScene1) {
             this.startScene.animation(deltaTime);
+            // this.monster.animation(deltaTime);
         }
         else if (SceneHandler.SceneName == LevelSelection1) {
             // this.levelSelectionScene.draw(1);
@@ -110,7 +115,9 @@ export class SceneHandler {
         else if (SceneHandler.SceneName == GameScene1) {
             // console.log(" rendering game scene", StartScene.SceneName);
             // render gameplay screen for now
-            this.gameplayScene.draw();
+
+            // this.gameplayScene.draw();
+            this.testGameplayScene.animation(deltaTime);
         }
         requestAnimationFrame(this.animation);
     }

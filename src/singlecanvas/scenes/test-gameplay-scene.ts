@@ -13,12 +13,12 @@ import {
     GameScene1,
     loadImages
 } from "../../common/common";
-// import { LevelIndicators } from "../components/level-indicator";
-// import { PromptText } from "../components/prompt-text"
+import { LevelIndicators } from "../components/level-indicator";
+import { PromptText } from "../components/prompt-text"
 // import { Tutorial } from "../components/tutorial";
-// import { TimerTicking } from "../components/timer-ticking";
+import { TimerTicking } from "../components/timer-ticking";
 // import PausePopUp from "../components/pause-popup"
-// import StoneHandler from "../components/stone-handler";
+import StoneHandler from "../components/stone-handler";
 import { StoneConfig } from "../common/stone-config"
 import Sound from "../../common/sound";
 import InstallButton from "../../components/buttons/install_button";
@@ -39,18 +39,19 @@ window.addEventListener("beforeinstallprompt", (e) => {
 });
 
 // let SceneName = StartScene1;
-export class StartScene {
+export class TestGameplayScene {
     public canvas: HTMLCanvasElement;
     public data: any;
     public width: number;
     public height: number;
     // public canvasStack: any;
     public monster: Monster;
-    // public levelIndicator: LevelIndicators;
-    // public promptText: PromptText;
-    // public timerTicking: TimerTicking;
+    // public monster2: Monster;
+    public levelIndicator: LevelIndicators;
+    public promptText: PromptText;
+    public timerTicking: TimerTicking;
     // public pauseMenu: PausePopUp;
-    // public stoneHandler: StoneHandler;
+    public stoneHandler: StoneHandler;
     public pickedStone: StoneConfig;
     // public stoneConfig: StoneConfig;
     public pwa_status: string;
@@ -68,6 +69,7 @@ export class StartScene {
     public handler: any;
     public static SceneName: string;
     public switchSceneToLevelSelection: any;
+    public counter: any = 0;
 
     // public tutorial: Tutorial;
 
@@ -86,8 +88,11 @@ export class StartScene {
         this.context = this.canavsElement.getContext("2d");
         // this.canvasStack = new CanvasStack("canvas");
         this.monster = new Monster(this.canvas);
+        // this.monster2 = new Monster(this.canvas);
+        console.log(Date.now, " ::: ", performance.now);
+        // this.monster2.x = 100;
         this.switchSceneToLevelSelection = switchSceneToLevelSelection;
-        // this.stoneHandler = new StoneHandler(this.context, this.canvas, 2, this.data.levels[0]);
+        this.stoneHandler = new StoneHandler(this.context, this.canvas, 2, this.data.levels[92]);
         // var img = new Image();
         // img.src = "./assets/images/stone_pink_v02.png";
         // img.onload = (e) => {
@@ -95,12 +100,12 @@ export class StartScene {
         // }
 
         /// testing promptexr
-        // this.promptText = new PromptText(this.width, this.height, this.data.levels[0].puzzles[2], this.data.levels[0], false);
-        // this.timerTicking = new TimerTicking(this.width, this.height, this.timeOverCallback);
+        this.promptText = new PromptText(this.width, this.height, this.data.levels[92].puzzles[2], this.data.levels[92], false);
+        this.timerTicking = new TimerTicking(this.width, this.height, this.timeOverCallback);
         // this.pauseMenu = new PausePopUp(this.canavsElement);
         //////////////////////end
-        // this.levelIndicator = new LevelIndicators(this.context, this.canvas, 0);
-        // this.levelIndicator.setIndicators(2);
+        this.levelIndicator = new LevelIndicators(this.context, this.canvas, 0);
+        this.levelIndicator.setIndicators(3);
         // this.tutorial = new Tutorial(this.context, this.width, this.height);
         // this.tutorial.updateTargetStonePositions([100, 100]);
 
@@ -111,7 +116,7 @@ export class StartScene {
         this.createPlayButton();
         this.firebase_analytics = firebase_analytics;
         console.log(this.data);
-        StartScene.SceneName = StartScene1;
+        // StartScene.SceneName = StartScene1;
 
         this.animation(0);
 
@@ -133,10 +138,17 @@ export class StartScene {
 
     }
 
-    // timeOverCallback() {
-    //     // time to load new puzzle
-    //     console.log("timeOver");
-    // }
+    timeOverCallback = () => {
+        // time to load new puzzle
+        console.log("timeOver");
+        this.timerTicking.readyTimer();
+        this.timerTicking.startTimer();
+        this.timerTicking.isMyTimerOver = false;
+        if (this.counter == 5)
+            this.counter = 0;
+        // this.counter += 1;
+        this.levelIndicator.setIndicators(this.counter++);
+    }
     devToggle() {
         toggleBtn.addEventListener("click", () => {
             toggleBtn.classList.toggle("on");
@@ -151,66 +163,133 @@ export class StartScene {
         });
     }
 
+
+    handleMouseUp = (event) => {
+        console.log(" upping mouse like a pro ");
+        let self = this;
+        const selfElement = <HTMLElement>document.getElementById("canvas");
+        var rect = selfElement.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        // event.preventDefault();
+        if (
+            Math.sqrt(
+                (x - self.monster.x - self.canvas.width / 4) *
+                (x - self.monster.x - self.canvas.width / 4) +
+                (y - self.monster.y - self.canvas.height / 2.7) *
+                (y - self.monster.y - self.canvas.height / 2.7)
+            ) <= 60
+        ) {
+            // self.checkDraggedOption();
+            console.log(" drooped iniside moooooonster");
+        } else {
+            self.monster.changeToIdleAnimation();
+        }
+
+        self.pickedStone = null;
+        console.log(" self.pickedStone : ", self.pickedStone);
+
+    }
+
+    handleMouseDown = (event) => {
+
+        let self = this;
+        console.log(" downing mouse like a pro ");
+        const selfElement = <HTMLElement>document.getElementById("canvas");
+        var rect = selfElement.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        ///////// sending data to stone config
+        for (let sc of self.stoneHandler.foilStones) {
+            if (
+                Math.sqrt((x - sc.x) * (x - sc.x) + (y - sc.y) * (y - sc.y)) <= 40
+            ) {
+                console.log(" clickkedon stone", sc);
+                this.pickedStone = sc;
+                // console.log("this.pickedStone : ", this.pickedStone);
+            }
+        }
+        /////// end of stone data sending
+
+    }
+
+    handleMouseMove = (event) => {
+        let self = this;
+        console.log(" mmoving mouse like a pro ");
+        // this.levelIndicator.setIndicators(1);
+        const selfElement = <HTMLElement>document.getElementById("canvas");
+        // event.preventDefault();
+        var rect = selfElement.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        if (self.pickedStone) {
+            self.monster.changeToDragAnimation();
+            self.pickedStone.x = x;
+            self.pickedStone.y = y;
+        }
+    }
+
     animation = (deltaTime) => {
         // let deltaTime = timeStamp - lastTime;
         // lastTime = timeStamp;
         // console.log(this.loadedImages, " <> ", this.imagesLoaded, " ffffggg ", StartScene.SceneName);
 
-        this.context.clearRect(0, 0, this.width, this.height);
-        if (StartScene.SceneName == StartScene1) {
-            if (this.imagesLoaded) {
-                this.context.drawImage(this.loadedImages.bgImg, 0, 0, this.width, this.height);
-                this.context.drawImage(
-                    this.loadedImages.pillerImg,
-                    this.width * 0.6,
-                    this.height / 6,
-                    // this.height / 3,
-                    this.width,
-                    this.height / 2
-                );
-                this.context.drawImage(
-                    this.loadedImages.fenchImg,
-                    -this.width * 0.4,
-                    this.height / 3,
-                    this.width,
-                    this.height / 3
-                );
-                this.context.drawImage(
-                    this.loadedImages.hillImg,
-                    -this.width * 0.25,
-                    this.height / 2,
-                    this.width * 1.5,
-                    this.height / 2
-                );
-                this.context.drawImage(
-                    this.loadedImages.grassImg,
-                    -this.width * 0.25,
-                    this.height / 2 + (this.height / 2) * 0.1,
-                    this.width * 1.5,
-                    this.height / 2
-                );
+        // this.context.clearRect(0, 0, this.width, this.height);
+        // if (StartScene.SceneName == StartScene1) {
+        if (this.imagesLoaded) {
+            this.context.drawImage(this.loadedImages.bgImg, 0, 0, this.width, this.height);
+            this.context.drawImage(
+                this.loadedImages.pillerImg,
+                this.width * 0.6,
+                this.height / 6,
+                // this.height / 3,
+                this.width,
+                this.height / 2
+            );
+            this.context.drawImage(
+                this.loadedImages.fenchImg,
+                -this.width * 0.4,
+                this.height / 3,
+                this.width,
+                this.height / 3
+            );
+            this.context.drawImage(
+                this.loadedImages.hillImg,
+                -this.width * 0.25,
+                this.height / 2,
+                this.width * 1.5,
+                this.height / 2
+            );
+            this.context.drawImage(
+                this.loadedImages.grassImg,
+                -this.width * 0.25,
+                this.height / 2 + (this.height / 2) * 0.1,
+                this.width * 1.5,
+                this.height / 2
+            );
 
-                this.context.font = "bold 40px Arial";
-                this.context.fillStyle = "white";
-                this.context.textAlign = "center";
-                this.context.fillText(this.data.title, this.width * 0.5, this.height / 10);
-                // this.update(deltaTime);
-                // this.context.scale(1.5, 1.5);
-                this.monster.animation(deltaTime);
-                // this.context.setTransform(1, 0, 0, 0, 0, 0);
-                this.playButton.draw();
-                // this.stoneHandler.draw();
-                // if (this.stoneConfig != undefined)
-                //     this.stoneConfig.draw();
-                //if(pause)
-                // this.promptText.draw();
-                // this.levelIndicator.draw();
-                // this.levelIndicator.update(deltaTime);
-                // this.tutorial.draw(deltaTime);
-                // this.timerTicking.update(deltaTime);
-                // this.pauseMenu.draw();
-            }
+            this.context.font = "bold 40px Arial";
+            this.context.fillStyle = "white";
+            this.context.textAlign = "center";
+            this.context.fillText("Testing Gameplay", this.width * 0.5, this.height / 10);
+            // this.update(deltaTime);
+            // this.context.scale(1.5, 1.5);
+            this.monster.animation(deltaTime);
+            // this.monster2.animation(deltaTime);
+            // this.context.setTransform(1, 0, 0, 0, 0, 0);
+            // this.playButton.draw();
+            this.stoneHandler.draw();
+            // if (this.stoneConfig != undefined)
+            //     this.stoneConfig.draw();
+            //if(pause)
+            this.promptText.draw();
+            this.levelIndicator.draw();
+            // this.levelIndicator.update(deltaTime);
+            // this.tutorial.draw(deltaTime);
+            this.timerTicking.update(deltaTime);
+            // this.pauseMenu.draw();
         }
+        // }
         // else if (StartScene.SceneName == LevelSelection1) {
         //     // this.levelSelectionScene.draw(1);
         //     this.levelSelectionScene.testDraw();
@@ -238,7 +317,7 @@ export class StartScene {
     //     StartScene.SceneName = LevelSelection1;
     // }
 
-    createPlayButton() {
+    createPlayButton = () => {
         this.playButton = new PlayButton(
             this.context,
             this.canvas,
@@ -246,13 +325,23 @@ export class StartScene {
             this.canvas.height / 7
         );
         // #1
-        document.addEventListener("selectstart", function (e) {
-            e.preventDefault();
-        });
-        // #2
+        // document.addEventListener("selectstart", function (e) {
+        //     e.preventDefault();
+        // });
+        // // #2
         this.handler.addEventListener(
-            "click",
-            this.handleMouseClick,
+            "mouseup",
+            this.handleMouseUp,
+            false
+        );
+        this.handler.addEventListener(
+            "mousemove",
+            this.handleMouseMove,
+            false
+        );
+        this.handler.addEventListener(
+            "mousedown",
+            this.handleMouseDown,
             false
         );
     }

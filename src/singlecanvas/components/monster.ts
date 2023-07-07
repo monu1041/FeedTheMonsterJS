@@ -79,11 +79,13 @@ export class Monster {
     }
 
     update(deltaTime) {
+        // console.log(deltaTime);
         if (this.frameTimer >= this.frameInterval) {
             // console.log(deltaTime," bb ",this.frameTimer);
             this.frameTimer = 0;
             if (this.frameX < this.maxFrame) {
                 this.frameX++;
+                // console.log("frame changed");
             } else {
                 this.frameX = 0;
             }
@@ -95,7 +97,7 @@ export class Monster {
     }
 
     draw() {
-        // this.context.clearRect(0, 0, 100, 100);
+        // this.context.clearRect(0, 0, 420, 754);
         if (this.imagesLoaded) {
             this.context.drawImage(
                 this.image,
@@ -112,7 +114,8 @@ export class Monster {
     }
 
     changeImage(src) {
-        this.animation(0);
+        console.log(" isitgettingcalledher ");
+        // this.animation(0);
         // if (this.frameY == 1) {
         //   this.frameY = 0;
         // } else {
@@ -137,6 +140,7 @@ export class Monster {
     }
 
     changeToDragAnimation() {
+        console.log("this.loadedImages.dragImg", this.loadedImages.dragImg);
         this.image = this.loadedImages.dragImg;
     }
 
@@ -157,10 +161,10 @@ export class Monster {
             this.changeToIdleAnimation();
         }, 2000);
     }
-    animation(timeStamp) {
-        let deltaTime = timeStamp - lastTime;
-        lastTime = timeStamp;
+    animation(deltaTime) {
+        // let deltaTime = timeStamp - lastTime;
+        // lastTime = timeStamp;
         self.update(deltaTime);
-        animationFrame = requestAnimationFrame(self.animation);
+        // animationFrame = requestAnimationFrame(self.animation);
     }
 }
