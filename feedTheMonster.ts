@@ -14,6 +14,7 @@ import { IsCached, PWAInstallStatus } from "./src/common/common";
 import { Workbox } from "workbox-window";
 import { Debugger, lang } from "./global-variables";
 import { FirebaseIntegration } from "./src/firebase/firebase_integration";
+import { SceneHandler } from "./src/singlecanvas/sceneHandler/scene-handler.js";
 declare const window: any;
 declare const app: any;
 let jsonData;
@@ -63,8 +64,8 @@ window.addEventListener("load", async function () {
       canvas.width = window.screen.width > 420 ? 420 : window.innerWidth;
       delete this.monster;
       new CanvasStack("canvas").deleteAllLayers();
-      delete this.startScene;
-      this.startScene = new StartScene(canvas, d, this.analytics);
+      delete this.scendeHandler;
+      this.scendeHandler = new SceneHandler(canvas, d, this.analytics);
       passingDataToContainer();
     }
   });
@@ -75,7 +76,7 @@ window.addEventListener("load", async function () {
     Debugger.DevelopmentLink
       ? (document.getElementById("toggle-btn").style.display = "block")
       : null;
-    this.startScene = new StartScene(canvas, d, this.analytics);
+    this.scendeHandler = new SceneHandler(canvas, d, this.analytics);
     passingDataToContainer();
   }
 });
